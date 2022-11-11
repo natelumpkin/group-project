@@ -1,5 +1,6 @@
 from .db import db, environment, SCHEMA
 from datetime import datetime
+from .like import likes
 
 class Posts(db.Model):
     __tablename__ = 'posts'
@@ -17,3 +18,4 @@ class Posts(db.Model):
 
     # A post has one author, an author can have many posts
     author = db.relationship("User", backpopulates="posts")
+    user_likes = db.relationship("User", secondary=likes, backpopulates="liked_posts")
