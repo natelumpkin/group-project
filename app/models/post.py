@@ -2,7 +2,7 @@ from .db import db, environment, SCHEMA
 from datetime import datetime
 from .like import likes
 
-class Posts(db.Model):
+class Post(db.Model):
     __tablename__ = 'posts'
 
     if environment == "production":
@@ -19,3 +19,7 @@ class Posts(db.Model):
     # A post has one author, an author can have many posts
     author = db.relationship("User", backpopulates="posts")
     user_likes = db.relationship("User", secondary=likes, backpopulates="liked_posts")
+
+
+    # A post can have many comments, A comment has one post,
+    comments = db.relationship("Comment", backpopulates="post")
