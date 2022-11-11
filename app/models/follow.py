@@ -4,7 +4,7 @@ from datetime import datetime
 follows = db.Table(
   'follows',
   db.Model.metadata,
-  db.Column('followerId', db.Integer, db.ForeignKey('users.id')),
-  db.Column('userId', db.Integer, db.ForeignKey('users.id')),
-  db.Column('createdAt', db.DateTime, default=datetime.utcnow())
+  db.Column('follower_id', db.Integer, db.ForeignKey('users.id')),
+  db.Column('user_id', db.Integer, db.ForeignKey('users.id')),
+  db.Column('created_at', db.DateTime, default=datetime.utcnow())
 )
