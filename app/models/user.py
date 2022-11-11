@@ -21,6 +21,10 @@ class User(db.Model, UserMixin):
     created_at = db.Column(db.DateTime(), default=datetime.utcnow())
     updated_at = db.Column(db.DateTime(), default=datetime.utcnow())
 
+
+    # This relationship allows you to access both the collection of users
+    # that follow a given user (with user.followers), and the collection
+    # of users that a user follows (with user.following)
     followers = db.relationship(
         "User",
         secondary=follows,
@@ -29,9 +33,10 @@ class User(db.Model, UserMixin):
         backref=db.backref("following", lazy="dynamic"),
         lazy="dynamic"
     )
-    # this relationship allows you to access both the collection of users
-    # that follow a given user (with user.followers), and the collection
-    # of users that a user follows (with user.following)
+
+    posts = db.relationship("Post", backpopulates="author", cascade="all, delete-orphan")
+
+
 
     @property
     def password(self):
