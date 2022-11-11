@@ -19,3 +19,6 @@ class Posts(db.Model):
     # A post has one author, an author can have many posts
     author = db.relationship("User", backpopulates="posts")
     user_likes = db.relationship("User", secondary=likes, backpopulates="liked_posts")
+
+    # A post can have multiple media:
+    media = db.relationship("Media", backpopulates="post", cascade="all, delete-orphan")
