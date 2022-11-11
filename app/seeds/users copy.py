@@ -10,11 +10,6 @@ def seed_users():
     bobbie = User(
         username='bobbie', email='bobbie@aa.io', password='password')
 
-    demo.followers = [marnie, bobbie]
-    marnie.followers = [demo, bobbie]
-    demo.following = [marnie]
-    marnie.following = [bobbie]
-
     db.session.add(demo)
     db.session.add(marnie)
     db.session.add(bobbie)
@@ -32,5 +27,5 @@ def undo_users():
         db.session.execute(f"TRUNCATE table {SCHEMA}.users RESTART IDENTITY CASCADE;")
     else:
         db.session.execute("DELETE FROM users")
-
+        
     db.session.commit()

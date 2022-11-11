@@ -1,6 +1,7 @@
 from .db import db, environment, SCHEMA, add_prefix_for_prod
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
+from .follow import follows
 
 
 class User(db.Model, UserMixin):
@@ -13,6 +14,26 @@ class User(db.Model, UserMixin):
     username = db.Column(db.String(40), nullable=False, unique=True)
     email = db.Column(db.String(255), nullable=False, unique=True)
     hashed_password = db.Column(db.String(255), nullable=False)
+
+    followers = db.relationship(
+        "User",
+        secondary=follows,
+        primaryjoin=(follows.c.followerId == id),
+        secondaryjoin=(follows.c.userId == id),
+        backref=db.backref("following", lazy="dynamic"),
+        lazy="dynamic"
+    )
+    # this relationship allows you to access both the collection of users
+    # that follow a given user (with user.followers), and the collection
+    # of users that a user follows (with user.following)
+    # following = db.relationship(
+    #     "User",
+    #     secondary=follows,
+    #     primaryjoin=(follows.c.userId == id),
+    #     secondaryjoin=(follows.c.followerId == id),
+    #     backref=db.backref("followers", lazy="dynamic"),
+    #     lazy="dynamic"
+    # )
 
     @property
     def password(self):
