@@ -13,7 +13,11 @@ def get_all_posts():
   for post in posts:
     post_dict = post.to_dict()
     post_dict['Media'] = []
-    post_dict['User'] = {}
-    post_author = post.author
-    print(post_author)
+    post_author_dict = post.author.to_dict()
+    post_dict['User'] = {
+      "id": post_author_dict['id'],
+      "username": post_author_dict['username'],
+      "profile_image_url": post_author_dict['profile_image_url'],
+    }
+    print(current_user)
   return 'Hello from get all posts'
