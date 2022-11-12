@@ -40,7 +40,7 @@ def get_all_posts():
         post_dict['User'] = {
             "id": post_author_dict['id'],
             "username": post_author_dict['username'],
-            "profileImageUrl": post_author_dict['profile_image_url'],
+            "profileImageUrl": post_author_dict['profileImageUrl'],
             "following": post.author in following_list
         }
 
