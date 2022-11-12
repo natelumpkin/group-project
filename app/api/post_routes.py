@@ -1,6 +1,7 @@
 from flask import Blueprint, jsonify, request, redirect
 from flask_login import current_user, login_required
 from app.models import Post, Comment, User, Media, db
+from app.models.like import likes
 from app.forms.post_form import PostForm
 from app.forms.media_form import MediaForm
 from app.forms.comment_form import CommentForm
@@ -210,6 +211,7 @@ def get_all_comments(id):
     """
     Queries for all comments of an existing post and returns
     it as a list of dictionaries in reverse chronological order
+    along with user information
     """
     # Check if the post exists. If not, return error message:
     try:
@@ -282,10 +284,51 @@ def add_comment(id):
 @post_routes.route('/<int:id>/likes', methods=['GET'])
 @login_required
 def get_all_likes(id):
-    pass
+  ## get all users who have liked a given post
+  ## query for a post and then query for all its likes
+  ## return them in a list
+  ## add totallikes as a key, and add user-information for each like
+
+  """
+  Returns a list of all the users who have liked a post,
+  and includes whether the current user is following them
+  """
+
+  # Checks whether the current post exists and loads all its associated data
+  try:
+    # print('first query---------------------------------------------')
+    current_post = Post.query.options(joinedload(Post.user_likes)).get_or_404(id)
+  except:
+    return {'message': "Post couldn't be found"}, 404
+
+  # Checks if current user exists, and creates a list of all the users they are following
+  following_list = []
+  if current_user.get_id():
+    # print('second query--------------------------------------------')
+    following_list = current_user.following.all()
+
+  # Structures the response and adds a total likes key
+  response = {
+    "Likes": [],
+    "totalLikes": len(current_post.user_likes)
+  }
+
+  # Adds appropriate data to the response list
+  for user in current_post.user_likes:
+    # print('third query---------------------------------------------')
+    response['Likes'].append({
+      "id": user.id,
+      "username": user.username,
+      "profileImageUrl": user.profile_image_url,
+      "following": user in following_list
+    })
+
+  return response
 
 
 @post_routes.route('/<int:id>/likes', methods=['POST'])
 @login_required
 def like_post(id):
-    pass
+  """
+  """
+  return 'Hello from post a like route'
