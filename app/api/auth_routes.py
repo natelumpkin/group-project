@@ -12,6 +12,7 @@ def validation_errors_to_error_messages(validation_errors):
     Simple function that turns the WTForms validation errors into a simple list
     """
     errorMessages = []
+    print(validation_errors)
     for field in validation_errors:
         for error in validation_errors[field]:
             errorMessages.append(f'{field} : {error}')
@@ -25,7 +26,7 @@ def authenticate():
     """
     if current_user.is_authenticated:
         return current_user.to_dict()
-    return {'errors': ['Unauthorized']}
+    return {'errors': ['Unauthorized']}, 403
 
 
 @auth_routes.route('/login', methods=['POST'])
@@ -42,6 +43,7 @@ def login():
         user = User.query.filter(User.email == form.data['email']).first()
         login_user(user)
         return user.to_dict()
+    print(form.errors)
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 
@@ -63,8 +65,11 @@ def sign_up():
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
         user = User(
+            first_name=form.data['first_name'],
+            last_name=form.data['last_name'],
             username=form.data['username'],
             email=form.data['email'],
+            profile_image_url=form.data['profile_image_url'],
             password=form.data['password']
         )
         db.session.add(user)
