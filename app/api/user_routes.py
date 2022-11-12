@@ -32,7 +32,7 @@ def get_current_user_posts(id):
   # Query for all posts and all associated data
 
     # print(following_list)
-    posts = Post.query.filter(Post.user_id == id).order_by(Post.created_at).options(joinedload(Post.author), joinedload(Post.media), joinedload(Post.user_likes), joinedload(Post.comments)).all()
+    posts = Post.query.filter(Post.user_id == id).order_by(Post.created_at.desc()).options(joinedload(Post.author), joinedload(Post.media), joinedload(Post.user_likes), joinedload(Post.comments)).all()
     following_list = []
     if current_user.get_id():
       following_list = current_user.following.all()
