@@ -59,3 +59,25 @@ def get_current_user_posts(id):
         response["Posts"].append(post_dict)
 
     return response
+
+#------------------------------------------------------------
+# Follow Routes - (that have a prefix of /users/:userId)
+#------------------------------------------------------------
+
+# Get all followers of a user:
+@user_routes.route('/<int:id>/followers', methods=['GET'])
+def get_all_followers(id):
+  # Check if the user exists. If not, return error message:
+  try:
+    current_user = User.query.get_or_404(id)
+  except:
+    return {'message': "User couldn't be found"}, 404
+
+  current_user_followers_query = current_user.followers.all()
+  current_user_followers = {
+    "Followers": []
+  }
+  for follower in current_user_followers_query:
+    current_user_followers["Followers"].append(follower.to_dict())
+
+  return current_user_followers
