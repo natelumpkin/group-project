@@ -1,6 +1,6 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField
-from wtforms.validators import DataRequired, Email, ValidationError
+from wtforms.validators import DataRequired, Email, ValidationError, URL, Optional
 from app.models import User
 
 
@@ -25,6 +25,6 @@ class SignUpForm(FlaskForm):
         'username', validators=[DataRequired(), username_exists])
     first_name = StringField("first name", validators=[DataRequired()])
     last_name = StringField("last name", validators=[DataRequired()])
-    profile_image_url = StringField("profile image url", validators=[URL(), OPTIONAL()])
+    profile_image_url = StringField("profile image url", validators=[URL(), Optional()])
     email = StringField('email', validators=[DataRequired(), user_exists])
     password = StringField('password', validators=[DataRequired()])
