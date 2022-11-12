@@ -282,7 +282,6 @@ def add_comment(id):
 
 
 @post_routes.route('/<int:id>/likes', methods=['GET'])
-@login_required
 def get_all_likes(id):
   ## get all users who have liked a given post
   ## query for a post and then query for all its likes
@@ -330,5 +329,23 @@ def get_all_likes(id):
 @login_required
 def like_post(id):
   """
+  Adds a user to a given post's list of user_likes
   """
-  return 'Hello from post a like route'
+  print(current_user)
+  ## Find the current_user
+  ## Find the current post
+  try:
+    current_post = Post.query.options(joinedload(Post.user_likes)).get_or_404(id)
+  except:
+    return {'message': "Post couldn't be found"}, 404
+  ## Add it to the current_post's list
+  if current_user in current_post.user_likes:
+    return {'message': f"User {current_user.id} has already liked this post"}, 403
+  else:
+    current_post.user_likes.append(current_user)
+  ## Commit
+  db.session.commit()
+  ## Return the new like?
+  print(current_post.user_likes)
+
+  return {"message": f"Post {id} successfully liked by User {current_user.id}"}, 201
