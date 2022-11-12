@@ -167,12 +167,30 @@ def delete_post(id):
 
 ## COMMENTS - Route begins with /posts for COMMENTS
 
-
+# Route - Get all comments of a post:
 @post_routes.route('/<int:id>/comments', methods=['GET'])
-@login_required
 def get_all_comments(id):
-    comments = Comment.query.order_by(Comment.created_at.desc())
-    pass
+
+    # Check if the post exists. If not, return error message:
+    try:
+      Post.query.get_or_404(id)
+    except:
+      return {'message': "Post couldn't be found"}, 404
+
+    # Query for all comments of a single post with the given post id:
+    comments = Comment.query.filter(Comment.post_id == id).order_by(Comment.created_at.desc()).all()
+
+    # Initialize response format,
+    # convert query comment data to dictionaries,
+    # and add converted data to response:
+    response = {
+      "Comments": []
+    }
+    for comment in comments:
+      comment = comment.to_dict()
+      response["Comments"].append(comment)
+
+    return response
 
 
 @post_routes.route('/<int:id>/comments', methods=['POST'])
