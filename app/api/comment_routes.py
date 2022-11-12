@@ -7,7 +7,7 @@ from .auth_routes import validation_errors_to_error_messages
 comment_routes = Blueprint('comments', __name__)
 
 
-# Route - Edit a comment
+# Route - Edit a comment:
 @comment_routes.route('/<int:id>', methods=['PUT'])
 @login_required
 def edit_comment(id):
@@ -34,7 +34,22 @@ def edit_comment(id):
         # If form validation is unsuccessful, default to error message return:
         return {'errors': validation_errors_to_error_messages(form.errors)}, 400
 
+
+# Route - Remove a comment:
 @comment_routes.route('/<int:id>', methods=['DELETE'])
 @login_required
 def delete_comment(id):
-    pass
+    # Verify that the comment exists:
+    try:
+        current_comment = Comment.query.get_or_404(id)
+    except:
+        return {'message': "Comment couldn't be found"}, 404
+    else:
+        # Verify user ownership of the comment:
+        if int(current_user.get_id()) != int(current_comment.user_id):
+            return {'message': "Current user does not have edit rights to this content"}, 403
+        else:
+            # Delete comment from database and commit changes:
+            db.session.delete(current_comment)
+            db.session.commit()
+            return {'message': "Successfully deleted"}, 200
