@@ -2,6 +2,7 @@ from .db import db, environment, SCHEMA
 from datetime import datetime
 from .like import likes
 
+
 class Post(db.Model):
     __tablename__ = 'posts'
 
@@ -18,17 +19,20 @@ class Post(db.Model):
 
     # A post has one author, an author can have many posts
     author = db.relationship("User", back_populates="posts")
-    user_likes = db.relationship("User", secondary=likes, back_populates="liked_posts")
-
+    user_likes = db.relationship(
+        "User", secondary=likes, back_populates="liked_posts")
 
     # A post can have many comments, A comment has one post,
     comments = db.relationship("Comment", back_populates="post")
 
     # A post can have multiple media:
-    media = db.relationship("Media", back_populates="post", cascade="all, delete-orphan")
-
+    media = db.relationship("Media", back_populates="post",
+                            cascade="all, delete-orphan")
 
     def to_dict(self):
+        """
+        Converts class data into a dictionary for use in api routes
+        """
         return {
             'id': self.id,
             'user_id': self.user_id,

@@ -17,8 +17,10 @@ class Media(db.Model):
     # Media belongs to a post:
     post = db.relationship("Post", back_populates="media")
 
-
     def to_dict(self):
+        """
+        Converts class data into a dictionary for use in api routes
+        """
         return {
             'id': self.id,
             'post_id': self.id,

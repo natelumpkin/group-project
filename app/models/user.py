@@ -22,7 +22,6 @@ class User(db.Model, UserMixin):
     created_at = db.Column(db.DateTime(), default=datetime.utcnow())
     updated_at = db.Column(db.DateTime(), default=datetime.utcnow())
 
-
     # This relationship allows you to access both the collection of users
     # that follow a given user (with user.followers), and the collection
     # of users that a user follows (with user.following)
@@ -37,13 +36,15 @@ class User(db.Model, UserMixin):
 
     # An author/user can have posts, a post has only one author/user -
     # A user's posts are deleted when the user is deleted.
-    posts = db.relationship("Post", back_populates="author", cascade="all, delete-orphan")
+    posts = db.relationship(
+        "Post", back_populates="author", cascade="all, delete-orphan")
 
     # A user can have many comments, a comment has one user.
     comments = db.relationship("Comment", back_populates="user")
 
     # A user can like many posts, a post can only be liked by one user
-    liked_posts = db.relationship("Post", secondary=likes, back_populates="user_likes")
+    liked_posts = db.relationship(
+        "Post", secondary=likes, back_populates="user_likes")
 
     @property
     def password(self):
@@ -57,6 +58,9 @@ class User(db.Model, UserMixin):
         return check_password_hash(self.password, password)
 
     def to_dict(self):
+        """
+        Converts class data into a dictionary for use in api routes
+        """
         return {
             'id': self.id,
             'first_name': self.first_name,
