@@ -3,6 +3,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
 from .follow import follows
 from datetime import datetime
+from .like import likes
 
 
 class User(db.Model, UserMixin):
@@ -41,7 +42,8 @@ class User(db.Model, UserMixin):
     # A user can have many comments, a comment has one user.
     comments = db.relationship("Comment", back_populates="user")
 
-
+    # A user can like many posts, a post can only be liked by one user
+    liked_posts = db.relationship("Like", secondary=likes, backpopulates="user_likes")
 
     @property
     def password(self):
@@ -57,6 +59,9 @@ class User(db.Model, UserMixin):
     def to_dict(self):
         return {
             'id': self.id,
+            'first_name': self.first_name,
+            'last_name': self.last_name,
             'username': self.username,
-            'email': self.email
+            'email': self.email,
+            'profile_image_url': self.profile_image_url
         }
