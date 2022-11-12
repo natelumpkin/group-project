@@ -3,3 +3,9 @@ from app.models import User, Post
 from flask_login import current_user
 
 like_routes = Blueprint('likes', __name__)
+
+
+@like_routes.route('/<int:id>', methods=['DELETE'])
+@login_required
+def delete_like(id):
+    pass

@@ -91,3 +91,53 @@ def get_feed():
         response["Posts"].append(post_dict)
 
     return response
+
+
+
+@post_routes.route('/<int:id>/media', methods=['POST'])
+@login_required
+def add_media(id):
+    pass
+
+
+# NTS - This route may need to be moved above or below other routes.
+@post_routes.route('/<int:id>', methods=['PUT'])
+@login_required
+def edit_post(id):
+    pass
+
+# NTS - Like above, this route may need to be moved above or below other routes.
+@post_routes.route('/<int:id>', methods=['DELETE'])
+@login_required
+def delete_post(id):
+    pass
+
+
+## COMMENTS - Route begins with /posts for COMMENTS
+
+
+@post_routes.route('/<int:id>/comments', methods=['GET'])
+@login_required
+def get_all_comments(id):
+    pass
+
+
+@post_routes.route('/<int:id>/comments', methods=['POST'])
+@login_required
+def add_comment(id):
+    pass
+
+
+## LIKES - Route begins with /posts for LIKES
+
+
+@post_routes.route('/<int:id>/likes', methods=['GET'])
+@login_required
+def get_all_likes(id):
+    pass
+
+
+@post_routes.route('/<int:id>/likes', methods=['POST'])
+@login_required
+def like_post(id):
+    pass
