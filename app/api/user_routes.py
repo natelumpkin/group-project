@@ -1,6 +1,7 @@
 from flask import Blueprint, jsonify
-from flask_login import login_required
-from app.models import User
+from flask_login import login_required, current_user
+from app.models import User, Post
+from sqlalchemy.orm import joinedload
 
 user_routes = Blueprint('users', __name__)
 
@@ -26,13 +27,15 @@ def user(id):
 
 @user_routes.route('/<int:id>/posts')
 @login_required
-def get_current_user_posts():
-# Return a list of only the posts that the user is following
+def get_current_user_posts(id):
+  # Return a list of all posts for a given user
   # Query for all posts and all associated data
-    following_list = current_user.following.all()
+
     # print(following_list)
-    posts = Post.query.order_by(Post.created_at).options(joinedload(Post.author), joinedload(Post.media), joinedload(Post.user_likes), joinedload(Post.comments)).all()
-    followed_posts = [ post for post in posts if (post.author in following_list) or (post.author.id == int(current_user.get_id())) ]
+    posts = Post.query.filter(Post.user_id == id).order_by(Post.created_at).options(joinedload(Post.author), joinedload(Post.media), joinedload(Post.user_likes), joinedload(Post.comments)).all()
+    following_list = []
+    if current_user.get_id():
+      following_list = current_user.following.all()
 
     ## For each post,
     ## We need to know if the current user is following them
@@ -41,7 +44,7 @@ def get_current_user_posts():
     response = {
         "Posts": []
     }
-    for post in followed_posts:
+    for post in posts:
         post_dict = post.to_dict()
         post_dict['Media'] = [ media.to_dict() for media in post.media ]
         post_dict['notes'] = len(post.comments) + len(post.user_likes)
