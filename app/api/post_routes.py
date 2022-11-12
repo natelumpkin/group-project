@@ -171,6 +171,7 @@ def delete_post(id):
 @post_routes.route('/<int:id>/comments', methods=['GET'])
 @login_required
 def get_all_comments(id):
+    comments = Comment.query.order_by(Comment.created_at.desc())
     pass
 
 
