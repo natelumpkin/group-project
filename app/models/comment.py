@@ -16,7 +16,7 @@ class Comment(db.Model):
   updated_at = db.Column(db.DateTime(), default=datetime.utcnow())
 
   # A comment has one post, a post can have many comments
-  post = db.relationship("Post", backpopulates="comments")
+  post = db.relationship("Post", back_populates="comments")
 
   # A comment has one user, a user can have many comments
-  user = db.relationship("User", backpopulates="comments")
+  user = db.relationship("User", back_populates="comments")

@@ -17,12 +17,12 @@ class Post(db.Model):
     updated_at = db.Column(db.DateTime(), default=datetime.utcnow())
 
     # A post has one author, an author can have many posts
-    author = db.relationship("User", backpopulates="posts")
-    user_likes = db.relationship("User", secondary=likes, backpopulates="liked_posts")
+    author = db.relationship("User", back_populates="posts")
+    user_likes = db.relationship("User", secondary=likes, back_populates="liked_posts")
 
 
     # A post can have many comments, A comment has one post,
-    comments = db.relationship("Comment", backpopulates="post")
+    comments = db.relationship("Comment", back_populates="post")
 
     # A post can have multiple media:
-    media = db.relationship("Media", backpopulates="post", cascade="all, delete-orphan")
+    media = db.relationship("Media", back_populates="post", cascade="all, delete-orphan")

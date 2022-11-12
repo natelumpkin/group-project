@@ -15,4 +15,4 @@ class Media(db.Model):
     created_at = db.Column(db.DateTime(), default=datetime.utcnow())
 
     # Media belongs to a post:
-    post = db.relationship("Post", backpopulates="media")
+    post = db.relationship("Post", back_populates="media")

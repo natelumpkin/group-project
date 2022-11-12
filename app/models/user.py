@@ -36,10 +36,10 @@ class User(db.Model, UserMixin):
 
     # An author/user can have posts, a post has only one author/user -
     # A user's posts are deleted when the user is deleted.
-    posts = db.relationship("Post", backpopulates="author", cascade="all, delete-orphan")
+    posts = db.relationship("Post", back_populates="author", cascade="all, delete-orphan")
 
     # A user can have many comments, a comment has one user.
-    comments = db.relationship("Comment", backpopulates="user")
+    comments = db.relationship("Comment", back_populates="user")
 
 
 
