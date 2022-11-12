@@ -3,6 +3,7 @@ from flask_login import current_user, login_required
 from app.models import Post, Comment, User, Media, db
 from app.forms.post_form import PostForm
 from app.forms.media_form import MediaForm
+from app.forms.comment_form import CommentForm
 from sqlalchemy.orm import joinedload
 from .auth_routes import validation_errors_to_error_messages
 
@@ -165,12 +166,14 @@ def delete_post(id):
       return {'message': "Successfully deleted"}, 200
 
 
-## COMMENTS - Route begins with /posts for COMMENTS
+#------------------------------------------------------------
+# Comment Routes - (that have a prefix of /posts/:postId)
+#------------------------------------------------------------
+
 
 # Route - Get all comments of a post:
 @post_routes.route('/<int:id>/comments', methods=['GET'])
 def get_all_comments(id):
-
     # Check if the post exists. If not, return error message:
     try:
       Post.query.get_or_404(id)
@@ -193,10 +196,34 @@ def get_all_comments(id):
     return response
 
 
+# Route - Add a comment to a post:
 @post_routes.route('/<int:id>/comments', methods=['POST'])
 @login_required
 def add_comment(id):
-    pass
+    # Check if the post exists. If not, return error message:
+    try:
+      Post.query.get_or_404(id)
+    except:
+      return {'message': "Post couldn't be found"}, 404
+
+    # Validate incoming comment:
+    form = CommentForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+
+    if form.validate_on_submit():
+      # If validation successful,
+      # create and commit new comment instance:
+      new_comment = Comment(
+        user_id = current_user.get_id(),
+        post_id = id,
+        comment = form.data["comment"]
+      )
+      db.session.add(new_comment)
+      db.session.commit()
+      return new_comment.to_dict()
+
+    # If form validation is unsuccessful, default to error message return:
+    return {'errors': validation_errors_to_error_messages(form.errors)}, 400
 
 
 ## LIKES - Route begins with /posts for LIKES
