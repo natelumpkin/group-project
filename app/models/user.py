@@ -59,7 +59,7 @@ class User(db.Model, UserMixin):
 
     def to_dict(self):
         """
-        Converts class data into a dictionary for use in api routes
+        Converts all class data into a dictionary for use in api routes
         """
         return {
             'id': self.id,
@@ -67,5 +67,15 @@ class User(db.Model, UserMixin):
             'last_name': self.last_name,
             'username': self.username,
             'email': self.email,
+            'profile_image_url': self.profile_image_url
+        }
+
+    def to_dict_less(self):
+        """
+        Converts only necessary class data into a dictionary for use in api routes
+        """
+        return {
+            'id': self.id,
+            'username': self.username,
             'profile_image_url': self.profile_image_url
         }
