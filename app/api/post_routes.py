@@ -12,6 +12,11 @@ post_routes = Blueprint('posts', __name__)
 
 @post_routes.route('/')
 def get_all_posts():
+    """
+    Queries for all posts and all associated data
+    and returns it in a list of dictionaries
+    in reverse chronological order
+    """
     # Query for all posts and all associated data
     posts = Post.query.order_by(Post.created_at.desc()).options(joinedload(Post.author), joinedload(Post.media), joinedload(Post.user_likes), joinedload(Post.comments)).all()
     following_list = []
@@ -44,6 +49,10 @@ def get_all_posts():
 @post_routes.route('/', methods=['POST'])
 @login_required
 def create_post():
+  """
+  Creates a post and validates the submission,
+  and returns the new post in a dictionary
+  """
   form = PostForm()
   form['csrf_token'].data = request.cookies['csrf_token']
 
@@ -56,7 +65,7 @@ def create_post():
     )
     db.session.add(new_post)
     db.session.commit()
-    return new_post.to_dict()
+    return new_post.to_dict(), 201
 
   return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
@@ -64,6 +73,11 @@ def create_post():
 @post_routes.route('/following')
 @login_required
 def get_feed():
+    """
+    Queries for all the posts of users that the current
+    user is following, as well as posts written by the user,
+    and returns them as a list of dictionaries
+    """
   # Return a list of only the posts that the user is following
   # Query for all posts and all associated data
     following_list = current_user.following.all()
@@ -108,6 +122,12 @@ def get_feed():
 @post_routes.route('/<int:id>/media', methods=['POST'])
 @login_required
 def add_media(id):
+  """
+  Adds a media link to a given post
+  Returns an error if the post can't be found,
+  or if the current user does not own the post,
+  return a forbidden message
+  """
   form = MediaForm()
   form['csrf_token'].data = request.cookies['csrf_token']
     # Try/Except will respond with an error if
@@ -118,6 +138,8 @@ def add_media(id):
   except:
       return {'message': "Post couldn't be found"}, 404
   else:
+    if current_post.user_id != int(current_user.get_id()):
+      return { 'message': "Forbidden"}, 403
     if form.validate_on_submit():
       add_media = Media(
         post_id = current_post.id,
@@ -134,6 +156,10 @@ def add_media(id):
 @post_routes.route('/<int:id>', methods=['PUT'])
 @login_required
 def edit_post(id):
+    """
+    Edits an existing post. If the current post can't be found,
+    or if current user does not own the post, returns an error message
+    """
     form = PostForm()
     form['csrf_token'].data = request.cookies['csrf_token']
 
@@ -142,6 +168,8 @@ def edit_post(id):
     except:
         return {'message': "Post couldn't be found"}, 404
     else:
+      if current_post.user_id != int(current_user.get_id()):
+        return { 'message': "Forbidden"}, 403
       if form.validate_on_submit():
         current_post.text = form.data['text']
         current_post.title = form.data['title']
@@ -155,12 +183,17 @@ def edit_post(id):
 @post_routes.route('/<int:id>', methods=['DELETE'])
 @login_required
 def delete_post(id):
-
+    """
+    Deletes an existing post. If post does not exist, or if
+    post is not owned by current user, returns an error message
+    """
     try:
       post_to_delete = Post.query.get_or_404(id)
     except:
       return {'message': "Post couldn't be found"}, 404
     else:
+      if post_to_delete.user_id != int(current_user.get_id()):
+        return { 'message': "Forbidden"}, 403
       db.session.delete(post_to_delete)
       db.session.commit()
       return {'message': "Successfully deleted"}, 200
@@ -174,6 +207,10 @@ def delete_post(id):
 # Route - Get all comments of a post:
 @post_routes.route('/<int:id>/comments', methods=['GET'])
 def get_all_comments(id):
+    """
+    Queries for all comments of an existing post and returns
+    it as a list of dictionaries in reverse chronological order
+    """
     # Check if the post exists. If not, return error message:
     try:
       Post.query.get_or_404(id)
@@ -181,7 +218,7 @@ def get_all_comments(id):
       return {'message': "Post couldn't be found"}, 404
 
     # Query for all comments of a single post with the given post id:
-    comments = Comment.query.filter(Comment.post_id == id).order_by(Comment.created_at.desc()).all()
+    comments = Comment.query.filter(Comment.post_id == id).order_by(Comment.created_at.desc()).options(joinedload(Comment.user)).all()
 
     # Initialize response format,
     # convert query comment data to dictionaries,
@@ -190,8 +227,18 @@ def get_all_comments(id):
       "Comments": []
     }
     for comment in comments:
+      userId = comment.user.id
+      username = comment.user.username
+      profileImageUrl = comment.user.profile_image_url
       comment = comment.to_dict()
+      comment['User'] = {
+        "id": userId,
+        "username": username,
+        "profileImageUrl": profileImageUrl
+      }
       response["Comments"].append(comment)
+
+    response['totalComments'] = len(response['Comments'])
 
     return response
 
@@ -200,6 +247,9 @@ def get_all_comments(id):
 @post_routes.route('/<int:id>/comments', methods=['POST'])
 @login_required
 def add_comment(id):
+    """
+    Adds a comment to an existing post, and returns it as a dictionary
+    """
     # Check if the post exists. If not, return error message:
     try:
       Post.query.get_or_404(id)

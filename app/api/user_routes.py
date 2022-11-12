@@ -28,8 +28,10 @@ def user(id):
 @user_routes.route('/<int:id>/posts')
 @login_required
 def get_current_user_posts(id):
-  # Return a list of all posts for a given user
-  # Query for all posts and all associated data
+    """
+    Query for all the posts of a given user and returns
+    a list of dictionaries
+    """
 
     # print(following_list)
     posts = Post.query.filter(Post.user_id == id).order_by(Post.created_at.desc()).options(joinedload(Post.author), joinedload(Post.media), joinedload(Post.user_likes), joinedload(Post.comments)).all()
