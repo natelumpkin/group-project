@@ -23,3 +23,6 @@ class Post(db.Model):
 
     # A post can have many comments, A comment has one post,
     comments = db.relationship("Comment", backpopulates="post")
+
+    # A post can have multiple media:
+    media = db.relationship("Media", backpopulates="post", cascade="all, delete-orphan")
