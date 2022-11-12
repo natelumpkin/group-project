@@ -4,21 +4,22 @@ from app.models import db, Post, User, environment, SCHEMA
 # Adds a demo user, you can add other users here if you want
 def seed_posts():
     post1 = Post(
-      post_type="text", title="I'm writing an amazing post!", text="This is the most amazing post"
+      user_id=1, post_type="text", title="I'm writing an amazing post!", text="This is the most amazing post"
     )
     post2 = Post(
-      post_type="photo", text="This is a photo post"
+      user_id=2, post_type="photo", text="This is a photo post"
     )
     post3 = Post(
-      post_type="quote", title="John C Reilly", text="The hungriest man, is not the happiest"
+      user_id=3, post_type="quote", title="John C Reilly", text="The hungriest man, is not the happiest"
     )
-    user1 = User.query.filter(User.first_name == "Demo").one()
-    user2 = User.query.filter(User.first_name == "marnie").one()
-    user3 = User.query.filter(User.first_name == "bobbie").one()
 
-    user1.posts = [post1]
-    user2.posts = [post2]
-    user3.posts = [post3]
+    user1 = User.query.get(1)
+    user2 = User.query.get(2)
+    user3 = User.query.get(3)
+
+    post1.user_likes = [user1]
+    post2.user_likes = [user2, user3]
+    post3.user_likes = [user1, user2, user3]
 
     db.session.add(post1)
     db.session.add(post2)
@@ -37,7 +38,9 @@ def seed_posts():
 def undo_posts():
     if environment == "production":
         db.session.execute(f"TRUNCATE table {SCHEMA}.posts RESTART IDENTITY CASCADE;")
+        db.session.execute(f"TRUNCATE table {SCHEMA}.likes RESTART IDENTITY CASCADE;")
     else:
         db.session.execute("DELETE FROM posts")
+        db.session.execute("DELETE FROM likes")
 
     db.session.commit()

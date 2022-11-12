@@ -43,7 +43,7 @@ class User(db.Model, UserMixin):
     comments = db.relationship("Comment", back_populates="user")
 
     # A user can like many posts, a post can only be liked by one user
-    liked_posts = db.relationship("Like", secondary=likes, backpopulates="user_likes")
+    liked_posts = db.relationship("Post", secondary=likes, back_populates="user_likes")
 
     @property
     def password(self):
