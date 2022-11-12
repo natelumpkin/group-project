@@ -23,7 +23,7 @@ class Media(db.Model):
         """
         return {
             'id': self.id,
-            'post_id': self.post_id,
-            'media_type': self.media_type,
-            'media_url': self.media_url,
+            'postId': self.post_id,
+            'mediaType': self.media_type,
+            'mediaUrl': self.media_url,
         }

@@ -35,8 +35,8 @@ class Post(db.Model):
         """
         return {
             'id': self.id,
-            'user_id': self.user_id,
-            'post_type': self.post_type,
+            'userId': self.user_id,
+            'postType': self.post_type,
             'title': self.title,
             'text': self.text
         }

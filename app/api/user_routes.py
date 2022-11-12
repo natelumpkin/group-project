@@ -13,7 +13,7 @@ def users():
     Query for all users and returns them in a list of user dictionaries
     """
     users = User.query.all()
-    return {'users': [user.to_dict() for user in users]}
+    return {'Users': [user.to_dict() for user in users]}
 
 
 @user_routes.route('/<int:id>')
@@ -56,7 +56,7 @@ def get_current_user_posts(id):
         post_dict['User'] = {
             "id": post_author_dict['id'],
             "username": post_author_dict['username'],
-            "profile_image_url": post_author_dict['profile_image_url'],
+            "profileImageUrl": post_author_dict['profile_image_url'],
             "following": post.author in following_list
         }
 
@@ -91,7 +91,7 @@ def get_all_followers(id):
 
     current_user_followers = {
         "Followers": [],
-        "total_followers": len(current_user_followers_query)
+        "totalFollowers": len(current_user_followers_query)
     }
 
     for follower in current_user_followers_query:

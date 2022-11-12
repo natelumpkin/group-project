@@ -67,7 +67,7 @@ class User(db.Model, UserMixin):
             'last_name': self.last_name,
             'username': self.username,
             'email': self.email,
-            'profile_image_url': self.profile_image_url
+            'profileImageUrl': self.profile_image_url
         }
 
     def to_dict_less(self):
@@ -77,5 +77,5 @@ class User(db.Model, UserMixin):
         return {
             'id': self.id,
             'username': self.username,
-            'profile_image_url': self.profile_image_url
+            'profileImageUrl': self.profile_image_url
         }
