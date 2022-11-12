@@ -26,3 +26,13 @@ class Post(db.Model):
 
     # A post can have multiple media:
     media = db.relationship("Media", back_populates="post", cascade="all, delete-orphan")
+
+
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'user_id': self.user_id,
+            'post_type': self.post_type,
+            'title': self.title,
+            'text': self.text
+        }
