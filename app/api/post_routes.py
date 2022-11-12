@@ -349,3 +349,26 @@ def like_post(id):
   print(current_post.user_likes)
 
   return {"message": f"Post {id} successfully liked by User {current_user.id}"}, 201
+
+
+@post_routes.route('/<int:id>/likes', methods=['DELETE'])
+@login_required
+def remove_like(id):
+  """
+  Removes a like from a post, and returns an error if
+  like or post does not exist
+  """
+  try:
+    current_post = Post.query.options(joinedload(Post.user_likes)).get_or_404(id)
+  except:
+    return {'message': "Post couldn't be found"}, 404
+
+  ## remove current user from current user's like list
+  if current_user in current_post.user_likes:
+    current_post.user_likes.remove(current_user)
+    db.session.commit()
+    return {
+      "message": f"Like successfully removed from post {id}"
+    }
+  else:
+    return {"message": "Current user does not have a like for this post"}, 404
