@@ -13,7 +13,7 @@ class Post(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey("users.id"))
     post_type = db.Column(db.String(40), nullable=False)
     title = db.Column(db.String(100))
-    text = db.Column(db.Text(1000))
+    text = db.Column(db.Text())
     created_at = db.Column(db.DateTime(), default=datetime.utcnow())
     updated_at = db.Column(db.DateTime(), default=datetime.utcnow())
 
