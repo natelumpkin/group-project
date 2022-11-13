@@ -178,18 +178,23 @@ def edit_post(id):
 
     try:
         current_post = Post.query.get_or_404(id)
+
     except:
         return {'message': "Post couldn't be found"}, 404
+
     else:
+        form['postType'].data = current_post.post_type
+
         if current_post.user_id != int(current_user.get_id()):
             return {'message': "Forbidden"}, 403
+
         if form.validate_on_submit():
             current_post.text = form.data['text']
             current_post.title = form.data['title']
-            current_post.post_type = form.data['postType']
             current_post.updated_at = datetime.utcnow()
             db.session.commit()
             return current_post.to_dict()
+
         return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 
@@ -355,7 +360,7 @@ def like_post(id):
         return {'message': "Post couldn't be found"}, 404
     # Add it to the current_post's list
     if current_user in current_post.user_likes:
-        return {'message': f"User {current_user.id} has already liked this post"}, 403
+        return {'message': f"Current user has already liked this post"}, 403
     else:
         current_post.user_likes.append(current_user)
     # Commit
