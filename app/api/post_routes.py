@@ -19,6 +19,9 @@ def get_all_posts():
     and returns it in a list of dictionaries
     in reverse chronological order
     """
+
+    #print(likes.schema)
+
     # Query for all posts and all associated data
     posts = Post.query.order_by(Post.created_at.desc()).options(joinedload(Post.author), joinedload(
         Post.media), joinedload(Post.user_likes), joinedload(Post.comments)).all()
@@ -60,8 +63,8 @@ def create_post():
     form = PostForm()
     form['csrf_token'].data = request.cookies['csrf_token']
 
-    print(len(form.data['title']))
-    print(len(form.data['text']))
+    # print(len(form.data['title']))
+    # print(len(form.data['text']))
 
     if form.validate_on_submit():
         new_post = Post(
@@ -350,7 +353,7 @@ def like_post(id):
     """
     Adds a user to a given post's list of user_likes
     """
-    print(current_user)
+    # print(current_user)
     # Find the current_user
     # Find the current post
     try:
@@ -366,7 +369,7 @@ def like_post(id):
     # Commit
     db.session.commit()
     # Return the new like?
-    print(current_post.user_likes)
+    # print(current_post.user_likes)
 
     return {"message": f"Post {id} successfully liked by User {current_user.id}"}, 201
 

@@ -12,7 +12,7 @@ def validation_errors_to_error_messages(validation_errors):
     Simple function that turns the WTForms validation errors into a simple list
     """
     errorMessages = {}
-    print(validation_errors)
+    #print(validation_errors)
     for field in validation_errors:
         for error in validation_errors[field]:
             errorMessages[field] = error
@@ -43,7 +43,7 @@ def login():
         user = User.query.filter(User.email == form.data['email']).first()
         login_user(user)
         return user.to_dict()
-    print(form.errors)
+    #print(form.errors)
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 
