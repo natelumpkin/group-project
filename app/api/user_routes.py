@@ -57,7 +57,7 @@ def get_current_user_posts(id):
         post_dict['User'] = {
             "id": post_author_dict['id'],
             "username": post_author_dict['username'],
-            "profileImageUrl": post_author_dict['profile_image_url'],
+            "profileImageUrl": post_author_dict['profileImageUrl'],
             "following": post.author in following_list
         }
 
