@@ -1,3 +1,5 @@
-export default followReducer = (state = initialState, action) => {
+
+const initialState = {following: {}}
+export default function followReducer (state = initialState, action) {
   return state
 }

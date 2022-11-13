@@ -1,3 +1,4 @@
-export default likeReducer = (state = initialState, action) => {
+const initialState = {likes: {}}
+export default function likeReducer (state = initialState, action) {
   return state
 }

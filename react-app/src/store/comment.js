@@ -1,3 +1,4 @@
+import normalizeData from '../utils/normalize.js'
 // --- CONSTANT TYPES --- \\
 const GET_ALL_COMMENTS = 'comments/getAllComments';
 const CREATE_COMMENT = 'comments/createComment';
@@ -6,22 +7,27 @@ const DELETE_COMMENT = 'comments/deleteComment';
 
 
 // --- ACTION CREATORS --- \\
-const getAllComments = (comments) => {{
+const getAllComments = (comments, postId) => {
+  return {
     type: GET_ALL_COMMENTS,
     payload: comments,
+    postId: postId,
   }}
 
-const createComment = (newComment) => {{
+const createComment = (newComment) => {
+  return {
   type: CREATE_COMMENT,
   payload: newComment,
 }}
 
-const editComment = (commentId) => {{
+const editComment = (commentId) => {
+  return {
   type: EDIT_COMMENT,
   payload: commentId,
 }}
 
-const deleteComment = (commentId) => {{
+const deleteComment = (commentId) => {
+  return {
   type: DELETE_COMMENT,
   payload: commentId,
 }}
@@ -31,24 +37,46 @@ const deleteComment = (commentId) => {{
 // --- THUNKS --- \\
 
 //GET -- /posts/:postId/comments
-
-expost const grabAllComments = (postid) => async (dispatch) = {
-  const response = await fetch(`/posts/${postId}/comments`);
+export const grabAllComments = (postId) => async (dispatch) => {
+  const response = await fetch(`/api/posts/${postId}/comments`);
+  console.log(response)
   const data = await response.json();
-  dispatch(getAllComments(data));
+  console.log(data)
+  dispatch(getAllComments(data, postId));
   return response;
 }
 
 // --- REDUCER STUFF --- \\
 
+// --- NORMALIZE DATA SPACE --- \\
+const initialState = {comments: {}}
+const commentNormalizer = (data) => {
+  console.log(data)
+  const newObj =
+    newObj[data.id] = {
+      comment: data.comment,
+      User: data.User
+    }
+
+  return newObj
+}
 
 
-export default commentReducer = (state = initialState, action) => {
+export default function commentReducer(state = initialState, action) {
   const newState = {...state};
   switch(action.type) {
-  return state
+    case GET_ALL_COMMENTS:
+      newState.comments = {};
+      action.payload.Comments.forEach(
+        comment => {
+          newState.comments[action.postId] = commentNormalizer(comment)
+        }
+      )
+      return newState;
+  default:
+    return state;
   }
-}
+};
 // --- STATE SHAPE DIAGRAM --- \\
 // comments: {
 //   posts: {
@@ -58,8 +86,7 @@ export default commentReducer = (state = initialState, action) => {
 //               User: {
 //                   id: <>,
 //                   username: <>,
-//                   profileImageUrl: <>,
-//                   following: <>
+//                   profileImageUrl: <>
 //               }
 //           }
 //       }

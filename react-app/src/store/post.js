@@ -36,7 +36,7 @@ const initialState = {
 
 // Reducer
 
-export default postReducer = (state = initialState, action) => {
+export default function postReducer(state = initialState, action) {
   switch (action.type) {
     case ALL_POSTS:
 
