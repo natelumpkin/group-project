@@ -15,6 +15,11 @@ const getPosts = (posts) => ({
   payload: posts
 })
 
+const getFollowedPosts = (posts) => ({
+  type: FOLLOWED_POSTS,
+  payload: posts
+})
+
 // Thunk Action Creators
 
 export const getAllPosts = () => async (dispatch) => {
@@ -30,8 +35,17 @@ export const getAllPosts = () => async (dispatch) => {
   }
 }
 
-export const getUserPosts = () => async (dispatch) => {
+export const getFeed = () => async (dispatch) => {
+  const response = await fetch('/api/posts/following');
 
+  if (response.ok) {
+    const followedPosts = await response.json()
+    console.log(followedPosts);
+    dispatch(getFollowedPosts(followedPosts))
+    return followedPosts
+  } else {
+    return ['Unable to fetch all posts.']
+  }
 }
 
 // Initial State
@@ -50,18 +64,18 @@ const postReducer = (state = initialState, action) => {
       const newState = {
         allPosts: data,
         userPosts: {
-          ...initialState.userPosts
+          ...state.userPosts
         }
       }
       return newState;
     }
-      case USER_POSTS: {
+      case FOLLOWED_POSTS: {
         const data = normalizeData(action.payload.Posts)
         const newState = {
-          allPosts: {
-            ...initialState.allPosts
-          },
-          userPosts: data
+          allPosts: data,
+          userPosts: {
+            ...state.userPosts
+          }
         }
         return newState;
       }
