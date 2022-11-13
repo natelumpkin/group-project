@@ -3,7 +3,6 @@ import normalizeData from "../utils/normalize";
 // Action types:
 const LOAD_POST_LIKES = '/post/likes/all';
 
-
 // Action creators:
 const loadPostLikes = (postId, postLikes) => ({
   type: LOAD_POST_LIKES,
@@ -26,6 +25,18 @@ export const getPostLikes = (postId) => async (dispatch) => {
   }
 }
 
+export const addPostLike = (postId) => async (dispatch) => {
+  const response = await fetch(`/api/posts/${postId}/likes`, {
+    method: 'POST'
+  });
+
+  if (response.ok) {
+    await dispatch(getPostLikes(postId));
+  } else {
+    return [`Unable to like post ${postId}`]
+  }
+}
+
 
 // Initial 'likes' state:
 const initialState = {
@@ -37,7 +48,7 @@ const likeReducer = (state = initialState, action) => {
   let newState;
   switch (action.type) {
     case LOAD_POST_LIKES:
-      newState = {...state};
+      newState = { ...state };
       newState.posts[action.payload.postId] = normalizeData(action.payload.postLikes.Likes);
       return newState;
     default:
