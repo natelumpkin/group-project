@@ -1,3 +1,4 @@
+import normalizeData from "../utils/normalize"
 
 const ALL_POSTS = '/posts/all_posts'
 const FOLLOWED_POSTS = '/posts/followed_posts'
@@ -9,22 +10,28 @@ const ADD_MEDIA = '/posts/add_media'
 
 // Thunks
 
-const getPosts = () => ({
-  type: ALL_POSTS
+const getPosts = (posts) => ({
+  type: ALL_POSTS,
+  payload: posts
 })
 
 // Thunk Action Creators
 
 export const getAllPosts = () => async (dispatch) => {
+
   const response = await fetch('/api/posts');
 
   if (response.ok) {
-    const data = await response.json()
-    dispatch(getPosts())
-    return data
+    const allPosts = await response.json()
+    dispatch(getPosts(allPosts))
+    return allPosts
   } else {
     return ['Unable to fetch all posts.']
   }
+}
+
+export const getUserPosts = () => async (dispatch) => {
+
 }
 
 // Initial State
@@ -36,11 +43,31 @@ const initialState = {
 
 // Reducer
 
-export default postReducer = (state = initialState, action) => {
+const postReducer = (state = initialState, action) => {
   switch (action.type) {
-    case ALL_POSTS:
-
+    case ALL_POSTS: {
+      const data = normalizeData(action.payload.Posts)
+      const newState = {
+        allPosts: data,
+        userPosts: {
+          ...initialState.userPosts
+        }
+      }
+      return newState;
+    }
+      case USER_POSTS: {
+        const data = normalizeData(action.payload.Posts)
+        const newState = {
+          allPosts: {
+            ...initialState.allPosts
+          },
+          userPosts: data
+        }
+        return newState;
+      }
     default:
       return state;
   }
 }
+
+export default postReducer;

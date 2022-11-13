@@ -1,44 +1,55 @@
+import normalizeData from "../utils/normalize"
+
 const CREATE_FOLLOW = 'follow/CREATE_FOLLOW'
 const LOAD_FOLLOWERS = 'follow/LOAD_FOLLOWERS'
 const LOAD_FOLLOWING = 'follow/LOAD_FOLLOWING'
 const DELETE_FOLLOW = 'follow/DELETE_FOLLOW'
 
-const addFollow = follow => ({
-  type: CREATE_FOLLOW
+export const addFollow = follow => ({
+  type: CREATE_FOLLOW,
+  follow
 })
 
-const loadFollows = followers => ({
+export const loadFollows = followers => ({
   type: LOAD_FOLLOWERS,
   followers
 })
 
-const loadFollowing = following => ({
+export const loadFollowing = following => ({
   type: LOAD_FOLLOWING,
   following
 })
 
-const removeFollow = follow => ({
+export const removeFollow = follow => ({
   type: DELETE_FOLLOW,
   follow
 })
 
+
+
 initialState = { followers: {}, following: {} }
 
-export default followReducer = (state = initialState, action) => {
+const followReducer = (state = initialState, action) => {
   switch (action.type) {
     case CREATE_FOLLOW:
-      return
+      const normalizedFollow = normalizeData(action.follow)
+      return { followers: { ...state.followers }, following: { ...state.following, normalizedFollow } }
 
     case LOAD_FOLLOWERS:
-      return
+      const normalizedFollowers = normalizeData(action.followers)
+      return { followers: { normalizedFollowers }, following: { ...state.following } }
 
     case LOAD_FOLLOWING:
-      return
+      const normalizedFollowing = normalizeData(action.following)
+      return { followers: { ...state.followers }, following: { normalizedFollowing } }
 
     case DELETE_FOLLOW:
-      return
+      delete state.following[action.follow]
+      return { ...state }
 
     default:
       return state
   }
 }
+
+export default followReducer
