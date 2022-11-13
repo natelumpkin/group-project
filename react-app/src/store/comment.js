@@ -52,8 +52,9 @@ export const grabAllComments = (postId) => async (dispatch) => {
 const initialState = {comments: {}}
 const commentNormalizer = (data) => {
   console.log(data)
-  const newObj =
-    newObj[data.id] = {
+  let newObj = {}
+
+  newObj[data.id] = {
       comment: data.comment,
       User: data.User
     }
@@ -66,10 +67,10 @@ export default function commentReducer(state = initialState, action) {
   const newState = {...state};
   switch(action.type) {
     case GET_ALL_COMMENTS:
-      newState.comments = {};
+      newState.posts = {};
       action.payload.Comments.forEach(
         comment => {
-          newState.comments[action.postId] = commentNormalizer(comment)
+          newState.posts[action.postId] = commentNormalizer(comment)
         }
       )
       return newState;
