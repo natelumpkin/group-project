@@ -1,5 +1,6 @@
 from flask import Blueprint, request
 from flask_login import current_user, login_required
+from datetime import datetime
 from app.models import db, Comment, Post, User
 from app.forms.comment_form import CommentForm
 from .auth_routes import validation_errors_to_error_messages
@@ -28,6 +29,7 @@ def edit_comment(id):
             # If validation is successful,
             # perform and commit comment change:
             current_comment.comment = form.data["comment"]
+            current_comment.updated_at = datetime.utcnow()
             db.session.commit()
             return current_comment.to_dict()
 

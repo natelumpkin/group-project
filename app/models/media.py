@@ -26,4 +26,5 @@ class Media(db.Model):
             'postId': self.post_id,
             'mediaType': self.media_type,
             'mediaUrl': self.media_url,
+            'createdAt': self.created_at
         }

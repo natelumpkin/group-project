@@ -38,5 +38,7 @@ class Post(db.Model):
             'userId': self.user_id,
             'postType': self.post_type,
             'title': self.title,
-            'text': self.text
+            'text': self.text,
+            'createdAt': self.created_at,
+            'updatedAt': self.updated_at
         }

@@ -1,5 +1,6 @@
 from flask import Blueprint, jsonify, request, redirect
 from flask_login import current_user, login_required
+from datetime import datetime
 from app.models import Post, Comment, User, Media, db
 from app.models.like import likes
 from app.forms.post_form import PostForm
@@ -151,7 +152,7 @@ def add_media(id):
             add_media = Media(
                 post_id=current_post.id,
                 media_type=current_post.post_type,
-                media_url=form.data['media_url'],
+                media_url=form.data['mediaUrl'],
             )
             db.session.add(add_media)
             db.session.commit()
@@ -180,7 +181,8 @@ def edit_post(id):
         if form.validate_on_submit():
             current_post.text = form.data['text']
             current_post.title = form.data['title']
-            current_post.post_type = form.data['post_type']
+            current_post.post_type = form.data['postType']
+            current_post.updated_at = datetime.utcnow()
             db.session.commit()
             return current_post.to_dict()
         return {'errors': validation_errors_to_error_messages(form.errors)}, 401

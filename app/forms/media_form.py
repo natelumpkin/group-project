@@ -5,4 +5,5 @@ from app.models import Media
 
 
 class MediaForm(FlaskForm):
-    media_url = StringField("media url", validators=[DataRequired(), Length(min=1, max=255)])
+    mediaUrl = StringField("media url", validators=[
+                           DataRequired(), Length(min=1, max=255)])

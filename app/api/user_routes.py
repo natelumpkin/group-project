@@ -78,8 +78,11 @@ def get_all_followers(id):
     """
     Get all followers of the current user
     """
+    try:
+        target_user = User.query.get_or_404(id)
+    except:
+        return {"message": "User couldn't be found"}, 404
 
-    target_user = User.query.get_or_404(id)
     target_user_followers_query = target_user.followers.all()
 
     following_list = []
@@ -107,7 +110,10 @@ def get_all_following(id):
     Show whether current user is following each user.
     """
     # Get target user
-    target_user = User.query.get_or_404(id)
+    try:
+        target_user = User.query.get_or_404(id)
+    except:
+        return {"message": "User couldn't be found"}, 404
 
     # Get all users followed by the target user for result
     target_user_following_query = target_user.following.all()
@@ -150,13 +156,13 @@ def create_a_follow(id):
     try:
         target_user = User.query.get_or_404(id)
     except:
-        return {'error': 'User not found'}, 404
+        return {'error': "User couldn't be found"}, 404
 
     if current_user.id == int(id):
         return {'message': f"Users can't follow themsevles"}, 403
 
     if target_user in current_user.following:
-        return {'message': f"User {current_user.id} has already followed this user"}, 403
+        return {'message': f"User {current_user.id} is already following User {id}"}, 403
 
     else:
         current_user.following.append(target_user)
@@ -174,7 +180,7 @@ def delete_a_follow(id):
     try:
         target_user = User.query.get_or_404(id)
     except:
-        return {'error': 'User not found'}, 404
+        return {"error": "User couldn't be found"}, 404
 
     if target_user not in current_user.following:
         return {'message': f"User {current_user.id} isn't following user {id}"}, 403
