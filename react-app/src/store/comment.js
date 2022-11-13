@@ -1,3 +1,7 @@
-export default commentReducer = (state = initialState, action) => {
+const initialState = {}
+
+const commentReducer = (state = initialState, action) => {
   return state
 }
+
+export default commentReducer;
