@@ -34,6 +34,10 @@ def get_current_user_posts(id):
     Query for all the posts of a given user and returns
     a list of dictionaries
     """
+    try:
+        User.query.get_or_404(id)
+    except:
+        return { "message": "User couldn't be found"}, 404
 
     # print(following_list)
     posts = Post.query.filter(Post.user_id == id).order_by(Post.created_at.desc()).options(joinedload(

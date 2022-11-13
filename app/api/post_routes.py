@@ -60,6 +60,9 @@ def create_post():
     form = PostForm()
     form['csrf_token'].data = request.cookies['csrf_token']
 
+    print(len(form.data['title']))
+    print(len(form.data['text']))
+
     if form.validate_on_submit():
         new_post = Post(
             user_id=current_user.get_id(),
@@ -71,7 +74,7 @@ def create_post():
         db.session.commit()
         return new_post.to_dict(), 201
 
-    return {'errors': validation_errors_to_error_messages(form.errors)}, 401
+    return {'errors': validation_errors_to_error_messages(form.errors)}, 400
 
 
 @post_routes.route('/following')
@@ -85,9 +88,11 @@ def get_feed():
     # Return a list of only the posts that the user is following
     # Query for all posts and all associated data
     following_list = current_user.following.all()
+
     # print(following_list)
     posts = Post.query.order_by(Post.created_at.desc()).options(joinedload(Post.author), joinedload(
         Post.media), joinedload(Post.user_likes), joinedload(Post.comments)).all()
+
     followed_posts = [post for post in posts if (post.author in following_list) or (
         post.author.id == int(current_user.get_id()))]
 

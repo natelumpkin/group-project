@@ -11,6 +11,6 @@ class PostForm(FlaskForm):
     postType = SelectField("Post Type", validators=[
         DataRequired()], choices=post_type_list)
     title = StringField("Title", validators=[Length(
-        min=1, max=100), Optional()])
+        max=100), Optional()])
     text = TextAreaField("Text", validators=[Length(
-        min=1, max=1000), Optional()])
+        max=1000), Optional()])
