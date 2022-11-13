@@ -4,13 +4,14 @@ import { Provider } from 'react-redux';
 import './index.css';
 import App from './App';
 import configureStore from './store';
-import * as commentActions from './store/comment'
-
+import * as postActions from './store/post'
 
 const store = configureStore();
 
-window.store = store
-window.commentActions = commentActions
+if (process.env !== 'production') {
+  window.store = store;
+  window.postActions = postActions;
+}
 
 ReactDOM.render(
   <React.StrictMode>
