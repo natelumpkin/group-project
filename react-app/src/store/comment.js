@@ -14,10 +14,11 @@ const getAllComments = (comments, postId) => {
     postId: postId,
   }}
 
-const createComment = (newComment) => {
+const createComment = (newComment, postId) => {
   return {
   type: CREATE_COMMENT,
   payload: newComment,
+  postId: postId,
 }}
 
 const editComment = (commentId) => {
@@ -39,12 +40,24 @@ const deleteComment = (commentId) => {
 //GET -- /posts/:postId/comments
 export const grabAllComments = (postId) => async (dispatch) => {
   const response = await fetch(`/api/posts/${postId}/comments`);
-  console.log(response)
   const data = await response.json();
-  console.log(data)
   dispatch(getAllComments(data, postId));
   return response;
 }
+
+
+//POST -- /posts/:postId/comments
+export const createPostComment = (comment, postId) => async (dispatch) => {
+  const response = await fetch(`/api/posts/${postId}/comments`, {
+    method: 'POST',
+    body: JSON.stringify({
+      comment: comment
+    }),
+  });
+  const data = await response.json();
+  dispatch(createComment(data, postId));
+  return response;
+};
 
 // --- REDUCER STUFF --- \\
 
@@ -74,6 +87,11 @@ export default function commentReducer(state = initialState, action) {
         }
       )
       return newState;
+    case CREATE_COMMENT:
+      console.log(state)
+      action.payload["User"] = state.session.user
+      newState.posts[action.postId] = commentNormalizer(action.payload)
+
   default:
     return state;
   }
