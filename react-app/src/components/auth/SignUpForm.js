@@ -17,7 +17,7 @@ const SignUpForm = () => {
   const onSignUp = async (e) => {
     e.preventDefault();
     if (password === repeatPassword) {
-      const data = await dispatch(signUp(username, email, password));
+      const data = await dispatch(signUp(firstName, lastName, username, email, password));
       if (data) {
         setErrors(data)
       }
@@ -52,13 +52,10 @@ const SignUpForm = () => {
     return <Redirect to='/' />;
   }
 
+  console.log(errors)
+
   return (
     <form onSubmit={onSignUp}>
-      <div>
-        {errors.map((error, ind) => (
-          <div key={ind}>{error}</div>
-        ))}
-      </div>
       <div>
         <label>First Name</label>
         <input
@@ -67,6 +64,11 @@ const SignUpForm = () => {
           onChange={updateFirstName}
           value={firstName}
         ></input>
+      </div>
+      {errors.firstName && <div>
+        <p>{errors.firstName}</p>
+      </div>}
+      <div>
         <label>Last Name</label>
         <input
           type='text'
@@ -74,6 +76,11 @@ const SignUpForm = () => {
           onChange={updateLastName}
           value={lastName}
         ></input>
+      </div>
+      {errors.lastName && <div>
+        <p>{errors.firstName}</p>
+      </div>}
+      <div>
         <label>User Name</label>
         <input
           type='text'
@@ -82,6 +89,9 @@ const SignUpForm = () => {
           value={username}
         ></input>
       </div>
+      {errors.username && <div>
+        <p>{errors.username}</p>
+      </div>}
       <div>
         <label>Email</label>
         <input
@@ -91,6 +101,9 @@ const SignUpForm = () => {
           value={email}
         ></input>
       </div>
+      {errors.email && <div>
+        <p>{errors.email}</p>
+      </div>}
       <div>
         <label>Password</label>
         <input
@@ -99,6 +112,9 @@ const SignUpForm = () => {
           onChange={updatePassword}
           value={password}
         ></input>
+        {errors.password && <div>
+          <p>{errors.password}</p>
+        </div>}
       </div>
       <div>
         <label>Repeat Password</label>
