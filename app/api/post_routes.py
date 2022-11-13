@@ -61,6 +61,7 @@ def create_post():
     and returns the new post in a dictionary
     """
     form = PostForm()
+    print(form.data)
     form['csrf_token'].data = request.cookies['csrf_token']
 
     # print(len(form.data['title']))
