@@ -28,7 +28,6 @@ def user(id):
 
 
 @user_routes.route('/<int:id>/posts')
-@login_required
 def get_current_user_posts(id):
     """
     Query for all the posts of a given user and returns
