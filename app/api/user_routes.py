@@ -163,7 +163,7 @@ def create_a_follow(id):
         return {'error': "User couldn't be found"}, 404
 
     if current_user.id == int(id):
-        return {'message': f"Users can't follow themsevles"}, 403
+        return {'message': f"Users can't follow themselves"}, 403
 
     if target_user in current_user.following:
         return {'message': f"User {current_user.id} is already following User {id}"}, 403
@@ -178,7 +178,7 @@ def create_a_follow(id):
 @ login_required
 def delete_a_follow(id):
     """
-    Delete a user from the session users following list
+    Delete session user from a user's follower list
 
     """
     try:
