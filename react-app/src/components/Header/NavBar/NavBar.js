@@ -5,6 +5,7 @@ import LogoutButton from '../../auth/LogoutButton';
 import './NavBar.css'
 import LoginFormModal from '../../auth/Login/LoginModal';
 import SignUpFormModal from '../../auth/SignUp/SignUpModal';
+import CreateFormModal from '../../CreatePostModal/CreatePostModal';
 
 const NavBar = () => {
   const sessionUser = useSelector(state => state.session.user)
@@ -30,9 +31,7 @@ const NavBar = () => {
             <NavLink to='/' exact={true} activeClassName='active'>
               Profile
             </NavLink>
-            <NavLink to='/' exact={true} activeClassName='active'>
-              Nav Create Post
-            </NavLink>
+            <CreateFormModal />
             <LogoutButton />
           </>)
         }
