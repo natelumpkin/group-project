@@ -4,6 +4,7 @@ import { NavLink } from 'react-router-dom';
 import LogoutButton from '../../auth/LogoutButton';
 import './NavBar.css'
 import LoginFormModal from '../../auth/Login/LoginModal';
+import SignUpFormModal from '../../auth/SignUp/SignUpModal';
 
 const NavBar = () => {
   const sessionUser = useSelector(state => state.session.user)
@@ -15,9 +16,7 @@ const NavBar = () => {
         {!sessionUser && (
           <>
             <LoginFormModal />
-            <NavLink to='/sign-up' exact={true} activeClassName='active'>
-              Sign Up
-            </NavLink>
+            <SignUpFormModal />
           </>)
         }
         {sessionUser && (
