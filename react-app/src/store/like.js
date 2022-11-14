@@ -37,6 +37,18 @@ export const addPostLike = (postId) => async (dispatch) => {
   }
 }
 
+export const removePostLike = (postId) => async (dispatch) => {
+  const response = await fetch(`/api/posts/${postId}/likes`, {
+    method: 'DELETE'
+  });
+
+  if (response.ok) {
+    await dispatch(getPostLikes(postId));
+  } else {
+    return [`Unable to unlike post ${postId}`]
+  }
+}
+
 
 // Initial 'likes' state:
 const initialState = {
