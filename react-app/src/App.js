@@ -9,6 +9,7 @@ import UsersList from './components/UsersList';
 import User from './components/User';
 import { authenticate } from './store/session';
 
+import AllPosts from './components/AllPosts';
 import DummyPosts from './components/DummyPosts';
 
 
@@ -30,7 +31,6 @@ function App() {
   return (
     <BrowserRouter>
       <NavBar />
-      <DummyPosts />
       <Switch>
         <Route path='/login' exact={true}>
           <LoginForm />
@@ -46,6 +46,7 @@ function App() {
         </ProtectedRoute>
         <Route path='/' exact={true} >
           <h1>My Home Page</h1>
+          <AllPosts />
         </Route>
       </Switch>
     </BrowserRouter>

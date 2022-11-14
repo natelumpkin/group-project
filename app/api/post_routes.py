@@ -11,15 +11,19 @@ from .auth_routes import validation_errors_to_error_messages
 
 post_routes = Blueprint('posts', __name__)
 
+# print('current user outside route!: ', current_user)
 
-@post_routes.route('/')
+@post_routes.route('')
 def get_all_posts():
     """
     Queries for all posts and all associated data
     and returns it in a list of dictionaries
     in reverse chronological order
     """
-    print(current_user)
+    # print('current user inside route! :', current_user)
+    # print(current_user.__dir__())
+    # if current_user.is_anonymous:
+    #     print('current user is anonymous')
 
     #print(likes.schema)
 
