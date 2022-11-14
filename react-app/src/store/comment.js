@@ -21,11 +21,13 @@ const createComment = (newComment, userData) => {
   user: userData,
 }}
 
-const editComment = (data, userData) => {
+const editComment = (data, commentId, postId, userData) => {
   return {
   type: EDIT_COMMENT,
   payload: data,
   user: userData,
+  postId: postId,
+  commentId: commentId,
 }}
 
 const deleteComment = (data, commentId) => {
@@ -70,8 +72,8 @@ export const createPostComment = (comment, postId, userData) => async (dispatch)
 
 
 //PUT --  /comments/:commentId
-export const editPostComment = (commentId, comment, userData) => async (dispatch) => {
-  const response = await fetch(`/comments/${commentId}`, {
+export const editPostComment = (commentId, postId, comment, userData) => async (dispatch) => {
+  const response = await fetch(`/api/comments/${commentId}`, {
     method: 'PUT',
     headers: {"Content-Type": "application/json"},
     body: JSON.stringify({
@@ -81,7 +83,7 @@ export const editPostComment = (commentId, comment, userData) => async (dispatch
 
   if (response.ok) {
     const data = await response.json();
-    dispatch(editComment(data, userData))
+    dispatch(editComment(data, commentId, postId, userData))
     return response
   }
 }
@@ -127,15 +129,15 @@ export default function commentReducer(state = initialState, action) {
       }
 
     case DELETE_COMMENT:
-      console.log("Normalized Data", action.payload)
       delete newState.posts[action.payload.postId][action.commentId]
       return newState
 
     case EDIT_COMMENT:
-        newState.posts[action.payload.postId][action.commentId] = {
-          comment: action.payload.comment,
-          User: action.user
-        }
+      let newdata = normalizeData(action.payload)
+      console.log("Test", newdata)
+      console.log("Test", action.payload)
+      newdata.User = action.user
+       newState.posts[action.postId][action.commentId] = newdata
        return newState
   default:
     return state;
