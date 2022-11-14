@@ -151,11 +151,13 @@ export const deletePost = (postId) => async (dispatch) => {
   }
 }
 
-export const addMediaByPostId = (postId, media) => async dispatch => {
+export const addMediaByPostId = (postId, mediaUrl) => async dispatch => {
   const response = await fetch(`/api/posts/${postId}/media`, {
     method: "POST",
     headers: { "Content-Type": "application/json"},
-    body: JSON.stringify(media)
+    body: JSON.stringify({
+      "mediaUrl": mediaUrl
+    })
   })
   if (response.ok) {
     const newMedia = await response.json()
@@ -422,8 +424,8 @@ const postReducer = (state = initialState, action) => {
             newState.userPosts[postId].Media.push({...media})
           }
         }
-        newState.allPosts[postId].Media.push(media)
-        newState.userPosts[postId].Media.push(media)
+        if (newState.allPosts[postId]) newState.allPosts[postId].Media.push(media)
+        if (newState.userPosts[postId]) newState.userPosts[postId].Media.push(media)
         // if the post is in either state, add the media to
         // that post's Media array
         // return new state
