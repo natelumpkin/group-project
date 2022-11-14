@@ -8,10 +8,10 @@ import commentReducer from './comment'
 
 const rootReducer = combineReducers({
   session,
-  // posts: postReducer,
+  posts: postReducer,
   comments: commentReducer,
-  // follows: followReducer,
-  // likes: likeReducer
+  follows: followReducer,
+  likes: likeReducer
 });
 
 
