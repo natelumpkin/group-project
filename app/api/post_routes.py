@@ -19,6 +19,7 @@ def get_all_posts():
     and returns it in a list of dictionaries
     in reverse chronological order
     """
+    print(current_user)
 
     #print(likes.schema)
 
@@ -89,6 +90,7 @@ def get_feed():
     user is following, as well as posts written by the user,
     and returns them as a list of dictionaries
     """
+    print(current_user)
     # Return a list of only the posts that the user is following
     # Query for all posts and all associated data
     following_list = current_user.following.all()
@@ -193,8 +195,10 @@ def edit_post(id):
             return {'message': "Forbidden"}, 403
 
         if form.validate_on_submit():
-            current_post.text = form.data['text']
-            current_post.title = form.data['title']
+            if form.data['text']:
+                current_post.text = form.data['text']
+            if form.data['title']:
+                current_post.title = form.data['title']
             current_post.updated_at = datetime.utcnow()
             db.session.commit()
             return current_post.to_dict()

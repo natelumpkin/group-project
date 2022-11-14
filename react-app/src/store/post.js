@@ -54,6 +54,7 @@ export const getAllPosts = () => async (dispatch) => {
   if (response.ok) {
     const allPosts = await response.json()
     dispatch(getPosts(allPosts))
+    console.log('all posts data: ', allPosts)
     return allPosts
   } else {
     return ['Unable to fetch all posts.']
@@ -179,6 +180,7 @@ const postReducer = (state = initialState, action) => {
   switch (action.type) {
     case ALL_POSTS: {
       const data = normalizeData(action.payload.Posts)
+      // console.log('all posts data: ', data)
       const newState = {
         allPosts: data,
         userPosts: {}
@@ -325,7 +327,9 @@ const postReducer = (state = initialState, action) => {
           // Get previous post's userdata and media data
           // spread it into edited post
           // console.log('mediaData: ', mediaData);
+          const notes = state.userPosts[editedPost.id].notes
           newState.userPosts[editedPost.id] = editedPost
+          newState.userPosts[editedPost.id].notes = notes
           const mediaData = state.userPosts[editedPost.id].Media
           newState.userPosts[editedPost.id].Media = []
           for (let media of mediaData) {
@@ -335,7 +339,9 @@ const postReducer = (state = initialState, action) => {
           newState.userPosts[editedPost.id].User = { ...userData }
         }
         if (state.allPosts[editedPost.id]) {
+          const notes = state.allPosts[editedPost.id].notes
           newState.allPosts[editedPost.id] = editedPost
+          newState.allPosts[editedPost.id].notes = notes
           const mediaData = state.allPosts[editedPost.id].Media
           newState.allPosts[editedPost.id].Media = []
           for (let media of mediaData) {
