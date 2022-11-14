@@ -43,9 +43,9 @@ export const grabAllComments = (postId) => async (dispatch) => {
   const response = await fetch(`/api/posts/${postId}/comments`);
 
   if (response.ok) {
-  const data = await response.json();
-  dispatch(getAllComments(data, postId));
-  return response;
+    const data = await response.json();
+    dispatch(getAllComments(data, postId));
+    return response;
   }
 }
 
@@ -102,7 +102,7 @@ export const deletePostComment = (commentId) => async (dispatch) => {
 // --- REDUCER STUFF --- \\
 
 // --- NORMALIZE DATA SPACE --- \\
-const initialState = {}
+const initialState = {posts: {}}
 const commentNormalizer = (data) => {
   return {
       comment: data.comment,
@@ -117,7 +117,9 @@ export default function commentReducer(state = initialState, action) {
     case GET_ALL_COMMENTS:
       action.payload.Comments.forEach(
         comment => {
-          newState.posts[action.postId] = {[String(comment.id)]: commentNormalizer(comment)}
+          newState.posts[action.postId] = {
+            [comment.id]: commentNormalizer(comment)
+          }
         }
       )
       return newState;
@@ -144,8 +146,8 @@ export default function commentReducer(state = initialState, action) {
 // --- STATE SHAPE DIAGRAM --- \\
 // comments: {
 //   posts: {
-//       <postId>: {
-//           <commentId>: {
+//       1: {
+//          1: {
 //               comment: <>,
 //               User: {
 //                   id: <>,
