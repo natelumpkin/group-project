@@ -1,13 +1,13 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import NavBar from './NavBar';
+import NavBar from './NavBar/NavBar';
 import './index.css'
 
 const Header = () => {
     return (
         <div id='header'>
             <NavLink to='/' exact={true} activeClassName='active'>
-                Home
+                Logo Feed
             </NavLink>
             <NavBar />
         </div>
