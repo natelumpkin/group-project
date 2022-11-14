@@ -9,6 +9,10 @@ import UsersList from './components/Header/UsersList';
 import User from './components/Header/User';
 import { authenticate } from './store/session';
 
+import AllPosts from './components/AllPosts';
+import DummyPosts from './components/DummyPosts';
+
+
 function App() {
   const [loaded, setLoaded] = useState(false);
   const dispatch = useDispatch();
@@ -42,6 +46,7 @@ function App() {
         </ProtectedRoute>
         <Route path='/' exact={true} >
           <h1>My Home Page</h1>
+          <AllPosts />
         </Route>
       </Switch>
     </BrowserRouter>
