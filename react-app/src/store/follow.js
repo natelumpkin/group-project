@@ -25,6 +25,7 @@ const removeFollow = followedUserId => ({
   followedUserId
 })
 
+// Add followed user to current users following list, update following state --> addFollow
 export const createNewFollow = (followedUser) => async dispatch => {
   const response = await fetch(`/api/users/${followedUser.id}/followers`, { method: 'POST' })
 
@@ -34,8 +35,8 @@ export const createNewFollow = (followedUser) => async dispatch => {
   }
 }
 
+// Get all of the current users followers, update followers state --> loadFollowers
 export const getAllFollowers = (userId) => async dispatch => {
-
   const response = await fetch(`/api/users/${userId}/followers`)
 
   if (response.ok) {
@@ -44,6 +45,7 @@ export const getAllFollowers = (userId) => async dispatch => {
   }
 }
 
+// Get all of the users the current user is following, update following state --> loadFollowing
 export const getAllFollowing = (userId) => async dispatch => {
   const response = await fetch(`/api/users/${userId}/following`)
 
@@ -53,6 +55,7 @@ export const getAllFollowing = (userId) => async dispatch => {
   }
 }
 
+// Remove a user from the current users following list, update following state --> removeFollow
 export const deleteFollow = (followedUserId) => async dispatch => {
   const response = await fetch(`/api/users/${followedUserId}/followers`, { method: 'DELETE' })
 
@@ -62,6 +65,7 @@ export const deleteFollow = (followedUserId) => async dispatch => {
   }
 }
 
+// Initial, empty state/structure of the redux store
 const initialState = { followers: {}, following: {} }
 
 const followReducer = (state = initialState, action) => {
