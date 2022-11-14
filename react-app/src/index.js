@@ -5,19 +5,21 @@ import './index.css';
 import App from './App';
 import configureStore from './store';
 import * as postActions from './store/post'
+import * as followActions from './store/follow'
 
 const store = configureStore();
 
 if (process.env !== 'production') {
   window.store = store;
   window.postActions = postActions;
+  window.followActions = followActions
 }
 
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
-        <App />
-      </Provider>
+      <App />
+    </Provider>
   </React.StrictMode>,
   document.getElementById('root')
 );
