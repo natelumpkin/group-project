@@ -54,18 +54,18 @@ const CreatePostForm = ({ setShowModal }) => {
                 const data = await res.json();
                 if (data && data.errors) setErrors(Object.values(data.errors));
             });
-        // console.log("*******NEW POST RETURNED: ", post)
+        console.log("*******NEW POST RETURNED: ", post)
         if (post && !mediaUrl) {
             setShowModal(false)
             history.push("/");
         }
         if (post && mediaUrl) {
-            const postMedia = await dispatch(addMediaByPostId(post.id, mediaUrl))
+            const postMedia = await dispatch(addMediaByPostId(post.id, {mediaUrl}))
                 .catch(async (res) => {
                     const data = await res.json();
                     if (data && data.errors) setErrors(Object.values(data.errors));
                 });
-            // console.log("*******NEW MEDIA RETURNED: ", postMedia)
+            console.log("*******NEW MEDIA RETURNED: ", postMedia)
             if (postMedia) {
                 setShowModal(false)
                 history.push("/");
