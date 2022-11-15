@@ -9,12 +9,12 @@ import * as commentActions from "../../store/comment";
 import * as likeActions from "../../store/like";
 
 
-const PostCommentCard = ({postId}) => {
-  console.log("Post ID", postId)
+const PostCommentCard = ({postid}) => {
+  console.log("Post ID", postid)
   const dispatch = useDispatch();
-  const commentObj = useSelector(state => state.comments.posts[postId]) || []
+  const commentObj = useSelector(state => state.comments.posts[postid]) || []
   const comments = Object.values(commentObj)
-  const likeObj = useSelector(state => state.likes.posts[postId]) || []
+  const likeObj = useSelector(state => state.likes.posts[postid]) || []
   const currentUser = useSelector(state => state.session) || []
   const likes = Object.values(likeObj)
   const history = useHistory();
@@ -22,8 +22,8 @@ const PostCommentCard = ({postId}) => {
   const [errors, setErrors] = useState([])
 
   useEffect(()=>{
-    dispatch(commentActions.grabAllComments(postId))
-    dispatch(likeActions.getPostLikes(postId))
+    dispatch(commentActions.grabAllComments(postid))
+    dispatch(likeActions.getPostLikes(postid))
   }, [dispatch])
 
   // if (groups.length > 1 ) {
@@ -64,7 +64,7 @@ const PostCommentCard = ({postId}) => {
 
       </div>
       <div className="post-comment-content-container">
-         {current ? <CommentInput postId={postId} /> : null}
+         {current ? <CommentInput postid={postid} /> : null}
          {current ? displayComments : displayLikes}
       </div>
 

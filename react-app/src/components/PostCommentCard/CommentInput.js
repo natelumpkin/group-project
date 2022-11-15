@@ -5,7 +5,7 @@ import './PostCommentCard.css';
 import * as commentActions from "../../store/comment";
 
 
-const CommentInput = ({ postId }) => {
+const CommentInput = ({ postid }) => {
   const dispatch = useDispatch()
   const sessionUser = useSelector(state => state.session.user);
   const [comment, setComment] = useState('');
@@ -14,7 +14,7 @@ const CommentInput = ({ postId }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     setErrors([]);
-      return dispatch(commentActions.createPostComment({ comment, postId, sessionUser }))
+      return dispatch(commentActions.createPostComment({ comment, postid, sessionUser }))
     // .then(()=>{
     //   What to do...
     // })
