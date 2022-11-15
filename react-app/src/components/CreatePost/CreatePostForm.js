@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { createPost, addMediaByPostId } from '../../store/post';
+import './CreatePostModal.css'
 
 const CreatePostForm = ({ setShowModal }) => {
     const [errors, setErrors] = useState([]);
@@ -74,12 +75,26 @@ const CreatePostForm = ({ setShowModal }) => {
     return (
         <div>
             {!postType && (
-                <div id='post-type-selector'>
-                    <div onClick={() => setPostType('text')}>Text</div>
-                    <div onClick={() => setPostType('image')}>Photo</div>
-                    <div onClick={() => setPostType('quote')}>Quote</div>
-                    <div onClick={() => setPostType('video')}>Video</div>
-                </div>
+                <>
+                    <div id='post-type-selector'>
+                        <div className='selector-wrapper' onClick={() => setPostType('text')}>
+                            <div id='text-selector'>Aa</div>
+                            <div id='text-label'>Text</div>
+                        </div>
+                        <div className='selector-wrapper' onClick={() => setPostType('image')}>
+                            <div id='image-selector'><i className="fa-solid fa-camera-retro" /></div>
+                            <div id='image-label'>Photo</div>
+                        </div>
+                        <div className='selector-wrapper' onClick={() => setPostType('quote')}>
+                            <div id='quote-selector' ><i class="fa-solid fa-quote-left" /></div>
+                            <div id='quote-label'>Quote</div>
+                        </div>
+                        <div className='selector-wrapper' onClick={() => setPostType('video')}>
+                            <div id='video-selector'><i class="fa-solid fa-video" /></div>
+                            <div id='video-label'>Video</div>
+                        </div>
+                    </div>
+                </>
             )}
 
 
