@@ -29,11 +29,11 @@ const CommentInput = ({ postid }) => {
 return (
     <div>
       <div className="post-comment-main-container">
-        <div className="post-comment-user-icon">
+        <div className="post-card-content-user-icon">
           {sessionUser ? sessionUser.profileImageUrl : "👨‍👧‍👧" }
         </div>
         <div className="post-comment-input-container">
-          <form onSubmit={handleSubmit} className="post-comment-new">
+          <form onSubmit={handleSubmit} className="post-comment-form">
           <div className="post-comment-input-field">
             <input
               type="test"

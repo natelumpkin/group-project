@@ -7,9 +7,9 @@ const CommentsCard = ({ comment }) => {
 
   return (
     <div>
-    <div className="post-comment-content-container">
+    <div className="post-card-box-content-container">
       <Link to={`/users/${comment.User.id}`}>
-        <div className="post-comment-content-user-icon">
+        <div className="post-card-content-user-icon">
           {comment.User.profileImageUrl || "🤔"}
         </div>
       </Link>

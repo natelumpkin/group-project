@@ -7,9 +7,9 @@ const LikesCommentCard = ({ like }) => {
 
   return (
     <div>
-    <div className="post-like-content-container">
+    <div className="post-card-box-content-container">
       <Link to={`/users/${like.id}`}>
-        <div className="post-like-content-user-icon">
+        <div className="post-card-content-user-icon">
           {like.profileImageUrl || "🤔"}
         </div>
       </Link>
