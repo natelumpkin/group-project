@@ -22,10 +22,10 @@ const NavBar = () => {
         }
         {sessionUser && (
           <>
-            <NavLink to='/' exact={true} activeClassName='active'>
+            <NavLink to='/feed' exact={true} activeClassName='active'>
               Nav Feed
             </NavLink>
-            <NavLink to='/' exact={true} activeClassName='active'>
+            <NavLink to='/home' exact={true} activeClassName='active'>
               Explore
             </NavLink>
             <NavLink to='/' exact={true} activeClassName='active'>
