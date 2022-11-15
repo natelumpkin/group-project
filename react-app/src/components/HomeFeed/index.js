@@ -1,6 +1,7 @@
 import { useEffect } from "react"
 import { useSelector, useDispatch } from "react-redux"
 import * as postActions from '../../store/post'
+import * as followActions from '../../store/follow'
 
 import PostCard from "../PostCard"
 
@@ -10,11 +11,13 @@ const HomeFeed = () => {
   // have a spot card for each post in posts state
   //
   const allPosts = useSelector(state => state.posts.allPosts)
+  const user = useSelector(state => state.session.user)
 
   const dispatch = useDispatch()
 
   useEffect(() => {
     dispatch(postActions.getFeed())
+    dispatch(followActions.getAllFollowing(user.id))
   }, [dispatch])
 
   const allPostsArray = []
@@ -22,7 +25,7 @@ const HomeFeed = () => {
     allPostsArray.unshift(allPosts[post])
   }
 
-  console.log('allPosts in AllPosts component: ', allPostsArray)
+  console.log('allPosts in userFeed component: ', allPostsArray)
 
   return (
     <div className="outer-container">

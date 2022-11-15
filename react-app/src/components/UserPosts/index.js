@@ -13,11 +13,13 @@ const UserPosts = () => {
   // have a spot card for each post in posts state
   //
   const allPosts = useSelector(state => state.posts.userPosts)
+  const user = useSelector(state => state.session.user)
 
   const dispatch = useDispatch()
 
   useEffect(() => {
     dispatch(postActions.getBlog(userId))
+    if (user.id) dispatch(followActions.getAllFollowing(user.id))
   }, [dispatch])
 
   const allPostsArray = []
@@ -25,7 +27,7 @@ const UserPosts = () => {
     allPostsArray.unshift(allPosts[post])
   }
 
-  console.log('allPosts in AllPosts component: ', allPostsArray)
+  console.log('allPosts in UserPosts component: ', allPostsArray)
 
   return (
     <div className="outer-container">

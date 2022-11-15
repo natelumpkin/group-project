@@ -1,12 +1,34 @@
 import { Link } from "react-router-dom"
+import { useSelector, useDispatch } from "react-redux"
+import { useEffect } from "react"
 import React from "react"
 import ReactPlayer from "react-player"
 
 import formatVideoLink from "../../utils/formatVideoLink"
 import PostCommentCard from "../PostCommentCard"
+import * as followActions from "../../store/follow"
+import * as postActions from "../../store/post"
+
   const PostCard = ({post}) => {
 
   console.log('postCard component post: ', post)
+
+  const user = useSelector(state => state.session.user)
+  // const posts = useSelector(state => state.posts)
+  const follows = useSelector(state => state.follows)
+  const dispatch = useDispatch()
+
+  const followUser = (userId) => {
+    dispatch(followActions.createNewFollow(userId))
+      // .then(dispatch(postActions.getAllPosts()))
+  }
+
+  const followingList = Object.keys(follows.following)
+  console.log('following list: ', followingList)
+  const following = followingList.includes(post.User.id.toString())
+  console.log('postId: ', post.id, 'current user following: ', following);
+
+
 
   // if postType is text,
   // only render title and text
@@ -23,7 +45,8 @@ import PostCommentCard from "../PostCommentCard"
         <div className="postCard-userImage-holder">
           <div className="postCard-userImage">
             <img src={post.User.profileImageUrl}/>
-            Profile Image Placeholder
+            Post Id: {post.id}
+            Post type: {post.postType}
           </div>
         </div>
         <div className="postCard-content-holder">
@@ -31,6 +54,10 @@ import PostCommentCard from "../PostCommentCard"
             <Link to={`/users/${post.User.id}`}>
             {post.User.username}
             </Link>
+            {/* If following is false and there is session.user.id and post.User.id is not currentUser.id, then render the follow button */}
+            {!post.User.following && user.id && post.User.id != user.id && (
+              <button onClick={() => followUser(post.User)}>Follow</button>
+            )}
           </div>
           <div className="postcard-title-holder">
             <h2>{post.title}</h2>
@@ -63,7 +90,8 @@ import PostCommentCard from "../PostCommentCard"
         <div className="postCard-userImage-holder">
           <div className="postCard-userImage">
             <img src={post.User.profileImageUrl}/>
-            Profile Image Placeholder
+            Post Id: {post.id}
+            Post type: {post.postType}
           </div>
         </div>
         <div className="postCard-content-holder">
@@ -71,6 +99,9 @@ import PostCommentCard from "../PostCommentCard"
             <Link to={`/users/${post.User.id}`}>
             {post.User.username}
             </Link>
+            {!post.User.following && user.id && post.User.id != user.id && (
+              <button onClick={() => followUser(post.User)}>Follow</button>
+            )}
           </div>
           <div className="postcard-quote-holder">
             <h2>{post.title}</h2>
@@ -97,13 +128,14 @@ import PostCommentCard from "../PostCommentCard"
         </div>
       </div>
     )
-  } else if (post.postType === 'photo') {
+  } else if (post.postType === 'image' || post.postType === 'photo') {
     return (
       <div className="postCard-outer-container">
           <div className="postCard-userImage-holder">
             <div className="postCard-userImage">
               <img src={post.User.profileImageUrl}/>
-              Profile Image Placeholder
+              Post Id: {post.id}
+              Post type: {post.postType}
             </div>
           </div>
           <div className="postCard-content-holder">
@@ -111,10 +143,12 @@ import PostCommentCard from "../PostCommentCard"
             <Link to={`/users/${post.User.id}`}>
             {post.User.username}
             </Link>
+            {!following && user.id && (post.User.id != user.id) && (
+              <button onClick={() => followUser(post.User)}>Follow</button>
+            )}
             </div>
             <div className="postcard-photo-holder">
-              <img src="post.Media.mediaUrl" />
-              {post.Media.mediaUrl}
+              {post.Media[0] && (<img src={post.Media[0].mediaUrl} />)}
             </div>
             <div className="postcard-caption-holder">
               <p>{post.text}</p>
@@ -151,7 +185,8 @@ import PostCommentCard from "../PostCommentCard"
           <div className="postCard-userImage-holder">
             <div className="postCard-userImage">
               <img src={post.User.profileImageUrl}/>
-              Profile Image Placeholder
+              Post Id: {post.id}
+              Post type: {post.postType}
             </div>
           </div>
           <div className="postCard-content-holder">
@@ -159,6 +194,9 @@ import PostCommentCard from "../PostCommentCard"
             <Link to={`/users/${post.User.id}`}>
             {post.User.username}
             </Link>
+            {!post.User.following && user.id && post.User.id != user.id && (
+              <button onClick={() => followUser(post.User)}>Follow</button>
+            )}
             </div>
             <div className="postcard-video-holder">
               {post.Media[0] && (
