@@ -5,7 +5,7 @@ import LogoutButton from '../../auth/LogoutButton';
 import './NavBar.css'
 import LoginFormModal from '../../auth/Login/LoginModal';
 import SignUpFormModal from '../../auth/SignUp/SignUpModal';
-import CreateFormModal from '../../CreatePostModal/CreatePostModal';
+import CreateFormModal from '../../CreatePost/CreatePostModal';
 
 const NavBar = () => {
   const sessionUser = useSelector(state => state.session.user)
