@@ -1,3 +1,7 @@
+import { Link } from "react-router-dom"
+import React from "react"
+import ReactPlayer from "react-player"
+
 import formatVideoLink from "../../utils/formatVideoLink"
 
 const PostCard = ({post}) => {
@@ -24,7 +28,9 @@ const PostCard = ({post}) => {
         </div>
         <div className="postCard-content-holder">
           <div className="postCard-author-username-holder">
+            <Link to={`/users/${post.User.id}`}>
             {post.User.username}
+            </Link>
           </div>
           <div className="postcard-title-holder">
             <h2>{post.title}</h2>
@@ -61,7 +67,9 @@ const PostCard = ({post}) => {
         </div>
         <div className="postCard-content-holder">
           <div className="postCard-author-username-holder">
+            <Link to={`/users/${post.User.id}`}>
             {post.User.username}
+            </Link>
           </div>
           <div className="postcard-quote-holder">
             <h2>{post.title}</h2>
@@ -98,7 +106,9 @@ const PostCard = ({post}) => {
           </div>
           <div className="postCard-content-holder">
             <div className="postCard-author-username-holder">
-              {post.User.username}
+            <Link to={`/users/${post.User.id}`}>
+            {post.User.username}
+            </Link>
             </div>
             <div className="postcard-photo-holder">
               <img src="post.Media.mediaUrl" />
@@ -143,17 +153,13 @@ const PostCard = ({post}) => {
           </div>
           <div className="postCard-content-holder">
             <div className="postCard-author-username-holder">
-              {post.User.username}
+            <Link to={`/users/${post.User.id}`}>
+            {post.User.username}
+            </Link>
             </div>
             <div className="postcard-video-holder">
-              {post.Media[0] && post.Media[0].mediaUrl.includes('youtube') && (
-                <>
-                  <iframe src={formattedLink}></iframe>
-                </>)}
               {post.Media[0] && (
-              <>
-                <h4>placeholder link for video: {post.Media[0].mediaUrl}</h4>
-              </>)}
+                <ReactPlayer url={post.Media[0].mediaUrl}></ReactPlayer>)}
             </div>
             <div className="postcard-caption-holder">
               <p>{post.text}</p>
