@@ -12,6 +12,7 @@ import { authenticate } from './store/session';
 import AllPosts from './components/AllPosts';
 import HomeFeed from './components/HomeFeed';
 import UserPosts from './components/UserPosts';
+import './index.css'
 import Followers from './components/Followers';
 import Following from './components/Following';
 
@@ -47,24 +48,15 @@ function App() {
         {/* <ProtectedRoute path='/users/:userId' exact={true} >
           <User />
         </ProtectedRoute> */}
-        <Route path='/' exact={true}>
+        <Route path='/home' >
           <AllPosts />
         </Route>
         <Route path='/feed'>
-          <HomeFeed/>
+          <HomeFeed />
         </Route>
         <Route path='/users/:userId'>
           <User />
           <UserPosts />
-        </Route>
-        <Route path='/following'>
-          <Following />
-        </Route>
-        <Route path='/followers'>
-          <Followers />
-        </Route>
-        <Route>
-          <h1>404 Page not found {':<'} Sowwyyyyy</h1>
         </Route>
       </Switch>
     </BrowserRouter>

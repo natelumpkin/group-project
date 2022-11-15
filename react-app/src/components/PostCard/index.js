@@ -7,12 +7,13 @@ import ReactPlayer from "react-player"
 import formatVideoLink from "../../utils/formatVideoLink"
 import PostCommentCard from "../PostCommentCard"
 import DeletePostModal from "../DeletePost/DeletePostModal"
+import './PostCard.css'
 import * as followActions from "../../store/follow"
 import * as postActions from "../../store/post"
 import * as likeActions from "../../store/like"
 import * as commentActions from "../../store/comment"
 
-  const PostCard = ({post}) => {
+const PostCard = ({ post }) => {
 
   console.log('postCard component post: ', post)
   console.log('post.User: ', post.User)
@@ -24,12 +25,16 @@ import * as commentActions from "../../store/comment"
   const comments = useSelector(state => state.comments)
   const dispatch = useDispatch()
 
+  const defaultProfileImage = "https://img.freepik.com/premium-vector/handdrawn-vintage-hermit-crab-vector-illustration_147266-58.jpg?w=360"
+
   const [liked, setLiked] = useState(false)
 
   useEffect(() => {
     dispatch(likeActions.getPostLikes(post.id))
     dispatch(commentActions.grabAllComments(post.id))
-  },[dispatch])
+  }, [dispatch])
+
+  // console.log('liked boolean: ', liked)
 
   const likedList = []
 
@@ -44,17 +49,17 @@ import * as commentActions from "../../store/comment"
 
   const followUser = (userId) => {
     dispatch(followActions.createNewFollow(userId))
-      // .then(dispatch(postActions.getAllPosts()))
+    // .then(dispatch(postActions.getAllPosts()))
   }
 
   const likePost = (postId) => {
     dispatch(likeActions.addPostLike(postId))
-      // .then(setLiked(true))
+    // .then(setLiked(true))
   }
 
   const unlikePost = (postId) => {
     dispatch(likeActions.removePostLike(postId))
-      // .then(setLiked(false))
+    // .then(setLiked(false))
   }
 
   // console.log(likes.posts[post.id])
@@ -104,16 +109,16 @@ import * as commentActions from "../../store/comment"
       <div className="postCard-outer-container">
         <div className="postCard-userImage-holder">
           <div className="postCard-userImage">
-            <img src={post.User.profileImageUrl}/>
-            Post Id: {post.id}
-            Post type: {post.postType}
+            <img src={post.User.profileImageUrl || defaultProfileImage} />
+            {/* Post Id: {post.id}
+            Post type: {post.postType} */}
           </div>
         </div>
         <div className="postCard-content-holder">
           <div className="postCard-author-username-holder">
             <Link to={`/users/${post.User.id}`}>
-            {post.User && (
-              post.User.username
+              {post.User && (
+                post.User.username
               )}
             </Link>
             {/* If following is false and there is session.user.id and post.User.id is not currentUser.id, then render the follow button */}
@@ -143,7 +148,7 @@ import * as commentActions from "../../store/comment"
               {user && liked && (<button onClick={() => unlikePost(post.id)}>UnLike</button>)}
             </div>
           </div>
-            <div><PostCommentCard postid={post.id} /></div>
+          <div><PostCommentCard postid={post.id} /></div>
         </div>
       </div>
     )
@@ -152,16 +157,16 @@ import * as commentActions from "../../store/comment"
       <div className="postCard-outer-container">
         <div className="postCard-userImage-holder">
           <div className="postCard-userImage">
-            <img src={post.User.profileImageUrl}/>
-            Post Id: {post.id}
-            Post type: {post.postType}
+            <img src={post.User.profileImageUrl || defaultProfileImage} />
+            {/* Post Id: {post.id}
+            Post type: {post.postType} */}
           </div>
         </div>
         <div className="postCard-content-holder">
           <div className="postCard-author-username-holder">
             <Link to={`/users/${post.User.id}`}>
-            {post.User && (
-              post.User.username
+              {post.User && (
+                post.User.username
               )}
             </Link>
             {user && !following && user.id && post.User.id != user.id && (
@@ -190,25 +195,25 @@ import * as commentActions from "../../store/comment"
               {user && liked && (<button onClick={() => unlikePost(post.id)}>UnLike</button>)}
             </div>
           </div>
-            <div><PostCommentCard postid={post.id} /></div>
+          <div><PostCommentCard postid={post.id} /></div>
         </div>
       </div>
     )
   } else if (post.postType === 'image' || post.postType === 'photo') {
     return (
       <div className="postCard-outer-container">
-          <div className="postCard-userImage-holder">
-            <div className="postCard-userImage">
-              <img src={post.User.profileImageUrl}/>
-              Post Id: {post.id}
-              Post type: {post.postType}
-            </div>
+        <div className="postCard-userImage-holder">
+          <div className="postCard-userImage">
+            <img src={post.User.profileImageUrl || defaultProfileImage} />
+            {/* Post Id: {post.id}
+            Post type: {post.postType} */}
           </div>
-          <div className="postCard-content-holder">
-            <div className="postCard-author-username-holder">
+        </div>
+        <div className="postCard-content-holder">
+          <div className="postCard-author-username-holder">
             <Link to={`/users/${post.User.id}`}>
-            {post.User && (
-              post.User.username
+              {post.User && (
+                post.User.username
               )}
             </Link>
             {user && !following && user.id && (post.User.id != user.id) && (
@@ -251,17 +256,17 @@ import * as commentActions from "../../store/comment"
 
     return (
       <div className="postCard-outer-container">
-          <div className="postCard-userImage-holder">
-            <div className="postCard-userImage">
-              <img src={post.User.profileImageUrl}/>
-              Post Id: {post.id}
-              Post type: {post.postType}
-            </div>
+        <div className="postCard-userImage-holder">
+          <div className="postCard-userImage">
+            <img src={post.User.profileImageUrl || defaultProfileImage} />
+            {/* Post Id: {post.id}
+            Post type: {post.postType} */}
           </div>
-          <div className="postCard-content-holder">
-            <div className="postCard-author-username-holder">
+        </div>
+        <div className="postCard-content-holder">
+          <div className="postCard-author-username-holder">
             <Link to={`/users/${post.User.id}`}>
-            {post.User.username}
+              {post.User.username}
             </Link>
             {!following && user.id && post.User.id != user.id && (
               <button onClick={() => followUser(post.User)}>Follow</button>

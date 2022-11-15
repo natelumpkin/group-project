@@ -3,9 +3,9 @@ import { useDispatch } from 'react-redux';
 import { createPost, addMediaByPostId } from '../../store/post';
 import './CreatePostModal.css'
 
-const CreatePostForm = ({ setShowModal }) => {
+const CreatePostForm = ({ setShowModal, typeSelection = false }) => {
     const [errors, setErrors] = useState([]);
-    const [postType, setPostType] = useState(false);
+    const [postType, setPostType] = useState(typeSelection || false);
     const [title, setTitle] = useState('');
     const [text, setText] = useState('');
     const [mediaUrl, setMediaUrl] = useState('');

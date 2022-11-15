@@ -5,11 +5,13 @@ import './index.css'
 
 const Header = () => {
     return (
-        <div id='header'>
-            <NavLink to='/' exact={true} activeClassName='active'>
-                Logo Feed
-            </NavLink>
-            <NavBar />
+        <div id='header-container'>
+            <div id='header'>
+                <NavLink to='/home' exact={true} activeClassName='active'>
+                    <img src="https://i.imgur.com/twMKSWE.png" alt="scuttlr-logo" />
+                </NavLink>
+                <NavBar />
+            </div>
         </div>
     )
 }
