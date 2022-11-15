@@ -11,6 +11,8 @@ import { authenticate } from './store/session';
 
 import AllPosts from './components/AllPosts';
 import DummyPosts from './components/DummyPosts';
+import HomeFeed from './components/HomeFeed';
+import UserPosts from './components/UserPosts';
 
 
 function App() {
@@ -41,12 +43,18 @@ function App() {
         <ProtectedRoute path='/users' exact={true} >
           <UsersList/>
         </ProtectedRoute>
-        <ProtectedRoute path='/users/:userId' exact={true} >
+        {/* <ProtectedRoute path='/users/:userId' exact={true} >
           <User />
-        </ProtectedRoute>
-        <Route path='/' exact={true} >
-          <h1>My Home Page</h1>
+        </ProtectedRoute> */}
+        <Route path='/home' >
           <AllPosts />
+        </Route>
+        <Route path='/feed'>
+          <HomeFeed/>
+        </Route>
+        <Route path='/users/:userId'>
+          <User />
+          <UserPosts />
         </Route>
       </Switch>
     </BrowserRouter>
