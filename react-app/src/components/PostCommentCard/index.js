@@ -62,7 +62,7 @@ const PostCommentCard = ({postid}) => {
         <button className={!current ? "post-card-comment-like-content-cards" : "post-card-comment-like-content-cards-off"} onClick={()=>setCurrent(false)}>💖</button>
 
       </div>
-      <div className="post-comment-content-container">
+      <div className="post-comment-current-content-container">
          {current ? <CommentInput postid={postid} /> : null}
          {current ? displayComments : displayLikes}
       </div>
