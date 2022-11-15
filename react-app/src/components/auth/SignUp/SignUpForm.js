@@ -52,7 +52,7 @@ const SignUpForm = () => {
     return <Redirect to='/' />;
   }
 
-  console.log(errors)
+  // console.log(errors)
 
   return (
     <form onSubmit={onSignUp}>

@@ -55,7 +55,7 @@ const CreatePostForm = ({ setShowModal, typeSelection = false }) => {
                 const data = await response.json();
                 if (data && data.errors) setErrors(Object.values(data.errors));
             });
-        console.log("*******NEW POST RETURNED: ", post)
+        // console.log("*******NEW POST RETURNED: ", post)
         if (post && !mediaUrl) {
             setShowModal(false)
         }
@@ -65,7 +65,7 @@ const CreatePostForm = ({ setShowModal, typeSelection = false }) => {
                     const data = await response.json();
                     if (data && data.errors) setErrors(Object.values(data.errors));
                 });
-            console.log("*******NEW MEDIA RETURNED: ", postMedia)
+            // console.log("*******NEW MEDIA RETURNED: ", postMedia)
             if (postMedia) {
                 setShowModal(false)
             }

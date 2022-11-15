@@ -1,4 +1,4 @@
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import { useSelector, useDispatch } from "react-redux"
 import * as postActions from '../../store/post'
 import * as followActions from '../../store/follow'
@@ -13,13 +13,15 @@ const AllPosts = () => {
   //
   const allPosts = useSelector(state => state.posts.allPosts)
   const user = useSelector(state => state.session.user)
+  const [isLoaded, setIsLoaded] = useState(false)
 
   const dispatch = useDispatch()
 
   useEffect(() => {
     dispatch(postActions.getAllPosts())
-    if (user.id) dispatch(followActions.getAllFollowing(user.id))
-  }, [dispatch])
+
+    if (user && user.id) dispatch(followActions.getAllFollowing(user.id))
+  }, [dispatch, isLoaded])
 
   const allPostsArray = []
   for (let post in allPosts) {

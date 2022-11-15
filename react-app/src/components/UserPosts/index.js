@@ -9,7 +9,7 @@ import PostCard from "../PostCard"
 const UserPosts = () => {
 
   const { userId } = useParams()
-  console.log('userId in UserPosts: ', userId)
+  // console.log('userId in UserPosts: ', userId)
   // subscribe to posts reducer
   // have a spot card for each post in posts state
   //
@@ -28,7 +28,7 @@ const UserPosts = () => {
     allPostsArray.unshift(allPosts[post])
   }
 
-  console.log('allPosts in UserPosts component: ', allPostsArray)
+  // console.log('allPosts in UserPosts component: ', allPostsArray)
 
   return (
     <div className="outer-container">

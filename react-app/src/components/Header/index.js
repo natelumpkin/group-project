@@ -5,7 +5,6 @@ import './index.css'
 
 const Header = () => {
     return (
-
         <div id='header-container'>
             <div id='header'>
                 <NavLink to='/home' exact={true} activeClassName='active'>

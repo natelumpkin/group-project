@@ -54,7 +54,7 @@ export const getAllPosts = () => async (dispatch) => {
   if (response.ok) {
     const allPosts = await response.json()
     dispatch(getPosts(allPosts))
-    console.log('all posts data: ', allPosts)
+    // console.log('all posts data: ', allPosts)
     return allPosts
   } else {
     return ['Unable to fetch all posts.']
@@ -91,7 +91,7 @@ export const getBlog = (userId) => async (dispatch) => {
 // dispatch get userposts from the post form
 
 export const createPost = (postData) => async (dispatch) => {
-  console.log(postData)
+  // console.log(postData)
   const response = await fetch('/api/posts/', {
     method: 'POST',
     body: JSON.stringify(postData),

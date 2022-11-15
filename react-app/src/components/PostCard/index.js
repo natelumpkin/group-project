@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom"
 import { useSelector, useDispatch } from "react-redux"
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import React from "react"
 import ReactPlayer from "react-player"
 
@@ -15,6 +15,7 @@ import * as commentActions from "../../store/comment"
 const PostCard = ({ post }) => {
 
   console.log('postCard component post: ', post)
+  console.log('post.User: ', post.User)
 
   const user = useSelector(state => state.session.user)
   // const posts = useSelector(state => state.posts)
@@ -25,10 +26,34 @@ const PostCard = ({ post }) => {
 
   const defaultProfileImage = "https://img.freepik.com/premium-vector/handdrawn-vintage-hermit-crab-vector-illustration_147266-58.jpg?w=360"
 
+  const [liked, setLiked] = useState(false)
+
   useEffect(() => {
     dispatch(likeActions.getPostLikes(post.id))
     dispatch(commentActions.grabAllComments(post.id))
   }, [dispatch])
+
+  const likedList = []
+
+  useEffect(() => {
+    if (user) {
+      const likedPost = likedList.includes(user.id.toString())
+      setLiked(likedPost)
+    }
+  }, [likedList])
+
+  // console.log('liked boolean: ', liked)
+
+  const likedList = []
+
+  useEffect(() => {
+    if (user) {
+      const likedPost = likedList.includes(user.id.toString())
+      setLiked(likedPost)
+    }
+  }, [likedList])
+
+  // console.log('liked boolean: ', liked)
 
   const followUser = (userId) => {
     dispatch(followActions.createNewFollow(userId))
@@ -37,24 +62,26 @@ const PostCard = ({ post }) => {
 
   const likePost = (postId) => {
     dispatch(likeActions.addPostLike(postId))
+    // .then(setLiked(true))
   }
 
-  const removeLikeFromPost = (postId) => {
+  const unlikePost = (postId) => {
     dispatch(likeActions.removePostLike(postId))
+    // .then(setLiked(false))
   }
 
   // console.log(likes.posts[post.id])
   const emptyObject = {}
-  console.log(Object.keys(emptyObject))
-  console.log('comments: ', comments)
+  // console.log(Object.keys(emptyObject))
+  // console.log('comments: ', comments)
   let numComments
   let notes
   if (comments.posts[post.id]) {
-    console.log('comments.posts[post.id]: ', comments.posts[post.id])
+    // console.log('comments.posts[post.id]: ', comments.posts[post.id])
     numComments = Object.keys(comments.posts[post.id]).length
   }
 
-  const likedList = []
+
   for (let userId in likes.posts[post.id]) {
     likedList.push(userId)
   }
@@ -66,9 +93,9 @@ const PostCard = ({ post }) => {
     notes = 'Loading...'
   }
   // const notes = numComments + numLikes;
-  console.log('post number ', post.id, ' notes: ', notes)
+  // console.log('post number ', post.id, ' notes: ', notes)
   // const likedList = Object.keys(likes.posts[post.Id])
-  console.log('likedList: ', likedList)
+  // console.log('likedList: ', likedList)
   const followingList = Object.keys(follows.following)
   // console.log('following list: ', followingList)
   const following = followingList.includes(post.User.id.toString())
@@ -98,10 +125,12 @@ const PostCard = ({ post }) => {
         <div className="postCard-content-holder">
           <div className="postCard-author-username-holder">
             <Link to={`/users/${post.User.id}`}>
-              {post.User.username}
+              {post.User && (
+                post.User.username
+              )}
             </Link>
             {/* If following is false and there is session.user.id and post.User.id is not currentUser.id, then render the follow button */}
-            {!following && user.id && post.User.id != user.id && (
+            {user && !following && user.id && post.User.id != user.id && (
               <button onClick={() => followUser(post.User)}>Follow</button>
             )}
           </div>
@@ -123,10 +152,11 @@ const PostCard = ({ post }) => {
             </div>
             <div className="postcard-comments-likes-holder">
               <button>Reply</button>
-              <button>Like</button>
+              {user && !liked && (<button onClick={() => likePost(post.id)}>Like</button>)}
+              {user && liked && (<button onClick={() => unlikePost(post.id)}>UnLike</button>)}
             </div>
           </div>
-          {/* <div><PostCommentCard postid={post.id} /></div> */}
+          <div><PostCommentCard postid={post.id} /></div>
         </div>
       </div>
     )
@@ -143,9 +173,11 @@ const PostCard = ({ post }) => {
         <div className="postCard-content-holder">
           <div className="postCard-author-username-holder">
             <Link to={`/users/${post.User.id}`}>
-              {post.User.username}
+              {post.User && (
+                post.User.username
+              )}
             </Link>
-            {!following && user.id && post.User.id != user.id && (
+            {user && !following && user.id && post.User.id != user.id && (
               <button onClick={() => followUser(post.User)}>Follow</button>
             )}
           </div>
@@ -167,10 +199,11 @@ const PostCard = ({ post }) => {
             </div>
             <div className="postcard-comments-likes-holder">
               <button>Reply</button>
-              <button>Like</button>
+              {user && !liked && (<button onClick={() => likePost(post.id)}>Like</button>)}
+              {user && liked && (<button onClick={() => unlikePost(post.id)}>UnLike</button>)}
             </div>
           </div>
-          {/* <div><PostCommentCard postid={post.id} /></div> */}
+          <div><PostCommentCard postid={post.id} /></div>
         </div>
       </div>
     )
@@ -187,9 +220,11 @@ const PostCard = ({ post }) => {
         <div className="postCard-content-holder">
           <div className="postCard-author-username-holder">
             <Link to={`/users/${post.User.id}`}>
-              {post.User.username}
+              {post.User && (
+                post.User.username
+              )}
             </Link>
-            {!following && user.id && (post.User.id != user.id) && (
+            {user && !following && user.id && (post.User.id != user.id) && (
               <button onClick={() => followUser(post.User)}>Follow</button>
             )}
           </div>
@@ -211,8 +246,10 @@ const PostCard = ({ post }) => {
             </div>
             <div className="postcard-comments-likes-holder">
               <button>Reply</button>
-              <button>Like</button>
+              {user && !liked && (<button onClick={() => likePost(post.id)}>Like</button>)}
+              {user && liked && (<button onClick={() => unlikePost(post.id)}>UnLike</button>)}
             </div>
+            <div><PostCommentCard postid={post.id} /></div>
           </div>
           {/* <div><PostCommentCard postid={post.id} /></div> */}
         </div>
@@ -263,8 +300,10 @@ const PostCard = ({ post }) => {
             </div>
             <div className="postcard-comments-likes-holder">
               <button>Reply</button>
-              <button>Like</button>
+              {user && !liked && (<button onClick={() => likePost(post.id)}>Like</button>)}
+              {user && liked && (<button onClick={() => unlikePost(post.id)}>UnLike</button>)}
             </div>
+            <div><PostCommentCard postid={post.id} /></div>
           </div>
           {/* <div><PostCommentCard postid={post.id} /></div> */}
         </div>
