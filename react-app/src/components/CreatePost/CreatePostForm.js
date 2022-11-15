@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import { login } from '../../store/session';
+import { createPost, addMediaByPostId } from '../../store/post';
 
 const CreatePostForm = () => {
     const [errors, setErrors] = useState([]);
@@ -9,6 +10,7 @@ const CreatePostForm = () => {
     const [title, setTitle] = useState('');
     const [text, setText] = useState('');
     const [mediaUrl, setMediaUrl] = useState('');
+    const [charCount, setCharCount] = useState(0);
     const user = useSelector(state => state.session.user);
     const dispatch = useDispatch();
 
@@ -21,6 +23,19 @@ const CreatePostForm = () => {
             title,
             text
         }
+
+        /* Removed because probably redundant: */
+        // if (postData.title.length > 100) {
+        //     errors.append("Title must be 100 characters or less");
+        // }
+        // if (postData.text.length > 1000) {
+        //     errors.append("Text must be 1000 characters or less");
+        // }
+        // if (mediaUrl.length > 255) {
+        //     errors.append("Media URL must be 255 characters or less");
+        // }
+        // if (errors.length) {
+        // }
 
         console.log("POST DATA SUBMITTED: ", postData, mediaUrl)
     };
@@ -36,8 +51,9 @@ const CreatePostForm = () => {
                 </div>
             )}
 
+
+            {/* // ---------- POST FORM FOR TEXT ---------- \\ */}
             {postType === 'text' && (
-                // ---------- POST FORM FOR TEXT ---------- \\
                 <form onSubmit={onSubmit}>
                     <div>
                         <input
@@ -45,8 +61,17 @@ const CreatePostForm = () => {
                             type='text'
                             placeholder='Title'
                             value={title}
-                            onChange={(e) => setTitle(e.target.value)}
+                            // Add setCharCount:
+                            onChange={(e) => {
+                                setTitle(e.target.value)
+                                setCharCount(e.target.value.length)
+                            }}
+                            // Add all of this:
+                            maxLength={100}
+                            onFocus={(e) => setCharCount(e.target.value.length)}
+                            required
                         />
+                        <div>{charCount}/100</div>
                     </div>
                     <div>
                         <input
@@ -54,24 +79,39 @@ const CreatePostForm = () => {
                             type='text'
                             placeholder='Go ahead, put anything.'
                             value={text}
-                            onChange={(e) => setText(e.target.value)}
+                            onChange={(e) => {
+                                setText(e.target.value)
+                                setCharCount(e.target.value.length)
+                            }}
+                            maxLength={1000}
+                            onFocus={(e) => setCharCount(e.target.value.length)}
+                            required
                         />
+                        <div>{charCount}/1000</div>
                     </div>
                     <button type="submit">Post Now</button>
                 </form>
             )}
 
+
+            {/* // ---------- POST FORM FOR IMAGE ---------- \\ */}
             {postType === 'image' && (
-                // ---------- POST FORM FOR IMAGE ---------- \\
                 <form onSubmit={onSubmit}>
                     <div>
                         <input
                             name='image'
-                            type='text'
+                            type='url'
                             placeholder='Type or paste image link'
                             value={mediaUrl}
-                            onChange={(e) => setMediaUrl(e.target.value)}
+                            onChange={(e) => {
+                                setMediaUrl(e.target.value)
+                                setCharCount(e.target.value.length)
+                            }}
+                            maxLength={255}
+                            onFocus={(e) => setCharCount(e.target.value.length)}
+                            required
                         />
+                        <div>{charCount}/255</div>
                     </div>
                     <div>
                         <input
@@ -79,16 +119,22 @@ const CreatePostForm = () => {
                             type='text'
                             placeholder='Go ahead, put anything.'
                             value={text}
-                            onChange={(e) => setText(e.target.value)}
+                            onChange={(e) => {
+                                setText(e.target.value)
+                                setCharCount(e.target.value.length)
+                            }}
+                            maxLength={1000}
+                            onFocus={(e) => setCharCount(e.target.value.length)}
                         />
+                        <div>{charCount}/1000</div>
                     </div>
-
                     <button type="submit">Post Now</button>
                 </form>
             )}
 
+
+            {/* // ---------- POST FORM FOR QUOTE ---------- \\ */}
             {postType === 'quote' && (
-                // ---------- POST FORM FOR QUOTE ---------- \\
                 <form onSubmit={onSubmit}>
                     <div>
                         <input
@@ -96,24 +142,39 @@ const CreatePostForm = () => {
                             type='text'
                             placeholder='Something someone else said here.'
                             value={text}
-                            onChange={(e) => setText(e.target.value)}
+                            onChange={(e) => {
+                                setText(e.target.value)
+                                setCharCount(e.target.value.length)
+                            }}
+                            maxLength={1000}
+                            onFocus={(e) => setCharCount(e.target.value.length)}
+                            required
                         />
+                        <div>{charCount}/1000</div>
                     </div>
                     <button type="submit">Post Now</button>
                 </form>
             )}
 
+
+            {/* // ---------- POST FORM FOR VIDEO ---------- \\ */}
             {postType === 'video' && (
-                // ---------- POST FORM FOR VIDEO ---------- \\
                 <form onSubmit={onSubmit}>
                     <div>
                         <input
                             name='video'
-                            type='text'
+                            type='url'
                             placeholder='Type or paste video link'
                             value={mediaUrl}
-                            onChange={(e) => setMediaUrl(e.target.value)}
+                            onChange={(e) => {
+                                setMediaUrl(e.target.value)
+                                setCharCount(e.target.value.length)
+                            }}
+                            maxLength={255}
+                            onFocus={(e) => setCharCount(e.target.value.length)}
+                            required
                         />
+                        <div>{charCount}/255</div>
                     </div>
                     <div>
                         <input
@@ -121,10 +182,16 @@ const CreatePostForm = () => {
                             type='text'
                             placeholder='Go ahead, put anything.'
                             value={text}
-                            onChange={(e) => setText(e.target.value)}
+                            onChange={(e) => {
+                                setText(e.target.value)
+                                setCharCount(e.target.value.length)
+                            }}
+                            maxLength={1000}
+                            onFocus={(e) => setCharCount(e.target.value.length)}
+                            required
                         />
+                        <div>{charCount}/1000</div>
                     </div>
-
                     <button type="submit">Post Now</button>
                 </form>
             )}
