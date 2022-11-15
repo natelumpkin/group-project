@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { createPost, addMediaByPostId } from '../../store/post';
+import './CreatePostModal.css'
 
 const CreatePostForm = ({ setShowModal }) => {
     const [errors, setErrors] = useState([]);
@@ -8,7 +9,9 @@ const CreatePostForm = ({ setShowModal }) => {
     const [title, setTitle] = useState('');
     const [text, setText] = useState('');
     const [mediaUrl, setMediaUrl] = useState('');
-    const [charCount, setCharCount] = useState(0);
+    const [titleCharCount, setTitleCharCount] = useState(0);
+    const [textCharCount, setTextCharCount] = useState(0);
+    const [mediaCharCount, setMediaCharCount] = useState(0)
     const dispatch = useDispatch();
 
     //--------------------------------------------------
@@ -72,12 +75,26 @@ const CreatePostForm = ({ setShowModal }) => {
     return (
         <div>
             {!postType && (
-                <div id='post-type-selector'>
-                    <div onClick={() => setPostType('text')}>Text</div>
-                    <div onClick={() => setPostType('image')}>Photo</div>
-                    <div onClick={() => setPostType('quote')}>Quote</div>
-                    <div onClick={() => setPostType('video')}>Video</div>
-                </div>
+                <>
+                    <div id='post-type-selector'>
+                        <div className='selector-wrapper' onClick={() => setPostType('text')}>
+                            <div id='text-selector'>Aa</div>
+                            <div id='text-label'>Text</div>
+                        </div>
+                        <div className='selector-wrapper' onClick={() => setPostType('image')}>
+                            <div id='image-selector'><i className="fa-solid fa-camera-retro" /></div>
+                            <div id='image-label'>Photo</div>
+                        </div>
+                        <div className='selector-wrapper' onClick={() => setPostType('quote')}>
+                            <div id='quote-selector' ><i class="fa-solid fa-quote-left" /></div>
+                            <div id='quote-label'>Quote</div>
+                        </div>
+                        <div className='selector-wrapper' onClick={() => setPostType('video')}>
+                            <div id='video-selector'><i class="fa-solid fa-video" /></div>
+                            <div id='video-label'>Video</div>
+                        </div>
+                    </div>
+                </>
             )}
 
 
@@ -92,13 +109,13 @@ const CreatePostForm = ({ setShowModal }) => {
                             value={title}
                             onChange={(e) => {
                                 setTitle(e.target.value)
-                                setCharCount(e.target.value.length)
+                                setTitleCharCount(e.target.value.length)
                             }}
                             maxLength={100}
-                            onFocus={(e) => setCharCount(e.target.value.length)}
+                            onFocus={(e) => setTitleCharCount(e.target.value.length)}
                             required
                         />
-                        <div>{charCount}/100</div>
+                        <div>{titleCharCount}/100</div>
                     </div>
                     <div>
                         <input
@@ -108,13 +125,13 @@ const CreatePostForm = ({ setShowModal }) => {
                             value={text}
                             onChange={(e) => {
                                 setText(e.target.value)
-                                setCharCount(e.target.value.length)
+                                setTextCharCount(e.target.value.length)
                             }}
                             maxLength={1000}
-                            onFocus={(e) => setCharCount(e.target.value.length)}
+                            onFocus={(e) => setTextCharCount(e.target.value.length)}
                             required
                         />
-                        <div>{charCount}/1000</div>
+                        <div>{textCharCount}/1000</div>
                     </div>
                     <button type="submit">Post Now</button>
                 </form>
@@ -132,13 +149,13 @@ const CreatePostForm = ({ setShowModal }) => {
                             value={mediaUrl}
                             onChange={(e) => {
                                 setMediaUrl(e.target.value)
-                                setCharCount(e.target.value.length)
+                                setMediaCharCount(e.target.value.length)
                             }}
                             maxLength={255}
-                            onFocus={(e) => setCharCount(e.target.value.length)}
+                            onFocus={(e) => setMediaCharCount(e.target.value.length)}
                             required
                         />
-                        <div>{charCount}/255</div>
+                        <div>{mediaCharCount}/255</div>
                     </div>
                     <div>
                         <input
@@ -148,12 +165,12 @@ const CreatePostForm = ({ setShowModal }) => {
                             value={text}
                             onChange={(e) => {
                                 setText(e.target.value)
-                                setCharCount(e.target.value.length)
+                                setTextCharCount(e.target.value.length)
                             }}
                             maxLength={1000}
-                            onFocus={(e) => setCharCount(e.target.value.length)}
+                            onFocus={(e) => setTextCharCount(e.target.value.length)}
                         />
-                        <div>{charCount}/1000</div>
+                        <div>{textCharCount}/1000</div>
                     </div>
                     <button type="submit">Post Now</button>
                 </form>
@@ -171,13 +188,13 @@ const CreatePostForm = ({ setShowModal }) => {
                             value={text}
                             onChange={(e) => {
                                 setText(e.target.value)
-                                setCharCount(e.target.value.length)
+                                setTextCharCount(e.target.value.length)
                             }}
                             maxLength={1000}
-                            onFocus={(e) => setCharCount(e.target.value.length)}
+                            onFocus={(e) => setTextCharCount(e.target.value.length)}
                             required
                         />
-                        <div>{charCount}/1000</div>
+                        <div>{textCharCount}/1000</div>
                     </div>
                     <button type="submit">Post Now</button>
                 </form>
@@ -195,13 +212,13 @@ const CreatePostForm = ({ setShowModal }) => {
                             value={mediaUrl}
                             onChange={(e) => {
                                 setMediaUrl(e.target.value)
-                                setCharCount(e.target.value.length)
+                                setMediaCharCount(e.target.value.length)
                             }}
                             maxLength={255}
-                            onFocus={(e) => setCharCount(e.target.value.length)}
+                            onFocus={(e) => setMediaCharCount(e.target.value.length)}
                             required
                         />
-                        <div>{charCount}/255</div>
+                        <div>{mediaCharCount}/255</div>
                     </div>
                     <div>
                         <input
@@ -211,13 +228,13 @@ const CreatePostForm = ({ setShowModal }) => {
                             value={text}
                             onChange={(e) => {
                                 setText(e.target.value)
-                                setCharCount(e.target.value.length)
+                                setTextCharCount(e.target.value.length)
                             }}
                             maxLength={1000}
-                            onFocus={(e) => setCharCount(e.target.value.length)}
+                            onFocus={(e) => setTextCharCount(e.target.value.length)}
                             required
                         />
-                        <div>{charCount}/1000</div>
+                        <div>{textCharCount}/1000</div>
                     </div>
                     <button type="submit">Post Now</button>
                 </form>

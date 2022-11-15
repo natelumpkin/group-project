@@ -8,7 +8,7 @@ import PostCard from "../PostCard"
 
 const UserPosts = () => {
 
-  const {userId} = useParams()
+  const { userId } = useParams()
   console.log('userId in UserPosts: ', userId)
   // subscribe to posts reducer
   // have a spot card for each post in posts state
@@ -38,7 +38,7 @@ const UserPosts = () => {
         </div>
         <div className="postsHolder">
           {allPostsArray.map(post => (
-              <PostCard key={post.id} post={post} />
+            <PostCard key={post.id} post={post} />
           ))}
         </div>
       </div>
