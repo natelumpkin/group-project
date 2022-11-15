@@ -49,16 +49,18 @@ const NavBar = () => {
               <i class="fa-solid fa-user" />
             </div>
             {showMenu && (
-              <div id='profile-dropdown'>
-                <div id="dropdown-header">
-                  <p>Account</p>
-                  <LogoutButton />
-                </div>
-                <div>
-                  <NavLink to='/users/following' exact={true} activeClassName='active' className='dropdown-option'>
-                    <i class="fa-solid fa-user-plus" />
-                    <p>Following</p>
-                  </NavLink>
+              <div id='profile-dropdown-container'>
+                <div id='profile-dropdown'>
+                  <div id="dropdown-header">
+                    <p>Account</p>
+                    <LogoutButton />
+                  </div>
+                  <div>
+                    <NavLink to='/users/following' exact={true} activeClassName='active' className='dropdown-option'>
+                      <i class="fa-solid fa-user-plus" />
+                      <p>Following</p>
+                    </NavLink>
+                  </div>
                 </div>
               </div>
             )}

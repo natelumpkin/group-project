@@ -1,4 +1,4 @@
-#header > a {
+#header>a {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -32,10 +32,10 @@ button {
 }
 
 #profile-dropdown {
-    position: absolute;
+    position: relative;
     width: 240px;
-    right: 50px;
-    top: 50px;
+    right: -62px;
+    top: 60px;
     background-color: #222222;
     border-radius: 3px;
     overflow: hidden;
@@ -63,4 +63,9 @@ button {
 
 .dropdown-option i {
     margin-right: 10px;
+}
+
+#profile-dropdown-container {
+    width: 0px;
+    position: absolute;
 }

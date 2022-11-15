@@ -2,6 +2,7 @@ import { useEffect } from "react"
 import { useSelector, useDispatch } from "react-redux"
 import * as postActions from '../../store/post'
 import * as followActions from '../../store/follow'
+import CreateFormBarModal from "../CreatePost/CreatePostBar"
 
 import PostCard from "../PostCard"
 
@@ -31,11 +32,11 @@ const AllPosts = () => {
     <div className="outer-container">
       <div className="inner-container">
         <div>
-          Placeholder for Form Bar
+          <CreateFormBarModal />
         </div>
         <div className="postsHolder">
           {allPostsArray.map(post => (
-              <PostCard key={post.id} post={post} />
+            <PostCard key={post.id} post={post} />
           ))}
         </div>
       </div>

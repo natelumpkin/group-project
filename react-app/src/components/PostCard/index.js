@@ -6,12 +6,13 @@ import ReactPlayer from "react-player"
 
 import formatVideoLink from "../../utils/formatVideoLink"
 import PostCommentCard from "../PostCommentCard"
+import './PostCard.css'
 import * as followActions from "../../store/follow"
 import * as postActions from "../../store/post"
 import * as likeActions from "../../store/like"
 import * as commentActions from "../../store/comment"
 
-  const PostCard = ({post}) => {
+const PostCard = ({ post }) => {
 
   console.log('postCard component post: ', post)
 
@@ -22,14 +23,16 @@ import * as commentActions from "../../store/comment"
   const comments = useSelector(state => state.comments)
   const dispatch = useDispatch()
 
+  const defaultProfileImage = "https://img.freepik.com/premium-vector/handdrawn-vintage-hermit-crab-vector-illustration_147266-58.jpg?w=360"
+
   useEffect(() => {
     dispatch(likeActions.getPostLikes(post.id))
     dispatch(commentActions.grabAllComments(post.id))
-  },[dispatch])
+  }, [dispatch])
 
   const followUser = (userId) => {
     dispatch(followActions.createNewFollow(userId))
-      // .then(dispatch(postActions.getAllPosts()))
+    // .then(dispatch(postActions.getAllPosts()))
   }
 
   const likePost = (postId) => {
@@ -87,15 +90,15 @@ import * as commentActions from "../../store/comment"
       <div className="postCard-outer-container">
         <div className="postCard-userImage-holder">
           <div className="postCard-userImage">
-            <img src={post.User.profileImageUrl}/>
-            Post Id: {post.id}
-            Post type: {post.postType}
+            <img src={post.User.profileImageUrl || defaultProfileImage} />
+            {/* Post Id: {post.id}
+            Post type: {post.postType} */}
           </div>
         </div>
         <div className="postCard-content-holder">
           <div className="postCard-author-username-holder">
             <Link to={`/users/${post.User.id}`}>
-            {post.User.username}
+              {post.User.username}
             </Link>
             {/* If following is false and there is session.user.id and post.User.id is not currentUser.id, then render the follow button */}
             {!following && user.id && post.User.id != user.id && (
@@ -123,7 +126,7 @@ import * as commentActions from "../../store/comment"
               <button>Like</button>
             </div>
           </div>
-            {/* <div><PostCommentCard postid={post.id} /></div> */}
+          {/* <div><PostCommentCard postid={post.id} /></div> */}
         </div>
       </div>
     )
@@ -132,15 +135,15 @@ import * as commentActions from "../../store/comment"
       <div className="postCard-outer-container">
         <div className="postCard-userImage-holder">
           <div className="postCard-userImage">
-            <img src={post.User.profileImageUrl}/>
-            Post Id: {post.id}
-            Post type: {post.postType}
+            <img src={post.User.profileImageUrl || defaultProfileImage} />
+            {/* Post Id: {post.id}
+            Post type: {post.postType} */}
           </div>
         </div>
         <div className="postCard-content-holder">
           <div className="postCard-author-username-holder">
             <Link to={`/users/${post.User.id}`}>
-            {post.User.username}
+              {post.User.username}
             </Link>
             {!following && user.id && post.User.id != user.id && (
               <button onClick={() => followUser(post.User)}>Follow</button>
@@ -167,53 +170,53 @@ import * as commentActions from "../../store/comment"
               <button>Like</button>
             </div>
           </div>
-            {/* <div><PostCommentCard postid={post.id} /></div> */}
+          {/* <div><PostCommentCard postid={post.id} /></div> */}
         </div>
       </div>
     )
   } else if (post.postType === 'image' || post.postType === 'photo') {
     return (
       <div className="postCard-outer-container">
-          <div className="postCard-userImage-holder">
-            <div className="postCard-userImage">
-              <img src={post.User.profileImageUrl}/>
-              Post Id: {post.id}
-              Post type: {post.postType}
-            </div>
+        <div className="postCard-userImage-holder">
+          <div className="postCard-userImage">
+            <img src={post.User.profileImageUrl || defaultProfileImage} />
+            {/* Post Id: {post.id}
+            Post type: {post.postType} */}
           </div>
-          <div className="postCard-content-holder">
-            <div className="postCard-author-username-holder">
+        </div>
+        <div className="postCard-content-holder">
+          <div className="postCard-author-username-holder">
             <Link to={`/users/${post.User.id}`}>
-            {post.User.username}
+              {post.User.username}
             </Link>
             {!following && user.id && (post.User.id != user.id) && (
               <button onClick={() => followUser(post.User)}>Follow</button>
             )}
-            </div>
-            <div className="postcard-photo-holder">
-              {post.Media[0] && (<img src={post.Media[0].mediaUrl} />)}
-            </div>
-            <div className="postcard-caption-holder">
-              <p>{post.text}</p>
-            </div>
-            <div className="postcard-edit-delete-holder">
-              <button>Delete</button>
-              <button>Edit</button>
-            </div>
-            <div>
-              <div className="postcard-notes-holder">
-                {notes > 0 && (
-                  <div>{notes} notes</div>
-                )}
-              </div>
-              <div className="postcard-comments-likes-holder">
-                <button>Reply</button>
-                <button>Like</button>
-              </div>
-            </div>
-            {/* <div><PostCommentCard postid={post.id} /></div> */}
           </div>
+          <div className="postcard-photo-holder">
+            {post.Media[0] && (<img src={post.Media[0].mediaUrl} />)}
+          </div>
+          <div className="postcard-caption-holder">
+            <p>{post.text}</p>
+          </div>
+          <div className="postcard-edit-delete-holder">
+            <button>Delete</button>
+            <button>Edit</button>
+          </div>
+          <div>
+            <div className="postcard-notes-holder">
+              {notes > 0 && (
+                <div>{notes} notes</div>
+              )}
+            </div>
+            <div className="postcard-comments-likes-holder">
+              <button>Reply</button>
+              <button>Like</button>
+            </div>
+          </div>
+          {/* <div><PostCommentCard postid={post.id} /></div> */}
         </div>
+      </div>
     )
   } else if (post.postType === 'video') {
 
@@ -225,47 +228,47 @@ import * as commentActions from "../../store/comment"
 
     return (
       <div className="postCard-outer-container">
-          <div className="postCard-userImage-holder">
-            <div className="postCard-userImage">
-              <img src={post.User.profileImageUrl}/>
-              Post Id: {post.id}
-              Post type: {post.postType}
-            </div>
+        <div className="postCard-userImage-holder">
+          <div className="postCard-userImage">
+            <img src={post.User.profileImageUrl || defaultProfileImage} />
+            {/* Post Id: {post.id}
+            Post type: {post.postType} */}
           </div>
-          <div className="postCard-content-holder">
-            <div className="postCard-author-username-holder">
+        </div>
+        <div className="postCard-content-holder">
+          <div className="postCard-author-username-holder">
             <Link to={`/users/${post.User.id}`}>
-            {post.User.username}
+              {post.User.username}
             </Link>
             {!following && user.id && post.User.id != user.id && (
               <button onClick={() => followUser(post.User)}>Follow</button>
             )}
-            </div>
-            <div className="postcard-video-holder">
-              {post.Media[0] && (
-                <ReactPlayer url={post.Media[0].mediaUrl} controls={true}></ReactPlayer>)}
-            </div>
-            <div className="postcard-caption-holder">
-              <p>{post.text}</p>
-            </div>
-            <div className="postcard-edit-delete-holder">
-              <button>Delete</button>
-              <button>Edit</button>
-            </div>
-            <div>
-              <div className="postcard-notes-holder">
-                {notes > 0 && (
-                  <div>{notes} notes</div>
-                )}
-              </div>
-              <div className="postcard-comments-likes-holder">
-                <button>Reply</button>
-                <button>Like</button>
-              </div>
-            </div>
-            {/* <div><PostCommentCard postid={post.id} /></div> */}
           </div>
+          <div className="postcard-video-holder">
+            {post.Media[0] && (
+              <ReactPlayer url={post.Media[0].mediaUrl} controls={true}></ReactPlayer>)}
+          </div>
+          <div className="postcard-caption-holder">
+            <p>{post.text}</p>
+          </div>
+          <div className="postcard-edit-delete-holder">
+            <button>Delete</button>
+            <button>Edit</button>
+          </div>
+          <div>
+            <div className="postcard-notes-holder">
+              {notes > 0 && (
+                <div>{notes} notes</div>
+              )}
+            </div>
+            <div className="postcard-comments-likes-holder">
+              <button>Reply</button>
+              <button>Like</button>
+            </div>
+          </div>
+          {/* <div><PostCommentCard postid={post.id} /></div> */}
         </div>
+      </div>
     )
   }
   else {

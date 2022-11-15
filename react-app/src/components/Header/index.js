@@ -9,7 +9,7 @@ const Header = () => {
         <div id='header-container'>
             <div id='header'>
                 <NavLink to='/home' exact={true} activeClassName='active'>
-                    <i className="fa-solid fa-shuttle-space" />
+                    <img src="https://i.imgur.com/twMKSWE.png" alt="scuttlr-logo" />
                 </NavLink>
                 <NavBar />
             </div>
