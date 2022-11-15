@@ -13,7 +13,7 @@ import AllPosts from './components/AllPosts';
 import DummyPosts from './components/DummyPosts';
 import HomeFeed from './components/HomeFeed';
 import UserPosts from './components/UserPosts';
-
+import './index.css'
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -31,33 +31,36 @@ function App() {
   }
 
   return (
-    <BrowserRouter>
-      <Header />
-      <Switch>
-        <Route path='/login' exact={true}>
-          <LoginForm />
-        </Route>
-        <Route path='/sign-up' exact={true}>
-          <SignUpForm />
-        </Route>
-        <ProtectedRoute path='/users' exact={true} >
-          <UsersList />
-        </ProtectedRoute>
-        {/* <ProtectedRoute path='/users/:userId' exact={true} >
+    <div id='app-container'>
+      <BrowserRouter>
+        <Header />
+        <Switch>
+          <Route path='/login' exact={true}>
+            <LoginForm />
+          </Route>
+          <Route path='/sign-up' exact={true}>
+            <SignUpForm />
+          </Route>
+          <ProtectedRoute path='/users' exact={true} >
+            <UsersList />
+          </ProtectedRoute>
+          {/* <ProtectedRoute path='/users/:userId' exact={true} >
           <User />
         </ProtectedRoute> */}
-        <Route path='/home' >
-          <AllPosts />
-        </Route>
-        <Route path='/feed'>
-          <HomeFeed/>
-        </Route>
-        <Route path='/users/:userId'>
-          <User />
-          <UserPosts />
-        </Route>
-      </Switch>
-    </BrowserRouter>
+          <Route path='/home' >
+            <AllPosts />
+          </Route>
+          <Route path='/feed'>
+            <HomeFeed />
+          </Route>
+          <Route path='/users/:userId'>
+            <User />
+            <UserPosts />
+          </Route>
+        </Switch>
+      </BrowserRouter>
+    </div>
+
   );
 }
 

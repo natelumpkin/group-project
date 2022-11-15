@@ -2,10 +2,36 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    border: 1px solid red;
 }
 
 #header-links>nav {
     display: flex;
     flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 300px;
+    font-size: 25px;
+}
+
+button {
+    border: transparent;
+    background-color: transparent;
+    color: white;
+}
+
+.fa-compass {
+    color: #a5a5a5;
+}
+
+.fa-user {
+    color: #a5a5a5
+}
+
+#profile-dropdown {
+    position: absolute;
+    width: 240px;
+    right: 50px;
+    top: 50px;
+    background-color: #222222;
+    border-radius: 3px;
 }

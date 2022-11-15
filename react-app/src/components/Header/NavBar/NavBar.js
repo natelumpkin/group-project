@@ -23,16 +23,19 @@ const NavBar = () => {
         {sessionUser && (
           <>
             <NavLink to='/feed' exact={true} activeClassName='active'>
-              Nav Feed
+              <i className="fa-solid fa-house" />
             </NavLink>
             <NavLink to='/home' exact={true} activeClassName='active'>
-              Explore
+              <i className="fa-regular fa-compass" />
             </NavLink>
-            <NavLink to='/' exact={true} activeClassName='active'>
-              Profile
-            </NavLink>
+            <div activeClassName='active'>
+              <i class="fa-solid fa-user" />
+
+            </div>
+            <div id='profile-dropdown'>
+              <LogoutButton />
+            </div>
             <CreateFormModal />
-            <LogoutButton />
           </>)
         }
       </nav>

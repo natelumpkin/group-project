@@ -8,7 +8,7 @@ export default function CreateFormModal() {
 
     return (
         <>
-            <button onClick={() => setShowModal(true)}>Create Post</button>
+            <div id='create-post-button' onClick={() => setShowModal(true)}><i class="fa-solid fa-pencil" /></div>
             {showModal && (
                 <Modal id='create-post-modal' onClose={() => setShowModal(false)} >
                     <CreatePostForm setShowModal={setShowModal} />

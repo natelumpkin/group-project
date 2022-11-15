@@ -8,7 +8,7 @@
 
 a {
     text-decoration: none;
-    color: black
+    color: white
 }
 
 button:hover {
@@ -18,4 +18,9 @@ button:hover {
 #modal-content {
     max-height: 90%;
     overflow-y: auto;
+}
+
+body {
+    background-color: #000000;
+    margin: 0;
 }

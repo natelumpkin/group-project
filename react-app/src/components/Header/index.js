@@ -5,11 +5,14 @@ import './index.css'
 
 const Header = () => {
     return (
-        <div id='header'>
-            <NavLink to='/home' exact={true} activeClassName='active'>
-                Logo Feed
-            </NavLink>
-            <NavBar />
+
+        <div id='header-container'>
+            <div id='header'>
+                <NavLink to='/home' exact={true} activeClassName='active'>
+                    <i className="fa-solid fa-shuttle-space" />
+                </NavLink>
+                <NavBar />
+            </div>
         </div>
     )
 }
