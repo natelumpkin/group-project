@@ -24,9 +24,9 @@ import * as postActions from "../../store/post"
   }
 
   const followingList = Object.keys(follows.following)
-  console.log('following list: ', followingList)
+  // console.log('following list: ', followingList)
   const following = followingList.includes(post.User.id.toString())
-  console.log('postId: ', post.id, 'current user following: ', following);
+  // console.log('postId: ', post.id, 'current user following: ', following);
 
 
 
