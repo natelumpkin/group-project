@@ -46,7 +46,7 @@ function App() {
         {/* <ProtectedRoute path='/users/:userId' exact={true} >
           <User />
         </ProtectedRoute> */}
-        <Route path='/home' >
+        <Route path='/' exact={true}>
           <AllPosts />
         </Route>
         <Route path='/feed'>

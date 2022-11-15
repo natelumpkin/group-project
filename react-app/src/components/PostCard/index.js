@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom"
 import { useSelector, useDispatch } from "react-redux"
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import React from "react"
 import ReactPlayer from "react-player"
 
@@ -22,10 +22,21 @@ import * as commentActions from "../../store/comment"
   const comments = useSelector(state => state.comments)
   const dispatch = useDispatch()
 
+  const [liked, setLiked] = useState(false)
+
   useEffect(() => {
     dispatch(likeActions.getPostLikes(post.id))
     dispatch(commentActions.grabAllComments(post.id))
   },[dispatch])
+
+  const likedList = []
+
+  useEffect(() => {
+    const likedPost = likedList.includes(user.id.toString())
+    setLiked(likedPost)
+  }, [likedList])
+
+  console.log('liked boolean: ', liked)
 
   const followUser = (userId) => {
     dispatch(followActions.createNewFollow(userId))
@@ -34,10 +45,12 @@ import * as commentActions from "../../store/comment"
 
   const likePost = (postId) => {
     dispatch(likeActions.addPostLike(postId))
+      // .then(setLiked(true))
   }
 
-  const removeLikeFromPost = (postId) => {
+  const unlikePost = (postId) => {
     dispatch(likeActions.removePostLike(postId))
+      // .then(setLiked(false))
   }
 
   // console.log(likes.posts[post.id])
@@ -51,7 +64,7 @@ import * as commentActions from "../../store/comment"
     numComments = Object.keys(comments.posts[post.id]).length
   }
 
-  const likedList = []
+
   for (let userId in likes.posts[post.id]) {
     likedList.push(userId)
   }
@@ -120,10 +133,11 @@ import * as commentActions from "../../store/comment"
             </div>
             <div className="postcard-comments-likes-holder">
               <button>Reply</button>
-              <button>Like</button>
+              {!liked && (<button onClick={() => likePost(post.id)}>Like</button>)}
+              {liked && (<button onClick={() => unlikePost(post.id)}>UnLike</button>)}
             </div>
           </div>
-            {/* <div><PostCommentCard postid={post.id} /></div> */}
+            <div><PostCommentCard postid={post.id} /></div>
         </div>
       </div>
     )
@@ -164,10 +178,11 @@ import * as commentActions from "../../store/comment"
             </div>
             <div className="postcard-comments-likes-holder">
               <button>Reply</button>
-              <button>Like</button>
+              {!liked && (<button onClick={() => likePost(post.id)}>Like</button>)}
+              {liked && (<button onClick={() => unlikePost(post.id)}>UnLike</button>)}
             </div>
           </div>
-            {/* <div><PostCommentCard postid={post.id} /></div> */}
+            <div><PostCommentCard postid={post.id} /></div>
         </div>
       </div>
     )
@@ -208,10 +223,11 @@ import * as commentActions from "../../store/comment"
               </div>
               <div className="postcard-comments-likes-holder">
                 <button>Reply</button>
-                <button>Like</button>
+                {!liked && (<button onClick={() => likePost(post.id)}>Like</button>)}
+                {liked && (<button onClick={() => unlikePost(post.id)}>UnLike</button>)}
               </div>
             </div>
-            {/* <div><PostCommentCard postid={post.id} /></div> */}
+            <div><PostCommentCard postid={post.id} /></div>
           </div>
         </div>
     )
@@ -260,10 +276,11 @@ import * as commentActions from "../../store/comment"
               </div>
               <div className="postcard-comments-likes-holder">
                 <button>Reply</button>
-                <button>Like</button>
+                {!liked && (<button onClick={() => likePost(post.id)}>Like</button>)}
+                {liked && (<button onClick={() => unlikePost(post.id)}>UnLike</button>)}
               </div>
             </div>
-            {/* <div><PostCommentCard postid={post.id} /></div> */}
+            <div><PostCommentCard postid={post.id} /></div>
           </div>
         </div>
     )

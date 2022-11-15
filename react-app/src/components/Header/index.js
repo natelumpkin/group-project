@@ -6,7 +6,7 @@ import './index.css'
 const Header = () => {
     return (
         <div id='header'>
-            <NavLink to='/home' exact={true} activeClassName='active'>
+            <NavLink to='/' exact={true} activeClassName='active'>
                 Logo Feed
             </NavLink>
             <NavBar />
