@@ -17,11 +17,14 @@ const Followers = () => {
 
   useEffect(() => {
     dispatch(followActions.getAllFollowing(currentUser.id))
+    dispatch(followActions.getAllFollowers(currentUser.id))
   }, [dispatch])
 
   // This is a list of everyone the current use is following
   const followingList = Object.values(following)
   const followerList = Object.values(followers)
+
+
 
   return (
     <div>
