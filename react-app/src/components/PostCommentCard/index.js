@@ -39,7 +39,7 @@ const PostCommentCard = ({postId}) => {
   return (
     <div className="post-comment-container">
       <div className="post-comment-content-selector">
-        💬Comment Count
+        💬Comment Count Placeholder
       </div>
       <div className="post-comment-input-container">
         <div className="post-comment-user-icon"> </div>
