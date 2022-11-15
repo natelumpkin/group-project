@@ -6,10 +6,27 @@ import './NavBar.css'
 import LoginFormModal from '../../auth/Login/LoginModal';
 import SignUpFormModal from '../../auth/SignUp/SignUpModal';
 import CreateFormModal from '../../CreatePost/CreatePostModal';
+import { useState, useEffect } from 'react';
 
 const NavBar = () => {
   const sessionUser = useSelector(state => state.session.user)
   console.log("SESSION USER: ", sessionUser);
+
+  const [showMenu, setShowMenu] = useState(false);
+
+  const toggleMenu = () => setShowMenu(!showMenu);
+
+  useEffect(() => {
+    if (!showMenu) return;
+
+    const closeMenu = () => {
+      setShowMenu(false);
+    };
+
+    document.addEventListener('click', closeMenu);
+
+    return () => document.removeEventListener("click", closeMenu);
+  }, [showMenu]);
 
   return (
     <div id='header-links'>
@@ -28,13 +45,23 @@ const NavBar = () => {
             <NavLink to='/home' exact={true} activeClassName='active'>
               <i className="fa-regular fa-compass" />
             </NavLink>
-            <div activeClassName='active'>
+            <div onClick={toggleMenu} activeClassName='active' id='profile-button'>
               <i class="fa-solid fa-user" />
-
             </div>
-            <div id='profile-dropdown'>
-              <LogoutButton />
-            </div>
+            {showMenu && (
+              <div id='profile-dropdown'>
+                <div id="dropdown-header">
+                  <p>Account</p>
+                  <LogoutButton />
+                </div>
+                <div>
+                  <NavLink to='/users/following' exact={true} activeClassName='active' className='dropdown-option'>
+                    <i class="fa-solid fa-user-plus" />
+                    <p>Following</p>
+                  </NavLink>
+                </div>
+              </div>
+            )}
             <CreateFormModal />
           </>)
         }
