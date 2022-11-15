@@ -1,10 +1,8 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { useHistory } from 'react-router-dom';
 import { createPost, addMediaByPostId } from '../../store/post';
 
 const CreatePostForm = ({ setShowModal }) => {
-    const history = useHistory();
     const [errors, setErrors] = useState([]);
     const [postType, setPostType] = useState(false);
     const [title, setTitle] = useState('');
@@ -50,25 +48,23 @@ const CreatePostForm = ({ setShowModal }) => {
         // }
 
         const post = await dispatch(createPost(postData))
-            .catch(async (res) => {
-                const data = await res.json();
+            .catch(async (response) => {
+                const data = await response.json();
                 if (data && data.errors) setErrors(Object.values(data.errors));
             });
         console.log("*******NEW POST RETURNED: ", post)
         if (post && !mediaUrl) {
             setShowModal(false)
-            history.push("/");
         }
         if (post && mediaUrl) {
-            const postMedia = await dispatch(addMediaByPostId(post.id, {mediaUrl}))
-                .catch(async (res) => {
-                    const data = await res.json();
+            const postMedia = await dispatch(addMediaByPostId(post.id, mediaUrl))
+                .catch(async (response) => {
+                    const data = await response.json();
                     if (data && data.errors) setErrors(Object.values(data.errors));
                 });
             console.log("*******NEW MEDIA RETURNED: ", postMedia)
             if (postMedia) {
                 setShowModal(false)
-                history.push("/");
             }
         }
     };
