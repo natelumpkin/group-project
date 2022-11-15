@@ -7,7 +7,7 @@ import * as commentActions from "../../store/comment";
 
 const PostCommentCard = ({postId}) => {
   const dispatch = useDispatch();
-  const commentObj = useSelector(state => state.posts[postId])
+  const commentObj = useSelector(state => state.comments.posts[postId]) || []
   const comments = Object.values(commentObj)
   const history = useHistory();
   const [errors, setErrors] = useState([])
@@ -21,11 +21,11 @@ const PostCommentCard = ({postId}) => {
     displayComments = comments.map(comment => (
       <div className="post-comment-content-container">
         <div className="post-comment-content-user-icon">
-          {comment.User.profileImageUrl}
+          {comment.User.profileImageUrl || "🤔"}
         </div>
         <div className="post-comment-content-box">
           <div>{comment.User.username}</div>
-          <div className="post-comment-content-comment">comment.comment </div>
+          <div className="post-comment-content-comment">{comment.comment} </div>
         </div>
       </div>
     ))
