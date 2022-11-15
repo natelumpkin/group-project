@@ -53,7 +53,7 @@ import PostCommentCard from "../PostCommentCard"
               <button>Like</button>
             </div>
           </div>
-            <div><PostCommentCard postid={post.id} /></div>
+            {/* <div><PostCommentCard postid={post.id} /></div> */}
         </div>
       </div>
     )
@@ -93,7 +93,7 @@ import PostCommentCard from "../PostCommentCard"
               <button>Like</button>
             </div>
           </div>
-            <div><PostCommentCard postid={post.id} /></div>
+            {/* <div><PostCommentCard postid={post.id} /></div> */}
         </div>
       </div>
     )
@@ -134,7 +134,7 @@ import PostCommentCard from "../PostCommentCard"
                 <button>Like</button>
               </div>
             </div>
-            <div><PostCommentCard postid={post.id} /></div>
+            {/* <div><PostCommentCard postid={post.id} /></div> */}
           </div>
         </div>
     )
@@ -182,7 +182,7 @@ import PostCommentCard from "../PostCommentCard"
                 <button>Like</button>
               </div>
             </div>
-            <div><PostCommentCard postid={post.id} /></div>
+            {/* <div><PostCommentCard postid={post.id} /></div> */}
           </div>
         </div>
     )
