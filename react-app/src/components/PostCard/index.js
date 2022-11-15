@@ -6,6 +6,7 @@ import ReactPlayer from "react-player"
 
 import formatVideoLink from "../../utils/formatVideoLink"
 import PostCommentCard from "../PostCommentCard"
+import DeletePostModal from "../DeletePost/DeletePostModal"
 import * as followActions from "../../store/follow"
 import * as postActions from "../../store/post"
 import * as likeActions from "../../store/like"
@@ -127,7 +128,7 @@ import * as commentActions from "../../store/comment"
             <p>{post.text}</p>
           </div>
           <div className="postcard-edit-delete-holder">
-            <button>Delete</button>
+            {user && user.id === post.User.id && (<DeletePostModal post={post}/>)}
             <button>Edit</button>
           </div>
           <div>
@@ -174,7 +175,7 @@ import * as commentActions from "../../store/comment"
             <p>{post.text}</p>
           </div>
           <div className="postcard-edit-delete-holder">
-            <button>Delete</button>
+            {user && user.id === post.User.id && (<DeletePostModal post={post}/>)}
             <button>Edit</button>
           </div>
           <div>
@@ -221,7 +222,7 @@ import * as commentActions from "../../store/comment"
               <p>{post.text}</p>
             </div>
             <div className="postcard-edit-delete-holder">
-              <button>Delete</button>
+              {user && user.id === post.User.id && (<DeletePostModal post={post}/>)}
               <button>Edit</button>
             </div>
             <div>
@@ -274,7 +275,7 @@ import * as commentActions from "../../store/comment"
               <p>{post.text}</p>
             </div>
             <div className="postcard-edit-delete-holder">
-              <button>Delete</button>
+              {user && user.id === post.User.id && (<DeletePostModal post={post}/>)}
               <button>Edit</button>
             </div>
             <div>
