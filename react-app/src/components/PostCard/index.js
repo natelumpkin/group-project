@@ -123,7 +123,7 @@ import * as commentActions from "../../store/comment"
               <button>Like</button>
             </div>
           </div>
-            {/* <div><PostCommentCard postid={post.id} /></div> */}
+            <div><PostCommentCard postid={post.id} /></div>
         </div>
       </div>
     )
@@ -167,7 +167,7 @@ import * as commentActions from "../../store/comment"
               <button>Like</button>
             </div>
           </div>
-            {/* <div><PostCommentCard postid={post.id} /></div> */}
+            <div><PostCommentCard postid={post.id} /></div>
         </div>
       </div>
     )
@@ -211,7 +211,7 @@ import * as commentActions from "../../store/comment"
                 <button>Like</button>
               </div>
             </div>
-            {/* <div><PostCommentCard postid={post.id} /></div> */}
+            <div><PostCommentCard postid={post.id} /></div>
           </div>
         </div>
     )
@@ -263,7 +263,7 @@ import * as commentActions from "../../store/comment"
                 <button>Like</button>
               </div>
             </div>
-            {/* <div><PostCommentCard postid={post.id} /></div> */}
+            <div><PostCommentCard postid={post.id} /></div>
           </div>
         </div>
     )
