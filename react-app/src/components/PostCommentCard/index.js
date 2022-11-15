@@ -13,7 +13,7 @@ const PostCommentCard = ({postId}) => {
   const [errors, setErrors] = useState([])
 
   useEffect(()=>{
-    dispatch(commentActions.getAllPosts(postId))
+    dispatch(commentActions.grabAllComments(postId))
   }, [dispatch])
 
   let displayComments;
@@ -21,15 +21,15 @@ const PostCommentCard = ({postId}) => {
     displayComments = comments.map(comment => (
       <div className="post-comment-content-container">
         <div className="post-comment-content-user-icon">
-          comment.User.profileImageUrl
+          {comment.User.profileImageUrl}
         </div>
         <div className="post-comment-content-box">
-          <div>comment.User.username</div>
+          <div>{comment.User.username}</div>
           <div className="post-comment-content-comment">comment.comment </div>
         </div>
       </div>
     ))
-  }  else {
+  } else {
     displayComments = (
       <>
       <h2> Be the first to Reply! </h2>
@@ -37,17 +37,18 @@ const PostCommentCard = ({postId}) => {
     )
   }
   return (
-
     <div className="post-comment-container">
       <div className="post-comment-content-selector">
         💬Comment Count
       </div>
       <div className="post-comment-input-container">
         <div className="post-comment-user-icon"> </div>
-        <div className="post-comment-input-field"><input></input> </div>
+        <div className="post-comment-input-field"> </div>
       </div>
       <div className="post-comment-content-container"> {displayComments} </div>
 
-    <div>
+    </div>
   )
 }
+
+export default PostCommentCard;

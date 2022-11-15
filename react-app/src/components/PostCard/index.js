@@ -1,6 +1,6 @@
 import formatVideoLink from "../../utils/formatVideoLink"
-
-const PostCard = ({post}) => {
+import PostCommentCard from "../PostCommentCard"
+  const PostCard = ({post}) => {
 
   console.log('postCard component post: ', post)
 
@@ -47,6 +47,7 @@ const PostCard = ({post}) => {
               <button>Like</button>
             </div>
           </div>
+            <div><PostCommentCard postid={post.id} /></div>
         </div>
       </div>
     )
@@ -84,6 +85,7 @@ const PostCard = ({post}) => {
               <button>Like</button>
             </div>
           </div>
+            <div><PostCommentCard postid={post.id} /></div>
         </div>
       </div>
     )
@@ -122,6 +124,7 @@ const PostCard = ({post}) => {
                 <button>Like</button>
               </div>
             </div>
+            <div><PostCommentCard postid={post.id} /></div>
           </div>
         </div>
     )
@@ -173,6 +176,7 @@ const PostCard = ({post}) => {
                 <button>Like</button>
               </div>
             </div>
+            <div><PostCommentCard postid={post.id} /></div>
           </div>
         </div>
     )
