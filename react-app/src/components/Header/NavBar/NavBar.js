@@ -25,7 +25,7 @@ const NavBar = () => {
             <NavLink to='/feed' exact={true} activeClassName='active'>
               Nav Feed
             </NavLink>
-            <NavLink to='/home' exact={true} activeClassName='active'>
+            <NavLink to='/' exact={true} activeClassName='active'>
               Explore
             </NavLink>
             <NavLink to='/' exact={true} activeClassName='active'>
