@@ -162,7 +162,7 @@ import PostCommentCard from "../PostCommentCard"
             </div>
             <div className="postcard-video-holder">
               {post.Media[0] && (
-                <ReactPlayer url={post.Media[0].mediaUrl}></ReactPlayer>)}
+                <ReactPlayer url={post.Media[0].mediaUrl} controls={true} light={true}></ReactPlayer>)}
             </div>
             <div className="postcard-caption-holder">
               <p>{post.text}</p>
