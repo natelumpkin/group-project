@@ -10,7 +10,6 @@ import * as likeActions from "../../store/like";
 
 
 const PostCommentCard = ({postid}) => {
-  console.log("Post ID", postid)
   const dispatch = useDispatch();
   const commentObj = useSelector(state => state.comments.posts[postid]) || []
   const comments = Object.values(commentObj)

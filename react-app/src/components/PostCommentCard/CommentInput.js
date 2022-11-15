@@ -10,11 +10,12 @@ const CommentInput = ({ postid }) => {
   const sessionUser = useSelector(state => state.session.user);
   const [comment, setComment] = useState('');
   const [errors, setErrors] = useState([]);
+  console.log("Test user", sessionUser)
 
   const handleSubmit = (e) => {
     e.preventDefault();
     setErrors([]);
-      return dispatch(commentActions.createPostComment({ comment, postid, sessionUser }))
+      return dispatch(commentActions.createPostComment(comment, postid, sessionUser))
     // .then(()=>{
     //   What to do...
     // })
