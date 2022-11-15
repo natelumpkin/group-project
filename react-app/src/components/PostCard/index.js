@@ -33,15 +33,6 @@ const PostCard = ({ post }) => {
     dispatch(commentActions.grabAllComments(post.id))
   }, [dispatch])
 
-  const likedList = []
-
-  useEffect(() => {
-    if (user) {
-      const likedPost = likedList.includes(user.id.toString())
-      setLiked(likedPost)
-    }
-  }, [likedList])
-
   // console.log('liked boolean: ', liked)
 
   const likedList = []
