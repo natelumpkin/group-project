@@ -11,7 +11,7 @@ export default function CreateFormModal() {
             <button onClick={() => setShowModal(true)}>Create Post</button>
             {showModal && (
                 <Modal onClose={() => setShowModal(false)} >
-                    <CreatePostForm />
+                    <CreatePostForm setShowModal={setShowModal}/>
                 </Modal>
             )}
         </>
