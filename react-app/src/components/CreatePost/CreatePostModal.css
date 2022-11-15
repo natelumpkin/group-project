@@ -1,0 +1,101 @@
+/* POST TYPE SELECTOR STYLING */
+#modal-content:has(#post-type-selector) {
+    background-color: transparent;
+    height: auto;
+}
+
+#post-type-selector {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    height: 200px;
+    width: 70vw;
+    max-width: 1000px;
+    overflow: hidden;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+#post-type-selector div[id$=selector] {
+    width: 100px;
+    height: 100px;
+    line-height: 100px;
+    border-radius: 100%;
+    text-align: center;
+}
+
+[id$=label] {
+    width: 100px;
+    height: 25;
+    text-align: center;
+    color: white;
+    font-size: 18px;
+    margin-top: 10px;
+}
+
+.selector-wrapper:hover {
+    cursor: pointer;
+}
+
+#text-selector {
+    background-color: #ffffff;
+    font-size: 35px;
+    font-weight: bold;
+}
+
+#image-selector {
+    background-color: #ff4930;
+    font-size: 40px;
+}
+
+#quote-selector {
+    background-color: #ff8a00;
+    font-size: 40px;
+}
+
+#video-selector {
+    background-color: #00cf35;
+    font-size: 40px;
+}
+
+#post-type-selector div[id$=selector]:hover+div[id$=label] {
+    animation: scale 0.25s forwards;
+}
+
+@keyframes scale {
+    from {
+        transform: scale(1.0)
+    }
+
+    to {
+        transform: scale(1.15)
+    }
+}
+
+
+#post-type-selector div[id$=selector]:hover {
+    animation: rotate 1s linear infinite;
+}
+
+@keyframes rotate {
+    0% {
+        transform: rotate(0deg) scale(1.1);
+    }
+
+    25% {
+        transform: rotate(15deg) scale(1.1);
+    }
+
+    50% {
+        transform: rotate(-15deg) scale(1.1);
+    }
+
+    75% {
+        transform: rotate(0deg) scale(1.1);
+    }
+
+    100% {
+        transform: rotate(0deg) scale(1.1);
+    }
+}

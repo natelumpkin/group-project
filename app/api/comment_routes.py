@@ -52,6 +52,8 @@ def delete_comment(id):
             return {'message': "Current user does not have edit rights to this content"}, 403
         else:
             # Delete comment from database and commit changes:
+            postId = current_comment.post_id
+
             db.session.delete(current_comment)
             db.session.commit()
-            return {'message': "Successfully deleted"}, 200
+            return {'message': "Successfully deleted", "postId": postId}, 200

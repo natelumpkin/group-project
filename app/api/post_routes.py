@@ -11,14 +11,19 @@ from .auth_routes import validation_errors_to_error_messages
 
 post_routes = Blueprint('posts', __name__)
 
+# print('current user outside route!: ', current_user)
 
-@post_routes.route('/')
+@post_routes.route('')
 def get_all_posts():
     """
     Queries for all posts and all associated data
     and returns it in a list of dictionaries
     in reverse chronological order
     """
+    # print('current user inside route! :', current_user)
+    # print(current_user.__dir__())
+    # if current_user.is_anonymous:
+    #     print('current user is anonymous')
 
     #print(likes.schema)
 
@@ -61,6 +66,7 @@ def create_post():
     and returns the new post in a dictionary
     """
     form = PostForm()
+    print(form.data)
     form['csrf_token'].data = request.cookies['csrf_token']
 
     # print(len(form.data['title']))
@@ -88,6 +94,7 @@ def get_feed():
     user is following, as well as posts written by the user,
     and returns them as a list of dictionaries
     """
+    print(current_user)
     # Return a list of only the posts that the user is following
     # Query for all posts and all associated data
     following_list = current_user.following.all()
@@ -192,8 +199,10 @@ def edit_post(id):
             return {'message': "Forbidden"}, 403
 
         if form.validate_on_submit():
-            current_post.text = form.data['text']
-            current_post.title = form.data['title']
+            if form.data['text']:
+                current_post.text = form.data['text']
+            if form.data['title']:
+                current_post.title = form.data['title']
             current_post.updated_at = datetime.utcnow()
             db.session.commit()
             return current_post.to_dict()
