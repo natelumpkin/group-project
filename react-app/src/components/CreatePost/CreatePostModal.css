@@ -110,6 +110,10 @@
     height: 32px;
 }
 
+#create-post-button:hover {
+    cursor: pointer;
+}
+
 .fa-pencil {
     color: black;
 }
