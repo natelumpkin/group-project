@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
 
 import * as followActions from '../../store/follow'
@@ -14,8 +14,11 @@ const Following = () => {
   const following = useSelector(state => state.follows.following)
   const currentUser = useSelector(state => state.session.user)
 
-  useEffect(() => {
-    dispatch(followActions.getAllFollowing(currentUser.id))
+  const [loaded, setLoaded] = useState(false)
+
+  useEffect(async () => {
+    await dispatch(followActions.getAllFollowing(currentUser.id))
+    setLoaded(true);
   }, [dispatch])
 
   // This is a list of everyone the current use is following
@@ -25,9 +28,10 @@ const Following = () => {
 
   return (
     <div>
-      <h1>Hello from Following Component</h1>
       <div>
-        <h4>{followingList.length} Following</h4>
+        {loaded && (
+          <h4>{followingList.length} Following</h4>
+        )}
       </div>
       <div>
         {followingList.map(user => (
