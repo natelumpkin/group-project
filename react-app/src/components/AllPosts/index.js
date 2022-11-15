@@ -1,6 +1,7 @@
 import { useEffect } from "react"
 import { useSelector, useDispatch } from "react-redux"
 import * as postActions from '../../store/post'
+import * as followActions from '../../store/follow'
 
 import PostCard from "../PostCard"
 
@@ -10,11 +11,13 @@ const AllPosts = () => {
   // have a spot card for each post in posts state
   //
   const allPosts = useSelector(state => state.posts.allPosts)
+  const user = useSelector(state => state.session.user)
 
   const dispatch = useDispatch()
 
   useEffect(() => {
     dispatch(postActions.getAllPosts())
+    if (user.id) dispatch(followActions.getAllFollowing(user.id))
   }, [dispatch])
 
   const allPostsArray = []
