@@ -8,6 +8,8 @@ import formatVideoLink from "../../utils/formatVideoLink"
 import PostCommentCard from "../PostCommentCard"
 import * as followActions from "../../store/follow"
 import * as postActions from "../../store/post"
+import * as likeActions from "../../store/like"
+import * as commentActions from "../../store/comment"
 
   const PostCard = ({post}) => {
 
@@ -16,13 +18,54 @@ import * as postActions from "../../store/post"
   const user = useSelector(state => state.session.user)
   // const posts = useSelector(state => state.posts)
   const follows = useSelector(state => state.follows)
+  const likes = useSelector(state => state.likes)
+  const comments = useSelector(state => state.comments)
   const dispatch = useDispatch()
+
+  useEffect(() => {
+    dispatch(likeActions.getPostLikes(post.id))
+    dispatch(commentActions.grabAllComments(post.id))
+  },[dispatch])
 
   const followUser = (userId) => {
     dispatch(followActions.createNewFollow(userId))
       // .then(dispatch(postActions.getAllPosts()))
   }
 
+  const likePost = (postId) => {
+    dispatch(likeActions.addPostLike(postId))
+  }
+
+  const removeLikeFromPost = (postId) => {
+    dispatch(likeActions.removePostLike(postId))
+  }
+
+  // console.log(likes.posts[post.id])
+  const emptyObject = {}
+  console.log(Object.keys(emptyObject))
+  console.log('comments: ', comments)
+  let numComments
+  let notes
+  if (comments.posts[post.id]) {
+    console.log('comments.posts[post.id]: ', comments.posts[post.id])
+    numComments = Object.keys(comments.posts[post.id]).length
+  }
+
+  const likedList = []
+  for (let userId in likes.posts[post.id]) {
+    likedList.push(userId)
+  }
+  // const numComments = comments.length;
+  const numLikes = likedList.length;
+  if (numComments) {
+    notes = numLikes + numComments
+  } else {
+    notes = 'Loading...'
+  }
+  // const notes = numComments + numLikes;
+  console.log('post number ', post.id, ' notes: ', notes)
+  // const likedList = Object.keys(likes.posts[post.Id])
+  console.log('likedList: ', likedList)
   const followingList = Object.keys(follows.following)
   // console.log('following list: ', followingList)
   const following = followingList.includes(post.User.id.toString())
@@ -55,7 +98,7 @@ import * as postActions from "../../store/post"
             {post.User.username}
             </Link>
             {/* If following is false and there is session.user.id and post.User.id is not currentUser.id, then render the follow button */}
-            {!post.User.following && user.id && post.User.id != user.id && (
+            {!following && user.id && post.User.id != user.id && (
               <button onClick={() => followUser(post.User)}>Follow</button>
             )}
           </div>
@@ -71,8 +114,8 @@ import * as postActions from "../../store/post"
           </div>
           <div>
             <div className="postcard-notes-holder">
-              {post.notes.length > 0 && (
-                <div>{post.notes} notes</div>
+              {notes > 0 && (
+                <div>{notes} notes</div>
               )}
             </div>
             <div className="postcard-comments-likes-holder">
@@ -99,7 +142,7 @@ import * as postActions from "../../store/post"
             <Link to={`/users/${post.User.id}`}>
             {post.User.username}
             </Link>
-            {!post.User.following && user.id && post.User.id != user.id && (
+            {!following && user.id && post.User.id != user.id && (
               <button onClick={() => followUser(post.User)}>Follow</button>
             )}
           </div>
@@ -115,8 +158,8 @@ import * as postActions from "../../store/post"
           </div>
           <div>
             <div className="postcard-notes-holder">
-              {post.notes.length > 0 && (
-                <div>{post.notes} notes</div>
+              {notes > 0 && (
+                <div>{notes} notes</div>
               )}
             </div>
             <div className="postcard-comments-likes-holder">
@@ -159,8 +202,8 @@ import * as postActions from "../../store/post"
             </div>
             <div>
               <div className="postcard-notes-holder">
-                {post.notes.length > 0 && (
-                  <div>{post.notes} notes</div>
+                {notes > 0 && (
+                  <div>{notes} notes</div>
                 )}
               </div>
               <div className="postcard-comments-likes-holder">
@@ -194,13 +237,13 @@ import * as postActions from "../../store/post"
             <Link to={`/users/${post.User.id}`}>
             {post.User.username}
             </Link>
-            {!post.User.following && user.id && post.User.id != user.id && (
+            {!following && user.id && post.User.id != user.id && (
               <button onClick={() => followUser(post.User)}>Follow</button>
             )}
             </div>
             <div className="postcard-video-holder">
               {post.Media[0] && (
-                <ReactPlayer url={post.Media[0].mediaUrl} controls={true} light={true}></ReactPlayer>)}
+                <ReactPlayer url={post.Media[0].mediaUrl} controls={true}></ReactPlayer>)}
             </div>
             <div className="postcard-caption-holder">
               <p>{post.text}</p>
@@ -211,8 +254,8 @@ import * as postActions from "../../store/post"
             </div>
             <div>
               <div className="postcard-notes-holder">
-                {post.notes.length > 0 && (
-                  <div>{post.notes} notes</div>
+                {notes > 0 && (
+                  <div>{notes} notes</div>
                 )}
               </div>
               <div className="postcard-comments-likes-holder">
