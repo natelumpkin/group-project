@@ -17,7 +17,7 @@ const DummyPosts = () => {
     userPostsArray.unshift(userPosts[post])
   }
 
-  console.log('allPosts in dummy posts: ', allPostsArray);
+  // console.log('allPosts in dummy posts: ', allPostsArray);
 
   return (
     <div>

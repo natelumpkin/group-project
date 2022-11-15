@@ -10,9 +10,10 @@ import User from './components/Header/User';
 import { authenticate } from './store/session';
 
 import AllPosts from './components/AllPosts';
-import DummyPosts from './components/DummyPosts';
 import HomeFeed from './components/HomeFeed';
 import UserPosts from './components/UserPosts';
+import Followers from './components/Followers';
+import Following from './components/Following';
 
 
 function App() {
@@ -55,6 +56,15 @@ function App() {
         <Route path='/users/:userId'>
           <User />
           <UserPosts />
+        </Route>
+        <Route path='/following'>
+          <Following />
+        </Route>
+        <Route path='/followers'>
+          <Followers />
+        </Route>
+        <Route>
+          <h1>404 Page not found {':<'} Sowwyyyyy</h1>
         </Route>
       </Switch>
     </BrowserRouter>

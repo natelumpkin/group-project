@@ -14,6 +14,7 @@ import * as commentActions from "../../store/comment"
   const PostCard = ({post}) => {
 
   console.log('postCard component post: ', post)
+  console.log('post.User: ', post.User)
 
   const user = useSelector(state => state.session.user)
   // const posts = useSelector(state => state.posts)
@@ -32,11 +33,13 @@ import * as commentActions from "../../store/comment"
   const likedList = []
 
   useEffect(() => {
-    const likedPost = likedList.includes(user.id.toString())
-    setLiked(likedPost)
+    if (user) {
+      const likedPost = likedList.includes(user.id.toString())
+      setLiked(likedPost)
+    }
   }, [likedList])
 
-  console.log('liked boolean: ', liked)
+  // console.log('liked boolean: ', liked)
 
   const followUser = (userId) => {
     dispatch(followActions.createNewFollow(userId))
@@ -55,12 +58,12 @@ import * as commentActions from "../../store/comment"
 
   // console.log(likes.posts[post.id])
   const emptyObject = {}
-  console.log(Object.keys(emptyObject))
-  console.log('comments: ', comments)
+  // console.log(Object.keys(emptyObject))
+  // console.log('comments: ', comments)
   let numComments
   let notes
   if (comments.posts[post.id]) {
-    console.log('comments.posts[post.id]: ', comments.posts[post.id])
+    // console.log('comments.posts[post.id]: ', comments.posts[post.id])
     numComments = Object.keys(comments.posts[post.id]).length
   }
 
@@ -76,9 +79,9 @@ import * as commentActions from "../../store/comment"
     notes = 'Loading...'
   }
   // const notes = numComments + numLikes;
-  console.log('post number ', post.id, ' notes: ', notes)
+  // console.log('post number ', post.id, ' notes: ', notes)
   // const likedList = Object.keys(likes.posts[post.Id])
-  console.log('likedList: ', likedList)
+  // console.log('likedList: ', likedList)
   const followingList = Object.keys(follows.following)
   // console.log('following list: ', followingList)
   const following = followingList.includes(post.User.id.toString())
@@ -108,10 +111,12 @@ import * as commentActions from "../../store/comment"
         <div className="postCard-content-holder">
           <div className="postCard-author-username-holder">
             <Link to={`/users/${post.User.id}`}>
-            {post.User.username}
+            {post.User && (
+              post.User.username
+              )}
             </Link>
             {/* If following is false and there is session.user.id and post.User.id is not currentUser.id, then render the follow button */}
-            {!following && user.id && post.User.id != user.id && (
+            {user && !following && user.id && post.User.id != user.id && (
               <button onClick={() => followUser(post.User)}>Follow</button>
             )}
           </div>
@@ -133,8 +138,8 @@ import * as commentActions from "../../store/comment"
             </div>
             <div className="postcard-comments-likes-holder">
               <button>Reply</button>
-              {!liked && (<button onClick={() => likePost(post.id)}>Like</button>)}
-              {liked && (<button onClick={() => unlikePost(post.id)}>UnLike</button>)}
+              {user && !liked && (<button onClick={() => likePost(post.id)}>Like</button>)}
+              {user && liked && (<button onClick={() => unlikePost(post.id)}>UnLike</button>)}
             </div>
           </div>
             <div><PostCommentCard postid={post.id} /></div>
@@ -154,9 +159,11 @@ import * as commentActions from "../../store/comment"
         <div className="postCard-content-holder">
           <div className="postCard-author-username-holder">
             <Link to={`/users/${post.User.id}`}>
-            {post.User.username}
+            {post.User && (
+              post.User.username
+              )}
             </Link>
-            {!following && user.id && post.User.id != user.id && (
+            {user && !following && user.id && post.User.id != user.id && (
               <button onClick={() => followUser(post.User)}>Follow</button>
             )}
           </div>
@@ -178,8 +185,8 @@ import * as commentActions from "../../store/comment"
             </div>
             <div className="postcard-comments-likes-holder">
               <button>Reply</button>
-              {!liked && (<button onClick={() => likePost(post.id)}>Like</button>)}
-              {liked && (<button onClick={() => unlikePost(post.id)}>UnLike</button>)}
+              {user && !liked && (<button onClick={() => likePost(post.id)}>Like</button>)}
+              {user && liked && (<button onClick={() => unlikePost(post.id)}>UnLike</button>)}
             </div>
           </div>
             <div><PostCommentCard postid={post.id} /></div>
@@ -199,9 +206,11 @@ import * as commentActions from "../../store/comment"
           <div className="postCard-content-holder">
             <div className="postCard-author-username-holder">
             <Link to={`/users/${post.User.id}`}>
-            {post.User.username}
+            {post.User && (
+              post.User.username
+              )}
             </Link>
-            {!following && user.id && (post.User.id != user.id) && (
+            {user && !following && user.id && (post.User.id != user.id) && (
               <button onClick={() => followUser(post.User)}>Follow</button>
             )}
             </div>
@@ -223,8 +232,8 @@ import * as commentActions from "../../store/comment"
               </div>
               <div className="postcard-comments-likes-holder">
                 <button>Reply</button>
-                {!liked && (<button onClick={() => likePost(post.id)}>Like</button>)}
-                {liked && (<button onClick={() => unlikePost(post.id)}>UnLike</button>)}
+                {user && !liked && (<button onClick={() => likePost(post.id)}>Like</button>)}
+                {user && liked && (<button onClick={() => unlikePost(post.id)}>UnLike</button>)}
               </div>
             </div>
             <div><PostCommentCard postid={post.id} /></div>
@@ -276,8 +285,8 @@ import * as commentActions from "../../store/comment"
               </div>
               <div className="postcard-comments-likes-holder">
                 <button>Reply</button>
-                {!liked && (<button onClick={() => likePost(post.id)}>Like</button>)}
-                {liked && (<button onClick={() => unlikePost(post.id)}>UnLike</button>)}
+                {user && !liked && (<button onClick={() => likePost(post.id)}>Like</button>)}
+                {user && liked && (<button onClick={() => unlikePost(post.id)}>UnLike</button>)}
               </div>
             </div>
             <div><PostCommentCard postid={post.id} /></div>

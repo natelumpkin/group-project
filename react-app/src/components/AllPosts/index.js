@@ -1,4 +1,4 @@
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import { useSelector, useDispatch } from "react-redux"
 import * as postActions from '../../store/post'
 import * as followActions from '../../store/follow'
@@ -12,13 +12,15 @@ const AllPosts = () => {
   //
   const allPosts = useSelector(state => state.posts.allPosts)
   const user = useSelector(state => state.session.user)
+  const [isLoaded, setIsLoaded] = useState(false)
 
   const dispatch = useDispatch()
 
   useEffect(() => {
     dispatch(postActions.getAllPosts())
-    if (user.id) dispatch(followActions.getAllFollowing(user.id))
-  }, [dispatch])
+
+    if (user && user.id) dispatch(followActions.getAllFollowing(user.id))
+  }, [dispatch, isLoaded])
 
   const allPostsArray = []
   for (let post in allPosts) {
@@ -26,21 +28,22 @@ const AllPosts = () => {
   }
 
   console.log('allPosts in AllPosts component: ', allPostsArray)
+  console.log('isLoaded variable in AllPosts component: ', isLoaded)
 
-  return (
-    <div className="outer-container">
-      <div className="inner-container">
-        <div>
-          Placeholder for Form Bar
-        </div>
-        <div className="postsHolder">
-          {allPostsArray.map(post => (
-              <PostCard key={post.id} post={post} />
-          ))}
+    return (
+      <div className="outer-container">
+        <div className="inner-container">
+          <div>
+            Placeholder for Form Bar
+          </div>
+          <div className="postsHolder">
+            {allPostsArray.map(post => (
+                <PostCard key={post.id} post={post} />
+            ))}
+          </div>
         </div>
       </div>
-    </div>
-  )
+    )
 }
 
 export default AllPosts;
