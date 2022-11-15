@@ -7,7 +7,7 @@ const Header = () => {
     return (
         <div id='header-container'>
             <div id='header'>
-                <NavLink to='/home' exact={true} activeClassName='active'>
+                <NavLink to='/' exact={true} activeClassName='active'>
                     <img src="https://i.imgur.com/twMKSWE.png" alt="scuttlr-logo" />
                 </NavLink>
                 <NavBar />
