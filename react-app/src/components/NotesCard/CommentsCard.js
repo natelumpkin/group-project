@@ -3,11 +3,13 @@ import { Link } from "react-router-dom";
 
 import './NotesCard.css';
 import DeleteCommentModal from '../DeleteComment/DeleteCommentModal';
+import EditCommentModal from '../EditComment/EditCommentModal';
 
 
 const CommentsCard = ({ comment }) => {
   const [showMenu, setShowMenu] = useState(false);
   const [showDeleteModal, setShowDeleteModal] = useState(false)
+  const [showEditModal, setShowEditModal] = useState(false)
   const toggleMenu = () => setShowMenu(!showMenu);
 
   useEffect(() => {
@@ -52,7 +54,8 @@ const CommentsCard = ({ comment }) => {
             <div >
               <div >
                 <div>
-                  <button> Edit
+                  <button onClick={() => setShowEditModal(true)}>
+                    Edit
                   </button>
                 </div>
                 <div>
@@ -64,6 +67,7 @@ const CommentsCard = ({ comment }) => {
             </div>
           )}
           <DeleteCommentModal showDeleteModal={showDeleteModal} setShowDeleteModal={setShowDeleteModal} comment={comment}/>
+          <EditCommentModal showEditModal={showEditModal} setShowEditModal={setShowEditModal} comment={comment}/>
         </div>
     </div>
 
