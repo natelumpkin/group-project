@@ -19,8 +19,11 @@ const SignUpForm = () => {
     if (password === repeatPassword) {
       const data = await dispatch(signUp(firstName, lastName, username, email, password));
       if (data) {
+        console.log('errors from signup form: ', data)
         setErrors(data)
       }
+    } else {
+      setErrors(['Password and confirm password must match'])
     }
   };
 
@@ -52,7 +55,7 @@ const SignUpForm = () => {
     return <Redirect to='/' />;
   }
 
-  console.log(errors)
+  // console.log(errors)
 
   return (
     <form onSubmit={onSignUp}>
@@ -127,6 +130,11 @@ const SignUpForm = () => {
         ></input>
       </div>
       <button type='submit'>Sign Up</button>
+      <div>
+        {/* {errors.map((error, ind) => (
+          <div key={ind}>{error}</div>
+        ))} */}
+      </div>
     </form>
   );
 };

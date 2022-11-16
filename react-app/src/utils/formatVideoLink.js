@@ -9,8 +9,8 @@ const formatVideoLink = (rawLink) => {
 }
 
 let formattedLink = formatVideoLink("https://www.youtube.com/watch?v=IvYgRXYXW20&ab_channel=Jorbs")
-console.log(formattedLink)
+// console.log(formattedLink)
 let formattedLink2 = formatVideoLink("https://www.youtube.com/watch?v=5n8bn46XQ8U&ab_channel=DivekickInfinite")
-console.log(formattedLink2)
+// console.log(formattedLink2)
 
 export default formatVideoLink;

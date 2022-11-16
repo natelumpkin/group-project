@@ -1,11 +1,75 @@
-#header a {
+#header>a {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    border: 1px solid red;
 }
 
 #header-links>nav {
     display: flex;
     flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+    width: 300px;
+    font-size: 25px;
+}
+
+#session-buttons {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+#profile-button:hover {
+    cursor: pointer;
+}
+
+.fa-compass {
+    color: #a5a5a5;
+}
+
+.fa-user {
+    color: #a5a5a5
+}
+
+#profile-dropdown {
+    position: relative;
+    width: 240px;
+    right: -62px;
+    top: 60px;
+    background-color: #222222;
+    border-radius: 3px;
+    overflow: hidden;
+}
+
+#dropdown-header {
+    font-size: 14px;
+    background-color: #323232;
+    height: 36px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #a5a5a5;
+    padding: 0px 10px 0px 10px;
+}
+
+.dropdown-option {
+    padding: 0px 10px;
+    font-size: 14px;
+    color: #f9f9f9;
+    display: flex;
+    align-items: center;
+    height: 41px;
+}
+
+.dropdown-option i {
+    margin-right: 10px;
+}
+
+#profile-dropdown-container {
+    width: 0px;
+    position: absolute;
+}
+
+#auth-buttons {
+    display: flex;
 }

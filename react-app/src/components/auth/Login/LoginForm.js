@@ -14,7 +14,13 @@ const LoginForm = () => {
     e.preventDefault();
     const data = await dispatch(login(email, password));
     if (data) {
-      setErrors(data);
+      let errors = []
+      let errorsProperties = Object.values(data)
+      let errorsKeys = Object.keys(data)
+      for (let i = 0; i < errorsKeys.length; i++) {
+        errors.push(errorsKeys[i] + ': ' + errorsProperties[i])
+      }
+      setErrors(errors);
     }
   };
 
@@ -32,11 +38,6 @@ const LoginForm = () => {
 
   return (
     <form onSubmit={onLogin}>
-      <div>
-        {errors.map((error, ind) => (
-          <div key={ind}>{error}</div>
-        ))}
-      </div>
       <div>
         <label htmlFor='email'>Email</label>
         <input
@@ -57,6 +58,11 @@ const LoginForm = () => {
           onChange={updatePassword}
         />
         <button type='submit'>Login</button>
+      </div>
+      <div>
+        {errors.map((error, ind) => (
+          <div key={ind}>{error}</div>
+        ))}
       </div>
     </form>
   );

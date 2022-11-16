@@ -134,8 +134,8 @@ export default function commentReducer(state = initialState, action) {
 
     case EDIT_COMMENT:
       let newdata = normalizeData(action.payload)
-      console.log("Test", newdata)
-      console.log("Test", action.payload)
+      // console.log("Test", newdata)
+      // console.log("Test", action.payload)
       newdata.User = action.user
        newState.posts[action.postId][action.commentId] = newdata
        return newState

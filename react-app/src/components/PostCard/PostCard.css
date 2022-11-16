@@ -1,0 +1,32 @@
+.postCard-outer-container {
+    width: 100%;
+    /* border: 1px solid purple; */
+}
+
+.postCard-content-holder {
+    width: 540px;
+    border-radius: 3px;
+    background-color: #222222;
+    /* border: 1px solid green; */
+}
+
+.postCard-content-holder>* {
+    color: white;
+}
+
+.postcard-photo-holder>img {
+    width: 100%;
+}
+
+.postCard-userImage>img {
+    width: 64px;
+    position: relative;
+    left: -84px;
+    top: 20px;
+    border-radius: 3px;
+    z-index: -999999999999;
+}
+
+.postCard-userImage {
+    height: 20px;
+}

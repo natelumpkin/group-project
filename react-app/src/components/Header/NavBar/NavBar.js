@@ -6,34 +6,65 @@ import './NavBar.css'
 import LoginFormModal from '../../auth/Login/LoginModal';
 import SignUpFormModal from '../../auth/SignUp/SignUpModal';
 import CreateFormModal from '../../CreatePost/CreatePostModal';
+import { useState, useEffect } from 'react';
 
 const NavBar = () => {
   const sessionUser = useSelector(state => state.session.user)
-  console.log("SESSION USER: ", sessionUser);
+
+  const [showMenu, setShowMenu] = useState(false);
+
+  const toggleMenu = () => setShowMenu(!showMenu);
+
+  useEffect(() => {
+    if (!showMenu) return;
+
+    const closeMenu = () => {
+      setShowMenu(false);
+    };
+
+    document.addEventListener('click', closeMenu);
+
+    return () => document.removeEventListener("click", closeMenu);
+  }, [showMenu]);
 
   return (
     <div id='header-links'>
       <nav>
         {!sessionUser && (
-          <>
+          <div id='auth-buttons'>
             <LoginFormModal />
             <SignUpFormModal />
-          </>)
+          </div>)
         }
         {sessionUser && (
-          <>
+          <div id='session-buttons'>
             <NavLink to='/feed' exact={true} activeClassName='active'>
-              Nav Feed
-            </NavLink>
-            <NavLink to='/home' exact={true} activeClassName='active'>
-              Explore
+              <i class="fa-solid fa-house" />
             </NavLink>
             <NavLink to='/' exact={true} activeClassName='active'>
-              Profile
+              <i className="fa-regular fa-compass" />
             </NavLink>
+            <div onClick={toggleMenu} activeClassName='active' id='profile-button'>
+              <i class="fa-solid fa-user" />
+            </div>
+            {showMenu && (
+              <div id='profile-dropdown-container'>
+                <div id='profile-dropdown'>
+                  <div id="dropdown-header">
+                    <p>Account</p>
+                    <LogoutButton />
+                  </div>
+                  <div>
+                    <NavLink to='/following' exact={true} activeClassName='active' className='dropdown-option'>
+                      <i class="fa-solid fa-user-plus" />
+                      <p>Following</p>
+                    </NavLink>
+                  </div>
+                </div>
+              </div>
+            )}
             <CreateFormModal />
-            <LogoutButton />
-          </>)
+          </div>)
         }
       </nav>
     </div>

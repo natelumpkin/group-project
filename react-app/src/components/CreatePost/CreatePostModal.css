@@ -99,3 +99,21 @@
         transform: rotate(0deg) scale(1.1);
     }
 }
+
+#create-post-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 3px;
+    background-color: #00b8ff;
+    width: 45px;
+    height: 32px;
+}
+
+#create-post-button:hover {
+    cursor: pointer;
+}
+
+.fa-pencil {
+    color: black;
+}
