@@ -33,8 +33,8 @@ const CommentInput = ({ postid }) => {
   }
 
   let userIMG;
-  if (sessionUser && "sessionUser.User.profileImageUrl") {
-    userIMG = require (comment.User.profileImageUrl)
+  if (sessionUser && sessionUser.profileImageUrl) {
+    userIMG = require (sessionUser.profileImageUrl)
   } else {
     userIMG = "https://img.freepik.com/premium-vector/handdrawn-vintage-hermit-crab-vector-illustration_147266-58.jpg"
   }
