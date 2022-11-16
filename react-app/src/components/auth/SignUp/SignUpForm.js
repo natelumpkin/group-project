@@ -8,6 +8,7 @@ const SignUpForm = () => {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [username, setUsername] = useState('');
+  const [profileImage, setProfileImage] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [repeatPassword, setRepeatPassword] = useState('');
@@ -38,6 +39,10 @@ const SignUpForm = () => {
   const updateUsername = (e) => {
     setUsername(e.target.value);
   };
+
+  const updateProfileImage = (e) => {
+    setProfileImage(e.target.value)
+  }
 
   const updateEmail = (e) => {
     setEmail(e.target.value);
@@ -94,6 +99,18 @@ const SignUpForm = () => {
       </div>
       {errors.username && <div>
         <p>{errors.username}</p>
+      </div>}
+      <div>
+        <label>Profile Image URL</label>
+        <input
+          type='url'
+          name='profileImage'
+          onChange={updateProfileImage}
+          value={profileImage}
+        />
+      </div>
+      {errors && <div>
+        <p>{errors.profileImageUrl}</p>
       </div>}
       <div>
         <label>Email</label>
