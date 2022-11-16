@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { createPost, addMediaByPostId } from '../../store/post';
 import './CreatePostModal.css'
@@ -12,7 +13,22 @@ const CreatePostForm = ({ setShowModal, typeSelection = false }) => {
     const [titleCharCount, setTitleCharCount] = useState(0);
     const [textCharCount, setTextCharCount] = useState(0);
     const [mediaCharCount, setMediaCharCount] = useState(0)
+    const [disablePostText, setDisablePostText] = useState(true)
+    const [disablePostMedia, setDisablePostMedia] = useState(true)
     const dispatch = useDispatch();
+
+    useEffect(() => {
+        if (title.length > 0 || text.length > 0) {
+            setDisablePostText(false)
+        } else {
+            setDisablePostText(true)
+        }
+        if (mediaUrl.length > 0) {
+            setDisablePostMedia(false)
+        } else {
+            setDisablePostMedia(true)
+        }
+    },[title, text, mediaUrl])
 
     const onSubmit = async (e) => {
         e.preventDefault();
@@ -23,6 +39,7 @@ const CreatePostForm = ({ setShowModal, typeSelection = false }) => {
             title,
             text
         }
+
 
         // console.log("*******POST DATA SUBMITTED: ", postData)
         // console.log("*******POST MEDIA SUBMITTED: ", mediaUrl)
@@ -103,7 +120,7 @@ const CreatePostForm = ({ setShowModal, typeSelection = false }) => {
                             }}
                             maxLength={100}
                             onFocus={(e) => setTitleCharCount(e.target.value.length)}
-                            required
+
                         />
                         <div>{titleCharCount}/100</div>
                     </div>
@@ -119,11 +136,11 @@ const CreatePostForm = ({ setShowModal, typeSelection = false }) => {
                             }}
                             maxLength={1000}
                             onFocus={(e) => setTextCharCount(e.target.value.length)}
-                            required
+
                         />
                         <div>{textCharCount}/1000</div>
                     </div>
-                    <button type="submit">Post Now</button>
+                    <button type="submit" disabled={disablePostText}>Post Now!!</button>
                 </form>
             )}
 
@@ -143,7 +160,7 @@ const CreatePostForm = ({ setShowModal, typeSelection = false }) => {
                             }}
                             maxLength={255}
                             onFocus={(e) => setMediaCharCount(e.target.value.length)}
-                            required
+
                         />
                         <div>{mediaCharCount}/255</div>
                     </div>
@@ -162,7 +179,7 @@ const CreatePostForm = ({ setShowModal, typeSelection = false }) => {
                         />
                         <div>{textCharCount}/1000</div>
                     </div>
-                    <button type="submit">Post Now</button>
+                    <button type="submit" disabled={disablePostMedia}>Post Now</button>
                 </form>
             )}
 
@@ -172,9 +189,25 @@ const CreatePostForm = ({ setShowModal, typeSelection = false }) => {
                 <form onSubmit={onSubmit}>
                     <div>
                         <input
+                            name='title'
+                            type='text'
+                            placeholder='"Quote"'
+                            value={title}
+                            onChange={(e) => {
+                                setTitle(e.target.value)
+                                setTitleCharCount(e.target.value.length)
+                            }}
+                            maxLength={100}
+                            onFocus={(e) => setTitleCharCount(e.target.value.length)}
+
+                        />
+                        <div>{titleCharCount}/100</div>
+                    </div>
+                    <div>
+                        {'-'}<input
                             name='quote'
                             type='text'
-                            placeholder='Something someone else said here.'
+                            placeholder='Source'
                             value={text}
                             onChange={(e) => {
                                 setText(e.target.value)
@@ -182,11 +215,11 @@ const CreatePostForm = ({ setShowModal, typeSelection = false }) => {
                             }}
                             maxLength={1000}
                             onFocus={(e) => setTextCharCount(e.target.value.length)}
-                            required
+
                         />
                         <div>{textCharCount}/1000</div>
                     </div>
-                    <button type="submit">Post Now</button>
+                    <button type="submit" disabled={disablePostText}>Post Now</button>
                 </form>
             )}
 
@@ -206,7 +239,7 @@ const CreatePostForm = ({ setShowModal, typeSelection = false }) => {
                             }}
                             maxLength={255}
                             onFocus={(e) => setMediaCharCount(e.target.value.length)}
-                            required
+
                         />
                         <div>{mediaCharCount}/255</div>
                     </div>
@@ -222,11 +255,11 @@ const CreatePostForm = ({ setShowModal, typeSelection = false }) => {
                             }}
                             maxLength={1000}
                             onFocus={(e) => setTextCharCount(e.target.value.length)}
-                            required
+
                         />
                         <div>{textCharCount}/1000</div>
                     </div>
-                    <button type="submit">Post Now</button>
+                    <button type="submit" disabled={disablePostMedia}>Post Now</button>
                 </form>
             )}
         </div>
