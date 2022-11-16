@@ -1,8 +1,20 @@
+h3,
+p,
+Link,
+a,
+button {
+  text-decoration: none !important;
+  padding: 0;
+  border: none;
+  background: none;
+  color: unset;
+  margin: 0;
+  /* font-size: 20px; */
+}
 
 /* Shared Styling  */
 .post-card-box-content-container {
-  padding: 15px 20px;
-
+  display: flex;
 }
 
 .post-card-content-user-icon {
@@ -38,15 +50,21 @@
 
 .post-comment-current-content-container {
 
+  height: 394px;
+  overflow: auto;
+  padding: 15px 20px;
 }
 
 /* Comment Input Styling */
 .post-comment-main-container {
 
+  position: relative;
+  /* top: 10%;
+  left: 100%; */
+
 }
 
 .post-comment-input-container {
-
 }
 
 .post-comment-form {

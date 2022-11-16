@@ -19,7 +19,8 @@ const PostCommentCard = ({postid}) => {
   const history = useHistory();
   const [current, setCurrent] = useState(true)
   const [errors, setErrors] = useState([])
-
+  console.log("Likes",likeObj)
+  console.log("Likes",likes)
   useEffect(()=>{
     dispatch(commentActions.grabAllComments(postid))
     dispatch(likeActions.getPostLikes(postid))
@@ -32,7 +33,7 @@ const PostCommentCard = ({postid}) => {
 
   console.log("test 1", comments)
   let displayComments;
-  if (comments.length > 1) {
+  if (comments.length > 0) {
     displayComments = comments.map(comment => <CommentsCard key={comment.id} comment={comment}/>)
   } else {
     displayComments = (
@@ -44,7 +45,7 @@ const PostCommentCard = ({postid}) => {
     )
   }
   let displayLikes;
-  if (likes.length>1) {
+  if (likes.length > 0) {
     displayLikes = likes.map(like => <LikesCommentCard key={like.id} like={like}/>)
   } else {
     displayLikes = (

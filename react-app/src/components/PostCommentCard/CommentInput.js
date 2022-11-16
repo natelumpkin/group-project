@@ -10,7 +10,6 @@ const CommentInput = ({ postid }) => {
   const sessionUser = useSelector(state => state.session.user);
   const [comment, setComment] = useState('');
   const [errors, setErrors] = useState([]);
-  // console.log("Test user", sessionUser)
 
   const handleSubmit = (e) => {
     e.preventDefault();
