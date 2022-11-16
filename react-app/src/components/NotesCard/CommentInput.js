@@ -15,41 +15,43 @@ const CommentInput = ({ postid }) => {
     e.preventDefault();
     setErrors([]);
       return dispatch(commentActions.createPostComment(comment, postid, sessionUser))
-    // .then(()=>{
-    //   What to do...
-    // })
+    .then(()=>{
+      setComment('')
+    })
       .catch(async (res) => {
         const data = await res.json();
 
         if (data && data.errors) setErrors(data.errors);
       });
   }
+// figure out the User profile URL issue
+// Fix Styling for reply - move into input box.
 
 return (
-    <div>
-      <div className="post-comment-main-container">
-        <div className="post-card-content-user-icon">
+    // <div>
+      <div className="notescard_commentinput_main_container">
+        <div className="notescard_commentinput_user_icon">
           {sessionUser ? sessionUser.profileImageUrl : "👨‍👧‍👧" }
           "❔"
         </div>
-        <div className="post-comment-input-container">
-          <form onSubmit={handleSubmit} className="post-comment-form">
-          <div className="post-comment-input-field">
+        <div className="notescard_commentinput_container">
+          <form onSubmit={handleSubmit} className="notescard_commentinput_form">
+          <div className="notescard_commentinput_div">
             <input
-              type="test"
+              type="textarea"
               value={comment}
               onChange={(e)=>setComment(e.target.value)}
               required
-              className="post-comment-input-bar"
+              className="notescard_commentinput_bar"
               placeholder="Unleash Compliments!"
             />
-            <button type="submit">Reply</button>
+            <button type="submit" className="notescard_commentinput_submit_button">Reply</button>
 
           </div>
           </form>
         </div>
       </div>
-    </div>
+    // {/* </div> */}
 )
 }
 
