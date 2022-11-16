@@ -31,7 +31,7 @@ const CreatePostForm = ({ setShowModal, typeSelection = false }) => {
         } else {
             setDisablePostMedia(true)
         }
-    },[title, text, mediaUrl])
+    }, [title, text, mediaUrl])
 
     const onSubmit = async (e) => {
         e.preventDefault();
@@ -218,20 +218,20 @@ const CreatePostForm = ({ setShowModal, typeSelection = false }) => {
                         <textarea
                             name='quote'
                             type='text'
-                            placeholder='"Quote"'
+                            placeholder='Something someone else said here.'
                             value={text}
                             onChange={(e) => {
                                 setText(e.target.value)
                                 setTextCharCount(e.target.value.length)
                             }}
                             maxLength={1000}
-                            onFocus={(e) => setTitleCharCount(e.target.value.length)}
-
+                            onFocus={(e) => setTextCharCount(e.target.value.length)}
+                            required
                         />
-                        <div>{titleCharCount}/1000</div>
+                        <div>{textCharCount}/1000</div>
                     </div>
-                    <div>
-                        {'-'}<input
+                    <div className='quote-author-container'>
+                        <input
                             name='source'
                             type='text'
                             placeholder='Source'
@@ -241,45 +241,17 @@ const CreatePostForm = ({ setShowModal, typeSelection = false }) => {
                                 setTitleCharCount(e.target.value.length)
                             }}
                             maxLength={100}
-                            onFocus={(e) => setTextCharCount(e.target.value.length)}
+                            onFocus={(e) => setTitleCharCount(e.target.value.length)}
 
-                        />
-                        <div>{textCharCount}/100</div>
-                    </div>
-                    <div className='quote-author-container'>
-                    <button type="submit" disabled={disablePostText}>Post Now</button>
-                    </div>
-                </form>
-            )}
-
-
-            {/* // ---------- POST FORM FOR VIDEO ---------- \\ */}
-            {postType === 'video' && (
-                <form onSubmit={onSubmit}>
-                    <div>
-                        <input
-                            name='title'
-                            type='text'
-                            placeholder='Author'
-                            value={title}
-                            onChange={(e) => {
-                                setTitle(e.target.value)
-                                setTitleCharCount(e.target.value.length)
-                            }}
-                            maxLength={255}
-                            onFocus={(e) => setMediaCharCount(e.target.value.length)}
-                            required
                         />
                         <div>{titleCharCount}/100</div>
                     </div>
                     <div className='form-footer'>
                         <button className='cancel-button' onClick={() => setShowModal(false)}>Close</button>
-                        <button className='submit-button' type="submit">Post Now</button>
+                        <button className='submit-button' type="submit" disabled={disablePostText}>Post Now</button>
                     </div>
                 </form>
-            )
-            }
-
+            )}
 
             {/* // ---------- POST FORM FOR VIDEO ---------- \\ */}
             {

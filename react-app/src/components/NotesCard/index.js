@@ -9,11 +9,11 @@ import * as commentActions from "../../store/comment";
 import * as likeActions from "../../store/like";
 
 
-const NotesCard = ({postid}) => {
+const NotesCard = ({ post }) => {
   const dispatch = useDispatch();
-  const commentObj = useSelector(state => state.comments.posts[postid]) || []
+  const commentObj = useSelector(state => state.comments.posts[post.id]) || []
   const comments = Object.values(commentObj)
-  const likeObj = useSelector(state => state.likes.posts[postid]) || []
+  const likeObj = useSelector(state => state.likes.posts[post.id]) || []
   const currentUser = useSelector(state => state.session) || []
   const likes = Object.values(likeObj)
   const history = useHistory();
@@ -22,8 +22,8 @@ const NotesCard = ({postid}) => {
 
 
   useEffect(()=>{
-    dispatch(commentActions.grabAllComments(postid))
-    dispatch(likeActions.getPostLikes(postid))
+    dispatch(commentActions.grabAllComments(post.id))
+    dispatch(likeActions.getPostLikes(post.id))
   }, [dispatch])
 
 
@@ -41,7 +41,7 @@ const NotesCard = ({postid}) => {
   }
   let displayLikes;
   if (likes.length > 0) {
-    displayLikes = likes.map(like => <LikesCommentCard key={like.id} like={like}/>)
+    displayLikes = likes.map(like => <LikesCommentCard key={like.id} like={like} post={post}/>)
   } else {
     displayLikes = (
       <>
@@ -52,14 +52,14 @@ const NotesCard = ({postid}) => {
     )
   }
   return (
-    <div className="notes_card_overall_container">
-      <div className="notes_card_navigation_container">
-        <button className={current ? "post-card-comment-like-content-cards" : "post-card-comment-like-content-cards-off"} onClick={()=>setCurrent(true)}>💬</button>
-        <button className={!current ? "post-card-comment-like-content-cards" : "post-card-comment-like-content-cards-off"} onClick={()=>setCurrent(false)}>💖</button>
+    <div className="notescard_overall_container">
+      <div className="notescard_navigation_container">
+        <button className={current ? "notescard_nav_selected" : "notes_card_nav_not_selected"} onClick={()=>setCurrent(true)}><i class="fa-regular fa-comment"></i></button>
+        <button className={!current ? "notescard_nav_selected" : "notes_card_nav_not_selected"} onClick={()=>setCurrent(false)}><i class="fa-regular fa-heart"></i></button>
 
       </div>
-         {current ? <CommentInput postid={postid} /> : null}
-      <div className="post-comment-current-content-container">
+         {current ? <CommentInput postid={post.id} /> : null}
+      <div className="notescard_comment_like_container">
          {current ? displayComments : displayLikes}
       </div>
 

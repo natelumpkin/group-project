@@ -1,0 +1,12 @@
+#confirm-delete-text {
+    height: 75px;
+    padding: 20px
+}
+
+#confirm-delete-text>h2 {
+    color: white;
+}
+
+#modal-content:has(#confirm-delete-form) {
+    background-color: #222222;
+}
