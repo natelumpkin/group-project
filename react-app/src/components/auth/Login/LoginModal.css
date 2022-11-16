@@ -10,3 +10,63 @@
 #login-button:hover {
     cursor: pointer;
 }
+
+#login-form {
+    width: 500px;
+    display: flex;
+    flex-direction: column;
+    background-color: #7c5cff;
+}
+
+#login-form input {
+    height: 75px;
+    background-color: #967dff;
+    border: none;
+    color: white;
+    font-size: 32px;
+    width: 100%;
+    border-radius: 50px;
+    padding-left: 20px;
+    box-sizing: border-box;
+}
+
+#login-form input:focus {
+    outline: none;
+}
+
+#login-form input::placeholder {
+    font-size: 32px;
+    color: #4b3e7f;
+    opacity: 50%;
+}
+
+#input-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    height: 225px;
+    margin: 0px 20px;
+}
+
+#modal-content:has(#login-form) {
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+#login-errors {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px 0px;
+    width: 100%;
+    color: white;
+}
+
+#auth-site-name {
+    color: white;
+    font-weight: 1000;
+    font-size: 50px;
+    text-align: center;
+    text-justify: center;
+    width: 100%;
+}

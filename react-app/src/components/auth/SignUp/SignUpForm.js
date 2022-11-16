@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { Redirect } from 'react-router-dom';
 import { signUp } from '../../../store/session';
 
-const SignUpForm = () => {
+const SignUpForm = ({ setShowModal }) => {
   const [errors, setErrors] = useState([]);
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
@@ -58,83 +58,96 @@ const SignUpForm = () => {
   // console.log(errors)
 
   return (
-    <form onSubmit={onSignUp}>
-      <div>
-        <label>First Name</label>
-        <input
-          type='text'
-          name='firstName'
-          onChange={updateFirstName}
-          value={firstName}
-        ></input>
-      </div>
-      {errors.firstName && <div>
-        <p>{errors.firstName}</p>
-      </div>}
-      <div>
-        <label>Last Name</label>
-        <input
-          type='text'
-          name='lastName'
-          onChange={updateLastName}
-          value={lastName}
-        ></input>
-      </div>
-      {errors.lastName && <div>
-        <p>{errors.firstName}</p>
-      </div>}
-      <div>
-        <label>User Name</label>
-        <input
-          type='text'
-          name='username'
-          onChange={updateUsername}
-          value={username}
-        ></input>
-      </div>
-      {errors.username && <div>
-        <p>{errors.username}</p>
-      </div>}
-      <div>
-        <label>Email</label>
-        <input
-          type='text'
-          name='email'
-          onChange={updateEmail}
-          value={email}
-        ></input>
-      </div>
-      {errors.email && <div>
-        <p>{errors.email}</p>
-      </div>}
-      <div>
-        <label>Password</label>
-        <input
-          type='password'
-          name='password'
-          onChange={updatePassword}
-          value={password}
-        ></input>
-        {errors.password && <div>
-          <p>{errors.password}</p>
+    <form id='signup-form' onSubmit={onSignUp}>
+      <div id='auth-site-name'>scuttlr</div>
+      <div id='auth-input-fields'>
+        <div>
+          <input
+            type='text'
+            name='firstName'
+            placeholder='First Name'
+            onChange={updateFirstName}
+            value={firstName}
+            required
+          ></input>
+        </div>
+        {errors.firstName && <div>
+          <p>{errors.firstName}</p>
         </div>}
+        <div>
+          <input
+            type='text'
+            name='lastName'
+            placeholder='Last Name'
+            onChange={updateLastName}
+            value={lastName}
+            required
+          ></input>
+        </div>
+        {errors.lastName && <div>
+          <p>{errors.firstName}</p>
+        </div>}
+        <div>
+          <input
+            type='text'
+            name='username'
+            placeholder='Username'
+            onChange={updateUsername}
+            value={username}
+            required
+          ></input>
+        </div>
+        {errors.username && <div>
+          <p>{errors.username}</p>
+        </div>}
+        <div>
+          <input
+            type='text'
+            name='email'
+            placeholder='Email'
+            onChange={updateEmail}
+            value={email}
+            required
+          ></input>
+        </div>
+        {errors.email && <div>
+          <p>{errors.email}</p>
+        </div>}
+        <div>
+          <input
+            type='password'
+            name='password'
+            placeholder='Password'
+            onChange={updatePassword}
+            value={password}
+            required
+          ></input>
+          {errors.password && <div>
+            <p>{errors.password}</p>
+          </div>}
+        </div>
+        <div>
+          <input
+            id='confirm-password-input'
+            type='password'
+            name='repeat_password'
+            placeholder='Confirm Password'
+            onChange={updateRepeatPassword}
+            value={repeatPassword}
+            required={true}
+          ></input>
+        </div>
       </div>
-      <div>
-        <label>Repeat Password</label>
-        <input
-          type='password'
-          name='repeat_password'
-          onChange={updateRepeatPassword}
-          value={repeatPassword}
-          required={true}
-        ></input>
+      <div className='auth-footer'>
+        <button className='auth-cancel-button' onClick={() => setShowModal(false)}>Close</button>
+        <button className='signup-button' type="submit">Sign Up</button>
       </div>
-      <button type='submit'>Sign Up</button>
-      <div>
-        {/* {errors.map((error, ind) => (
-          <div key={ind}>{error}</div>
-        ))} */}
-      </div>
+      {errors.length > 0 && (
+        <div id='signup-errors'>
+          {errors.map((error, ind) => (
+            <div key={ind}>{error}</div>
+          ))}
+        </div>)}
     </form>
   );
 };
