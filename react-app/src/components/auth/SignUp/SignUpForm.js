@@ -9,15 +9,20 @@ const SignUpForm = () => {
   const [lastName, setLastName] = useState('');
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
+  const [profileImageInput, setProfileImageInput] = useState('');
   const [password, setPassword] = useState('');
   const [repeatPassword, setRepeatPassword] = useState('');
   const user = useSelector(state => state.session.user);
   const dispatch = useDispatch();
+  const defaultProfileImage = "https://img.freepik.com/premium-vector/handdrawn-vintage-hermit-crab-vector-illustration_147266-58.jpg?w=360";
 
   const onSignUp = async (e) => {
     e.preventDefault();
     if (password === repeatPassword) {
-      const data = await dispatch(signUp(firstName, lastName, username, email, password));
+      let profileImageUrl = defaultProfileImage;
+      if (profileImageInput) profileImageUrl = profileImageInput;
+
+      const data = await dispatch(signUp(firstName, lastName, username, email, profileImageUrl, password));
       if (data) {
         console.log('errors from signup form: ', data)
         setErrors(data)
@@ -41,6 +46,10 @@ const SignUpForm = () => {
 
   const updateEmail = (e) => {
     setEmail(e.target.value);
+  };
+
+  const updateProfileImageInput = (e) => {
+    setProfileImageInput(e.target.value);
   };
 
   const updatePassword = (e) => {
@@ -106,6 +115,18 @@ const SignUpForm = () => {
       </div>
       {errors.email && <div>
         <p>{errors.email}</p>
+      </div>}
+      <div>
+        <label>Profile Image</label>
+        <input
+          type='url'
+          name='profileImageInput'
+          onChange={updateProfileImageInput}
+          value={profileImageInput}
+        ></input>
+      </div>
+      {errors.profileImageUrl && <div>
+        <p>{errors.profileImageUrl}</p>
       </div>}
       <div>
         <label>Password</label>
