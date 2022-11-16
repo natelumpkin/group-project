@@ -28,10 +28,12 @@ const PostCard = ({ post }) => {
   const defaultProfileImage = "https://img.freepik.com/premium-vector/handdrawn-vintage-hermit-crab-vector-illustration_147266-58.jpg?w=360"
 
   const [liked, setLiked] = useState(false)
+  const [loaded, setLoaded] = useState(false)
 
-  useEffect(() => {
-    dispatch(likeActions.getPostLikes(post.id))
-    dispatch(commentActions.grabAllComments(post.id))
+  useEffect(async () => {
+    await dispatch(likeActions.getPostLikes(post.id))
+    await dispatch(commentActions.grabAllComments(post.id))
+    setLoaded(true)
   }, [dispatch])
 
   // console.log('liked boolean: ', liked)
@@ -80,10 +82,12 @@ const PostCard = ({ post }) => {
   // const numComments = comments.length;
   const numLikes = likedList.length;
   if (numComments) {
+    console.log('numlikes: ', numLikes)
     notes = numLikes + numComments
   } else {
-    notes = 'Loading...'
+    notes = numLikes
   }
+  console.log('notes for post ', post.id, ' : ,', notes)
   // const notes = numComments + numLikes;
   // console.log('post number ', post.id, ' notes: ', notes)
   // const likedList = Object.keys(likes.posts[post.Id])
@@ -104,7 +108,7 @@ const PostCard = ({ post }) => {
   // if postType is video,
   // only render video and text
 
-  if (post.postType === 'text') {
+  if (loaded && post.postType === 'text') {
     return (
       <div className="postCard-outer-container">
         <div className="postCard-userImage-holder">
@@ -144,15 +148,15 @@ const PostCard = ({ post }) => {
             </div>
             <div className="postcard-comments-likes-holder">
               <button>Reply</button>
-              {user && !liked && (<button onClick={() => likePost(post.id)}>Like</button>)}
-              {user && liked && (<button onClick={() => unlikePost(post.id)}>UnLike</button>)}
+              {loaded && user && !liked && (<button onClick={() => likePost(post.id)}>Like</button>)}
+              {loaded && user && liked && (<button onClick={() => unlikePost(post.id)}>UnLike</button>)}
             </div>
           </div>
           <div><PostCommentCard postid={post.id} /></div>
         </div>
       </div>
     )
-  } else if (post.postType === "quote") {
+  } else if (loaded && post.postType === "quote") {
     return (
       <div className="postCard-outer-container">
         <div className="postCard-userImage-holder">
@@ -191,15 +195,15 @@ const PostCard = ({ post }) => {
             </div>
             <div className="postcard-comments-likes-holder">
               <button>Reply</button>
-              {user && !liked && (<button onClick={() => likePost(post.id)}>Like</button>)}
-              {user && liked && (<button onClick={() => unlikePost(post.id)}>UnLike</button>)}
+              {loaded && user && !liked && (<button onClick={() => likePost(post.id)}>Like</button>)}
+              {loaded && user && liked && (<button onClick={() => unlikePost(post.id)}>UnLike</button>)}
             </div>
           </div>
           <div><PostCommentCard postid={post.id} /></div>
         </div>
       </div>
     )
-  } else if (post.postType === 'image' || post.postType === 'photo') {
+  } else if (loaded && (post.postType === 'image' || post.postType === 'photo')) {
     return (
       <div className="postCard-outer-container">
         <div className="postCard-userImage-holder">
@@ -238,15 +242,15 @@ const PostCard = ({ post }) => {
               </div>
               <div className="postcard-comments-likes-holder">
                 <button>Reply</button>
-                {user && !liked && (<button onClick={() => likePost(post.id)}>Like</button>)}
-                {user && liked && (<button onClick={() => unlikePost(post.id)}>UnLike</button>)}
+                {loaded && user && !liked && (<button onClick={() => likePost(post.id)}>Like</button>)}
+                {loaded && user && liked && (<button onClick={() => unlikePost(post.id)}>UnLike</button>)}
               </div>
             </div>
             <div><PostCommentCard postid={post.id} /></div>
           </div>
         </div>
     )
-  } else if (post.postType === 'video') {
+  } else if (loaded && post.postType === 'video') {
 
     let formattedLink;
     if (post.Media[0]) {
@@ -291,8 +295,8 @@ const PostCard = ({ post }) => {
               </div>
               <div className="postcard-comments-likes-holder">
                 <button>Reply</button>
-                {user && !liked && (<button onClick={() => likePost(post.id)}>Like</button>)}
-                {user && liked && (<button onClick={() => unlikePost(post.id)}>UnLike</button>)}
+                {loaded && user && !liked && (<button onClick={() => likePost(post.id)}>Like</button>)}
+                {loaded && user && liked && (<button onClick={() => unlikePost(post.id)}>UnLike</button>)}
               </div>
             </div>
             <div><PostCommentCard postid={post.id} /></div>
@@ -302,7 +306,7 @@ const PostCard = ({ post }) => {
   }
   else {
     return (
-      <h2>{post.postType}</h2>
+      <h2>Posts still loading {':<'} sowwwwwwyyyyyyy</h2>
     )
   }
 }
