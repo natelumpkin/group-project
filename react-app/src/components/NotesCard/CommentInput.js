@@ -35,7 +35,7 @@ const CommentInput = ({ postid }) => {
 
   let userIMG;
   if (sessionUser && sessionUser.profileImageUrl) {
-    userIMG = require (sessionUser.profileImageUrl)
+    userIMG = sessionUser.profileImageUrl
   } else {
     userIMG = "https://img.freepik.com/premium-vector/handdrawn-vintage-hermit-crab-vector-illustration_147266-58.jpg"
   }
@@ -50,8 +50,8 @@ return (
         <div className="notescard_commentinput_container">
           <form onSubmit={handleSubmit} className="notescard_commentinput_form">
           <div className="notescard_commentinput_div">
-            <input
-              type="textarea"
+            <textarea
+              type="text"
               value={comment}
               onChange={(e)=>setComment(e.target.value)}
               required

@@ -9,7 +9,7 @@ import * as commentActions from "../../store/comment";
 import * as likeActions from "../../store/like";
 
 
-const NotesCard = ({ post }) => {
+const NotesCard = ({ post, numlikes, numcomments }) => {
   const dispatch = useDispatch();
   const commentObj = useSelector(state => state.comments.posts[post.id]) || []
   const comments = Object.values(commentObj)
@@ -54,8 +54,12 @@ const NotesCard = ({ post }) => {
   return (
     <div className="notescard_overall_container">
       <div className="notescard_navigation_container">
-        <button className={current ? "notescard_nav_selected" : "notes_card_nav_not_selected"} onClick={()=>setCurrent(true)}><i class="fa-regular fa-comment"></i></button>
-        <button className={!current ? "notescard_nav_selected" : "notes_card_nav_not_selected"} onClick={()=>setCurrent(false)}><i class="fa-regular fa-heart"></i></button>
+        <div className={current ? "notescard_nav_bubble_selected" : ""}>
+        <button  onClick={()=>setCurrent(true)}><i class="fa-regular fa-comment"></i> {numcomments ? numcomments : "0"}</button>
+        </div>
+        <div className={!current ? "notescard_nav_heart_selected" : ""}>
+        <button  onClick={()=>setCurrent(false)}><i class="fa-regular fa-heart"></i> {numlikes ? numlikes : "0"}</button>
+        </div>
 
       </div>
          {current ? <CommentInput postid={post.id} /> : null}
