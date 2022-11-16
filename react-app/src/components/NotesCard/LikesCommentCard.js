@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-import './PostCommentCard.css';
+import './NotesCard.css';
 
 
 const LikesCommentCard = ({ like }) => {

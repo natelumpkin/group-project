@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect, useHistory, NavLink, Link } from "react-router-dom";
-import './PostCommentCard.css';
+import './NotesCard.css';
 import * as commentActions from "../../store/comment";
 
 
@@ -10,7 +10,6 @@ const CommentInput = ({ postid }) => {
   const sessionUser = useSelector(state => state.session.user);
   const [comment, setComment] = useState('');
   const [errors, setErrors] = useState([]);
-  // console.log("Test user", sessionUser)
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -31,6 +30,7 @@ return (
       <div className="post-comment-main-container">
         <div className="post-card-content-user-icon">
           {sessionUser ? sessionUser.profileImageUrl : "👨‍👧‍👧" }
+          "❔"
         </div>
         <div className="post-comment-input-container">
           <form onSubmit={handleSubmit} className="post-comment-form">
@@ -43,6 +43,7 @@ return (
               className="post-comment-input-bar"
               placeholder="Unleash Compliments!"
             />
+            <button type="submit">Reply</button>
 
           </div>
           </form>
