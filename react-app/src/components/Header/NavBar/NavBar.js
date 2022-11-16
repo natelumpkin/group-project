@@ -39,13 +39,13 @@ const NavBar = () => {
         {sessionUser && (
           <div id='session-buttons'>
             <NavLink to='/feed' exact={true} activeClassName='active'>
-              <i class="fa-solid fa-house" />
+              <i className="fa-solid fa-house" />
             </NavLink>
             <NavLink to='/' exact={true} activeClassName='active'>
               <i className="fa-regular fa-compass" />
             </NavLink>
             <div onClick={toggleMenu} activeClassName='active' id='profile-button'>
-              <i class="fa-solid fa-user" />
+              <i className="fa-solid fa-user" />
             </div>
             {showMenu && (
               <div id='profile-dropdown-container'>
@@ -56,7 +56,7 @@ const NavBar = () => {
                   </div>
                   <div>
                     <NavLink to='/following' exact={true} activeClassName='active' className='dropdown-option'>
-                      <i class="fa-solid fa-user-plus" />
+                      <i className="fa-solid fa-user-plus" />
                       <p>Following</p>
                     </NavLink>
                   </div>

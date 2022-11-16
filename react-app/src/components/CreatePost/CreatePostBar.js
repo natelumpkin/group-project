@@ -31,14 +31,14 @@ export default function CreateFormBarModal() {
                         setShowModal(true)
                         setPostType('quote')
                     }}>
-                        <div id='bar-quote-selector' ><i class="fa-solid fa-quote-left" /></div>
+                        <div id='bar-quote-selector' ><i className="fa-solid fa-quote-left" /></div>
                         <div id='quote-label'>Quote</div>
                     </div>
                     <div className='selector-wrapper' onClick={() => {
                         setShowModal(true)
                         setPostType('video')
                     }}>
-                        <div id='bar-video-selector'><i class="fa-solid fa-video" /></div>
+                        <div id='bar-video-selector'><i className="fa-solid fa-video" /></div>
                         <div id='video-label'>Video</div>
                     </div>
                 </div>

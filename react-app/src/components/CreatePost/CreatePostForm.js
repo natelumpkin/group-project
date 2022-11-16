@@ -94,11 +94,11 @@ const CreatePostForm = ({ setShowModal, typeSelection = false }) => {
                             <div id='image-label'>Photo</div>
                         </div>
                         <div className='selector-wrapper' onClick={() => setPostType('quote')}>
-                            <div id='quote-selector' ><i class="fa-solid fa-quote-left" /></div>
+                            <div id='quote-selector' ><i className="fa-solid fa-quote-left" /></div>
                             <div id='quote-label'>Quote</div>
                         </div>
                         <div className='selector-wrapper' onClick={() => setPostType('video')}>
-                            <div id='video-selector'><i class="fa-solid fa-video" /></div>
+                            <div id='video-selector'><i className="fa-solid fa-video" /></div>
                             <div id='video-label'>Video</div>
                         </div>
                     </div>
