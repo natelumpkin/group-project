@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
 
 import * as followActions from '../../store/follow'
+import './Following.css'
 
 import FollowCard from "../FollowCard";
 
@@ -27,15 +28,15 @@ const Following = () => {
   // console.log('followingList in Following component: ', followingList)
 
   return (
-    <div>
-      <div>
+    <div id='following-list-container'>
+      <div id='following-list-count'>
         {loaded && (
           <h4>{followingList.length} Following</h4>
         )}
       </div>
-      <div>
+      <div id='following-list'>
         {followingList.map(user => (
-          <FollowCard key={user.id} user={user} followingList={followingList} currentUser={currentUser}/>
+          <FollowCard key={user.id} user={user} followingList={followingList} currentUser={currentUser} />
         ))}
       </div>
     </div>

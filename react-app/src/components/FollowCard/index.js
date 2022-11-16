@@ -4,9 +4,9 @@ import { useDispatch, useSelector } from "react-redux"
 import * as followActions from "../../store/follow"
 import './FollowCard.css'
 
-const FollowCard = ({user, followingList, currentUser}) => {
+const FollowCard = ({ user, followingList, currentUser }) => {
 
-  const dispatch= useDispatch()
+  const dispatch = useDispatch()
 
 
 
@@ -41,15 +41,17 @@ const FollowCard = ({user, followingList, currentUser}) => {
 
   return (
     <div className="follow-card">
-      <div>
-        <img src={user.profileImageUrl}/>
-      </div>
-      <div>
-        <p>{user.username}</p>
+      <div className='follow-card-left-container'>
+        <div className="follow-profile-image">
+          <img src={user.profileImageUrl} />
+        </div>
+        <div className="follow-username">
+          <p>{user.username}</p>
+        </div>
       </div>
       <div className="follow-buttons-holder">
-      {!following && (<button onClick={() => followUser(user)}>Follow</button>)}
-      {following && (<button onClick={() => unfollowUser(user.id)}>Unfollow</button>)}
+        {!following && (<div onClick={() => followUser(user)}>Follow</div>)}
+        {following && (<div onClick={() => unfollowUser(user.id)}>Unfollow</div>)}
       </div>
     </div>
   )

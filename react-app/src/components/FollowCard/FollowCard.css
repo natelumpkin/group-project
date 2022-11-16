@@ -1,16 +1,48 @@
-
 .follow-card {
-  color: rgb(0, 0, 0);
-  background-color: white;
-  border-bottom: 1px solid rgb(197, 197, 197);
+  color: white;
+  background-color: #222222;
+  width: 540px;
+  height: 37px;
+  display: flex;
+  justify-content: space-between;
+  padding: 12px 0px;
 }
+
+
 
 .follow-card:hover {
-  background-color: rgb(215, 215, 215);
+  background-color: #404040;
 }
 
-.follow-buttons-holder button {
-  background-color: rgba(255, 255, 255, 0);
-  color: #4fc4ff;
+.follow-buttons-holder {
+  display: flex;
+  margin-right: 10px;
+}
+
+.follow-buttons-holder div {
+  color: #00b8ff;
   font-weight: bold;
+  border: none;
+  align-self: center;
+  font-size: 14px;
+}
+
+.follow-buttons-holder div:hover {
+  cursor: pointer;
+}
+
+.follow-profile-image {
+  height: 37px;
+  width: 37px;
+  border-radius: 3px;
+  margin: 0px 10px;
+}
+
+.follow-card-left-container {
+  display: flex;
+}
+
+.follow-username {
+  display: flex;
+  align-items: flex-end;
 }
