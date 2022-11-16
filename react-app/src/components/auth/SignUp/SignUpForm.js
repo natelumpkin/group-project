@@ -8,7 +8,6 @@ const SignUpForm = ({ setShowModal }) => {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [username, setUsername] = useState('');
-  const [profileImage, setProfileImage] = useState('');
   const [email, setEmail] = useState('');
   const [profileImageInput, setProfileImageInput] = useState('');
   const [password, setPassword] = useState('');
@@ -47,7 +46,6 @@ const SignUpForm = ({ setShowModal }) => {
 
   const updateEmail = (e) => {
     setEmail(e.target.value);
-    console.log('email: ', email)
   };
 
   const updateProfileImageInput = (e) => {
@@ -126,10 +124,10 @@ const SignUpForm = ({ setShowModal }) => {
           <p>{errors.email}</p>
         </div>}
         <div>
-        <label>Profile Image</label>
         <input
           type='url'
           name='profileImageInput'
+          placeholder='Profile Image'
           onChange={updateProfileImageInput}
           value={profileImageInput}
         ></input>
