@@ -10,6 +10,13 @@ const CommentInput = ({ postid }) => {
   const sessionUser = useSelector(state => state.session.user);
   const [comment, setComment] = useState('');
   const [errors, setErrors] = useState([]);
+  // console.log("Session", sessionUser)
+  // email
+  // firstName
+  // id
+  // lastName
+  // profileImageUrl
+  // username
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -24,15 +31,20 @@ const CommentInput = ({ postid }) => {
         if (data && data.errors) setErrors(data.errors);
       });
   }
-// figure out the User profile URL issue
-// Fix Styling for reply - move into input box.
+
+  let userIMG;
+  if (sessionUser && "sessionUser.User.profileImageUrl") {
+    userIMG = require (comment.User.profileImageUrl)
+  } else {
+    userIMG = "https://img.freepik.com/premium-vector/handdrawn-vintage-hermit-crab-vector-illustration_147266-58.jpg"
+  }
+
 
 return (
     // <div>
       <div className="notescard_commentinput_main_container">
         <div className="notescard_commentinput_user_icon">
-          {sessionUser ? sessionUser.profileImageUrl : "👨‍👧‍👧" }
-          "❔"
+          <img src={ userIMG } className="notescard_commentinput_user_image" />
         </div>
         <div className="notescard_commentinput_container">
           <form onSubmit={handleSubmit} className="notescard_commentinput_form">

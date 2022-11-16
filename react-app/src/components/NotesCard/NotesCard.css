@@ -14,7 +14,7 @@
 
   width: 100%;
   justify-content: space-evenly;
-  align-items: center;
+  align-items:baseline;
 }
 
 /* Fancy coloring for the selectors */
@@ -115,6 +115,11 @@
   width: 32px;
   border-radius: 5px;
 }
+.notescard_commentinput_user_image {
+  width: 32px;
+  border-radius: 5px;
+
+}
 
 .notescard_comment_content_container{
   display: flex;
@@ -126,6 +131,7 @@
   width: fit-content;
   margin-right: 15px;
   padding: 8px 12px;
+  overflow-x: hidden;
 
 
 }
@@ -158,29 +164,49 @@
 }
 
 .notescard_likes_main_container {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  max-width: 500px;
+  margin-bottom: 15px;
 
 }
 
 .notescard_likes_user_icon {
+  margin-right: 10px;
+  max-width: 32px;
+  height: auto;
+  width: 32px;
 
 }
 
 .notescard_likes_content_container{
+  display: flex;
+  flex-direction: column;
+  border-color: rgba(255, 255, 255, 0.25);
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 10px;
+  width: fit-content;
+  margin-right: 15px;
+  padding: 8px 12px;
+  overflow-x: hidden;
 
 }
 
 .notescard_likes_username {
+  margin-bottom: 2px;
+  z-index: 1;
+
+}
+
+.notescard_likes_followbutton_container {
+
+  margin-left: auto;
+  display: inline-block;
 
 }
 
 .notescard_likes_followbutton {
-
-}
-
-.notescard_likes_options_container {
-
-}
-
-.notescard_likes_options_menu {
 
 }
