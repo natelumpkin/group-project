@@ -6,6 +6,7 @@ import './NavBar.css'
 import LoginFormModal from '../../auth/Login/LoginModal';
 import SignUpFormModal from '../../auth/SignUp/SignUpModal';
 import CreateFormModal from '../../CreatePost/CreatePostModal';
+import DemoUserButton from '../../auth/DemoUserButton';
 import { useState, useEffect } from 'react';
 
 const NavBar = () => {
@@ -32,6 +33,7 @@ const NavBar = () => {
       <nav>
         {!sessionUser && (
           <div id='auth-buttons'>
+            <DemoUserButton />
             <LoginFormModal />
             <SignUpFormModal />
           </div>)
