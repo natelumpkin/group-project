@@ -44,8 +44,8 @@ const SignUpForm = ({ setShowModal }) => {
     setUsername(e.target.value);
   };
 
-  const updateProfileImage = (e) => {
-    setProfileImage(e.target.value)
+  const updateProfileImageInput = (e) => {
+    setProfileImageInput(e.target.value)
     // console.log('profile image: ', profileImage)
   }
 
