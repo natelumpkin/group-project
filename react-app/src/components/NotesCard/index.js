@@ -54,8 +54,8 @@ const NotesCard = ({ post }) => {
   return (
     <div className="notescard_overall_container">
       <div className="notescard_navigation_container">
-        <button className={current ? "notescard_nav_selected" : "notes_card_nav_not_selected"} onClick={()=>setCurrent(true)}>💬</button>
-        <button className={!current ? "notescard_nav_selected" : "notes_card_nav_not_selected"} onClick={()=>setCurrent(false)}>💖</button>
+        <button className={current ? "notescard_nav_selected" : "notes_card_nav_not_selected"} onClick={()=>setCurrent(true)}><i class="fa-regular fa-comment"></i></button>
+        <button className={!current ? "notescard_nav_selected" : "notes_card_nav_not_selected"} onClick={()=>setCurrent(false)}><i class="fa-regular fa-heart"></i></button>
 
       </div>
          {current ? <CommentInput postid={post.id} /> : null}
