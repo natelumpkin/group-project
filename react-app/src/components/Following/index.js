@@ -31,16 +31,18 @@ const Following = () => {
   // console.log('followingList in Following component: ', followingList)
 
   return (
-    <div id='following-list-container'>
-      <div id='following-list-count'>
+    <div id='follow-list-container'>
+      <div id='follow-list-count'>
         {loaded && (
           <h4>{followingList.length} Following</h4>
         )}
       </div>
-      <div id='following-list'>
-        {followingList.map(user => (
-          <FollowCard key={user.id} user={user} followingList={followingList} currentUser={currentUser} />
-        ))}
+      <div id='follow-list'>
+        <div id='follow'>
+          {followingList.map(user => (
+            <FollowCard key={user.id} user={user} followingList={followingList} currentUser={currentUser} />
+          ))}
+        </div>
       </div>
     </div>
   )

@@ -74,24 +74,28 @@ const NavBar = () => {
                   <div>
                     <NavLink to={`/users/${sessionUser.id}`} exact={true} activeClassName='active' className='dropdown-option'>
                       <i className="fa-solid fa-user-large" />
-                       <p>Your posts</p>
+                      <p>Your posts</p>
                     </NavLink>
                     <NavLink to='/following' exact={true} activeClassName='active' className='dropdown-option dropdown-followlink'>
                       <div className='dropdown-option-child'>
-                        <i className="fa-solid fa-user-plus" />
+                        <div id='follow-icon'>
+                          <i className="fa-solid fa-user-plus" />
+                        </div>
                         <p>Following</p>
                       </div>
                       <div className='dropdown-option-child'>
-                      <p>{numFollowing}</p>
+                        <p>{numFollowing}</p>
                       </div>
                     </NavLink>
                     <NavLink to='/followers' exact={true} activeClassName='active' className='dropdown-option dropdown-followlink'>
                       <div className='dropdown-option-child'>
-                        <i className="fa-solid fa-users"></i>
+                        <div id='follow-icon'>
+                          <i className="fa-solid fa-users"></i>
+                        </div>
                         <p>Followers</p>
                       </div>
                       <div className='dropdown-option-child'>
-                      <p>{numFollowers}</p>
+                        <p>{numFollowers}</p>
                       </div>
                     </NavLink>
 

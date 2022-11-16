@@ -81,3 +81,8 @@
 #auth-buttons {
     display: flex;
 }
+
+#follow-icon {
+    display: flex;
+    align-items: center;
+}

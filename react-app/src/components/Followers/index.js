@@ -30,16 +30,18 @@ const Followers = () => {
   // This is a list of everyone the current use is following
   const followingList = Object.values(following)
   const followerList = Object.values(followers)
-    return (
-      <div>
-      <div>
+  return (
+    <div id='follow-list-container'>
+      <div id='follow-list-count'>
         {loaded && (
-        <h4>{followerList.length} Followers</h4>)}
+          <h4>{followerList.length} Followers</h4>)}
       </div>
-      <div>
-        {followerList.map(user => (
-          <FollowCard key={user.id} user={user} followingList={followingList} currentUser={currentUser}/>
+      <div id='follow-list'>
+        <div id='follow'>
+          {followerList.map(user => (
+            <FollowCard key={user.id} user={user} followingList={followingList} currentUser={currentUser} />
           ))}
+        </div>
       </div>
     </div>
   )

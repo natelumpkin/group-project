@@ -1,11 +1,11 @@
-#following-list {
+#follow-list {
     width: 540px;
     margin: auto;
     border-radius: 3px;
     overflow: hidden;
 }
 
-#following-list-count {
+#follow-list-count {
     margin: auto;
     width: 540px;
     height: 40px;
