@@ -188,7 +188,7 @@ const PostCard = ({ post }) => {
               {loaded && user && liked && (<button onClick={() => unlikePost(post.id)}>UnLike</button>)}
             </div>
           </div>
-          <div>{showBox ? <NotesCard post={post} /> : null}</div>
+          <div>{showBox ? <NotesCard post={post} numlikes={numLikes} numcomments={numComments} /> : null}</div>
         </div>
       </div>
     )
@@ -238,7 +238,7 @@ const PostCard = ({ post }) => {
               {loaded && user && liked && (<button onClick={() => unlikePost(post.id)}>UnLike</button>)}
             </div>
           </div>
-          <div>{showBox ? <NotesCard post={post}  /> : null}</div>
+          <div>{showBox ? <NotesCard post={post}  numlikes={numLikes} numcomments={numComments}  /> : null}</div>
         </div>
       </div>
     )
@@ -286,7 +286,7 @@ const PostCard = ({ post }) => {
               {loaded && user && liked && (<button onClick={() => unlikePost(post.id)}>UnLike</button>)}
             </div>
           </div>
-          <div>{showBox ? <NotesCard post={post}  /> : null}</div>
+          <div>{showBox ? <NotesCard post={post}  numlikes={numLikes} numcomments={numComments}  /> : null}</div>
         </div>
       </div>
     )
@@ -340,7 +340,7 @@ const PostCard = ({ post }) => {
               {loaded && user && liked && (<button onClick={() => unlikePost(post.id)}>UnLike</button>)}
             </div>
           </div>
-          <div>{showBox ? <NotesCard post={post}  /> : null}</div>
+          <div>{showBox ? <NotesCard post={post}  numlikes={numLikes} numcomments={numComments}  /> : null}</div>
         </div>
       </div>
     )
