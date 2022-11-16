@@ -33,9 +33,11 @@ const AllPosts = () => {
   return (
     <div className="outer-container">
       <div className="inner-container">
-        <div>
-          <CreateFormBarModal />
-        </div>
+        {user && (
+          <div>
+            <CreateFormBarModal />
+          </div>
+        )}
         <div className="postsHolder">
           {allPostsArray.map(post => (
             <PostCard key={post.id} post={post} />

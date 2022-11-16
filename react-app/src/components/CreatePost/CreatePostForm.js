@@ -18,7 +18,7 @@ const CreatePostForm = ({ setShowModal, typeSelection = false }) => {
     const [disablePostMedia, setDisablePostMedia] = useState(true)
     const dispatch = useDispatch();
 
-    const defaultProfileImage = "https://img.freepik.com/premium-vector/handdrawn-vintage-hermit-crab-vector-illustration_147266-58.jpg?w=360"
+
 
     useEffect(() => {
         if (title.length > 0 || text.length > 0) {
@@ -94,11 +94,11 @@ const CreatePostForm = ({ setShowModal, typeSelection = false }) => {
                             <div id='image-label'>Photo</div>
                         </div>
                         <div className='selector-wrapper' onClick={() => setPostType('quote')}>
-                            <div id='quote-selector' ><i class="fa-solid fa-quote-left" /></div>
+                            <div id='quote-selector' ><i className="fa-solid fa-quote-left" /></div>
                             <div id='quote-label'>Quote</div>
                         </div>
                         <div className='selector-wrapper' onClick={() => setPostType('video')}>
-                            <div id='video-selector'><i class="fa-solid fa-video" /></div>
+                            <div id='video-selector'><i className="fa-solid fa-video" /></div>
                             <div id='video-label'>Video</div>
                         </div>
                     </div>
@@ -111,7 +111,7 @@ const CreatePostForm = ({ setShowModal, typeSelection = false }) => {
                 <form className='create-post-form' onSubmit={onSubmit}>
                     <div>
                         <div id='text-profile-image-container'>
-                            <img id='author-profile-image' src={author.profileImageUrl || defaultProfileImage} />
+                            <img id='author-profile-image' src={author.profileImageUrl} />
                         </div>
                         <div className='post-form-username'>{author.username}</div>
                     </div>
@@ -162,7 +162,7 @@ const CreatePostForm = ({ setShowModal, typeSelection = false }) => {
                 <form className='create-post-form' onSubmit={onSubmit}>
                     <div>
                         <div id='text-profile-image-container'>
-                            <img id='author-profile-image' src={author.profileImageUrl || defaultProfileImage} />
+                            <img id='author-profile-image' src={author.profileImageUrl} />
                         </div>
                         <div className='post-form-username'>{author.username}</div>
                     </div>
@@ -210,7 +210,7 @@ const CreatePostForm = ({ setShowModal, typeSelection = false }) => {
                 <form className='create-post-form' onSubmit={onSubmit}>
                     <div>
                         <div id='text-profile-image-container'>
-                            <img id='author-profile-image' src={author.profileImageUrl || defaultProfileImage} />
+                            <img id='author-profile-image' src={author.profileImageUrl} />
                         </div>
                         <div className='post-form-username'>{author.username}</div>
                     </div>
@@ -259,7 +259,7 @@ const CreatePostForm = ({ setShowModal, typeSelection = false }) => {
                     <form className='create-post-form' onSubmit={onSubmit}>
                         <div>
                             <div id='text-profile-image-container'>
-                                <img id='author-profile-image' src={author.profileImageUrl || defaultProfileImage} />
+                                <img id='author-profile-image' src={author.profileImageUrl} />
                             </div>
                             <div className='post-form-username'>{author.username}</div>
                         </div>

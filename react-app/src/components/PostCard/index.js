@@ -26,7 +26,7 @@ const PostCard = ({ post }) => {
   const comments = useSelector(state => state.comments)
   const dispatch = useDispatch()
 
-  const defaultProfileImage = "https://img.freepik.com/premium-vector/handdrawn-vintage-hermit-crab-vector-illustration_147266-58.jpg?w=360"
+
 
   const [liked, setLiked] = useState(false)
   const [loaded, setLoaded] = useState(false)
@@ -146,7 +146,7 @@ const PostCard = ({ post }) => {
       <div className="postCard-outer-container">
         <div className="postCard-userImage-holder">
           <div className="postCard-userImage">
-            <img src={post.User.profileImageUrl || defaultProfileImage} />
+            <img src={post.User.profileImageUrl} />
             {/* Post Id: {post.id}
             Post type: {post.postType} */}
           </div>
@@ -197,7 +197,7 @@ const PostCard = ({ post }) => {
       <div className="postCard-outer-container">
         <div className="postCard-userImage-holder">
           <div className="postCard-userImage">
-            <img src={post.User.profileImageUrl || defaultProfileImage} />
+            <img src={post.User.profileImageUrl} />
             {/* Post Id: {post.id}
             Post type: {post.postType} */}
           </div>
@@ -247,7 +247,7 @@ const PostCard = ({ post }) => {
       <div className="postCard-outer-container">
         <div className="postCard-userImage-holder">
           <div className="postCard-userImage">
-            <img src={post.User.profileImageUrl || defaultProfileImage} />
+            <img src={post.User.profileImageUrl} />
             {/* Post Id: {post.id}
             Post type: {post.postType} */}
           </div>
@@ -302,7 +302,7 @@ const PostCard = ({ post }) => {
       <div className="postCard-outer-container">
         <div className="postCard-userImage-holder">
           <div className="postCard-userImage">
-            <img src={post.User.profileImageUrl || defaultProfileImage} />
+            <img src={post.User.profileImageUrl} />
             {/* Post Id: {post.id}
             Post type: {post.postType} */}
           </div>

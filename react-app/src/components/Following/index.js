@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
-
+import { Redirect } from "react-router-dom";
 import * as followActions from '../../store/follow'
 
 import FollowCard from "../FollowCard";
@@ -17,9 +17,12 @@ const Following = () => {
   const [loaded, setLoaded] = useState(false)
 
   useEffect(async () => {
-    await dispatch(followActions.getAllFollowing(currentUser.id))
+    await dispatch(followActions.getAllFollowing(currentUser?.id))
     setLoaded(true);
   }, [dispatch])
+
+  // Redirect users that are not logged in:
+  if (!currentUser) return <Redirect to="/" />;
 
   // This is a list of everyone the current use is following
   const followingList = Object.values(following)

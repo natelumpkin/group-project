@@ -56,13 +56,13 @@ const NavBar = () => {
         {sessionUser && (
           <div id='session-buttons'>
             <NavLink to='/feed' exact={true} activeClassName='active'>
-              <i class="fa-solid fa-house" />
+              <i className="fa-solid fa-house" />
             </NavLink>
             <NavLink to='/' exact={true} activeClassName='active'>
               <i className="fa-regular fa-compass" />
             </NavLink>
             <div onClick={toggleMenu} activeClassName='active' id='profile-button'>
-              <i class="fa-solid fa-user" />
+              <i className="fa-solid fa-user" />
             </div>
             {showMenu && (
               <div id='profile-dropdown-container'>
@@ -73,12 +73,12 @@ const NavBar = () => {
                   </div>
                   <div>
                     <NavLink to={`/users/${sessionUser.id}`} exact={true} activeClassName='active' className='dropdown-option'>
-                      <i class="fa-solid fa-user-large" />
+                      <i className="fa-solid fa-user-large" />
                        <p>Your posts</p>
                     </NavLink>
                     <NavLink to='/following' exact={true} activeClassName='active' className='dropdown-option dropdown-followlink'>
                       <div className='dropdown-option-child'>
-                        <i class="fa-solid fa-user-plus" />
+                        <i className="fa-solid fa-user-plus" />
                         <p>Following</p>
                       </div>
                       <div className='dropdown-option-child'>
@@ -87,7 +87,7 @@ const NavBar = () => {
                     </NavLink>
                     <NavLink to='/followers' exact={true} activeClassName='active' className='dropdown-option dropdown-followlink'>
                       <div className='dropdown-option-child'>
-                        <i class="fa-solid fa-users"></i>
+                        <i className="fa-solid fa-users"></i>
                         <p>Followers</p>
                       </div>
                       <div className='dropdown-option-child'>
