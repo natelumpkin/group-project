@@ -79,6 +79,7 @@ const SignUpForm = ({ setShowModal }) => {
             onChange={updateFirstName}
             value={firstName}
             required
+            maxLength={40}
           ></input>
         </div>
         {errors.firstName && <div>
@@ -92,6 +93,7 @@ const SignUpForm = ({ setShowModal }) => {
             onChange={updateLastName}
             value={lastName}
             required
+            maxLength={40}
           ></input>
         </div>
         {errors.lastName && <div>
@@ -105,6 +107,7 @@ const SignUpForm = ({ setShowModal }) => {
             onChange={updateUsername}
             value={username}
             required
+            maxLength={40}
           ></input>
         </div>
         {errors.username && <div>
@@ -118,6 +121,7 @@ const SignUpForm = ({ setShowModal }) => {
             onChange={updateEmail}
             value={email}
             required
+            maxLength={255}
           ></input>
         </div>
         {errors.email && <div>
@@ -130,6 +134,7 @@ const SignUpForm = ({ setShowModal }) => {
           placeholder='Profile Image'
           onChange={updateProfileImageInput}
           value={profileImageInput}
+          maxLength={255}
         ></input>
       </div>
       {errors.profileImageUrl && <div>
@@ -143,6 +148,7 @@ const SignUpForm = ({ setShowModal }) => {
             onChange={updatePassword}
             value={password}
             required
+            maxLength={40}
           ></input>
           {errors.password && <div>
             <p>{errors.password}</p>
@@ -157,6 +163,7 @@ const SignUpForm = ({ setShowModal }) => {
             onChange={updateRepeatPassword}
             value={repeatPassword}
             required={true}
+            maxLength={40}
           ></input>
         </div>
       </div>
