@@ -1,0 +1,260 @@
+/* ---------- TEXT POST FORM STYLING ---------- */
+#modal-content:has(.create-post-form) {
+    background-color: #222222;
+    width: 540px;
+    height: fit-content;
+    overflow: visible;
+    border-radius: 3px;
+}
+
+.create-post-form>* {
+    color: white;
+}
+
+#text-profile-image-container {
+    height: 0px;
+    width: 0px;
+    position: absolute;
+}
+
+#author-profile-image {
+    position: relative;
+    border-radius: 3px;
+    height: 64px;
+    left: -84px;
+}
+
+.post-form-username {
+    height: 55px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    margin: 0px 20px;
+}
+
+#text-form-title-input {
+    height: 75px;
+    display: flex;
+    flex-direction: column;
+    margin: 0px 20px;
+}
+
+#text-form-title-input>input {
+    height: 50px;
+    color: white;
+    background-color: transparent;
+    border: transparent;
+    font-size: 26px;
+}
+
+#text-form-title-input>input::placeholder {
+    color: #787678;
+}
+
+#text-form-title-input>input:focus {
+    outline: transparent;
+}
+
+#text-form-title-input>div {
+    align-self: flex-end;
+    color: #787678;
+    font-size: 14px;
+}
+
+#text-form-text-input {
+    height: 300px;
+    display: flex;
+    margin: 0px 20px;
+}
+
+#text-form-text-input>textarea {
+    height: 250px;
+    width: 500px;
+    color: white;
+    background-color: transparent;
+    border: transparent;
+    resize: none;
+    font-size: 16px;
+    padding-top: 10px;
+}
+
+#text-form-text-input>textarea::placeholder {
+    color: #787678;
+}
+
+#text-form-text-input>textarea:focus {
+    outline: transparent;
+}
+
+#text-form-text-input>div {
+    align-self: flex-end;
+    color: #787678;
+    font-size: 14px;
+    padding-bottom: 10px;
+}
+
+.form-footer {
+    height: 75px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-top: 1px solid #3f3f3f;
+}
+
+.form-footer>button {
+    height: 33px;
+    border-radius: 15px;
+    border: none;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.cancel-button {
+    background-color: #3f3f3f;
+    color: #b5b5b5;
+    width: 85px;
+    margin-left: 20px;
+}
+
+.submit-button {
+    background-color: #00b8ff;
+    width: 125px;
+    margin-right: 20px;
+}
+
+.save-edit-button {
+    background-color: #00b8ff;
+    width: 85px;
+    margin-right: 20px;
+}
+
+/* ---------- PHOTO POST FORM STYLING ---------- */
+.media-url-container {
+    height: 125px;
+    padding: 0px 20px;
+}
+
+.media-text-container {
+    display: flex;
+    flex-direction: column;
+    padding: 0px 20px;
+}
+
+.media-text-container>textarea {
+    height: 235px;
+    width: 500px;
+    color: white;
+    background-color: transparent;
+    border: transparent;
+    resize: none;
+    font-size: 16px;
+    padding-top: 10px;
+}
+
+.media-text-container>textarea::placeholder {
+    color: #787678;
+}
+
+.media-text-container>textarea:focus {
+    outline: transparent;
+}
+
+.media-text-container>div {
+    align-self: flex-end;
+    color: #787678;
+    font-size: 14px;
+    padding-bottom: 10px;
+}
+
+.media-url-container {
+    height: 125px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.media-url-container>input {
+    height: 50px;
+    color: white;
+    background-color: transparent;
+    border: transparent;
+    font-size: 20px;
+}
+
+.media-url-container>input::placeholder {
+    color: #787678;
+}
+
+.media-url-container>input:focus {
+    outline: transparent;
+}
+
+.media-url-container>div {
+    align-self: flex-end;
+    color: #787678;
+    font-size: 14px;
+}
+
+/* ---------- QUOTE POST FORM STYLING ---------- */
+
+.quote-text-container {
+    display: flex;
+    flex-direction: column;
+    padding: 0px 20px;
+}
+
+.quote-text-container>textarea {
+    height: 235px;
+    width: 500px;
+    color: white;
+    background-color: transparent;
+    border: transparent;
+    resize: none;
+    font-size: 24px;
+    padding-top: 10px;
+}
+
+.quote-text-container>textarea::placeholder {
+    color: #787678;
+}
+
+.quote-text-container>textarea:focus {
+    outline: transparent;
+}
+
+.quote-text-container>div {
+    align-self: flex-end;
+    color: #787678;
+    font-size: 14px;
+    padding-bottom: 10px;
+}
+
+.quote-author-container {
+    padding: 0px 20px 10px 20px;
+    height: 75px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.quote-author-container>input {
+    height: 50px;
+    color: white;
+    background-color: transparent;
+    border: transparent;
+    font-size: 16px;
+}
+
+.quote-author-container>input::placeholder {
+    color: #787678;
+}
+
+.quote-author-container>input:focus {
+    outline: transparent;
+}
+
+.quote-author-container>div {
+    align-self: flex-end;
+    color: #787678;
+    font-size: 14px;
+}

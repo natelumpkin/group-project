@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { createPost, addMediaByPostId } from '../../store/post';
 import './CreatePostModal.css'
+import './CreatePostForm.css'
 
 const CreatePostForm = ({ setShowModal, typeSelection = false }) => {
+    const author = useSelector(state => state.session.user)
     const [errors, setErrors] = useState([]);
     const [postType, setPostType] = useState(typeSelection || false);
     const [title, setTitle] = useState('');
@@ -13,6 +15,8 @@ const CreatePostForm = ({ setShowModal, typeSelection = false }) => {
     const [textCharCount, setTextCharCount] = useState(0);
     const [mediaCharCount, setMediaCharCount] = useState(0)
     const dispatch = useDispatch();
+
+    const defaultProfileImage = "https://img.freepik.com/premium-vector/handdrawn-vintage-hermit-crab-vector-illustration_147266-58.jpg?w=360"
 
     const onSubmit = async (e) => {
         e.preventDefault();
@@ -45,7 +49,6 @@ const CreatePostForm = ({ setShowModal, typeSelection = false }) => {
                 const data = await response.json();
                 if (data && data.errors) setErrors(Object.values(data.errors));
             });
-        // console.log("*******NEW POST RETURNED: ", post)
         if (post && !mediaUrl) {
             setShowModal(false)
         }
@@ -55,7 +58,6 @@ const CreatePostForm = ({ setShowModal, typeSelection = false }) => {
                     const data = await response.json();
                     if (data && data.errors) setErrors(Object.values(data.errors));
                 });
-            // console.log("*******NEW MEDIA RETURNED: ", postMedia)
             if (postMedia) {
                 setShowModal(false)
             }
@@ -90,8 +92,15 @@ const CreatePostForm = ({ setShowModal, typeSelection = false }) => {
 
             {/* // ---------- POST FORM FOR TEXT ---------- \\ */}
             {postType === 'text' && (
-                <form onSubmit={onSubmit}>
+                <form className='create-post-form' onSubmit={onSubmit}>
                     <div>
+                        <div id='text-profile-image-container'>
+                            <img id='author-profile-image' src={author.profileImageUrl || defaultProfileImage} />
+                        </div>
+                        <div className='post-form-username'>{author.username}</div>
+                    </div>
+
+                    <div id='text-form-title-input'>
                         <input
                             name='title'
                             type='text'
@@ -107,8 +116,9 @@ const CreatePostForm = ({ setShowModal, typeSelection = false }) => {
                         />
                         <div>{titleCharCount}/100</div>
                     </div>
-                    <div>
-                        <input
+                    <div id='text-form-text-input'>
+                        <textarea
+                            id='textarea-input'
                             name='text'
                             type='text'
                             placeholder='Go ahead, put anything.'
@@ -123,15 +133,24 @@ const CreatePostForm = ({ setShowModal, typeSelection = false }) => {
                         />
                         <div>{textCharCount}/1000</div>
                     </div>
-                    <button type="submit">Post Now</button>
+                    <div className='form-footer'>
+                        <button className='cancel-button' onClick={() => setShowModal(false)}>Close</button>
+                        <button className='submit-button' type="submit">Post Now</button>
+                    </div>
                 </form>
             )}
 
 
             {/* // ---------- POST FORM FOR IMAGE ---------- \\ */}
             {postType === 'image' && (
-                <form onSubmit={onSubmit}>
+                <form className='create-post-form' onSubmit={onSubmit}>
                     <div>
+                        <div id='text-profile-image-container'>
+                            <img id='author-profile-image' src={author.profileImageUrl || defaultProfileImage} />
+                        </div>
+                        <div className='post-form-username'>{author.username}</div>
+                    </div>
+                    <div className='media-url-container'>
                         <input
                             name='image'
                             type='url'
@@ -147,8 +166,8 @@ const CreatePostForm = ({ setShowModal, typeSelection = false }) => {
                         />
                         <div>{mediaCharCount}/255</div>
                     </div>
-                    <div>
-                        <input
+                    <div className='media-text-container'>
+                        <textarea
                             name='text'
                             type='text'
                             placeholder='Go ahead, put anything.'
@@ -162,16 +181,25 @@ const CreatePostForm = ({ setShowModal, typeSelection = false }) => {
                         />
                         <div>{textCharCount}/1000</div>
                     </div>
-                    <button type="submit">Post Now</button>
+                    <div className='form-footer'>
+                        <button className='cancel-button' onClick={() => setShowModal(false)}>Close</button>
+                        <button className='submit-button' type="submit">Post Now</button>
+                    </div>
                 </form>
             )}
 
 
             {/* // ---------- POST FORM FOR QUOTE ---------- \\ */}
             {postType === 'quote' && (
-                <form onSubmit={onSubmit}>
+                <form className='create-post-form' onSubmit={onSubmit}>
                     <div>
-                        <input
+                        <div id='text-profile-image-container'>
+                            <img id='author-profile-image' src={author.profileImageUrl || defaultProfileImage} />
+                        </div>
+                        <div className='post-form-username'>{author.username}</div>
+                    </div>
+                    <div className='quote-text-container'>
+                        <textarea
                             name='quote'
                             type='text'
                             placeholder='Something someone else said here.'
@@ -186,50 +214,81 @@ const CreatePostForm = ({ setShowModal, typeSelection = false }) => {
                         />
                         <div>{textCharCount}/1000</div>
                     </div>
-                    <button type="submit">Post Now</button>
+                    <div className='quote-author-container'>
+                        <input
+                            name='title'
+                            type='text'
+                            placeholder='Author'
+                            value={title}
+                            onChange={(e) => {
+                                setTitle(e.target.value)
+                                setTitleCharCount(e.target.value.length)
+                            }}
+                            maxLength={100}
+                            onFocus={(e) => setTitleCharCount(e.target.value.length)}
+                            required
+                        />
+                        <div>{titleCharCount}/100</div>
+                    </div>
+                    <div className='form-footer'>
+                        <button className='cancel-button' onClick={() => setShowModal(false)}>Close</button>
+                        <button className='submit-button' type="submit">Post Now</button>
+                    </div>
                 </form>
-            )}
+            )
+            }
 
 
             {/* // ---------- POST FORM FOR VIDEO ---------- \\ */}
-            {postType === 'video' && (
-                <form onSubmit={onSubmit}>
-                    <div>
-                        <input
-                            name='video'
-                            type='url'
-                            placeholder='Type or paste video link'
-                            value={mediaUrl}
-                            onChange={(e) => {
-                                setMediaUrl(e.target.value)
-                                setMediaCharCount(e.target.value.length)
-                            }}
-                            maxLength={255}
-                            onFocus={(e) => setMediaCharCount(e.target.value.length)}
-                            required
-                        />
-                        <div>{mediaCharCount}/255</div>
-                    </div>
-                    <div>
-                        <input
-                            name='text'
-                            type='text'
-                            placeholder='Go ahead, put anything.'
-                            value={text}
-                            onChange={(e) => {
-                                setText(e.target.value)
-                                setTextCharCount(e.target.value.length)
-                            }}
-                            maxLength={1000}
-                            onFocus={(e) => setTextCharCount(e.target.value.length)}
-                            required
-                        />
-                        <div>{textCharCount}/1000</div>
-                    </div>
-                    <button type="submit">Post Now</button>
-                </form>
-            )}
-        </div>
+            {
+                postType === 'video' && (
+                    <form className='create-post-form' onSubmit={onSubmit}>
+                        <div>
+                            <div id='text-profile-image-container'>
+                                <img id='author-profile-image' src={author.profileImageUrl || defaultProfileImage} />
+                            </div>
+                            <div className='post-form-username'>{author.username}</div>
+                        </div>
+                        <div className='media-url-container'>
+                            <input
+                                name='video'
+                                type='url'
+                                placeholder='Type or paste video link'
+                                value={mediaUrl}
+                                onChange={(e) => {
+                                    setMediaUrl(e.target.value)
+                                    setMediaCharCount(e.target.value.length)
+                                }}
+                                maxLength={255}
+                                onFocus={(e) => setMediaCharCount(e.target.value.length)}
+                                required
+                            />
+                            <div>{mediaCharCount}/255</div>
+                        </div>
+                        <div className='media-text-container'>
+                            <textarea
+                                name='text'
+                                type='text'
+                                placeholder='Go ahead, put anything.'
+                                value={text}
+                                onChange={(e) => {
+                                    setText(e.target.value)
+                                    setTextCharCount(e.target.value.length)
+                                }}
+                                maxLength={1000}
+                                onFocus={(e) => setTextCharCount(e.target.value.length)}
+                                required
+                            />
+                            <div>{textCharCount}/1000</div>
+                        </div>
+                        <div className='form-footer'>
+                            <button className='cancel-button' onClick={() => setShowModal(false)}>Close</button>
+                            <button className='submit-button' type="submit">Post Now</button>
+                        </div>
+                    </form>
+                )
+            }
+        </div >
     );
 };
 
