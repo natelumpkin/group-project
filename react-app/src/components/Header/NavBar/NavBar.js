@@ -55,7 +55,7 @@ const NavBar = () => {
                     <LogoutButton />
                   </div>
                   <div>
-                    <NavLink to='/users/following' exact={true} activeClassName='active' className='dropdown-option'>
+                    <NavLink to='/following' exact={true} activeClassName='active' className='dropdown-option'>
                       <i class="fa-solid fa-user-plus" />
                       <p>Following</p>
                     </NavLink>
