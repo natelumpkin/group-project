@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { updatePost } from '../../store/post';
-import './CreatePostModal.css'
+import './EditPost.css'
 
 const CreatePostForm = ({ setShowModal, post }) => {
     const [errors, setErrors] = useState([]);
@@ -13,6 +13,9 @@ const CreatePostForm = ({ setShowModal, post }) => {
     // const [mediaCharCount, setMediaCharCount] = useState(0)
     const dispatch = useDispatch();
 
+    const postType = post.postType
+
+
     const onSubmit = async (e) => {
         e.preventDefault();
         setErrors([]);
@@ -22,13 +25,13 @@ const CreatePostForm = ({ setShowModal, post }) => {
             text
         }
 
-        const post = await dispatch(updatePost(post.id, postData))
+        const editedPost = await dispatch(updatePost(post.id, postData))
             .catch(async (response) => {
                 const data = await response.json();
                 if (data && data.errors) setErrors(Object.values(data.errors));
             });
 
-        if (post) setShowModal(false)
+        if (editedPost) setShowModal(false)
     };
 
     return (
@@ -36,6 +39,22 @@ const CreatePostForm = ({ setShowModal, post }) => {
             {/* // ---------- POST FORM FOR TEXT ---------- \\ */}
             {postType === 'text' && (
                 <form onSubmit={onSubmit}>
+                    <div>
+                        <input
+                            name='title'
+                            type='text'
+                            placeholder='Author'
+                            value={title}
+                            onChange={(e) => {
+                                setTitle(e.target.value)
+                                setTitleCharCount(e.target.value.length)
+                            }}
+                            maxLength={100}
+                            onFocus={(e) => setTitleCharCount(e.target.value.length)}
+                            required
+                        />
+                        <div>{titleCharCount}/100</div>
+                    </div>
                     <div>
                         <input
                             name='text'

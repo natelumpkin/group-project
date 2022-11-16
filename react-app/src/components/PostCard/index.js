@@ -7,6 +7,7 @@ import ReactPlayer from "react-player"
 import formatVideoLink from "../../utils/formatVideoLink"
 import PostCommentCard from "../PostCommentCard"
 import DeletePostModal from "../DeletePost/DeletePostModal"
+import EditPostModal from '../EditPost/EditPostModal'
 import './PostCard.css'
 import * as followActions from "../../store/follow"
 import * as postActions from "../../store/post"
@@ -91,9 +92,9 @@ const PostCard = ({ post }) => {
   // Brad Code
   // This notesCount will display the results from above but also allow an onClick
   let notesCount;
-    if (notes > 0) {
-     notesCount = `${notes} notes`
-    }
+  if (notes > 0) {
+    notesCount = `${notes} notes`
+  }
 
 
   const closeNotesButton = `✖️ Close notes`
@@ -149,17 +150,20 @@ const PostCard = ({ post }) => {
             <p>{post.text}</p>
           </div>
           <div className="postcard-edit-delete-holder">
-            {user && user.id === post.User.id && (<DeletePostModal post={post}/>)}
-            <button>Edit</button>
+            {user && user.id === post.User.id && (<>
+              <DeletePostModal post={post} />
+              <EditPostModal post={post} />
+            </>
+            )}
           </div>
           <div>
             <div className="postcard-notes-holder">
-              <button onClick={()=>setShowBox(!showBox)}>
+              <button onClick={() => setShowBox(!showBox)}>
                 {showBox ? closeNotesButton : notesCount}
               </button>
             </div>
             <div className="postcard-comments-likes-holder">
-              <button onClick={()=>setShowBox(!showBox)}>Reply</button>
+              <button onClick={() => setShowBox(!showBox)}>Reply</button>
               {loaded && user && !liked && (<button onClick={() => likePost(post.id)}>Like</button>)}
               {loaded && user && liked && (<button onClick={() => unlikePost(post.id)}>UnLike</button>)}
             </div>
@@ -196,17 +200,20 @@ const PostCard = ({ post }) => {
             <p>{post.text}</p>
           </div>
           <div className="postcard-edit-delete-holder">
-            {user && user.id === post.User.id && (<DeletePostModal post={post}/>)}
-            <button>Edit</button>
+            {user && user.id === post.User.id && (<>
+              <DeletePostModal post={post} />
+              <EditPostModal post={post} />
+            </>
+            )}
           </div>
           <div>
             <div className="postcard-notes-holder">
-              <button onClick={()=>setShowBox(!showBox)}>
+              <button onClick={() => setShowBox(!showBox)}>
                 {showBox ? closeNotesButton : notesCount}
               </button>
             </div>
             <div className="postcard-comments-likes-holder">
-              <button onClick={()=>setShowBox(!showBox)}>Reply</button>
+              <button onClick={() => setShowBox(!showBox)}>Reply</button>
               {loaded && user && !liked && (<button onClick={() => likePost(post.id)}>Like</button>)}
               {loaded && user && liked && (<button onClick={() => unlikePost(post.id)}>UnLike</button>)}
             </div>
@@ -235,32 +242,35 @@ const PostCard = ({ post }) => {
             {user && !following && user.id && (post.User.id != user.id) && (
               <button onClick={() => followUser(post.User)}>Follow</button>
             )}
-            </div>
-            <div className="postcard-photo-holder">
-              {post.Media[0] && (<img src={post.Media[0].mediaUrl} />)}
-            </div>
-            <div className="postcard-caption-holder">
-              <p>{post.text}</p>
-            </div>
-            <div className="postcard-edit-delete-holder">
-              {user && user.id === post.User.id && (<DeletePostModal post={post}/>)}
-              <button>Edit</button>
-            </div>
-            <div>
-              <div className="postcard-notes-holder">
-              <button onClick={()=>setShowBox(!showBox)}>
+          </div>
+          <div className="postcard-photo-holder">
+            {post.Media[0] && (<img src={post.Media[0].mediaUrl} />)}
+          </div>
+          <div className="postcard-caption-holder">
+            <p>{post.text}</p>
+          </div>
+          <div className="postcard-edit-delete-holder">
+            {user && user.id === post.User.id && (<>
+              <DeletePostModal post={post} />
+              <EditPostModal post={post} />
+            </>
+            )}
+          </div>
+          <div>
+            <div className="postcard-notes-holder">
+              <button onClick={() => setShowBox(!showBox)}>
                 {showBox ? closeNotesButton : notesCount}
               </button>
-              </div>
-              <div className="postcard-comments-likes-holder">
-              <button onClick={()=>setShowBox(!showBox)}>Reply</button>
-                {loaded && user && !liked && (<button onClick={() => likePost(post.id)}>Like</button>)}
-                {loaded && user && liked && (<button onClick={() => unlikePost(post.id)}>UnLike</button>)}
-              </div>
             </div>
-          <div>{showBox ? <PostCommentCard postid={post.id} /> : null}</div>
+            <div className="postcard-comments-likes-holder">
+              <button onClick={() => setShowBox(!showBox)}>Reply</button>
+              {loaded && user && !liked && (<button onClick={() => likePost(post.id)}>Like</button>)}
+              {loaded && user && liked && (<button onClick={() => unlikePost(post.id)}>UnLike</button>)}
+            </div>
           </div>
+          <div>{showBox ? <PostCommentCard postid={post.id} /> : null}</div>
         </div>
+      </div>
     )
   } else if (loaded && post.postType === 'video') {
 
@@ -287,33 +297,36 @@ const PostCard = ({ post }) => {
             {!following && user.id && post.User.id != user.id && (
               <button onClick={() => followUser(post.User)}>Follow</button>
             )}
-            </div>
-            <div className="postcard-video-holder">
-              {post.Media[0] && (
-                <ReactPlayer url={post.Media[0].mediaUrl} controls={true}></ReactPlayer>)}
-            </div>
-            <div className="postcard-caption-holder">
-              <p>{post.text}</p>
-            </div>
-            <div className="postcard-edit-delete-holder">
-              {user && user.id === post.User.id && (<DeletePostModal post={post}/>)}
-              <button>Edit</button>
-            </div>
-            <div>
-              <div className="postcard-notes-holder">
-              <button onClick={()=>setShowBox(!showBox)}>
+          </div>
+          <div className="postcard-video-holder">
+            {post.Media[0] && (
+              <ReactPlayer url={post.Media[0].mediaUrl} controls={true}></ReactPlayer>)}
+          </div>
+          <div className="postcard-caption-holder">
+            <p>{post.text}</p>
+          </div>
+          <div className="postcard-edit-delete-holder">
+            {user && user.id === post.User.id && (<>
+              <DeletePostModal post={post} />
+              <EditPostModal post={post} />
+            </>
+            )}
+          </div>
+          <div>
+            <div className="postcard-notes-holder">
+              <button onClick={() => setShowBox(!showBox)}>
                 {showBox ? closeNotesButton : notesCount}
               </button>
-              </div>
-              <div className="postcard-comments-likes-holder">
-              <button onClick={()=>setShowBox(!showBox)}>Reply</button>
-                {loaded && user && !liked && (<button onClick={() => likePost(post.id)}>Like</button>)}
-                {loaded && user && liked && (<button onClick={() => unlikePost(post.id)}>UnLike</button>)}
-              </div>
             </div>
-          <div>{showBox ? <PostCommentCard postid={post.id} /> : null}</div>
+            <div className="postcard-comments-likes-holder">
+              <button onClick={() => setShowBox(!showBox)}>Reply</button>
+              {loaded && user && !liked && (<button onClick={() => likePost(post.id)}>Like</button>)}
+              {loaded && user && liked && (<button onClick={() => unlikePost(post.id)}>UnLike</button>)}
+            </div>
           </div>
+          <div>{showBox ? <PostCommentCard postid={post.id} /> : null}</div>
         </div>
+      </div>
     )
   }
   else {
