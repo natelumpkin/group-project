@@ -31,13 +31,13 @@ const NavBar = () => {
     <div id='header-links'>
       <nav>
         {!sessionUser && (
-          <>
+          <div id='auth-buttons'>
             <LoginFormModal />
             <SignUpFormModal />
-          </>)
+          </div>)
         }
         {sessionUser && (
-          <>
+          <div id='session-buttons'>
             <NavLink to='/feed' exact={true} activeClassName='active'>
               <i class="fa-solid fa-house" />
             </NavLink>
@@ -64,7 +64,7 @@ const NavBar = () => {
               </div>
             )}
             <CreateFormModal />
-          </>)
+          </div>)
         }
       </nav>
     </div>
