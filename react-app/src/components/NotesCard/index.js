@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect, useHistory, NavLink } from "react-router-dom";
-import './PostCommentCard.css';
+import './NotesCard.css';
 import CommentsCard from './CommentsCard.js';
 import LikesCommentCard from './LikesCommentCard.js';
 import CommentInput from './CommentInput.js';
@@ -9,7 +9,7 @@ import * as commentActions from "../../store/comment";
 import * as likeActions from "../../store/like";
 
 
-const PostCommentCard = ({postid}) => {
+const NotesCard = ({postid}) => {
   const dispatch = useDispatch();
   const commentObj = useSelector(state => state.comments.posts[postid]) || []
   const comments = Object.values(commentObj)
@@ -19,19 +19,14 @@ const PostCommentCard = ({postid}) => {
   const history = useHistory();
   const [current, setCurrent] = useState(true)
   const [errors, setErrors] = useState([])
-  console.log("Likes",likeObj)
-  console.log("Likes",likes)
+
+
   useEffect(()=>{
     dispatch(commentActions.grabAllComments(postid))
     dispatch(likeActions.getPostLikes(postid))
   }, [dispatch])
 
-  // if (groups.length > 1 ) {
-  //   DisplayGroups =  groups.map((group) => <GroupDetail group={group}/>)
 
-
-
-  console.log("test 1", comments)
   let displayComments;
   if (comments.length > 0) {
     displayComments = comments.map(comment => <CommentsCard key={comment.id} comment={comment}/>)
@@ -57,14 +52,14 @@ const PostCommentCard = ({postid}) => {
     )
   }
   return (
-    <div className="post-card-comment-like-container">
-      <div className="post-card-comment-like-content-selector">
+    <div className="notes_card_overall_container">
+      <div className="notes_card_navigation_container">
         <button className={current ? "post-card-comment-like-content-cards" : "post-card-comment-like-content-cards-off"} onClick={()=>setCurrent(true)}>💬</button>
         <button className={!current ? "post-card-comment-like-content-cards" : "post-card-comment-like-content-cards-off"} onClick={()=>setCurrent(false)}>💖</button>
 
       </div>
-      <div className="post-comment-current-content-container">
          {current ? <CommentInput postid={postid} /> : null}
+      <div className="post-comment-current-content-container">
          {current ? displayComments : displayLikes}
       </div>
 
@@ -72,4 +67,4 @@ const PostCommentCard = ({postid}) => {
   )
 }
 
-export default PostCommentCard;
+export default NotesCard;

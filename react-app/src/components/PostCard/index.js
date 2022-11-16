@@ -5,7 +5,7 @@ import React from "react"
 import ReactPlayer from "react-player"
 
 import formatVideoLink from "../../utils/formatVideoLink"
-import PostCommentCard from "../PostCommentCard"
+import NotesCard from "../NotesCard"
 import DeletePostModal from "../DeletePost/DeletePostModal"
 import EditPostModal from '../EditPost/EditPostModal'
 import './PostCard.css'
@@ -168,7 +168,7 @@ const PostCard = ({ post }) => {
               {loaded && user && liked && (<button onClick={() => unlikePost(post.id)}>UnLike</button>)}
             </div>
           </div>
-          <div>{showBox ? <PostCommentCard postid={post.id} /> : null}</div>
+          <div>{showBox ? <NotesCard postid={post.id} /> : null}</div>
         </div>
       </div>
     )
@@ -218,7 +218,7 @@ const PostCard = ({ post }) => {
               {loaded && user && liked && (<button onClick={() => unlikePost(post.id)}>UnLike</button>)}
             </div>
           </div>
-          <div>{showBox ? <PostCommentCard postid={post.id} /> : null}</div>
+          <div>{showBox ? <NotesCard postid={post.id} /> : null}</div>
         </div>
       </div>
     )
@@ -268,7 +268,7 @@ const PostCard = ({ post }) => {
               {loaded && user && liked && (<button onClick={() => unlikePost(post.id)}>UnLike</button>)}
             </div>
           </div>
-          <div>{showBox ? <PostCommentCard postid={post.id} /> : null}</div>
+          <div>{showBox ? <NotesCard postid={post.id} /> : null}</div>
         </div>
       </div>
     )
@@ -324,7 +324,7 @@ const PostCard = ({ post }) => {
               {loaded && user && liked && (<button onClick={() => unlikePost(post.id)}>UnLike</button>)}
             </div>
           </div>
-          <div>{showBox ? <PostCommentCard postid={post.id} /> : null}</div>
+          <div>{showBox ? <NotesCard postid={post.id} /> : null}</div>
         </div>
       </div>
     )
