@@ -28,7 +28,7 @@ const AllPosts = () => {
     allPostsArray.unshift(allPosts[post])
   }
 
-  console.log('allPosts in AllPosts component: ', allPostsArray)
+  // console.log('allPosts in AllPosts component: ', allPostsArray)
 
   return (
     <div className="outer-container">

@@ -2,10 +2,12 @@ import React, { useState, useEffect } from 'react';
 import { Link } from "react-router-dom";
 
 import './NotesCard.css';
+import DeleteCommentModal from '../DeleteComment/DeleteCommentModal';
 
 
 const CommentsCard = ({ comment }) => {
   const [showMenu, setShowMenu] = useState(false);
+  const [showDeleteModal, setShowDeleteModal] = useState(false)
   const toggleMenu = () => setShowMenu(!showMenu);
 
   useEffect(() => {
@@ -26,6 +28,8 @@ const CommentsCard = ({ comment }) => {
   } else {
     userIMG = "https://img.freepik.com/premium-vector/handdrawn-vintage-hermit-crab-vector-illustration_147266-58.jpg"
   }
+
+  console.log('comment in commentsCard: ', comment)
 
   return (
 
@@ -52,12 +56,14 @@ const CommentsCard = ({ comment }) => {
                   </button>
                 </div>
                 <div>
-                  <button> Delete
+                  <button onClick={() => setShowDeleteModal(true)}>
+                  <i class="fa-solid fa-trash-can"></i>
                   </button>
                 </div>
               </div>
             </div>
           )}
+          <DeleteCommentModal showDeleteModal={showDeleteModal} setShowDeleteModal={setShowDeleteModal} comment={comment}/>
         </div>
     </div>
 

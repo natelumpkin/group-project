@@ -20,7 +20,7 @@ const SignUpForm = ({ setShowModal }) => {
     if (password === repeatPassword) {
       const data = await dispatch(signUp(firstName, lastName, username, profileImage, email, password));
       if (data) {
-        console.log('errors from signup form: ', data)
+        // console.log('errors from signup form: ', data)
         setErrors(data)
       }
     } else {
@@ -42,12 +42,12 @@ const SignUpForm = ({ setShowModal }) => {
 
   const updateProfileImage = (e) => {
     setProfileImage(e.target.value)
-    console.log('profile image: ', profileImage)
+    // console.log('profile image: ', profileImage)
   }
 
   const updateEmail = (e) => {
     setEmail(e.target.value);
-    console.log('email: ', email)
+    // console.log('email: ', email)
   };
 
   const updatePassword = (e) => {

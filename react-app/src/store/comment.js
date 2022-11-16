@@ -127,7 +127,7 @@ export default function commentReducer(state = initialState, action) {
         comment: action.payload.comment,
         User: action.user
       }
-
+      return newState;
     case DELETE_COMMENT:
       delete newState.posts[action.payload.postId][action.commentId]
       return newState

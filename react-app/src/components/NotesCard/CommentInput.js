@@ -25,6 +25,7 @@ const CommentInput = ({ postid }) => {
     .then(()=>{
       setComment('')
     })
+    .then(() => dispatch(commentActions.grabAllComments(postid)))
       .catch(async (res) => {
         const data = await res.json();
 
