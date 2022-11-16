@@ -18,7 +18,7 @@ const SignUpForm = () => {
   const onSignUp = async (e) => {
     e.preventDefault();
     if (password === repeatPassword) {
-      const data = await dispatch(signUp(firstName, lastName, username, email, password));
+      const data = await dispatch(signUp(firstName, lastName, username, profileImage, email, password));
       if (data) {
         console.log('errors from signup form: ', data)
         setErrors(data)
@@ -42,10 +42,12 @@ const SignUpForm = () => {
 
   const updateProfileImage = (e) => {
     setProfileImage(e.target.value)
+    console.log('profile image: ', profileImage)
   }
 
   const updateEmail = (e) => {
     setEmail(e.target.value);
+    console.log('email: ', email)
   };
 
   const updatePassword = (e) => {
@@ -55,6 +57,7 @@ const SignUpForm = () => {
   const updateRepeatPassword = (e) => {
     setRepeatPassword(e.target.value);
   };
+
 
   if (user) {
     return <Redirect to='/' />;
