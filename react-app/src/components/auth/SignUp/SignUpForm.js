@@ -24,7 +24,7 @@ const SignUpForm = ({ setShowModal }) => {
 
       const data = await dispatch(signUp(firstName, lastName, username, email, profileImageUrl, password));
       if (data) {
-        console.log('errors from signup form: ', data)
+        // console.log('errors from signup form: ', data)
         setErrors(data)
       }
     } else {
@@ -44,12 +44,14 @@ const SignUpForm = ({ setShowModal }) => {
     setUsername(e.target.value);
   };
 
+  const updateProfileImage = (e) => {
+    setProfileImage(e.target.value)
+    // console.log('profile image: ', profileImage)
+  }
+
   const updateEmail = (e) => {
     setEmail(e.target.value);
-  };
-
-  const updateProfileImageInput = (e) => {
-    setProfileImageInput(e.target.value);
+    // console.log('email: ', email)
   };
 
   const updatePassword = (e) => {
