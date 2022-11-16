@@ -96,8 +96,28 @@ const PostCard = ({ post }) => {
     notesCount = `${notes} notes`
   }
 
+  const NotesButton = () => {
+    if (notes > 0) {
+      return (
+        <button onClick={() => setShowBox(!showBox)}>
+          {notesCount}
+        </button>
+      )
+    } else {
+      return null
+    }
+  }
 
-  const closeNotesButton = `✖️ Close notes`
+  const CloseNotesButton = () => {
+    return (
+      <button onClick={() => setShowBox(!showBox)}>
+        x Close notes
+      </button>
+    )
+  }
+
+
+  // const closeNotesButton = `✖️ Close notes`
 
 
   console.log('notes for post ', post.id, ' : ,', notes)
@@ -158,9 +178,9 @@ const PostCard = ({ post }) => {
           </div>
           <div>
             <div className="postcard-notes-holder">
-              <button onClick={() => setShowBox(!showBox)}>
-                {showBox ? closeNotesButton : notesCount}
-              </button>
+
+              {showBox ? <CloseNotesButton/> : <NotesButton/>}
+
             </div>
             <div className="postcard-comments-likes-holder">
               <button onClick={() => setShowBox(!showBox)}>Reply</button>
@@ -208,9 +228,9 @@ const PostCard = ({ post }) => {
           </div>
           <div>
             <div className="postcard-notes-holder">
-              <button onClick={() => setShowBox(!showBox)}>
-                {showBox ? closeNotesButton : notesCount}
-              </button>
+
+                {showBox ? <CloseNotesButton/> : <NotesButton/>}
+
             </div>
             <div className="postcard-comments-likes-holder">
               <button onClick={() => setShowBox(!showBox)}>Reply</button>
@@ -258,9 +278,7 @@ const PostCard = ({ post }) => {
           </div>
           <div>
             <div className="postcard-notes-holder">
-              <button onClick={() => setShowBox(!showBox)}>
-                {showBox ? closeNotesButton : notesCount}
-              </button>
+            {showBox ? <CloseNotesButton/> : <NotesButton/>}
             </div>
             <div className="postcard-comments-likes-holder">
               <button onClick={() => setShowBox(!showBox)}>Reply</button>
@@ -314,9 +332,7 @@ const PostCard = ({ post }) => {
           </div>
           <div>
             <div className="postcard-notes-holder">
-              <button onClick={() => setShowBox(!showBox)}>
-                {showBox ? closeNotesButton : notesCount}
-              </button>
+            {showBox ? <CloseNotesButton/> : <NotesButton/>}
             </div>
             <div className="postcard-comments-likes-holder">
               <button onClick={() => setShowBox(!showBox)}>Reply</button>

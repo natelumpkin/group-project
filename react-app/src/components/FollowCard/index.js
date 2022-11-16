@@ -2,6 +2,7 @@ import { useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 
 import * as followActions from "../../store/follow"
+import './FollowCard.css'
 
 const FollowCard = ({user, followingList, currentUser}) => {
 
@@ -39,14 +40,14 @@ const FollowCard = ({user, followingList, currentUser}) => {
   // display username and profile pic
 
   return (
-    <div>
+    <div className="follow-card">
       <div>
         <img src={user.profileImageUrl}/>
       </div>
       <div>
         <p>{user.username}</p>
       </div>
-      <div>
+      <div className="follow-buttons-holder">
       {!following && (<button onClick={() => followUser(user)}>Follow</button>)}
       {following && (<button onClick={() => unfollowUser(user.id)}>Unfollow</button>)}
       </div>

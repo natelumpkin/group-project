@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import * as followActions from '../../store/follow'
 
 import FollowCard from "../FollowCard";
+import './Followers.css'
 
 const Followers = () => {
 
