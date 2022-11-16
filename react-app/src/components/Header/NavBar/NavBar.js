@@ -17,7 +17,7 @@ const NavBar = () => {
 
   const dispatch = useDispatch()
 
-  console.log('navbar follows variable: ', follows)
+  // console.log('navbar follows variable: ', follows)
 
   const [showMenu, setShowMenu] = useState(false);
 

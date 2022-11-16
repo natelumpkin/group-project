@@ -3,32 +3,93 @@
   max-width: 540px;
   height: 500px;
   background-color:#222222;
+  border-top: 1px solid gray;
 }
 
 .notescard_navigation_container {
-
   display: flex;
   flex-direction: row;
   height: 45px;
   margin: 0;
-
-  width: 100%;
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
   justify-content: space-evenly;
-  align-items:baseline;
+  align-items:center;
+  border-bottom: 1px solid gray;
+
+}
+
+.notescard_navigation_container button{
+  font-size: 18px;
+  width: max-content;
+  height: 45px;
+  min-width: 60px;
+  text-decoration: none !important;
+  color: unset;
+  border: none;
+  background: none;
+  margin: 0;
+  padding: 10px;
+  box-sizing: border-box;
 }
 
 /* Fancy coloring for the selectors */
-.notescard_nav_selected {
-  text-decoration: none !important;
-  padding: 0;
-  border: none;
-  background: none;
-  color: unset;
-  margin: 0;
-  color:rgb(0, 117, 220)
+.notescard_nav_bubble_selected {
+  color: #00b8ff;
+  border-bottom: 3px solid  #00b8ff;
 }
 
-.notescard_nav_not_selected {
+.notescard_nav_heart_selected {
+  color:#ff4930;
+  border-bottom: 3px solid #ff4930;
+}
+
+.notescard_commentinput_main_container {
+  display: flex;
+  flex-direction: row;
+  width: 540px;
+  height: 45px;
+  margin: 15px 20px 0px 20px;
+  align-items: center;
+}
+
+.notescard_commentinput_user_icon {
+  margin: 0px 10px 0px 0px;
+  width: 100%;
+  max-width: 32px;
+  height: 100%;
+  max-height: 32px;
+}
+
+.notescard_commentinput_container {
+  padding: 10px;
+  width: 450px;
+}
+
+.notescard_commentinput_form {
+  border: 1px solid white;
+  padding: 8px 0 10px;
+  border-radius: 10px;
+
+  font-size: 1rem;
+  line-height: 1.5;
+  max-height: 150px;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.notescard_commentinput_input_div {
+
+}
+.notescard_commentinput_bar {
+  border: none;
+  box-sizing: border-box;
+  text-decoration: unset;
+  background: none;
+  width: 384px;
+}
+.notescard_commentinput_submit_button{
   text-decoration: none !important;
   padding: 0;
   border: none;
@@ -44,53 +105,6 @@
   max-height: 409px;
   height: 100%;
   padding: 15px 20px;
-}
-
-.notescard_commentinput_main_container {
-  /* position: relative; */
-  /* top: 10%;
-  left: 100%; */
-  display: flex;
-  flex-direction: row;
-  width: 540px;
-  height: 45px;
-  margin: 0;
-
-}
-
-.notescard_commentinput_user_icon {
-  margin: 0px 10px 0px 0px;
-  width: 100%;
-  max-width: 32px;
-  height: 100%;
-  max-height: 32px;
-
-}
-
-.notescard_commentinput_container {
-  width: 450px;
-  border-top-left-radius: 100%;
-  border-bottom-left-radius: 100%;
-}
-
-.notescard_commentinput_form {
-
-}
-
-.notescard_commentinput_input_div {
-
-}
-.notescard_commentinput_bar {
-  width: 384px;
-}
-.notescard_commentinput_submit_button{
-  text-decoration: none !important;
-  padding: 0;
-  border: none;
-  background: none;
-  color: unset;
-  margin: 0;
-
 }
 
 .notescard_comment_main_container{
@@ -110,14 +124,17 @@
 .notescard_comment_user_image {
   width: 32px;
   border-radius: 5px;
+  object-fit: cover;
 }
 .notescard_like_user_image {
   width: 32px;
   border-radius: 5px;
+  object-fit: cover;
 }
 .notescard_commentinput_user_image {
   width: 32px;
   border-radius: 5px;
+  object-fit: cover;
 
 }
 
