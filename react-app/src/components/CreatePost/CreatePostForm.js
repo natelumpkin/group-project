@@ -14,16 +14,6 @@ const CreatePostForm = ({ setShowModal, typeSelection = false }) => {
     const [mediaCharCount, setMediaCharCount] = useState(0)
     const dispatch = useDispatch();
 
-    //--------------------------------------------------
-    // Current functionality:
-    // Text and quote types work as expected.
-    // If the form has media, the post will be created,
-    // but the API will return a 500 when attempting
-    // to add media.
-    //
-    // Also .catch blocks seem to not function properly:
-    // "Unhandled Rejection (TypeError): res.json is not a function"
-    //--------------------------------------------------
     const onSubmit = async (e) => {
         e.preventDefault();
         setErrors([]);
