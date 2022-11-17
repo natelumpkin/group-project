@@ -24,9 +24,9 @@ const NavBar = () => {
   const toggleMenu = () => setShowMenu(!showMenu);
 
   useEffect(() => {
-    dispatch(followActions.getAllFollowers());
-    dispatch(followActions.getAllFollowing());
-  }, [dispatch])
+    if (sessionUser) dispatch(followActions.getAllFollowers(sessionUser.id));
+    if (sessionUser) dispatch(followActions.getAllFollowing(sessionUser.id));
+  }, [dispatch, showMenu])
 
   useEffect(() => {
     if (!showMenu) return;
