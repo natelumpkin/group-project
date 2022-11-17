@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
-
+import { Redirect } from "react-router-dom";
 import * as followActions from '../../store/follow'
+import './Following.css'
 
 import FollowCard from "../FollowCard";
 
@@ -16,10 +17,16 @@ const Following = () => {
 
   const [loaded, setLoaded] = useState(false)
 
-  useEffect(async () => {
-    await dispatch(followActions.getAllFollowing(currentUser.id))
+  useEffect( () => {
+    async function fetchData() {
+      await dispatch(followActions.getAllFollowing(currentUser?.id))
+    }
+    fetchData();
     setLoaded(true);
-  }, [dispatch])
+  }, [dispatch, currentUser])
+
+  // Redirect users that are not logged in:
+  if (!currentUser) return <Redirect to="/" />;
 
   // This is a list of everyone the current use is following
   const followingList = Object.values(following)
@@ -27,16 +34,18 @@ const Following = () => {
   // console.log('followingList in Following component: ', followingList)
 
   return (
-    <div>
-      <div>
+    <div id='follow-list-container'>
+      <div id='follow-list-count'>
         {loaded && (
           <h4>{followingList.length} Following</h4>
         )}
       </div>
-      <div>
-        {followingList.map(user => (
-          <FollowCard key={user.id} user={user} followingList={followingList} currentUser={currentUser}/>
-        ))}
+      <div id='follow-list'>
+        <div id='follow'>
+          {followingList.map(user => (
+            <FollowCard key={user.id} user={user} followingList={followingList} currentUser={currentUser} />
+          ))}
+        </div>
       </div>
     </div>
   )

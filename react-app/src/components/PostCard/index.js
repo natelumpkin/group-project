@@ -4,40 +4,37 @@ import { useEffect, useState } from "react"
 import React from "react"
 import ReactPlayer from "react-player"
 
-import formatVideoLink from "../../utils/formatVideoLink"
+// import formatVideoLink from "../../utils/formatVideoLink"
 import NotesCard from "../NotesCard"
 import DeletePostModal from "../DeletePost/DeletePostModal"
 import EditPostModal from '../EditPost/EditPostModal'
 import './PostCard.css'
 import * as followActions from "../../store/follow"
-import * as postActions from "../../store/post"
+
 import * as likeActions from "../../store/like"
 import * as commentActions from "../../store/comment"
 
 const PostCard = ({ post }) => {
-
-  console.log('postCard component post: ', post)
-  console.log('post.User: ', post.User)
   const [showBox, setShowBox] = useState(false)
   const user = useSelector(state => state.session.user)
-  // const posts = useSelector(state => state.posts)
   const follows = useSelector(state => state.follows)
   const likes = useSelector(state => state.likes)
   const comments = useSelector(state => state.comments)
   const dispatch = useDispatch()
 
-  const defaultProfileImage = "https://img.freepik.com/premium-vector/handdrawn-vintage-hermit-crab-vector-illustration_147266-58.jpg?w=360"
+
 
   const [liked, setLiked] = useState(false)
   const [loaded, setLoaded] = useState(false)
 
-  useEffect(async () => {
-    await dispatch(likeActions.getPostLikes(post.id))
-    await dispatch(commentActions.grabAllComments(post.id))
+  useEffect(() => {
+    async function fetchData() {
+      await dispatch(likeActions.getPostLikes(post.id))
+      await dispatch(commentActions.grabAllComments(post.id))
+    }
+    fetchData();
     setLoaded(true)
-  }, [dispatch])
-
-  // console.log('liked boolean: ', liked)
+  }, [dispatch, post])
 
   const likedList = []
 
@@ -46,9 +43,7 @@ const PostCard = ({ post }) => {
       const likedPost = likedList.includes(user.id.toString())
       setLiked(likedPost)
     }
-  }, [likedList])
-
-  // console.log('liked boolean: ', liked)
+  }, [likedList, user])
 
   const followUser = (userId) => {
     dispatch(followActions.createNewFollow(userId))
@@ -65,15 +60,9 @@ const PostCard = ({ post }) => {
     // .then(setLiked(false))
   }
 
-
-  // console.log(likes.posts[post.id])
-  const emptyObject = {}
-  // console.log(Object.keys(emptyObject))
-  // console.log('comments: ', comments)
   let numComments
   let notes
   if (comments.posts[post.id]) {
-    // console.log('comments.posts[post.id]: ', comments.posts[post.id])
     numComments = Object.keys(comments.posts[post.id]).length
   }
 
@@ -81,10 +70,10 @@ const PostCard = ({ post }) => {
   for (let userId in likes.posts[post.id]) {
     likedList.push(userId)
   }
-  // const numComments = comments.length;
+
   const numLikes = likedList.length;
   if (numComments) {
-    console.log('numlikes: ', numLikes)
+
     notes = numLikes + numComments
   } else {
     notes = numLikes
@@ -116,20 +105,9 @@ const PostCard = ({ post }) => {
     )
   }
 
-
-  // const closeNotesButton = `✖️ Close notes`
-
-
-  console.log('notes for post ', post.id, ' : ,', notes)
-  // const notes = numComments + numLikes;
-  // console.log('post number ', post.id, ' notes: ', notes)
-  // const likedList = Object.keys(likes.posts[post.Id])
-  // console.log('likedList: ', likedList)
   const followingList = Object.keys(follows.following)
-  // console.log('following list: ', followingList)
-  const following = followingList.includes(post.User.id.toString())
-  // console.log('postId: ', post.id, 'current user following: ', following);
 
+  const following = followingList.includes(post.User.id.toString())
 
 
   // if postType is text,
@@ -146,7 +124,7 @@ const PostCard = ({ post }) => {
       <div className="postCard-outer-container">
         <div className="postCard-userImage-holder">
           <div className="postCard-userImage">
-            <img src={post.User.profileImageUrl || defaultProfileImage} />
+            <img alt='profile' src={post.User.profileImageUrl} />
             {/* Post Id: {post.id}
             Post type: {post.postType} */}
           </div>
@@ -159,7 +137,7 @@ const PostCard = ({ post }) => {
               )}
             </Link>
             {/* If following is false and there is session.user.id and post.User.id is not currentUser.id, then render the follow button */}
-            {user && !following && user.id && post.User.id != user.id && (
+            {user && !following && user.id && post.User.id !== user.id && (
               <button onClick={() => followUser(post.User)}>Follow</button>
             )}
           </div>
@@ -179,7 +157,7 @@ const PostCard = ({ post }) => {
           <div>
             <div className="postcard-notes-holder">
 
-              {showBox ? <CloseNotesButton/> : <NotesButton/>}
+              {showBox ? <CloseNotesButton /> : <NotesButton />}
 
             </div>
             <div className="postcard-comments-likes-holder">
@@ -188,7 +166,7 @@ const PostCard = ({ post }) => {
               {loaded && user && liked && (<button onClick={() => unlikePost(post.id)}>UnLike</button>)}
             </div>
           </div>
-          <div>{showBox ? <NotesCard postid={post.id} /> : null}</div>
+          <div>{showBox ? <NotesCard post={post} numlikes={numLikes} numcomments={numComments} /> : null}</div>
         </div>
       </div>
     )
@@ -197,7 +175,7 @@ const PostCard = ({ post }) => {
       <div className="postCard-outer-container">
         <div className="postCard-userImage-holder">
           <div className="postCard-userImage">
-            <img src={post.User.profileImageUrl || defaultProfileImage} />
+            <img alt='profile' src={post.User.profileImageUrl} />
             {/* Post Id: {post.id}
             Post type: {post.postType} */}
           </div>
@@ -209,7 +187,7 @@ const PostCard = ({ post }) => {
                 post.User.username
               )}
             </Link>
-            {user && !following && user.id && post.User.id != user.id && (
+            {user && !following && user.id && post.User.id !== user.id && (
               <button onClick={() => followUser(post.User)}>Follow</button>
             )}
           </div>
@@ -229,7 +207,7 @@ const PostCard = ({ post }) => {
           <div>
             <div className="postcard-notes-holder">
 
-                {showBox ? <CloseNotesButton/> : <NotesButton/>}
+              {showBox ? <CloseNotesButton /> : <NotesButton />}
 
             </div>
             <div className="postcard-comments-likes-holder">
@@ -238,7 +216,7 @@ const PostCard = ({ post }) => {
               {loaded && user && liked && (<button onClick={() => unlikePost(post.id)}>UnLike</button>)}
             </div>
           </div>
-          <div>{showBox ? <NotesCard postid={post.id} /> : null}</div>
+          <div>{showBox ? <NotesCard post={post} numlikes={numLikes} numcomments={numComments} /> : null}</div>
         </div>
       </div>
     )
@@ -247,7 +225,7 @@ const PostCard = ({ post }) => {
       <div className="postCard-outer-container">
         <div className="postCard-userImage-holder">
           <div className="postCard-userImage">
-            <img src={post.User.profileImageUrl || defaultProfileImage} />
+            <img alt='profile' src={post.User.profileImageUrl} />
             {/* Post Id: {post.id}
             Post type: {post.postType} */}
           </div>
@@ -259,12 +237,12 @@ const PostCard = ({ post }) => {
                 post.User.username
               )}
             </Link>
-            {user && !following && user.id && (post.User.id != user.id) && (
+            {user && !following && user.id && (post.User.id !== user.id) && (
               <button onClick={() => followUser(post.User)}>Follow</button>
             )}
           </div>
           <div className="postcard-photo-holder">
-            {post.Media[0] && (<img src={post.Media[0].mediaUrl} />)}
+            {post.Media[0] && (<img alt='profile' src={post.Media[0].mediaUrl} />)}
           </div>
           <div className="postcard-caption-holder">
             <p>{post.text}</p>
@@ -278,7 +256,7 @@ const PostCard = ({ post }) => {
           </div>
           <div>
             <div className="postcard-notes-holder">
-            {showBox ? <CloseNotesButton/> : <NotesButton/>}
+              {showBox ? <CloseNotesButton /> : <NotesButton />}
             </div>
             <div className="postcard-comments-likes-holder">
               <button onClick={() => setShowBox(!showBox)}>Reply</button>
@@ -286,23 +264,23 @@ const PostCard = ({ post }) => {
               {loaded && user && liked && (<button onClick={() => unlikePost(post.id)}>UnLike</button>)}
             </div>
           </div>
-          <div>{showBox ? <NotesCard postid={post.id} /> : null}</div>
+          <div>{showBox ? <NotesCard post={post} numlikes={numLikes} numcomments={numComments} /> : null}</div>
         </div>
       </div>
     )
   } else if (loaded && post.postType === 'video') {
 
-    let formattedLink;
-    if (post.Media[0]) {
-      const videoLink = post.Media[0].mediaUrl;
-      formattedLink = formatVideoLink(videoLink)
-    }
+    // let formattedLink;
+    // if (post.Media[0]) {
+    //   const videoLink = post.Media[0].mediaUrl;
+    //   formattedLink = formatVideoLink(videoLink)
+    // }
 
     return (
       <div className="postCard-outer-container">
         <div className="postCard-userImage-holder">
           <div className="postCard-userImage">
-            <img src={post.User.profileImageUrl || defaultProfileImage} />
+            <img alt='profile' src={post.User.profileImageUrl} />
             {/* Post Id: {post.id}
             Post type: {post.postType} */}
           </div>
@@ -312,7 +290,7 @@ const PostCard = ({ post }) => {
             <Link to={`/users/${post.User.id}`}>
               {post.User.username}
             </Link>
-            {!following && user.id && post.User.id != user.id && (
+            {!following && user.id && post.User.id !== user.id && (
               <button onClick={() => followUser(post.User)}>Follow</button>
             )}
           </div>
@@ -332,7 +310,7 @@ const PostCard = ({ post }) => {
           </div>
           <div>
             <div className="postcard-notes-holder">
-            {showBox ? <CloseNotesButton/> : <NotesButton/>}
+              {showBox ? <CloseNotesButton /> : <NotesButton />}
             </div>
             <div className="postcard-comments-likes-holder">
               <button onClick={() => setShowBox(!showBox)}>Reply</button>
@@ -340,7 +318,7 @@ const PostCard = ({ post }) => {
               {loaded && user && liked && (<button onClick={() => unlikePost(post.id)}>UnLike</button>)}
             </div>
           </div>
-          <div>{showBox ? <NotesCard postid={post.id} /> : null}</div>
+          <div>{showBox ? <NotesCard post={post} numlikes={numLikes} numcomments={numComments} /> : null}</div>
         </div>
       </div>
     )

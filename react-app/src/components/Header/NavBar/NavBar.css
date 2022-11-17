@@ -61,8 +61,16 @@
     height: 41px;
 }
 
+.dropdown-option.dropdown-followlink {
+    justify-content: space-between;
+}
+
 .dropdown-option i {
     margin-right: 10px;
+}
+
+.dropdown-option-child {
+    display: flex
 }
 
 #profile-dropdown-container {
@@ -72,4 +80,9 @@
 
 #auth-buttons {
     display: flex;
+}
+
+#follow-icon {
+    display: flex;
+    align-items: center;
 }

@@ -1,112 +1,256 @@
-h3,
-p,
-Link,
-a,
-button {
+.notescard_overall_container {
+  width: 100%;
+  max-width: 540px;
+  height: 500px;
+  background-color:#222222;
+  border-top: 1px solid gray;
+}
+
+.notescard_navigation_container {
+  display: flex;
+  flex-direction: row;
+  height: 45px;
+  margin: 0;
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+  justify-content: space-evenly;
+  align-items:center;
+  border-bottom: 1px solid gray;
+
+}
+
+.notescard_navigation_container button{
+  font-size: 18px;
+  width: max-content;
+  height: 45px;
+  min-width: 60px;
+  text-decoration: none !important;
+  color: unset;
+  border: none;
+  background: none;
+  margin: 0;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+/* Fancy coloring for the selectors */
+.notescard_nav_bubble_selected {
+  color: #00b8ff;
+  border-bottom: 3px solid  #00b8ff;
+}
+
+.notescard_nav_heart_selected {
+  color:#ff4930;
+  border-bottom: 3px solid #ff4930;
+}
+
+.notescard_commentinput_main_container {
+  display: flex;
+  flex-direction: row;
+  width: 540px;
+  height: 45px;
+  margin: 15px 20px 0px 20px;
+  align-items: center;
+}
+
+.notescard_commentinput_user_icon {
+  margin: 0px 10px 0px 0px;
+  width: 100%;
+  max-width: 32px;
+  height: 100%;
+  max-height: 32px;
+}
+
+.notescard_commentinput_container {
+  padding: 10px;
+  width: 450px;
+}
+
+.notescard_commentinput_form {
+  border: 1px solid white;
+  padding: 8px 0 10px;
+  border-radius: 10px;
+
+  font-size: 1rem;
+  line-height: 1.5;
+  max-height: 150px;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.notescard_commentinput_input_div {
+
+}
+.notescard_commentinput_bar {
+  border: none;
+  box-sizing: border-box;
+  text-decoration: unset;
+  background: none;
+  width: 384px;
+}
+.notescard_commentinput_submit_button{
   text-decoration: none !important;
   padding: 0;
   border: none;
   background: none;
   color: unset;
   margin: 0;
-  /* font-size: 20px; */
-}
-
-/* Shared Styling  */
-.post-card-box-content-container {
-}
-
-.post-card-content-user-icon {
-  margin: 0px 10px 0px 0px;
-  width: 100%;
-  max-width: 32px;
-  height: 100%;
-  max-height: 32px;
 
 }
 
-/* Index Styling */
-.notes_card_overall_container {
-  width: 100%;
-  max-width: 540px;
-  height: 500px;
-  background-color:rgba(255, 255, 255, 0.07);
-}
-
-.notes_card_navigation_container {
-
-  display: flex;
-  flex-direction: row;
-  height: 45px;
-  margin: 0;
-
-  width: 100%;
-  justify-content: space-evenly;
-  align-items: center;
-}
-
-/* Fancy coloring for the selectors */
-.post-comment-like-content-cards {
-  color:rgb(0, 117, 220)
-}
-
-.post-comment-like-content-cards-off {
-
-}
-/* End fancy coloring for selectors */
-
-.post-comment-current-content-container {
+.notescard_comment_like_container {
+  box-sizing: border-box;
   overflow: auto;
-  height: 394px;
+  max-height: 409px;
+  height: 100%;
   padding: 15px 20px;
 }
 
-/* Comment Input Styling */
-.post-comment-main-container {
-  /* position: relative; */
-  /* top: 10%;
-  left: 100%; */
+.notescard_comment_main_container{
   display: flex;
   flex-direction: row;
-  width: 540px;
+  width: 100%;
+  max-width: 500px;
+  margin-bottom: 15px;
+}
+
+.notescard_comment_user_icon {
+  margin-right: 10px;
+  max-width: 32px;
+  height: auto;
+  width: 32px;
+}
+.notescard_comment_user_image {
+  width: 32px;
+  border-radius: 5px;
+  object-fit: cover;
+}
+.notescard_like_user_image {
+  width: 32px;
+  border-radius: 5px;
+  object-fit: cover;
+}
+.notescard_commentinput_user_image {
+  width: 32px;
+  border-radius: 5px;
+  object-fit: cover;
+
+}
+
+.notescard_comment_content_container{
+  display: flex;
+  flex-direction: column;
+  border-color: rgba(255, 255, 255, 0.25);
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 10px;
+  width: fit-content;
+  margin-right: 15px;
+  padding: 8px 12px;
+  overflow-x: hidden;
+
+
+}
+
+.notescard_comment_username {
+  margin-bottom: 2px;
+  z-index: 1;
+}
+
+.notescard_comment_content {
+  margin-bottom: 12px;
+
+}
+
+.notescard_comment_options_container {
+  margin-left: auto;
+  display: inline-block;
+}
+.popup_options_menu {
+  position: absolute;
+  inset: 0px 0px auto auto;
+  transform: translate(-249px, 2829px);
+  width: 150px;
+  height: auto;
+}
+
+.notescard_comment_options_menu {
+  justify-self: right;
+
+}
+
+.notescard_likes_main_container {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  max-width: 500px;
+  margin-bottom: 15px;
+
+}
+
+.notescard_likes_user_icon {
+  margin-right: 10px;
+  max-width: 32px;
+  height: auto;
+  width: 32px;
+
+}
+
+.notescard_likes_content_container{
+  display: flex;
+  flex-direction: column;
+  border-color: rgba(255, 255, 255, 0.25);
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 10px;
+  width: fit-content;
+  margin-right: 15px;
+  padding: 8px 12px;
+  overflow-x: hidden;
+
+}
+
+.notescard_likes_username {
+  margin-bottom: 2px;
+  z-index: 1;
+
+}
+
+.notescard_likes_followbutton_container {
+
+  margin-left: auto;
+  display: inline-block;
+
+}
+
+.notescard_likes_followbutton_container button{
+  font-size: 18px;
+  width: max-content;
   height: 45px;
+  min-width: 60px;
+  /* text-decoration: none;
+  color: unset; */
+  border: none;
+  background: none;
   margin: 0;
-
-}
-
-.post-comment-input-container {
-  width: 450px;
-
-  border-top-left-radius: 100%;
-  border-bottom-left-radius: 100%;
-}
-
-.post-comment-form {
-
-}
-
-.post-comment-input-bar {
-
-  width: 384px;
-
+  padding: 10px;
+  box-sizing: border-box;
+  text-align: center;
 }
 
 
-/* Comment Card Styling */
-
-.post-comment-content-box {
-
+/* Fancy coloring for the selectors */
+.notescard_likes_followbutton_follow {
+  color: #00b8ff;
+  border-bottom: 3px solid  #00b8ff;
 }
 
-.post-comment-content-comment {
-
+.notescard_likes_followbutton_unfollow {
+  color:#ff4930;
+  border-bottom: 3px solid #ff4930;
 }
 
-/* Likes Comment Card Styling */
-.post-like-content-box {
-
-}
-
-.post-like-user-follow {
+.notescard_likes_followbutton {
 
 }

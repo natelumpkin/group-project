@@ -114,11 +114,11 @@ export const createPost = (postData) => async (dispatch) => {
   }
 }
 
-const demoPost = {
-  postType: "video",
-  title: "How to Use Flask With React",
-  text: "In 24 short weeks"
-}
+// const demoPost = {
+//   postType: "video",
+//   title: "How to Use Flask With React",
+//   text: "In 24 short weeks"
+// }
 
 export const updatePost = (postId, postBody) => async dispatch => {
   const response = await fetch(`/api/posts/${postId}`, {

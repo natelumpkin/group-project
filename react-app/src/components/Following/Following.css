@@ -1,0 +1,14 @@
+#follow-list {
+    width: 540px;
+    margin: auto;
+    border-radius: 3px;
+    overflow: hidden;
+}
+
+#follow-list-count {
+    margin: auto;
+    width: 540px;
+    height: 40px;
+    font-size: 18px;
+    color: white;
+}

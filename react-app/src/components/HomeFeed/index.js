@@ -1,4 +1,5 @@
 import { useEffect } from "react"
+import { Redirect } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux"
 import * as postActions from '../../store/post'
 import * as followActions from '../../store/follow'
@@ -19,8 +20,11 @@ const HomeFeed = () => {
 
   useEffect(() => {
     dispatch(postActions.getFeed())
-    dispatch(followActions.getAllFollowing(user.id))
-  }, [dispatch])
+    dispatch(followActions.getAllFollowing(user?.id))
+  }, [dispatch, user])
+
+  // Redirect users that are not logged in:
+  if (!user) return <Redirect to="/" />;
 
   const allPostsArray = []
   for (let post in allPosts) {

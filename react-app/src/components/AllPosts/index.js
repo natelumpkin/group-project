@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useEffect } from "react"
 import { useSelector, useDispatch } from "react-redux"
 import * as postActions from '../../store/post'
 import * as followActions from '../../store/follow'
@@ -10,10 +10,8 @@ const AllPosts = () => {
 
   // subscribe to posts reducer
   // have a spot card for each post in posts state
-  //
   const allPosts = useSelector(state => state.posts.allPosts)
   const user = useSelector(state => state.session.user)
-  const [isLoaded, setIsLoaded] = useState(false)
 
   const dispatch = useDispatch()
 
@@ -21,21 +19,21 @@ const AllPosts = () => {
     dispatch(postActions.getAllPosts())
 
     if (user && user.id) dispatch(followActions.getAllFollowing(user.id))
-  }, [dispatch, isLoaded])
+  }, [dispatch, user])
 
   const allPostsArray = []
   for (let post in allPosts) {
     allPostsArray.unshift(allPosts[post])
   }
 
-  console.log('allPosts in AllPosts component: ', allPostsArray)
-
   return (
     <div className="outer-container">
       <div className="inner-container">
-        <div>
-          <CreateFormBarModal />
-        </div>
+        {user && (
+          <div>
+            <CreateFormBarModal />
+          </div>
+        )}
         <div className="postsHolder">
           {allPostsArray.map(post => (
             <PostCard key={post.id} post={post} />
