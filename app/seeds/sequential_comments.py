@@ -1,4 +1,4 @@
-from app.models import db, Post, User, Comment, environment, SCHEMA
+from app.models import db, Comment, environment, SCHEMA
 
 
 def seed_comments():
