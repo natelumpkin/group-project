@@ -17,10 +17,13 @@ const Following = () => {
 
   const [loaded, setLoaded] = useState(false)
 
-  useEffect(async () => {
-    await dispatch(followActions.getAllFollowing(currentUser?.id))
+  useEffect( () => {
+    async function fetchData() {
+      await dispatch(followActions.getAllFollowing(currentUser?.id))
+    }
+    fetchData();
     setLoaded(true);
-  }, [dispatch])
+  }, [dispatch, currentUser])
 
   // Redirect users that are not logged in:
   if (!currentUser) return <Redirect to="/" />;
