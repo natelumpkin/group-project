@@ -6,7 +6,7 @@ import SignUpForm from './components/auth/SignUp/SignUpForm';
 import Header from './components/Header';
 // import ProtectedRoute from './components/auth/ProtectedRoute';
 // import UsersList from './components/Header/UsersList';
-import User from './components/Header/User';
+// import User from './components/Header/User';
 import { authenticate } from './store/session';
 
 import AllPosts from './components/AllPosts';
@@ -54,7 +54,6 @@ function App() {
           <HomeFeed />
         </Route>
         <Route path='/users/:userId'>
-          <User />
           <UserPosts />
         </Route>
         <Route path='/following'>
