@@ -48,6 +48,10 @@ def seed_users():
     )
 
     user_1.followers = [user_2, user_3, user_4, user_5]
+    user_2.followers = [user_1]
+    user_3.followers = [user_1]
+    user_4.followers = [user_1]
+    user_5.followers = [user_1]
 
     db.session.add(user_1)
     db.session.add(user_2)
