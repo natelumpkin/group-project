@@ -135,9 +135,9 @@ const SignUpForm = ({ setShowModal }) => {
             onChange={updateEmail}
             value={email}
             required
-            maxLength={255}
+            maxLength={100}
           ></input>
-          <div className='char-count'>{emailCharCount}/255</div>
+          <div className='char-count'>{emailCharCount}/100</div>
         </div>
         {errors.email && <div>
           <p>{errors.email}</p>
