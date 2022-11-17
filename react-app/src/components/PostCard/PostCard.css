@@ -14,6 +14,19 @@
     color: white;
 }
 
+.post-padding {
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.top-padding {
+    padding-top: 20px;
+}
+
+.postcard-text-holder {
+    white-space: pre-wrap;
+}
+
 .postcard-photo-holder>img {
     width: 100%;
 }
@@ -31,15 +44,22 @@
     height: 20px;
 }
 
-.postcard-bottom-container {
-    display: flex;
-    justify-content: space-between;
-}
 
 .postcard-edit-delete-holder {
     display: flex;
     justify-content: flex-end;
+    padding-bottom: 15px;
+}
 
+.postcard-bottom-container {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+.interface-text {
+    font-size: 22px;
 }
 
 #edit-post-button {
@@ -50,6 +70,12 @@
     color: #b2b2b2;
     border: none;
     background-color: #222222;
+}
+
+.post-interface-border {
+    border: 1px solid #303030;
+    margin-right: 20px;
+    margin-left: 20px;
 }
 
 .postcard-like {
@@ -78,6 +104,7 @@
     color: #b2b2b2;
     background-color: #222222;
     border: none;
+    font-size: 18px;
 }
 
 .close-notes-button {
@@ -85,4 +112,12 @@
     background-color: #434343;
     border: none;
     border-radius: 2em;
+    font-size: 18px;
+    /* padding: 3px; */
+    padding-top: 0;
+    width: 127px;
+    height: 30px;
+    /* display: flex;
+    align-items: center;
+    justify-content: center; */
 }

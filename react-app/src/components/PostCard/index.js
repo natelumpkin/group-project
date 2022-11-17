@@ -105,6 +105,8 @@ const PostCard = ({ post }) => {
     )
   }
 
+
+
   const followingList = Object.keys(follows.following)
 
   const following = followingList.includes(post.User.id.toString())
@@ -129,8 +131,8 @@ const PostCard = ({ post }) => {
             Post type: {post.postType} */}
           </div>
         </div>
-        <div className="postCard-content-holder">
-          <div className="postCard-author-username-holder">
+        <div className="postCard-content-holder top-padding">
+          <div className="postCard-author-username-holder post-padding">
             <Link to={`/users/${post.User.id}`}>
               {post.User && (
                 post.User.username
@@ -141,28 +143,29 @@ const PostCard = ({ post }) => {
               <button onClick={() => followUser(post.User)}>Follow</button>
             )}
           </div>
-          <div className="postcard-title-holder">
+          <div className="postcard-title-holder post-padding">
             <h2>{post.title}</h2>
           </div>
-          <div className="postcard-text-holder">
+          <div className="postcard-text-holder post-padding">
             <p>{post.text}</p>
           </div>
-          <div className="postcard-edit-delete-holder">
+          <div className="postcard-edit-delete-holder post-padding">
             {user && user.id === post.User.id && (<>
               <DeletePostModal post={post} />
               <EditPostModal post={post} />
             </>
             )}
           </div>
-          <div className="postcard-bottom-container">
+          <div className="post-interface-border post-padding"></div>
+          <div className="postcard-bottom-container post-padding">
             <div className="postcard-notes-holder">
               {showBox ? <CloseNotesButton /> : <NotesButton />}
 
             </div>
             <div className="postcard-comments-likes-holder">
-              <button className="postcard-comment-button" onClick={() => setShowBox(!showBox)}><i className="fa-regular fa-comment"></i></button>
-              {loaded && user && !liked && (<button className="postcard-like" onClick={() => likePost(post.id)}><i className="fa-regular fa-heart"></i></button>)}
-              {loaded && user && liked && (<button className="postcard-unlike" onClick={() => unlikePost(post.id)}><i className="fa-solid fa-heart"></i></button>)}
+              <button className="postcard-comment-button" onClick={() => setShowBox(!showBox)}><i className="fa-regular fa-comment interface-text"></i></button>
+              {loaded && user && !liked && (<button className="postcard-like" onClick={() => likePost(post.id)}><i className="fa-regular fa-heart interface-text"></i></button>)}
+              {loaded && user && liked && (<button className="postcard-unlike" onClick={() => unlikePost(post.id)}><i className="fa-solid fa-heart interface-text"></i></button>)}
             </div>
           </div>
           <div>{showBox ? <NotesCard post={post} numlikes={numLikes} numcomments={numComments} /> : null}</div>
@@ -179,8 +182,8 @@ const PostCard = ({ post }) => {
             Post type: {post.postType} */}
           </div>
         </div>
-        <div className="postCard-content-holder">
-          <div className="postCard-author-username-holder">
+        <div className="postCard-content-holder top-padding">
+          <div className="postCard-author-username-holder post-padding">
             <Link to={`/users/${post.User.id}`}>
               {post.User && (
                 post.User.username
@@ -190,29 +193,30 @@ const PostCard = ({ post }) => {
               <button onClick={() => followUser(post.User)}>Follow</button>
             )}
           </div>
-          <div className="postcard-quote-holder">
+          <div className="postcard-quote-holder post-padding">
             <h2>{post.text}</h2>
           </div>
-          <div className="postcard-source-holder">
+          <div className="postcard-source-holder post-padding">
             <p>{post.title}</p>
           </div>
-          <div className="postcard-edit-delete-holder">
+          <div className="postcard-edit-delete-holder post-padding">
             {user && user.id === post.User.id && (<>
               <DeletePostModal post={post} />
               <EditPostModal post={post} />
             </>
             )}
           </div>
-          <div className="postcard-bottom-container">
+          <div className="post-interface-border post-padding"></div>
+          <div className="postcard-bottom-container post-padding">
             <div className="postcard-notes-holder">
 
               {showBox ? <CloseNotesButton /> : <NotesButton />}
 
             </div>
             <div className="postcard-comments-likes-holder">
-              <button className="postcard-comment-button" onClick={() => setShowBox(!showBox)}><i className="fa-regular fa-comment"></i></button>
-              {loaded && user && !liked && (<button className="postcard-like" onClick={() => likePost(post.id)}><i className="fa-regular fa-heart"></i></button>)}
-              {loaded && user && liked && (<button className="postcard-unlike" onClick={() => unlikePost(post.id)}><i className="fa-solid fa-heart"></i></button>)}
+              <button className="postcard-comment-button" onClick={() => setShowBox(!showBox)}><i className="fa-regular fa-comment interface-text"></i></button>
+              {loaded && user && !liked && (<button className="postcard-like" onClick={() => likePost(post.id)}><i className="fa-regular fa-heart interface-text"></i></button>)}
+              {loaded && user && liked && (<button className="postcard-unlike" onClick={() => unlikePost(post.id)}><i className="fa-solid fa-heart interface-text"></i></button>)}
             </div>
           </div>
           <div>{showBox ? <NotesCard post={post} numlikes={numLikes} numcomments={numComments} /> : null}</div>
@@ -259,8 +263,8 @@ const PostCard = ({ post }) => {
             </div>
             <div className="postcard-comments-likes-holder">
               <button className="postcard-comment-button" onClick={() => setShowBox(!showBox)}><i className="fa-regular fa-comment"></i></button>
-              {loaded && user && !liked && (<button onClick={() => likePost(post.id)}><i className="fa-regular fa-heart"></i></button>)}
-              {loaded && user && liked && (<button onClick={() => unlikePost(post.id)}><i className="fa-solid fa-heart"></i></button>)}
+              {loaded && user && !liked && (<button className="postcard-like" onClick={() => likePost(post.id)}><i className="fa-regular fa-heart"></i></button>)}
+              {loaded && user && liked && (<button className="postcard-unlike" onClick={() => unlikePost(post.id)}><i className="fa-solid fa-heart"></i></button>)}
             </div>
           </div>
           <div>{showBox ? <NotesCard post={post} numlikes={numLikes} numcomments={numComments} /> : null}</div>
@@ -295,7 +299,7 @@ const PostCard = ({ post }) => {
           </div>
           <div className="postcard-video-holder">
             {post.Media[0] && (
-              <ReactPlayer url={post.Media[0].mediaUrl} controls={true}></ReactPlayer>)}
+              <ReactPlayer width={540} height={280} className='react-player' url={post.Media[0].mediaUrl} controls={true}></ReactPlayer>)}
           </div>
           <div className="postcard-caption-holder">
             <p>{post.text}</p>
@@ -307,14 +311,14 @@ const PostCard = ({ post }) => {
             </>
             )}
           </div>
-          <div>
+          <div className="postcard-bottom-container">
             <div className="postcard-notes-holder">
               {showBox ? <CloseNotesButton /> : <NotesButton />}
             </div>
             <div className="postcard-comments-likes-holder">
-              <button onClick={() => setShowBox(!showBox)}>Reply</button>
-              {loaded && user && !liked && (<button onClick={() => likePost(post.id)}>Like</button>)}
-              {loaded && user && liked && (<button onClick={() => unlikePost(post.id)}>UnLike</button>)}
+              <button className="postcard-comment-button" onClick={() => setShowBox(!showBox)}><i className="fa-regular fa-comment"></i></button>
+              {loaded && user && !liked && (<button className="postcard-like" onClick={() => likePost(post.id)}><i className="fa-regular fa-heart"></i></button>)}
+              {loaded && user && liked && (<button className="postcard-unlike" onClick={() => unlikePost(post.id)}><i className="fa-solid fa-heart"></i></button>)}
             </div>
           </div>
           <div>{showBox ? <NotesCard post={post} numlikes={numLikes} numcomments={numComments} /> : null}</div>

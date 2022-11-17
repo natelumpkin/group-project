@@ -11,7 +11,7 @@ export default function DeletePostModal({post}) {
 
   return (
       <>
-          <button className='delete-post-button edit-delete-post' onClick={() => setShowModal(true)}><i className="fa-solid fa-trash-can"></i></button>
+          <button className='delete-post-button edit-delete-post interface-text' onClick={() => setShowModal(true)}><i className="fa-solid fa-trash-can"></i></button>
           {showModal && (
               <Modal id='create-post-modal' onClose={() => setShowModal(false)} >
                   <DeletePost setShowModal={setShowModal} post={post}/>
