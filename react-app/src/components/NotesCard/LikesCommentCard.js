@@ -61,8 +61,8 @@ const LikesCommentCard = ({ like, post }) => {
         <div className="notescard_likes_followbutton_container">
           {displayFollow ? <span className="notescard_likes_followbutton">
 
-          {!following && (<button onClick={() => followUser(like)}>Follow</button>)}
-          {following && (<button onClick={() => unfollowUser(like.id)}>Unfollow</button>)}
+          {!following ? <button onClick={() => followUser(like)} className="notescard_likes_followbutton_follow">Follow</button> :
+          <button onClick={() => unfollowUser(like.id)} className="notescard_likes_followbutton_unfollow">Unfollow</button>}
           </span>: null}
         </div>
     </div>

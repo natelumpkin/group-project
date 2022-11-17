@@ -224,6 +224,32 @@
 
 }
 
+.notescard_likes_followbutton_container button{
+  font-size: 18px;
+  width: max-content;
+  height: 45px;
+  min-width: 60px;
+  /* text-decoration: none;
+  color: unset; */
+  border: none;
+  background: none;
+  margin: 0;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+
+/* Fancy coloring for the selectors */
+.notescard_likes_followbutton_follow {
+  color: #00b8ff;
+  border-bottom: 3px solid  #00b8ff;
+}
+
+.notescard_likes_followbutton_unfollow {
+  color:#ff4930;
+  border-bottom: 3px solid #ff4930;
+}
+
 .notescard_likes_followbutton {
 
 }
