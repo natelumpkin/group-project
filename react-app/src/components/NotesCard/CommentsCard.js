@@ -56,7 +56,7 @@ const CommentsCard = ({ comment }) => {
               </div>
               <div>
                 <button onClick={() => setShowDeleteModal(true)}>
-                  <i class="fa-solid fa-trash-can"></i>
+                  <i className="fa-solid fa-trash-can"></i>
                 </button>
               </div>
             </div>

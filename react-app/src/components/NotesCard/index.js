@@ -55,10 +55,10 @@ const NotesCard = ({ post, numlikes, numcomments }) => {
     <div className="notescard_overall_container">
       <div className="notescard_navigation_container">
         <div className={current ? "notescard_nav_bubble_selected" : ""}>
-          <button onClick={() => setCurrent(true)}><i class="fa-regular fa-comment"></i> {numcomments ? numcomments : "0"}</button>
+          <button onClick={() => setCurrent(true)}><i className="fa-regular fa-comment"></i> {numcomments ? numcomments : "0"}</button>
         </div>
         <div className={!current ? "notescard_nav_heart_selected" : ""}>
-          <button onClick={() => setCurrent(false)}><i class="fa-regular fa-heart"></i> {numlikes ? numlikes : "0"}</button>
+          <button onClick={() => setCurrent(false)}><i className="fa-regular fa-heart"></i> {numlikes ? numlikes : "0"}</button>
         </div>
 
       </div>
