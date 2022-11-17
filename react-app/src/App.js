@@ -4,9 +4,9 @@ import { useDispatch } from 'react-redux';
 import LoginForm from './components/auth/Login/LoginForm';
 import SignUpForm from './components/auth/SignUp/SignUpForm';
 import Header from './components/Header';
-import ProtectedRoute from './components/auth/ProtectedRoute';
-import UsersList from './components/Header/UsersList';
-import User from './components/Header/User';
+// import ProtectedRoute from './components/auth/ProtectedRoute';
+// import UsersList from './components/Header/UsersList';
+// import User from './components/Header/User';
 import { authenticate } from './store/session';
 
 import AllPosts from './components/AllPosts';
@@ -41,9 +41,9 @@ function App() {
         <Route path='/sign-up' exact={true}>
           <SignUpForm />
         </Route>
-        <ProtectedRoute path='/users' exact={true} >
+        {/* <ProtectedRoute path='/users' exact={true} >
           <UsersList />
-        </ProtectedRoute>
+        </ProtectedRoute> */}
         {/* <ProtectedRoute path='/users/:userId' exact={true} >
           <User />
         </ProtectedRoute> */}
@@ -51,10 +51,9 @@ function App() {
           <AllPosts />
         </Route>
         <Route path='/feed'>
-          <HomeFeed/>
+          <HomeFeed />
         </Route>
         <Route path='/users/:userId'>
-          <User />
           <UserPosts />
         </Route>
         <Route path='/following'>
