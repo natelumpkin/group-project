@@ -19,7 +19,6 @@ const CreatePostForm = ({ setShowModal, typeSelection = false }) => {
     const dispatch = useDispatch();
 
 
-
     useEffect(() => {
         if (title.length > 0 || text.length > 0) {
             setDisablePostText(false)
@@ -43,27 +42,13 @@ const CreatePostForm = ({ setShowModal, typeSelection = false }) => {
             text
         }
 
-
-        // console.log("*******POST DATA SUBMITTED: ", postData)
-        // console.log("*******POST MEDIA SUBMITTED: ", mediaUrl)
-
-        /* Removed because probably redundant: */
-        // if (postData.title.length > 100) {
-        //     errors.append("Title must be 100 characters or less");
-        // }
-        // if (postData.text.length > 1000) {
-        //     errors.append("Text must be 1000 characters or less");
-        // }
-        // if (mediaUrl.length > 255) {
-        //     errors.append("Media URL must be 255 characters or less");
-        // }
-        // if (errors.length) {
-        // }
-
         const post = await dispatch(createPost(postData))
             .catch(async (response) => {
                 const data = await response.json();
-                if (data && data.errors) setErrors(Object.values(data.errors));
+                if (data && data.errors) {
+                    setErrors(Object.values(data.errors));
+                    console.log(errors);
+                }
             });
         if (post && !mediaUrl) {
             setShowModal(false)
@@ -72,7 +57,10 @@ const CreatePostForm = ({ setShowModal, typeSelection = false }) => {
             const postMedia = await dispatch(addMediaByPostId(post.id, mediaUrl))
                 .catch(async (response) => {
                     const data = await response.json();
-                    if (data && data.errors) setErrors(Object.values(data.errors));
+                    if (data && data.errors) {
+                        setErrors(Object.values(data.errors));
+                        console.log(errors);
+                    }
                 });
             if (postMedia) {
                 setShowModal(false)
@@ -111,7 +99,7 @@ const CreatePostForm = ({ setShowModal, typeSelection = false }) => {
                 <form className='create-post-form' onSubmit={onSubmit}>
                     <div>
                         <div id='text-profile-image-container'>
-                            <img id='author-profile-image' src={author.profileImageUrl} />
+                            <img id='author-profile-image' alt='author profile' src={author.profileImageUrl} />
                         </div>
                         <div className='post-form-username'>{author.username}</div>
                     </div>
@@ -162,7 +150,7 @@ const CreatePostForm = ({ setShowModal, typeSelection = false }) => {
                 <form className='create-post-form' onSubmit={onSubmit}>
                     <div>
                         <div id='text-profile-image-container'>
-                            <img id='author-profile-image' src={author.profileImageUrl} />
+                            <img id='author-profile-image' alt='author profile' src={author.profileImageUrl} />
                         </div>
                         <div className='post-form-username'>{author.username}</div>
                     </div>
@@ -210,7 +198,7 @@ const CreatePostForm = ({ setShowModal, typeSelection = false }) => {
                 <form className='create-post-form' onSubmit={onSubmit}>
                     <div>
                         <div id='text-profile-image-container'>
-                            <img id='author-profile-image' src={author.profileImageUrl} />
+                            <img id='author-profile-image' alt='author profile' src={author.profileImageUrl} />
                         </div>
                         <div className='post-form-username'>{author.username}</div>
                     </div>
@@ -253,56 +241,54 @@ const CreatePostForm = ({ setShowModal, typeSelection = false }) => {
                 </form>
             )}
 
-            {/* // ---------- POST FORM FOR VIDEO ---------- \\ */}
-            {
-                postType === 'video' && (
-                    <form className='create-post-form' onSubmit={onSubmit}>
-                        <div>
-                            <div id='text-profile-image-container'>
-                                <img id='author-profile-image' src={author.profileImageUrl} />
-                            </div>
-                            <div className='post-form-username'>{author.username}</div>
-                        </div>
-                        <div className='media-url-container'>
-                            <input
-                                name='video'
-                                type='url'
-                                placeholder='Type or paste video link'
-                                value={mediaUrl}
-                                onChange={(e) => {
-                                    setMediaUrl(e.target.value)
-                                    setMediaCharCount(e.target.value.length)
-                                }}
-                                maxLength={255}
-                                onFocus={(e) => setMediaCharCount(e.target.value.length)}
-                                required
-                            />
-                            <div>{mediaCharCount}/255</div>
-                        </div>
-                        <div className='media-text-container'>
-                            <textarea
-                                name='text'
-                                type='text'
-                                placeholder='Go ahead, put anything.'
-                                value={text}
-                                onChange={(e) => {
-                                    setText(e.target.value)
-                                    setTextCharCount(e.target.value.length)
-                                }}
-                                maxLength={1000}
-                                onFocus={(e) => setTextCharCount(e.target.value.length)}
 
-                            />
-                            <div>{textCharCount}/1000</div>
+            {/* // ---------- POST FORM FOR VIDEO ---------- \\ */}
+            {postType === 'video' && (
+                <form className='create-post-form' onSubmit={onSubmit}>
+                    <div>
+                        <div id='text-profile-image-container'>
+                            <img id='author-profile-image' alt='author profile' src={author.profileImageUrl} />
                         </div>
-                        <div className='form-footer'>
-                            <button className='cancel-button' onClick={() => setShowModal(false)}>Close</button>
-                            <button className='submit-button' type="submit" disabled={disablePostMedia}>Post Now</button>
-                        </div>
-                    </form>
-                )
-            }
-        </div >
+                        <div className='post-form-username'>{author.username}</div>
+                    </div>
+                    <div className='media-url-container'>
+                        <input
+                            name='video'
+                            type='url'
+                            placeholder='Type or paste video link'
+                            value={mediaUrl}
+                            onChange={(e) => {
+                                setMediaUrl(e.target.value)
+                                setMediaCharCount(e.target.value.length)
+                            }}
+                            maxLength={255}
+                            onFocus={(e) => setMediaCharCount(e.target.value.length)}
+                            required
+                        />
+                        <div>{mediaCharCount}/255</div>
+                    </div>
+                    <div className='media-text-container'>
+                        <textarea
+                            name='text'
+                            type='text'
+                            placeholder='Go ahead, put anything.'
+                            value={text}
+                            onChange={(e) => {
+                                setText(e.target.value)
+                                setTextCharCount(e.target.value.length)
+                            }}
+                            maxLength={1000}
+                            onFocus={(e) => setTextCharCount(e.target.value.length)}
+                        />
+                        <div>{textCharCount}/1000</div>
+                    </div>
+                    <div className='form-footer'>
+                        <button className='cancel-button' onClick={() => setShowModal(false)}>Close</button>
+                        <button className='submit-button' type="submit" disabled={disablePostMedia}>Post Now</button>
+                    </div>
+                </form>
+            )}
+        </div>
     );
 };
 
