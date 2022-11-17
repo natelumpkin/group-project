@@ -120,7 +120,6 @@ const PostCard = ({ post }) => {
   // only render image and text
   // if postType is video,
   // only render video and text
-
   if (loaded && post.postType === 'text') {
     return (
       <div className="postCard-outer-container">
