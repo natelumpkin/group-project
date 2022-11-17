@@ -186,7 +186,7 @@ const SignUpForm = ({ setShowModal }) => {
         </div>
       </div>
       <div className='auth-footer'>
-        <button className='auth-cancel-button' onClick={() => setShowModal(false)}>Close</button>
+        <button className='auth-cancel-button' type='button' onClick={() => setShowModal(false)}>Close</button>
         <button className='signup-button' type="submit">Sign Up</button>
       </div>
       {errors.length > 0 && (

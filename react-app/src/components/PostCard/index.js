@@ -287,7 +287,7 @@ const PostCard = ({ post }) => {
             <Link to={`/users/${post.User.id}`}>
               {post.User.username}
             </Link>
-            {!following && user.id && post.User.id !== user.id && (
+            {user && !following && user.id && post.User.id !== user.id && (
               <button className="postcard-follow-button" onClick={() => followUser(post.User)}>Follow</button>
             )}
           </div>
