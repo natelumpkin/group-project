@@ -62,10 +62,12 @@ const NotesCard = ({ post, numlikes, numcomments }) => {
         </div>
 
       </div>
-      {current ? <CommentInput postid={post.id} /> : null}
-      <div className="notescard_comment_like_container">
-        {current ? displayComments : displayLikes}
-      </div>
+        <div className="test">
+          {current ? <CommentInput postid={post.id} /> : null}
+          <div className="notescard_comment_like_container">
+            {current ? displayComments : displayLikes}
+          </div>
+        </div>
 
     </div>
   )
