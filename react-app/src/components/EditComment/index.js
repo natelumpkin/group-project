@@ -1,5 +1,5 @@
 
-import { useDispatch, useSelector } from "react-redux"
+import { useDispatch } from "react-redux"
 import { useState } from "react"
 
 import * as commentActions from '../../store/comment'
@@ -7,7 +7,6 @@ import * as commentActions from '../../store/comment'
 const EditComment = ({comment, setShowEditModal}) => {
 
   const dispatch = useDispatch()
-  const sessionUser = useSelector(state => state.session.user);
   const [editedComment, setEditedComment] = useState(comment.comment);
 
   const handleSubmit = async (e) => {

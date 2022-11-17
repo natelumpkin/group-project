@@ -24,9 +24,9 @@ const NavBar = () => {
   const toggleMenu = () => setShowMenu(!showMenu);
 
   useEffect(() => {
-    dispatch(followActions.getAllFollowers(sessionUser.id));
-    dispatch(followActions.getAllFollowing(sessionUser.id));
-  }, [dispatch])
+    dispatch(followActions.getAllFollowers(sessionUser?.id));
+    dispatch(followActions.getAllFollowing(sessionUser?.id));
+  }, [dispatch, sessionUser])
 
   useEffect(() => {
     if (!showMenu) return;
@@ -55,13 +55,13 @@ const NavBar = () => {
         }
         {sessionUser && (
           <div id='session-buttons'>
-            <NavLink to='/feed' exact={true} activeClassName='active'>
+            <NavLink to='/feed' exact={true}>
               <i className="fa-solid fa-house" />
             </NavLink>
-            <NavLink to='/' exact={true} activeClassName='active'>
+            <NavLink to='/' exact={true}>
               <i className="fa-regular fa-compass" />
             </NavLink>
-            <div onClick={toggleMenu} activeClassName='active' id='profile-button'>
+            <div onClick={toggleMenu} id='profile-button'>
               <i className="fa-solid fa-user" />
             </div>
             {showMenu && (
@@ -72,11 +72,11 @@ const NavBar = () => {
                     <LogoutButton />
                   </div>
                   <div>
-                    <NavLink to={`/users/${sessionUser.id}`} exact={true} activeClassName='active' className='dropdown-option'>
+                    <NavLink to={`/users/${sessionUser.id}`} exact={true} className='dropdown-option'>
                       <i className="fa-solid fa-user-large" />
                       <p>Your posts</p>
                     </NavLink>
-                    <NavLink to='/following' exact={true} activeClassName='active' className='dropdown-option dropdown-followlink'>
+                    <NavLink to='/following' exact={true} className='dropdown-option dropdown-followlink'>
                       <div className='dropdown-option-child'>
                         <div id='follow-icon'>
                           <i className="fa-solid fa-user-plus" />
@@ -87,7 +87,7 @@ const NavBar = () => {
                         <p>{numFollowing}</p>
                       </div>
                     </NavLink>
-                    <NavLink to='/followers' exact={true} activeClassName='active' className='dropdown-option dropdown-followlink'>
+                    <NavLink to='/followers' exact={true} className='dropdown-option dropdown-followlink'>
                       <div className='dropdown-option-child'>
                         <div id='follow-icon'>
                           <i className="fa-solid fa-users"></i>

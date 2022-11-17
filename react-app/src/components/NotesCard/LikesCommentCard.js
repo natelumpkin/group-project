@@ -50,7 +50,7 @@ const LikesCommentCard = ({ like, post }) => {
     <div className="notescard_likes_main_container">
       <Link to={`/users/${like.id}`}>
         <div className="notescard_likes_user_icon">
-          <img src={ userIMG } className="notescard_like_user_image" />
+          <img src={ userIMG } alt='user' className="notescard_like_user_image" />
         </div>
       </Link>
       <div className="notescard_likes_content_container">

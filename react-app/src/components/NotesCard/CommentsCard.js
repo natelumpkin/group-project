@@ -38,7 +38,7 @@ const CommentsCard = ({ comment }) => {
     <div className="notescard_comment_main_container">
       <Link to={`/users/${comment.User.id}`}>
         <div className="notescard_comment_user_icon">
-          <img src={ userIMG } className="notescard_comment_user_image" />
+          <img src={ userIMG } alt='user' className="notescard_comment_user_image" />
         </div>
       </Link>
       <div className="notescard_comment_content_container">

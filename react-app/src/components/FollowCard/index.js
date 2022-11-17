@@ -1,10 +1,10 @@
 import { useState } from "react"
-import { useDispatch, useSelector } from "react-redux"
+import { useDispatch } from "react-redux"
 
 import * as followActions from "../../store/follow"
 import './FollowCard.css'
 
-const FollowCard = ({ user, followingList, currentUser }) => {
+const FollowCard = ({ user, followingList }) => {
 
   const dispatch = useDispatch()
 
@@ -43,7 +43,7 @@ const FollowCard = ({ user, followingList, currentUser }) => {
     <div className="follow-card">
       <div className='follow-card-left-container'>
         <div className="follow-profile-image">
-          <img src={user.profileImageUrl} />
+          <img src={user.profileImageUrl} alt='follow profile' />
         </div>
         <div className="follow-username">
           <p>{user.username}</p>

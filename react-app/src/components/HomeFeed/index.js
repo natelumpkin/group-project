@@ -21,7 +21,7 @@ const HomeFeed = () => {
   useEffect(() => {
     dispatch(postActions.getFeed())
     dispatch(followActions.getAllFollowing(user?.id))
-  }, [dispatch])
+  }, [dispatch, user])
 
   // Redirect users that are not logged in:
   if (!user) return <Redirect to="/" />;

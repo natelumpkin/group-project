@@ -8,15 +8,10 @@ const CreatePostForm = ({ setShowModal, post }) => {
     const [errors, setErrors] = useState([]);
     const [title, setTitle] = useState(post.title);
     const [text, setText] = useState(post.text)
-    // const [mediaUrl, setMediaUrl] = useState('');
     const [titleCharCount, setTitleCharCount] = useState(post.title.length);
     const [textCharCount, setTextCharCount] = useState(post.text.length);
-    // const [mediaCharCount, setMediaCharCount] = useState(0)
     const dispatch = useDispatch();
-
     const postType = post.postType
-
-
 
 
     const onSubmit = async (e) => {
@@ -31,9 +26,11 @@ const CreatePostForm = ({ setShowModal, post }) => {
         const editedPost = await dispatch(updatePost(post.id, postData))
             .catch(async (response) => {
                 const data = await response.json();
-                if (data && data.errors) setErrors(Object.values(data.errors));
+                if (data && data.errors) {
+                    setErrors(Object.values(data.errors));
+                    console.log(errors);
+                }
             });
-
         if (editedPost) setShowModal(false)
     };
 
@@ -44,7 +41,7 @@ const CreatePostForm = ({ setShowModal, post }) => {
                 <form className='create-post-form' onSubmit={onSubmit}>
                     <div>
                         <div id='text-profile-image-container'>
-                            <img id='author-profile-image' src={author.profileImageUrl} />
+                            <img id='author-profile-image' alt='author profile' src={author.profileImageUrl} />
                         </div>
                         <div id='text-username'>{author.username}</div>
                     </div>
@@ -94,7 +91,7 @@ const CreatePostForm = ({ setShowModal, post }) => {
                 <form className='create-post-form' onSubmit={onSubmit}>
                     <div>
                         <div id='text-profile-image-container'>
-                            <img id='author-profile-image' src={author.profileImageUrl} />
+                            <img id='author-profile-image' alt='author profile' src={author.profileImageUrl} />
                         </div>
                         <div className='post-form-username'>{author.username}</div>
                     </div>
@@ -126,7 +123,7 @@ const CreatePostForm = ({ setShowModal, post }) => {
                 <form className='create-post-form' onSubmit={onSubmit}>
                     <div>
                         <div id='text-profile-image-container'>
-                            <img id='author-profile-image' src={author.profileImageUrl} />
+                            <img id='author-profile-image' alt='author profile' src={author.profileImageUrl} />
                         </div>
                         <div className='post-form-username'>{author.username}</div>
                     </div>
@@ -175,7 +172,7 @@ const CreatePostForm = ({ setShowModal, post }) => {
                 <form className='create-post-form' onSubmit={onSubmit}>
                     <div>
                         <div id='text-profile-image-container'>
-                            <img id='author-profile-image' src={author.profileImageUrl} />
+                            <img id='author-profile-image' alt='author profile' src={author.profileImageUrl} />
                         </div>
                         <div className='post-form-username'>{author.username}</div>
                     </div>
