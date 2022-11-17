@@ -80,7 +80,6 @@ export const signUp = (firstName, lastName, username, email, profileImageUrl, pa
       firstName,
       lastName,
       username,
-      profileImageUrl,
       email,
       profileImageUrl,
       password
