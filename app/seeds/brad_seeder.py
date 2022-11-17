@@ -3,9 +3,9 @@ from app.models import db, User, environment, SCHEMA
 
 # Adds a demo user, you can add other users here if you want
 def seed_users():
-    demo = User(
-        username='Demo', first_name="demo", last_name="user", email='demo@aa.io', profileImageUrl="https://img.freepik.com/premium-vector/handdrawn-vintage-hermit-crab-vector-illustration_147266-58.jpg", password='password')
-    marnie = User(
+    edgewalker = User(
+        username='edgewalker6969', first_name="dark", last_name="lord", email='therealdarkness@aa.io', profileImageUrl="https://img.freepik.com/premium-vector/handdrawn-vintage-hermit-crab-vector-illustration_147266-58.jpg", password='password')
+    cookingmama = User(
         username='marnie', first_name="marnie", last_name="demouser", email='marnie@aa.io', profileImageUrl="https://img.freepik.com/premium-vector/handdrawn-vintage-hermit-crab-vector-illustration_147266-58.jpg", password='password')
     bobbie = User(
         username='bobbie', first_name="bobbie", last_name="demouser", email='bobbie@aa.io', profileImageUrl="https://img.freepik.com/premium-vector/handdrawn-vintage-hermit-crab-vector-illustration_147266-58.jpg",password='password')
