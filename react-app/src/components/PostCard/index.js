@@ -140,7 +140,7 @@ const PostCard = ({ post }) => {
             </Link>
             {/* If following is false and there is session.user.id and post.User.id is not currentUser.id, then render the follow button */}
             {user && !following && user.id && post.User.id !== user.id && (
-              <button onClick={() => followUser(post.User)}>Follow</button>
+              <button className="postcard-follow-button" onClick={() => followUser(post.User)}>Follow</button>
             )}
           </div>
           <div className="postcard-title-holder post-padding">
@@ -190,7 +190,7 @@ const PostCard = ({ post }) => {
               )}
             </Link>
             {user && !following && user.id && post.User.id !== user.id && (
-              <button onClick={() => followUser(post.User)}>Follow</button>
+              <button className="postcard-follow-button" onClick={() => followUser(post.User)}>Follow</button>
             )}
           </div>
           <div className="postcard-quote-holder post-padding">
@@ -233,38 +233,39 @@ const PostCard = ({ post }) => {
             Post type: {post.postType} */}
           </div>
         </div>
-        <div className="postCard-content-holder">
-          <div className="postCard-author-username-holder">
+        <div className="postCard-content-holder top-padding">
+          <div className="postCard-author-username-holder post-padding">
             <Link to={`/users/${post.User.id}`}>
               {post.User && (
                 post.User.username
               )}
             </Link>
             {user && !following && user.id && (post.User.id !== user.id) && (
-              <button onClick={() => followUser(post.User)}>Follow</button>
+              <button className="postcard-follow-button" onClick={() => followUser(post.User)}>Follow</button>
             )}
           </div>
-          <div className="postcard-photo-holder">
+          <div className="postcard-photo-holder top-padding">
             {post.Media[0] && (<img alt='profile' src={post.Media[0].mediaUrl} />)}
           </div>
-          <div className="postcard-caption-holder">
+          <div className="postcard-caption-holder post-padding">
             <p>{post.text}</p>
           </div>
-          <div className="postcard-edit-delete-holder">
+          <div className="postcard-edit-delete-holder post-padding">
             {user && user.id === post.User.id && (<>
               <DeletePostModal post={post} />
               <EditPostModal post={post} />
             </>
             )}
           </div>
-          <div className="postcard-bottom-container">
+          <div className="post-interface-border post-padding"></div>
+          <div className="postcard-bottom-container post-padding">
             <div className="postcard-notes-holder">
               {showBox ? <CloseNotesButton /> : <NotesButton />}
             </div>
             <div className="postcard-comments-likes-holder">
-              <button className="postcard-comment-button" onClick={() => setShowBox(!showBox)}><i className="fa-regular fa-comment"></i></button>
-              {loaded && user && !liked && (<button className="postcard-like" onClick={() => likePost(post.id)}><i className="fa-regular fa-heart"></i></button>)}
-              {loaded && user && liked && (<button className="postcard-unlike" onClick={() => unlikePost(post.id)}><i className="fa-solid fa-heart"></i></button>)}
+              <button className="postcard-comment-button" onClick={() => setShowBox(!showBox)}><i className="fa-regular fa-comment interface-text"></i></button>
+              {loaded && user && !liked && (<button className="postcard-like" onClick={() => likePost(post.id)}><i className="fa-regular fa-heart interface-text"></i></button>)}
+              {loaded && user && liked && (<button className="postcard-unlike" onClick={() => unlikePost(post.id)}><i className="fa-solid fa-heart interface-text"></i></button>)}
             </div>
           </div>
           <div>{showBox ? <NotesCard post={post} numlikes={numLikes} numcomments={numComments} /> : null}</div>
@@ -272,12 +273,6 @@ const PostCard = ({ post }) => {
       </div>
     )
   } else if (loaded && post.postType === 'video') {
-
-    // let formattedLink;
-    // if (post.Media[0]) {
-    //   const videoLink = post.Media[0].mediaUrl;
-    //   formattedLink = formatVideoLink(videoLink)
-    // }
 
     return (
       <div className="postCard-outer-container">
@@ -288,37 +283,38 @@ const PostCard = ({ post }) => {
             Post type: {post.postType} */}
           </div>
         </div>
-        <div className="postCard-content-holder">
-          <div className="postCard-author-username-holder">
+        <div className="postCard-content-holder top-padding">
+          <div className="postCard-author-username-holder post-padding">
             <Link to={`/users/${post.User.id}`}>
               {post.User.username}
             </Link>
             {!following && user.id && post.User.id !== user.id && (
-              <button onClick={() => followUser(post.User)}>Follow</button>
+              <button className="postcard-follow-button" onClick={() => followUser(post.User)}>Follow</button>
             )}
           </div>
-          <div className="postcard-video-holder">
+          <div className="postcard-video-holder top-padding">
             {post.Media[0] && (
               <ReactPlayer width={540} height={280} className='react-player' url={post.Media[0].mediaUrl} controls={true}></ReactPlayer>)}
           </div>
-          <div className="postcard-caption-holder">
+          <div className="postcard-caption-holder post-padding">
             <p>{post.text}</p>
           </div>
-          <div className="postcard-edit-delete-holder">
+          <div className="postcard-edit-delete-holder post-padding">
             {user && user.id === post.User.id && (<>
               <DeletePostModal post={post} />
               <EditPostModal post={post} />
             </>
             )}
           </div>
-          <div className="postcard-bottom-container">
+          <div className="post-interface-border post-padding"></div>
+          <div className="postcard-bottom-container post-padding">
             <div className="postcard-notes-holder">
               {showBox ? <CloseNotesButton /> : <NotesButton />}
             </div>
             <div className="postcard-comments-likes-holder">
-              <button className="postcard-comment-button" onClick={() => setShowBox(!showBox)}><i className="fa-regular fa-comment"></i></button>
-              {loaded && user && !liked && (<button className="postcard-like" onClick={() => likePost(post.id)}><i className="fa-regular fa-heart"></i></button>)}
-              {loaded && user && liked && (<button className="postcard-unlike" onClick={() => unlikePost(post.id)}><i className="fa-solid fa-heart"></i></button>)}
+              <button className="postcard-comment-button" onClick={() => setShowBox(!showBox)}><i className="fa-regular fa-comment interface-text"></i></button>
+              {loaded && user && !liked && (<button className="postcard-like" onClick={() => likePost(post.id)}><i className="fa-regular fa-heart interface-text"></i></button>)}
+              {loaded && user && liked && (<button className="postcard-unlike" onClick={() => unlikePost(post.id)}><i className="fa-solid fa-heart interface-text"></i></button>)}
             </div>
           </div>
           <div>{showBox ? <NotesCard post={post} numlikes={numLikes} numcomments={numComments} /> : null}</div>
