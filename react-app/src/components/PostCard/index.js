@@ -88,7 +88,7 @@ const PostCard = ({ post }) => {
   const NotesButton = () => {
     if (notes > 0) {
       return (
-        <button onClick={() => setShowBox(!showBox)}>
+        <button className="notes-button" onClick={() => setShowBox(!showBox)}>
           {notesCount}
         </button>
       )
@@ -99,7 +99,7 @@ const PostCard = ({ post }) => {
 
   const CloseNotesButton = () => {
     return (
-      <button onClick={() => setShowBox(!showBox)}>
+      <button className="close-notes-button" onClick={() => setShowBox(!showBox)}>
         x Close notes
       </button>
     )
@@ -154,16 +154,15 @@ const PostCard = ({ post }) => {
             </>
             )}
           </div>
-          <div>
+          <div className="postcard-bottom-container">
             <div className="postcard-notes-holder">
-
               {showBox ? <CloseNotesButton /> : <NotesButton />}
 
             </div>
             <div className="postcard-comments-likes-holder">
-              <button onClick={() => setShowBox(!showBox)}>Reply</button>
-              {loaded && user && !liked && (<button onClick={() => likePost(post.id)}>Like</button>)}
-              {loaded && user && liked && (<button onClick={() => unlikePost(post.id)}>UnLike</button>)}
+              <button className="postcard-comment-button" onClick={() => setShowBox(!showBox)}><i className="fa-regular fa-comment"></i></button>
+              {loaded && user && !liked && (<button className="postcard-like" onClick={() => likePost(post.id)}><i className="fa-regular fa-heart"></i></button>)}
+              {loaded && user && liked && (<button className="postcard-unlike" onClick={() => unlikePost(post.id)}><i className="fa-solid fa-heart"></i></button>)}
             </div>
           </div>
           <div>{showBox ? <NotesCard post={post} numlikes={numLikes} numcomments={numComments} /> : null}</div>
@@ -192,10 +191,10 @@ const PostCard = ({ post }) => {
             )}
           </div>
           <div className="postcard-quote-holder">
-            <h2>{post.title}</h2>
+            <h2>{post.text}</h2>
           </div>
           <div className="postcard-source-holder">
-            <p>{post.text}</p>
+            <p>{post.title}</p>
           </div>
           <div className="postcard-edit-delete-holder">
             {user && user.id === post.User.id && (<>
@@ -204,16 +203,16 @@ const PostCard = ({ post }) => {
             </>
             )}
           </div>
-          <div>
+          <div className="postcard-bottom-container">
             <div className="postcard-notes-holder">
 
               {showBox ? <CloseNotesButton /> : <NotesButton />}
 
             </div>
             <div className="postcard-comments-likes-holder">
-              <button onClick={() => setShowBox(!showBox)}>Reply</button>
-              {loaded && user && !liked && (<button onClick={() => likePost(post.id)}>Like</button>)}
-              {loaded && user && liked && (<button onClick={() => unlikePost(post.id)}>UnLike</button>)}
+              <button className="postcard-comment-button" onClick={() => setShowBox(!showBox)}><i className="fa-regular fa-comment"></i></button>
+              {loaded && user && !liked && (<button className="postcard-like" onClick={() => likePost(post.id)}><i className="fa-regular fa-heart"></i></button>)}
+              {loaded && user && liked && (<button className="postcard-unlike" onClick={() => unlikePost(post.id)}><i className="fa-solid fa-heart"></i></button>)}
             </div>
           </div>
           <div>{showBox ? <NotesCard post={post} numlikes={numLikes} numcomments={numComments} /> : null}</div>
@@ -254,14 +253,14 @@ const PostCard = ({ post }) => {
             </>
             )}
           </div>
-          <div>
+          <div className="postcard-bottom-container">
             <div className="postcard-notes-holder">
               {showBox ? <CloseNotesButton /> : <NotesButton />}
             </div>
             <div className="postcard-comments-likes-holder">
-              <button onClick={() => setShowBox(!showBox)}>Reply</button>
-              {loaded && user && !liked && (<button onClick={() => likePost(post.id)}>Like</button>)}
-              {loaded && user && liked && (<button onClick={() => unlikePost(post.id)}>UnLike</button>)}
+              <button className="postcard-comment-button" onClick={() => setShowBox(!showBox)}><i className="fa-regular fa-comment"></i></button>
+              {loaded && user && !liked && (<button onClick={() => likePost(post.id)}><i className="fa-regular fa-heart"></i></button>)}
+              {loaded && user && liked && (<button onClick={() => unlikePost(post.id)}><i className="fa-solid fa-heart"></i></button>)}
             </div>
           </div>
           <div>{showBox ? <NotesCard post={post} numlikes={numLikes} numcomments={numComments} /> : null}</div>

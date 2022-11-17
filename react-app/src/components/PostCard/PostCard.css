@@ -30,3 +30,59 @@
 .postCard-userImage {
     height: 20px;
 }
+
+.postcard-bottom-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.postcard-edit-delete-holder {
+    display: flex;
+    justify-content: flex-end;
+
+}
+
+#edit-post-button {
+    color: #b2b2b2;
+}
+
+.edit-delete-post {
+    color: #b2b2b2;
+    border: none;
+    background-color: #222222;
+}
+
+.postcard-like {
+    color: #b2b2b2;
+    background-color: #222222;
+    border: none;
+}
+
+.postcard-unlike {
+    color: #ff492f;
+    background-color: #222222;
+    border: none;
+}
+
+.postcard-comment-button {
+    color: #b2b2b2;
+    background-color: #222222;
+    border: none;
+}
+
+.postcard-notes-holder {
+    width: fit-content;
+}
+
+.notes-button {
+    color: #b2b2b2;
+    background-color: #222222;
+    border: none;
+}
+
+.close-notes-button {
+    color: #b2b2b2;
+    background-color: #434343;
+    border: none;
+    border-radius: 2em;
+}
