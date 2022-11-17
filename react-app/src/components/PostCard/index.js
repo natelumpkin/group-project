@@ -4,7 +4,7 @@ import { useEffect, useState } from "react"
 import React from "react"
 import ReactPlayer from "react-player"
 
-import formatVideoLink from "../../utils/formatVideoLink"
+// import formatVideoLink from "../../utils/formatVideoLink"
 import NotesCard from "../NotesCard"
 import DeletePostModal from "../DeletePost/DeletePostModal"
 import EditPostModal from '../EditPost/EditPostModal'
@@ -15,12 +15,8 @@ import * as likeActions from "../../store/like"
 import * as commentActions from "../../store/comment"
 
 const PostCard = ({ post }) => {
-
-  // console.log('postCard component post: ', post)
-  // console.log('post.User: ', post.User)
   const [showBox, setShowBox] = useState(false)
   const user = useSelector(state => state.session.user)
-  // const posts = useSelector(state => state.posts)
   const follows = useSelector(state => state.follows)
   const likes = useSelector(state => state.likes)
   const comments = useSelector(state => state.comments)
@@ -40,8 +36,6 @@ const PostCard = ({ post }) => {
     setLoaded(true)
   }, [dispatch, post])
 
-  // console.log('liked boolean: ', liked)
-
   const likedList = []
 
   useEffect(() => {
@@ -50,8 +44,6 @@ const PostCard = ({ post }) => {
       setLiked(likedPost)
     }
   }, [likedList, user])
-
-  // console.log('liked boolean: ', liked)
 
   const followUser = (userId) => {
     dispatch(followActions.createNewFollow(userId))
@@ -68,15 +60,9 @@ const PostCard = ({ post }) => {
     // .then(setLiked(false))
   }
 
-
-  // console.log(likes.posts[post.id])
-
-  // console.log(Object.keys(emptyObject))
-  // console.log('comments: ', comments)
   let numComments
   let notes
   if (comments.posts[post.id]) {
-    // console.log('comments.posts[post.id]: ', comments.posts[post.id])
     numComments = Object.keys(comments.posts[post.id]).length
   }
 
@@ -84,10 +70,10 @@ const PostCard = ({ post }) => {
   for (let userId in likes.posts[post.id]) {
     likedList.push(userId)
   }
-  // const numComments = comments.length;
+
   const numLikes = likedList.length;
   if (numComments) {
-    // console.log('numlikes: ', numLikes)
+
     notes = numLikes + numComments
   } else {
     notes = numLikes
@@ -119,20 +105,9 @@ const PostCard = ({ post }) => {
     )
   }
 
-
-  // const closeNotesButton = `✖️ Close notes`
-
-
-  // console.log('notes for post ', post.id, ' : ,', notes)
-  // const notes = numComments + numLikes;
-  // console.log('post number ', post.id, ' notes: ', notes)
-  // const likedList = Object.keys(likes.posts[post.Id])
-  // console.log('likedList: ', likedList)
   const followingList = Object.keys(follows.following)
-  // console.log('following list: ', followingList)
-  const following = followingList.includes(post.User.id.toString())
-  // console.log('postId: ', post.id, 'current user following: ', following);
 
+  const following = followingList.includes(post.User.id.toString())
 
 
   // if postType is text,
@@ -162,7 +137,7 @@ const PostCard = ({ post }) => {
               )}
             </Link>
             {/* If following is false and there is session.user.id and post.User.id is not currentUser.id, then render the follow button */}
-            {user && !following && user.id && post.User.id != user.id && (
+            {user && !following && user.id && post.User.id !== user.id && (
               <button onClick={() => followUser(post.User)}>Follow</button>
             )}
           </div>
@@ -182,7 +157,7 @@ const PostCard = ({ post }) => {
           <div>
             <div className="postcard-notes-holder">
 
-              {showBox ? <CloseNotesButton/> : <NotesButton/>}
+              {showBox ? <CloseNotesButton /> : <NotesButton />}
 
             </div>
             <div className="postcard-comments-likes-holder">
@@ -212,7 +187,7 @@ const PostCard = ({ post }) => {
                 post.User.username
               )}
             </Link>
-            {user && !following && user.id && post.User.id != user.id && (
+            {user && !following && user.id && post.User.id !== user.id && (
               <button onClick={() => followUser(post.User)}>Follow</button>
             )}
           </div>
@@ -232,7 +207,7 @@ const PostCard = ({ post }) => {
           <div>
             <div className="postcard-notes-holder">
 
-                {showBox ? <CloseNotesButton/> : <NotesButton/>}
+              {showBox ? <CloseNotesButton /> : <NotesButton />}
 
             </div>
             <div className="postcard-comments-likes-holder">
@@ -241,7 +216,7 @@ const PostCard = ({ post }) => {
               {loaded && user && liked && (<button onClick={() => unlikePost(post.id)}>UnLike</button>)}
             </div>
           </div>
-          <div>{showBox ? <NotesCard post={post}  numlikes={numLikes} numcomments={numComments}  /> : null}</div>
+          <div>{showBox ? <NotesCard post={post} numlikes={numLikes} numcomments={numComments} /> : null}</div>
         </div>
       </div>
     )
@@ -262,7 +237,7 @@ const PostCard = ({ post }) => {
                 post.User.username
               )}
             </Link>
-            {user && !following && user.id && (post.User.id != user.id) && (
+            {user && !following && user.id && (post.User.id !== user.id) && (
               <button onClick={() => followUser(post.User)}>Follow</button>
             )}
           </div>
@@ -281,7 +256,7 @@ const PostCard = ({ post }) => {
           </div>
           <div>
             <div className="postcard-notes-holder">
-            {showBox ? <CloseNotesButton/> : <NotesButton/>}
+              {showBox ? <CloseNotesButton /> : <NotesButton />}
             </div>
             <div className="postcard-comments-likes-holder">
               <button onClick={() => setShowBox(!showBox)}>Reply</button>
@@ -289,17 +264,17 @@ const PostCard = ({ post }) => {
               {loaded && user && liked && (<button onClick={() => unlikePost(post.id)}>UnLike</button>)}
             </div>
           </div>
-          <div>{showBox ? <NotesCard post={post}  numlikes={numLikes} numcomments={numComments}  /> : null}</div>
+          <div>{showBox ? <NotesCard post={post} numlikes={numLikes} numcomments={numComments} /> : null}</div>
         </div>
       </div>
     )
   } else if (loaded && post.postType === 'video') {
 
-    let formattedLink;
-    if (post.Media[0]) {
-      const videoLink = post.Media[0].mediaUrl;
-      formattedLink = formatVideoLink(videoLink)
-    }
+    // let formattedLink;
+    // if (post.Media[0]) {
+    //   const videoLink = post.Media[0].mediaUrl;
+    //   formattedLink = formatVideoLink(videoLink)
+    // }
 
     return (
       <div className="postCard-outer-container">
@@ -315,7 +290,7 @@ const PostCard = ({ post }) => {
             <Link to={`/users/${post.User.id}`}>
               {post.User.username}
             </Link>
-            {!following && user.id && post.User.id != user.id && (
+            {!following && user.id && post.User.id !== user.id && (
               <button onClick={() => followUser(post.User)}>Follow</button>
             )}
           </div>
@@ -335,7 +310,7 @@ const PostCard = ({ post }) => {
           </div>
           <div>
             <div className="postcard-notes-holder">
-            {showBox ? <CloseNotesButton/> : <NotesButton/>}
+              {showBox ? <CloseNotesButton /> : <NotesButton />}
             </div>
             <div className="postcard-comments-likes-holder">
               <button onClick={() => setShowBox(!showBox)}>Reply</button>
@@ -343,7 +318,7 @@ const PostCard = ({ post }) => {
               {loaded && user && liked && (<button onClick={() => unlikePost(post.id)}>UnLike</button>)}
             </div>
           </div>
-          <div>{showBox ? <NotesCard post={post}  numlikes={numLikes} numcomments={numComments}  /> : null}</div>
+          <div>{showBox ? <NotesCard post={post} numlikes={numLikes} numcomments={numComments} /> : null}</div>
         </div>
       </div>
     )
