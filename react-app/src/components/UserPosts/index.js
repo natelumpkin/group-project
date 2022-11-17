@@ -20,7 +20,7 @@ const UserPosts = () => {
 
   useEffect(() => {
     dispatch(postActions.getBlog(userId))
-    if (user.id) dispatch(followActions.getAllFollowing(user.id))
+    if (user && user.id) dispatch(followActions.getAllFollowing(user.id))
   }, [dispatch, user, userId])
 
   const allPostsArray = []
