@@ -6,11 +6,17 @@ import * as postActions from '../../store/post'
 import * as followActions from '../../store/follow'
 
 import PostCard from "../PostCard"
+import './UserPosts.css'
 
 const UserPosts = () => {
   const { userId } = useParams()
   const allPosts = useSelector(state => state.posts.userPosts)
   const user = useSelector(state => state.session.user)
+
+  let username;
+  if (allPosts) {
+    username = Object.values(allPosts)[0].User.username
+  }
 
   const dispatch = useDispatch()
 
@@ -27,12 +33,11 @@ const UserPosts = () => {
   return (
     <div className="outer-container">
       <div className="inner-container">
-        {user?.id === parseInt(userId) && (
           <div>
             <CreateFormBarModal />
           </div>
-        )}
         <div className="postsHolder">
+          <h1 className="user-page-title post-padding">{username}'s Posts</h1>
           {allPostsArray.map(post => (
             <PostCard key={post.id} post={post} />
           ))}
