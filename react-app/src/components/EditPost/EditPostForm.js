@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { updatePost } from '../../store/post';
 import './EditPost.css'
 
+import UploadPicture from '../UploadImage';
+
 const CreatePostForm = ({ setShowModal, post }) => {
     const author = useSelector(state => state.session.user)
     const [errors, setErrors] = useState([]);
@@ -88,6 +90,7 @@ const CreatePostForm = ({ setShowModal, post }) => {
 
             {/* // ---------- POST FORM FOR IMAGE ---------- \\ */}
             {postType === 'image' && (
+                <>
                 <form className='create-post-form' onSubmit={onSubmit}>
                     <div>
                         <div id='text-profile-image-container'>
@@ -115,6 +118,7 @@ const CreatePostForm = ({ setShowModal, post }) => {
                         <button className='save-edit-button' type="submit">Save</button>
                     </div>
                 </form>
+                </>
             )}
 
 

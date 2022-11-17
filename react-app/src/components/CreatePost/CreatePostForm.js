@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { createPost, addMediaByPostId } from '../../store/post';
 import './CreatePostModal.css'
 import './CreatePostForm.css'
+import UploadPicture from '../UploadImage';
 
 const CreatePostForm = ({ setShowModal, typeSelection = false }) => {
     const author = useSelector(state => state.session.user)
