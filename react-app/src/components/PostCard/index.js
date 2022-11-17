@@ -10,7 +10,7 @@ import DeletePostModal from "../DeletePost/DeletePostModal"
 import EditPostModal from '../EditPost/EditPostModal'
 import './PostCard.css'
 import * as followActions from "../../store/follow"
-import * as postActions from "../../store/post"
+
 import * as likeActions from "../../store/like"
 import * as commentActions from "../../store/comment"
 
@@ -31,11 +31,14 @@ const PostCard = ({ post }) => {
   const [liked, setLiked] = useState(false)
   const [loaded, setLoaded] = useState(false)
 
-  useEffect(async () => {
-    await dispatch(likeActions.getPostLikes(post.id))
-    await dispatch(commentActions.grabAllComments(post.id))
+  useEffect(() => {
+    async function fetchData() {
+      await dispatch(likeActions.getPostLikes(post.id))
+      await dispatch(commentActions.grabAllComments(post.id))
+    }
+    fetchData();
     setLoaded(true)
-  }, [dispatch])
+  }, [dispatch, post])
 
   // console.log('liked boolean: ', liked)
 
@@ -46,7 +49,7 @@ const PostCard = ({ post }) => {
       const likedPost = likedList.includes(user.id.toString())
       setLiked(likedPost)
     }
-  }, [likedList])
+  }, [likedList, user])
 
   // console.log('liked boolean: ', liked)
 
@@ -67,7 +70,7 @@ const PostCard = ({ post }) => {
 
 
   // console.log(likes.posts[post.id])
-  const emptyObject = {}
+
   // console.log(Object.keys(emptyObject))
   // console.log('comments: ', comments)
   let numComments
@@ -146,7 +149,7 @@ const PostCard = ({ post }) => {
       <div className="postCard-outer-container">
         <div className="postCard-userImage-holder">
           <div className="postCard-userImage">
-            <img src={post.User.profileImageUrl} />
+            <img alt='profile' src={post.User.profileImageUrl} />
             {/* Post Id: {post.id}
             Post type: {post.postType} */}
           </div>
@@ -197,7 +200,7 @@ const PostCard = ({ post }) => {
       <div className="postCard-outer-container">
         <div className="postCard-userImage-holder">
           <div className="postCard-userImage">
-            <img src={post.User.profileImageUrl} />
+            <img alt='profile' src={post.User.profileImageUrl} />
             {/* Post Id: {post.id}
             Post type: {post.postType} */}
           </div>
@@ -247,7 +250,7 @@ const PostCard = ({ post }) => {
       <div className="postCard-outer-container">
         <div className="postCard-userImage-holder">
           <div className="postCard-userImage">
-            <img src={post.User.profileImageUrl} />
+            <img alt='profile' src={post.User.profileImageUrl} />
             {/* Post Id: {post.id}
             Post type: {post.postType} */}
           </div>
@@ -264,7 +267,7 @@ const PostCard = ({ post }) => {
             )}
           </div>
           <div className="postcard-photo-holder">
-            {post.Media[0] && (<img src={post.Media[0].mediaUrl} />)}
+            {post.Media[0] && (<img alt='profile' src={post.Media[0].mediaUrl} />)}
           </div>
           <div className="postcard-caption-holder">
             <p>{post.text}</p>
@@ -302,7 +305,7 @@ const PostCard = ({ post }) => {
       <div className="postCard-outer-container">
         <div className="postCard-userImage-holder">
           <div className="postCard-userImage">
-            <img src={post.User.profileImageUrl} />
+            <img alt='profile' src={post.User.profileImageUrl} />
             {/* Post Id: {post.id}
             Post type: {post.postType} */}
           </div>

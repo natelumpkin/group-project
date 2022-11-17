@@ -26,7 +26,7 @@ const NavBar = () => {
   useEffect(() => {
     dispatch(followActions.getAllFollowers(sessionUser?.id));
     dispatch(followActions.getAllFollowing(sessionUser?.id));
-  }, [dispatch])
+  }, [dispatch, sessionUser])
 
   useEffect(() => {
     if (!showMenu) return;
