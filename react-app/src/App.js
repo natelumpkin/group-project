@@ -28,7 +28,7 @@ function App() {
   }, [dispatch]);
 
   if (!loaded) {
-    return null;
+    return <h1>Hi!!! Sorry we're still loading {":<"}</h1>;
   }
 
   return (
