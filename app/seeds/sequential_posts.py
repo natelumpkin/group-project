@@ -2,68 +2,63 @@ from app.models import db, Post, User, environment, SCHEMA
 
 
 def seed_posts():
-    user_2 = User.query.get(2)
-    user_3 = User.query.get(3)
-    user_4 = User.query.get(4)
-    user_5 = User.query.get(5)
-
     user_2_posts = [
         Post(
-            user_id=user_2.id,
+            user_id=2,
             post_type="",
             title="",
             text=""
         ),
         Post(
-            user_id=user_2.id,
+            user_id=2,
             post_type="",
             title="",
             text=""
         ),
         Post(
-            user_id=user_2.id,
+            user_id=2,
             post_type="",
             title="",
             text=""
         ),
         Post(
-            user_id=user_2.id,
+            user_id=2,
             post_type="",
             title="",
             text=""
         ),
         Post(
-            user_id=user_2.id,
+            user_id=2,
             post_type="",
             title="",
             text=""
         ),
         Post(
-            user_id=user_2.id,
+            user_id=2,
             post_type="",
             title="",
             text=""
         ),
         Post(
-            user_id=user_2.id,
+            user_id=2,
             post_type="",
             title="",
             text=""
         ),
         Post(
-            user_id=user_2.id,
+            user_id=2,
             post_type="",
             title="",
             text=""
         ),
         Post(
-            user_id=user_2.id,
+            user_id=2,
             post_type="",
             title="",
             text=""
         ),
         Post(
-            user_id=user_2.id,
+            user_id=2,
             post_type="",
             title="",
             text=""
@@ -72,61 +67,61 @@ def seed_posts():
 
     user_3_posts = [
         Post(
-            user_id=user_3.id,
+            user_id=3,
             post_type="",
             title="",
             text=""
         ),
         Post(
-            user_id=user_3.id,
+            user_id=3,
             post_type="",
             title="",
             text=""
         ),
         Post(
-            user_id=user_3.id,
+            user_id=3,
             post_type="",
             title="",
             text=""
         ),
         Post(
-            user_id=user_3.id,
+            user_id=3,
             post_type="",
             title="",
             text=""
         ),
         Post(
-            user_id=user_3.id,
+            user_id=3,
             post_type="",
             title="",
             text=""
         ),
         Post(
-            user_id=user_3.id,
+            user_id=3,
             post_type="",
             title="",
             text=""
         ),
         Post(
-            user_id=user_3.id,
+            user_id=3,
             post_type="",
             title="",
             text=""
         ),
         Post(
-            user_id=user_3.id,
+            user_id=3,
             post_type="",
             title="",
             text=""
         ),
         Post(
-            user_id=user_3.id,
+            user_id=3,
             post_type="",
             title="",
             text=""
         ),
         Post(
-            user_id=user_3.id,
+            user_id=3,
             post_type="",
             title="",
             text=""
@@ -135,61 +130,61 @@ def seed_posts():
 
     user_4_posts = [
         Post(
-            user_id=user_4.id,
+            user_id=4,
             post_type="",
             title="",
             text=""
         ),
         Post(
-            user_id=user_4.id,
+            user_id=4,
             post_type="",
             title="",
             text=""
         ),
         Post(
-            user_id=user_4.id,
+            user_id=4,
             post_type="",
             title="",
             text=""
         ),
         Post(
-            user_id=user_4.id,
+            user_id=4,
             post_type="",
             title="",
             text=""
         ),
         Post(
-            user_id=user_4.id,
+            user_id=4,
             post_type="",
             title="",
             text=""
         ),
         Post(
-            user_id=user_4.id,
+            user_id=4,
             post_type="",
             title="",
             text=""
         ),
         Post(
-            user_id=user_4.id,
+            user_id=4,
             post_type="",
             title="",
             text=""
         ),
         Post(
-            user_id=user_4.id,
+            user_id=4,
             post_type="",
             title="",
             text=""
         ),
         Post(
-            user_id=user_4.id,
+            user_id=4,
             post_type="",
             title="",
             text=""
         ),
         Post(
-            user_id=user_4.id,
+            user_id=4,
             post_type="",
             title="",
             text=""
@@ -198,61 +193,61 @@ def seed_posts():
 
     user_5_posts = [
         Post(
-            user_id=user_5.id,
+            user_id=5,
             post_type="",
             title="",
             text=""
         ),
         Post(
-            user_id=user_5.id,
+            user_id=5,
             post_type="",
             title="",
             text=""
         ),
         Post(
-            user_id=user_5.id,
+            user_id=5,
             post_type="",
             title="",
             text=""
         ),
         Post(
-            user_id=user_5.id,
+            user_id=5,
             post_type="",
             title="",
             text=""
         ),
         Post(
-            user_id=user_5.id,
+            user_id=5,
             post_type="",
             title="",
             text=""
         ),
         Post(
-            user_id=user_5.id,
+            user_id=5,
             post_type="",
             title="",
             text=""
         ),
         Post(
-            user_id=user_5.id,
+            user_id=5,
             post_type="",
             title="",
             text=""
         ),
         Post(
-            user_id=user_5.id,
+            user_id=5,
             post_type="",
             title="",
             text=""
         ),
         Post(
-            user_id=user_5.id,
+            user_id=5,
             post_type="",
             title="",
             text=""
         ),
         Post(
-            user_id=user_5.id,
+            user_id=5,
             post_type="",
             title="",
             text=""
