@@ -65,131 +65,137 @@ def seed_posts():
         ),
     ]
 
-    # user_3_posts = [
-    #     Post(
-    #         user_id=3,
-    #         post_type="",
-    #         title="",
-    #         text=""
-    #     ),
-    #     Post(
-    #         user_id=3,
-    #         post_type="",
-    #         title="",
-    #         text=""
-    #     ),
-    #     Post(
-    #         user_id=3,
-    #         post_type="",
-    #         title="",
-    #         text=""
-    #     ),
-    #     Post(
-    #         user_id=3,
-    #         post_type="",
-    #         title="",
-    #         text=""
-    #     ),
-    #     Post(
-    #         user_id=3,
-    #         post_type="",
-    #         title="",
-    #         text=""
-    #     ),
-    #     Post(
-    #         user_id=3,
-    #         post_type="",
-    #         title="",
-    #         text=""
-    #     ),
-    #     Post(
-    #         user_id=3,
-    #         post_type="",
-    #         title="",
-    #         text=""
-    #     ),
-    #     Post(
-    #         user_id=3,
-    #         post_type="",
-    #         title="",
-    #         text=""
-    #     ),
-    #     Post(
-    #         user_id=3,
-    #         post_type="",
-    #         title="",
-    #         text=""
-    #     ),
-    #     Post(
-    #         user_id=3,
-    #         post_type="",
-    #         title="",
-    #         text=""
-    #     ),
-    # ]
+    user_3_posts = [
+        Post(
+            user_id=3,
+            post_type="text",
+            title="",
+            text="""*Mario is fighting Bowser*
 
-    # user_4_posts = [
-    #     Post(
-    #         user_id=4,
-    #         post_type="",
-    #         title="",
-    #         text=""
-    #     ),
-    #     Post(
-    #         user_id=4,
-    #         post_type="",
-    #         title="",
-    #         text=""
-    #     ),
-    #     Post(
-    #         user_id=4,
-    #         post_type="",
-    #         title="",
-    #         text=""
-    #     ),
-    #     Post(
-    #         user_id=4,
-    #         post_type="",
-    #         title="",
-    #         text=""
-    #     ),
-    #     Post(
-    #         user_id=4,
-    #         post_type="",
-    #         title="",
-    #         text=""
-    #     ),
-    #     Post(
-    #         user_id=4,
-    #         post_type="",
-    #         title="",
-    #         text=""
-    #     ),
-    #     Post(
-    #         user_id=4,
-    #         post_type="",
-    #         title="",
-    #         text=""
-    #     ),
-    #     Post(
-    #         user_id=4,
-    #         post_type="",
-    #         title="",
-    #         text=""
-    #     ),
-    #     Post(
-    #         user_id=4,
-    #         post_type="",
-    #         title="",
-    #         text=""
-    #     ),
-    #     Post(
-    #         user_id=4,
-    #         post_type="",
-    #         title="",
-    #         text=""
-    #     ),
-    # ]
+Luigi: Just stay calm! You already have everything you need to beat him!
+
+Mario: The power to believe in myself!?
+
+Luigi: No, a knife! Stab him!"""
+        ),
+        Post(
+            user_id=3,
+            post_type="image",
+            title="",
+            text=""
+        ),
+        Post(
+            user_id=3,
+            post_type="quote",
+            title="Mario",
+            text="It's-a me, Mario!"
+        ),
+        Post(
+            user_id=3,
+            post_type="video",
+            title="",
+            text=""
+        ),
+        Post(
+            user_id=3,
+            post_type="text",
+            title="Super Mario Movie",
+            text="Is anyone else looking forward to the movie or is it just me? Chris Pratt's voice activng wasn't THAT bad."
+        ),
+        Post(
+            user_id=3,
+            post_type="image",
+            title="",
+            text=""
+        ),
+        Post(
+            user_id=3,
+            post_type="quote",
+            title="Mario",
+            text="Mario number one!"
+        ),
+        Post(
+            user_id=3,
+            post_type="video",
+            title="",
+            text=""
+        ),
+        Post(
+            user_id=3,
+            post_type="image",
+            title="",
+            text=""
+        ),
+        Post(
+            user_id=3,
+            post_type="image",
+            title="",
+            text=""
+        ),
+    ]
+
+    user_4_posts = [
+        Post(
+            user_id=4,
+            post_type="quote",
+            title="Michael J Fox",
+            text="When the night is over, you know the day is just beginning"
+        ),
+        Post(
+            user_id=4,
+            post_type="quote",
+            title="Dale Cooper",
+            text="If you've never seen a man, you've never seen war"
+        ),
+        Post(
+            user_id=4,
+            post_type="quote",
+            title="Cloud Strife",
+            text="What is a child, but an adult who hasn't grown up?"
+        ),
+        Post(
+            user_id=4,
+            post_type="quote",
+            title="Monica Bellucci",
+            text="We are like the dreamer who dreams and lives inside the dream -- but who is the dreamer?"
+        ),
+        Post(
+            user_id=4,
+            post_type="quote",
+            title="Dirtface",
+            text="Watch this!"
+        ),
+        Post(
+            user_id=4,
+            post_type="quote",
+            title="General Malagon of the Cruelest Eye",
+            text="Where are my wives?"
+        ),
+        Post(
+            user_id=4,
+            post_type="image",
+            title="",
+            text="If you've never seen a planet catch fire, watch closer. As my eye scrapes the atmosphere, you'll be able to see the clouds turn to steam as the oceans begin to boil. Very cool!"
+        ),
+        Post(
+            user_id=4,
+            post_type="image",
+            title="",
+            text="After a hard rain, the finest of earthworms come crawling to the surface. You rebels will do much the same!"
+        ),
+        Post(
+            user_id=4,
+            post_type="image",
+            title="",
+            text="See that weird dog down there? That's you lol"
+        ),
+        Post(
+            user_id=4,
+            post_type="image",
+            title="",
+            text="Check out my mangler! Ha ha ha!"
+        ),
+    ]
 
     # user_5_posts = [
     #     Post(
@@ -255,7 +261,7 @@ def seed_posts():
     # ]
 
     user_2 = User.query.get(2)
-    # user_3 = User.query.get(3)
+    user_3 = User.query.get(3)
     # user_4 = User.query.get(4)
     # user_5 = User.query.get(5)
 
@@ -263,13 +269,13 @@ def seed_posts():
         # post.user_likes = [user_3, user_4, user_5]
         db.session.add(post)
 
-    # for post in user_3_posts:
-    #     post.user_likes = [user_2, user_4, user_5]
-    #     db.session.add(post)
+    for post in user_3_posts:
+        # post.user_likes = [user_2, user_4, user_5]
+        db.session.add(post)
 
-    # for post in user_4_posts:
+    for post in user_4_posts:
     #     post.user_likes = [user_2, user_3, user_5]
-    #     db.session.add(post)
+        db.session.add(post)
 
     # for post in user_5_posts:
     #     post.user_likes = [user_2, user_3, user_4]

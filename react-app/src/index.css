@@ -24,3 +24,12 @@ body {
     background-color: black;
     margin: 0;
 }
+
+#page-not-found-container {
+    display: flex;
+    justify-content: center;
+}
+
+#page-not-found-container>h1 {
+    color: white;
+}

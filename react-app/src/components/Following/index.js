@@ -17,7 +17,7 @@ const Following = () => {
 
   const [loaded, setLoaded] = useState(false)
 
-  useEffect( () => {
+  useEffect(() => {
     async function fetchData() {
       await dispatch(followActions.getAllFollowing(currentUser?.id))
     }
@@ -31,7 +31,6 @@ const Following = () => {
   // This is a list of everyone the current use is following
   const followingList = Object.values(following)
 
-  // console.log('followingList in Following component: ', followingList)
 
   return (
     <div id='follow-list-container'>

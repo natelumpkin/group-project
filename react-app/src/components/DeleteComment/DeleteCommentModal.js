@@ -10,7 +10,7 @@ export default function DeleteCommentModal({comment, showDeleteModal, setShowDel
       <>
           {showDeleteModal && (
               <Modal id='create-post-modal' onClose={() => setShowDeleteModal(false)} >
-                  <DeleteComment comment={comment} setShowDeleteModal={setShowDeleteModal} />
+                  <DeleteComment comment={comment} showDeleteModal={showDeleteModal} setShowDeleteModal={setShowDeleteModal} />
               </Modal>
           )}
       </>

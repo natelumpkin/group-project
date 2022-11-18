@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
 import { Redirect } from 'react-router-dom';
 import { signUp } from '../../../store/session';
 
-const SignUpForm = ({ setShowModal }) => {
+const SignUpForm = ({ setShowModal, showModal }) => {
   const [errors, setErrors] = useState([]);
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
@@ -22,6 +22,15 @@ const SignUpForm = ({ setShowModal }) => {
   const user = useSelector(state => state.session.user);
   const dispatch = useDispatch();
   const defaultProfileImage = "https://img.freepik.com/premium-vector/handdrawn-vintage-hermit-crab-vector-illustration_147266-58.jpg?w=360";
+
+  useEffect(() => {
+    if (showModal) {
+      document.body.style.overflow = 'hidden';
+    }
+    return () => {
+      document.body.style.overflow = 'unset';
+    }
+  }, [showModal])
 
   const onSignUp = async (e) => {
     e.preventDefault();
@@ -129,7 +138,7 @@ const SignUpForm = ({ setShowModal }) => {
         </div>}
         <div className='signup-input-container'>
           <input
-            type='text'
+            type='email'
             name='email'
             placeholder='Email'
             onChange={updateEmail}

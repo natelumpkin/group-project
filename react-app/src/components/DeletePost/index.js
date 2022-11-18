@@ -1,11 +1,21 @@
 import { useDispatch } from "react-redux"
+import { useEffect } from "react"
 import './DeletePost.css'
 
 import * as postActions from "../../store/post"
 
-const DeletePost = ({ post, setShowModal }) => {
+const DeletePost = ({ post, setShowModal, showModal }) => {
 
   const dispatch = useDispatch()
+
+  useEffect(() => {
+    if (showModal) {
+      document.body.style.overflow = 'hidden';
+    }
+    return () => {
+      document.body.style.overflow = 'unset';
+    }
+  }, [showModal])
 
   const deletePost = (postId) => {
     dispatch(postActions.deletePost(postId))

@@ -16,8 +16,7 @@ const UserPosts = () => {
 
   let username;
   if (allPosts) {
-    console.log(Object.values(allPosts)[0])
-    if (Object.values(allPosts)[0]){
+    if (Object.values(allPosts)[0]) {
       username = Object.values(allPosts)[0].User.username
     }
   }
@@ -45,11 +44,16 @@ const UserPosts = () => {
     return (
       <div className="outer-container">
         <div className="inner-container">
-            <div>
-              <CreateFormBarModal />
-            </div>
+          <div>
+            <CreateFormBarModal />
+          </div>
           <div className="postsHolder">
-            <h1 className="user-page-title post-padding">{username}'s Posts</h1>
+            {username && (
+              <h1 className="user-page-title post-padding">{username}'s Posts</h1>
+            )}
+            {!username && (
+              <h1 className="user-page-title post-padding">No Posts Yet</h1>
+            )}
             {allPostsArray.map(post => (
               <PostCard key={post.id} post={post} />
             ))}

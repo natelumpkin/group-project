@@ -18,13 +18,11 @@ const FollowCard = ({ user, followingList }) => {
   }
 
   const followUser = (user) => {
-    // console.log('followUser userId: ', user.id)
     dispatch(followActions.createNewFollow(user))
       .then(setFollowing(true))
   }
 
   const unfollowUser = (userId) => {
-    // console.log('unfollowUser userId: ', userId)
     dispatch(followActions.deleteFollow(userId))
       .then(setFollowing(false))
   }
@@ -33,8 +31,6 @@ const FollowCard = ({ user, followingList }) => {
   // if card's user is in the followingList, following boolean shoudl be true
   const [following, setFollowing] = useState(idList.includes(user.id))
 
-  // console.log(following)
-  // console.log(idList, 'followCards userId: ', user.id, 'currentUser.id: ', currentUser.id)
 
   // create following boolean with use state (reference post cards)
   // make follow/unfollow button dynamically re-render

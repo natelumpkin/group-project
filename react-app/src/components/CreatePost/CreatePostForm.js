@@ -5,7 +5,7 @@ import './CreatePostModal.css'
 import './CreatePostForm.css'
 import UploadPicture from '../UploadImage';
 
-const CreatePostForm = ({ setShowModal, typeSelection = false }) => {
+const CreatePostForm = ({ setShowModal, showModal, typeSelection = false }) => {
     const author = useSelector(state => state.session.user)
     const [errors, setErrors] = useState([]);
     const [postType, setPostType] = useState(typeSelection || false);
@@ -18,6 +18,15 @@ const CreatePostForm = ({ setShowModal, typeSelection = false }) => {
     const [disablePostText, setDisablePostText] = useState(true)
     const [disablePostMedia, setDisablePostMedia] = useState(true)
     const dispatch = useDispatch();
+
+    useEffect(() => {
+        if (showModal) {
+            document.body.style.overflow = 'hidden';
+        }
+        return () => {
+            document.body.style.overflow = 'unset';
+        }
+    }, [showModal])
 
 
     useEffect(() => {
@@ -48,7 +57,6 @@ const CreatePostForm = ({ setShowModal, typeSelection = false }) => {
                 const data = await response.json();
                 if (data && data.errors) {
                     setErrors(Object.values(data.errors));
-                    console.log(errors);
                 }
             });
         if (post && !mediaUrl) {
@@ -60,7 +68,6 @@ const CreatePostForm = ({ setShowModal, typeSelection = false }) => {
                     const data = await response.json();
                     if (data && data.errors) {
                         setErrors(Object.values(data.errors));
-                        console.log(errors);
                     }
                 });
             if (postMedia) {
@@ -140,7 +147,7 @@ const CreatePostForm = ({ setShowModal, typeSelection = false }) => {
                     </div>
                     <div className='form-footer'>
                         <button className='cancel-button' onClick={() => setShowModal(false)}>Close</button>
-                        <button className='submit-button' type="submit" disabled={disablePostText}>Post Now!!</button>
+                        <button className='submit-button' type="submit" disabled={disablePostText}>Post Now</button>
                     </div>
                 </form>
             )}

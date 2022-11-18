@@ -1,10 +1,20 @@
 
 import { useDispatch } from "react-redux"
+import { useEffect } from "react"
 import * as commentActions from '../../store/comment'
 
-const DeleteComment = ({comment, setShowDeleteModal}) => {
+const DeleteComment = ({ comment, setShowDeleteModal, showDeleteModal }) => {
 
   const dispatch = useDispatch()
+
+  useEffect(() => {
+    if (showDeleteModal) {
+      document.body.style.overflow = 'hidden';
+    }
+    return () => {
+      document.body.style.overflow = 'unset';
+    }
+  }, [showDeleteModal])
 
   const deleteComment = (commentId) => {
     dispatch(commentActions.deletePostComment(commentId))

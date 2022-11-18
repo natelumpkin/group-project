@@ -54,7 +54,6 @@ export const getAllPosts = () => async (dispatch) => {
   if (response.ok) {
     const allPosts = await response.json()
     dispatch(getPosts(allPosts))
-    // console.log('all posts data: ', allPosts)
     return allPosts
   } else {
     return ['Unable to fetch all posts.']
@@ -66,7 +65,6 @@ export const getFeed = () => async (dispatch) => {
 
   if (response.ok) {
     const followedPosts = await response.json()
-    // console.log(followedPosts);
     dispatch(getFollowedPosts(followedPosts))
     return followedPosts
   } else {
@@ -91,11 +89,10 @@ export const getBlog = (userId) => async (dispatch) => {
 // dispatch get userposts from the post form
 
 export const createPost = (postData) => async (dispatch) => {
-  // console.log(postData)
   const response = await fetch('/api/posts/', {
     method: 'POST',
     body: JSON.stringify(postData),
-    headers: {"Content-Type": "application/json"}
+    headers: { "Content-Type": "application/json" }
   });
   const sessionResponse = await fetch('/api/auth/', {
     headers: {
@@ -123,7 +120,7 @@ export const createPost = (postData) => async (dispatch) => {
 export const updatePost = (postId, postBody) => async dispatch => {
   const response = await fetch(`/api/posts/${postId}`, {
     method: "PUT",
-    headers: {"Content-Type": "application/json"},
+    headers: { "Content-Type": "application/json" },
     body: JSON.stringify(postBody)
   })
   if (response.ok) {
@@ -154,7 +151,7 @@ export const deletePost = (postId) => async (dispatch) => {
 export const addMediaByPostId = (postId, mediaUrl) => async dispatch => {
   const response = await fetch(`/api/posts/${postId}/media`, {
     method: "POST",
-    headers: { "Content-Type": "application/json"},
+    headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
       "mediaUrl": mediaUrl
     })
@@ -182,7 +179,6 @@ const postReducer = (state = initialState, action) => {
   switch (action.type) {
     case ALL_POSTS: {
       const data = normalizeData(action.payload.Posts)
-      // console.log('all posts data: ', data)
       const newState = {
         allPosts: data,
         userPosts: {}
@@ -197,240 +193,238 @@ const postReducer = (state = initialState, action) => {
         const mediaData = state.userPosts[postId].Media
         newState.userPosts[postId].Media = []
         for (let media of mediaData) {
-          newState.userPosts[postId].Media.push({...media})
+          newState.userPosts[postId].Media.push({ ...media })
         }
       }
 
       return newState;
     }
-      case FOLLOWED_POSTS: {
-        const data = normalizeData(action.payload.Posts)
-        const newState = {
-          allPosts: data,
-          userPosts: {}
-        }
-        for (let postId in state.userPosts) {
-          newState.userPosts[postId] = {
-            ...state.userPosts[postId],
-            User: {
-              ...state.userPosts[postId].User
-            }
-          }
-          const mediaData = state.userPosts[postId].Media
-          newState.userPosts[postId].Media = []
-          for (let media of mediaData) {
-            newState.userPosts[postId].Media.push({...media})
-          }
-        }
-        return newState;
+    case FOLLOWED_POSTS: {
+      const data = normalizeData(action.payload.Posts)
+      const newState = {
+        allPosts: data,
+        userPosts: {}
       }
-      case USER_POSTS: {
-        const data = normalizeData(action.payload.Posts)
-        const newState = {
-          allPosts: {},
-          userPosts: data
-        }
-        for (let postId in state.allPosts) {
-          newState.allPosts[postId] = {
-            ...state.allPosts[postId],
-            User: {
-              ...state.allPosts[postId].User
-            }
-          }
-          const mediaData = state.allPosts[postId].Media
-          newState.allPosts[postId].Media = []
-          for (let media of mediaData) {
-            newState.allPosts[postId].Media.push({...media})
-          }
-        }
-        return newState;
-      }
-      case ADD_POST: {
-        const post = action.payload
-        // console.log(post)
-        const newState = {
-          allPosts: {},
-          userPosts: {}
-        }
-        for (let postId in state.allPosts) {
-          newState.allPosts[postId] = {
-            ...state.allPosts[postId],
-            User: {
-              ...state.allPosts[postId].User
-            }
-          }
-          const mediaData = state.allPosts[postId].Media
-          newState.allPosts[postId].Media = []
-          for (let media of mediaData) {
-            newState.allPosts[postId].Media.push({...media})
-          }
-        }
-        for (let postId in state.userPosts) {
-          newState.userPosts[postId] = {
-            ...state.userPosts[postId],
-            User: {
-              ...state.userPosts[postId].User
-            }
-          }
-          const mediaData = state.userPosts[postId].Media
-          newState.userPosts[postId].Media = []
-          for (let media of mediaData) {
-            newState.userPosts[postId].Media.push({...media})
-          }
-        }
-
-        newState.allPosts[post.id] = {
-          ...post,
-          Media: [],
+      for (let postId in state.userPosts) {
+        newState.userPosts[postId] = {
+          ...state.userPosts[postId],
           User: {
-            following: false,
-            id: post.User.id,
-            profileImageUrl: post.User.profileImageUrl,
-            username: post.User.username
+            ...state.userPosts[postId].User
           }
         }
+        const mediaData = state.userPosts[postId].Media
+        newState.userPosts[postId].Media = []
+        for (let media of mediaData) {
+          newState.userPosts[postId].Media.push({ ...media })
+        }
+      }
+      return newState;
+    }
+    case USER_POSTS: {
+      const data = normalizeData(action.payload.Posts)
+      const newState = {
+        allPosts: {},
+        userPosts: data
+      }
+      for (let postId in state.allPosts) {
+        newState.allPosts[postId] = {
+          ...state.allPosts[postId],
+          User: {
+            ...state.allPosts[postId].User
+          }
+        }
+        const mediaData = state.allPosts[postId].Media
+        newState.allPosts[postId].Media = []
+        for (let media of mediaData) {
+          newState.allPosts[postId].Media.push({ ...media })
+        }
+      }
+      return newState;
+    }
+    case ADD_POST: {
+      const post = action.payload
+      const newState = {
+        allPosts: {},
+        userPosts: {}
+      }
+      for (let postId in state.allPosts) {
+        newState.allPosts[postId] = {
+          ...state.allPosts[postId],
+          User: {
+            ...state.allPosts[postId].User
+          }
+        }
+        const mediaData = state.allPosts[postId].Media
+        newState.allPosts[postId].Media = []
+        for (let media of mediaData) {
+          newState.allPosts[postId].Media.push({ ...media })
+        }
+      }
+      for (let postId in state.userPosts) {
+        newState.userPosts[postId] = {
+          ...state.userPosts[postId],
+          User: {
+            ...state.userPosts[postId].User
+          }
+        }
+        const mediaData = state.userPosts[postId].Media
+        newState.userPosts[postId].Media = []
+        for (let media of mediaData) {
+          newState.userPosts[postId].Media.push({ ...media })
+        }
+      }
 
-        return newState
+      newState.allPosts[post.id] = {
+        ...post,
+        Media: [],
+        User: {
+          following: false,
+          id: post.User.id,
+          profileImageUrl: post.User.profileImageUrl,
+          username: post.User.username
+        }
       }
-      case EDIT_POST: {
-        const editedPost = action.payload
-        const newState = {
-          allPosts: {},
-          userPosts: {}
-        }
-        for (let postId in state.allPosts) {
-          newState.allPosts[postId] = {
-            ...state.allPosts[postId],
-            User: {
-              ...state.allPosts[postId].User
-            }
-          }
-          const mediaData = state.allPosts[postId].Media
-          newState.allPosts[postId].Media = []
-          for (let media of mediaData) {
-            newState.allPosts[postId].Media.push({...media})
-          }
-        }
-        for (let postId in state.userPosts) {
-          newState.userPosts[postId] = {
-            ...state.userPosts[postId],
-            User: {
-              ...state.userPosts[postId].User
-            }
-          }
-          const mediaData = state.userPosts[postId].Media
-          newState.userPosts[postId].Media = []
-          for (let media of mediaData) {
-            newState.userPosts[postId].Media.push({...media})
-          }
-        }
-        // if post existed on user posts
-        if (state.userPosts[editedPost.id]) {
-          // Get previous post's userdata and media data
-          // spread it into edited post
-          // console.log('mediaData: ', mediaData);
-          const notes = state.userPosts[editedPost.id].notes
-          newState.userPosts[editedPost.id] = editedPost
-          newState.userPosts[editedPost.id].notes = notes
-          const mediaData = state.userPosts[editedPost.id].Media
-          newState.userPosts[editedPost.id].Media = []
-          for (let media of mediaData) {
-            newState.userPosts[editedPost.id].Media.push({...media})
-          }
-          const userData = state.userPosts[editedPost.id].User
-          newState.userPosts[editedPost.id].User = { ...userData }
-        }
-        if (state.allPosts[editedPost.id]) {
-          const notes = state.allPosts[editedPost.id].notes
-          newState.allPosts[editedPost.id] = editedPost
-          newState.allPosts[editedPost.id].notes = notes
-          const mediaData = state.allPosts[editedPost.id].Media
-          newState.allPosts[editedPost.id].Media = []
-          for (let media of mediaData) {
-            newState.allPosts[editedPost.id].Media.push({...media})
-          }
-          const userData = state.allPosts[editedPost.id].User
-          newState.allPosts[editedPost.id].User = { ...userData }
-        }
-        return newState;
+
+      return newState
+    }
+    case EDIT_POST: {
+      const editedPost = action.payload
+      const newState = {
+        allPosts: {},
+        userPosts: {}
       }
-      case DELETE_POST: {
-        const postId = action.payload
-        const newState = {
-          allPosts: {},
-          userPosts: {}
-        }
-        for (let postId in state.allPosts) {
-          newState.allPosts[postId] = {
-            ...state.allPosts[postId],
-            User: {
-              ...state.allPosts[postId].User
-            }
-          }
-          const mediaData = state.allPosts[postId].Media
-          newState.allPosts[postId].Media = []
-          for (let media of mediaData) {
-            newState.allPosts[postId].Media.push({...media})
+      for (let postId in state.allPosts) {
+        newState.allPosts[postId] = {
+          ...state.allPosts[postId],
+          User: {
+            ...state.allPosts[postId].User
           }
         }
-        for (let postId in state.userPosts) {
-          newState.userPosts[postId] = {
-            ...state.userPosts[postId],
-            User: {
-              ...state.userPosts[postId].User
-            }
-          }
-          const mediaData = state.userPosts[postId].Media
-          newState.userPosts[postId].Media = []
-          for (let media of mediaData) {
-            newState.userPosts[postId].Media.push({...media})
-          }
+        const mediaData = state.allPosts[postId].Media
+        newState.allPosts[postId].Media = []
+        for (let media of mediaData) {
+          newState.allPosts[postId].Media.push({ ...media })
         }
-        delete newState.userPosts[postId];
-        delete newState.allPosts[postId];
-        return newState;
       }
-      case ADD_MEDIA: {
-        // spread all the data from the previous states
-        const media = action.payload;
-        const postId = media.postId
-        const newState = {
-          allPosts: {},
-          userPosts: {}
-        }
-        for (let postId in state.allPosts) {
-          newState.allPosts[postId] = {
-            ...state.allPosts[postId],
-            User: {
-              ...state.allPosts[postId].User
-            }
-          }
-          const mediaData = state.allPosts[postId].Media
-          newState.allPosts[postId].Media = []
-          for (let media of mediaData) {
-            newState.allPosts[postId].Media.push({...media})
+      for (let postId in state.userPosts) {
+        newState.userPosts[postId] = {
+          ...state.userPosts[postId],
+          User: {
+            ...state.userPosts[postId].User
           }
         }
-        for (let postId in state.userPosts) {
-          newState.userPosts[postId] = {
-            ...state.userPosts[postId],
-            User: {
-              ...state.userPosts[postId].User
-            }
-          }
-          const mediaData = state.userPosts[postId].Media
-          newState.userPosts[postId].Media = []
-          for (let media of mediaData) {
-            newState.userPosts[postId].Media.push({...media})
-          }
+        const mediaData = state.userPosts[postId].Media
+        newState.userPosts[postId].Media = []
+        for (let media of mediaData) {
+          newState.userPosts[postId].Media.push({ ...media })
         }
-        if (newState.allPosts[postId]) newState.allPosts[postId].Media.push(media)
-        if (newState.userPosts[postId]) newState.userPosts[postId].Media.push(media)
-        // if the post is in either state, add the media to
-        // that post's Media array
-        // return new state
-        return newState;
       }
+      // if post existed on user posts
+      if (state.userPosts[editedPost.id]) {
+        // Get previous post's userdata and media data
+        // spread it into edited post
+        const notes = state.userPosts[editedPost.id].notes
+        newState.userPosts[editedPost.id] = editedPost
+        newState.userPosts[editedPost.id].notes = notes
+        const mediaData = state.userPosts[editedPost.id].Media
+        newState.userPosts[editedPost.id].Media = []
+        for (let media of mediaData) {
+          newState.userPosts[editedPost.id].Media.push({ ...media })
+        }
+        const userData = state.userPosts[editedPost.id].User
+        newState.userPosts[editedPost.id].User = { ...userData }
+      }
+      if (state.allPosts[editedPost.id]) {
+        const notes = state.allPosts[editedPost.id].notes
+        newState.allPosts[editedPost.id] = editedPost
+        newState.allPosts[editedPost.id].notes = notes
+        const mediaData = state.allPosts[editedPost.id].Media
+        newState.allPosts[editedPost.id].Media = []
+        for (let media of mediaData) {
+          newState.allPosts[editedPost.id].Media.push({ ...media })
+        }
+        const userData = state.allPosts[editedPost.id].User
+        newState.allPosts[editedPost.id].User = { ...userData }
+      }
+      return newState;
+    }
+    case DELETE_POST: {
+      const postId = action.payload
+      const newState = {
+        allPosts: {},
+        userPosts: {}
+      }
+      for (let postId in state.allPosts) {
+        newState.allPosts[postId] = {
+          ...state.allPosts[postId],
+          User: {
+            ...state.allPosts[postId].User
+          }
+        }
+        const mediaData = state.allPosts[postId].Media
+        newState.allPosts[postId].Media = []
+        for (let media of mediaData) {
+          newState.allPosts[postId].Media.push({ ...media })
+        }
+      }
+      for (let postId in state.userPosts) {
+        newState.userPosts[postId] = {
+          ...state.userPosts[postId],
+          User: {
+            ...state.userPosts[postId].User
+          }
+        }
+        const mediaData = state.userPosts[postId].Media
+        newState.userPosts[postId].Media = []
+        for (let media of mediaData) {
+          newState.userPosts[postId].Media.push({ ...media })
+        }
+      }
+      delete newState.userPosts[postId];
+      delete newState.allPosts[postId];
+      return newState;
+    }
+    case ADD_MEDIA: {
+      // spread all the data from the previous states
+      const media = action.payload;
+      const postId = media.postId
+      const newState = {
+        allPosts: {},
+        userPosts: {}
+      }
+      for (let postId in state.allPosts) {
+        newState.allPosts[postId] = {
+          ...state.allPosts[postId],
+          User: {
+            ...state.allPosts[postId].User
+          }
+        }
+        const mediaData = state.allPosts[postId].Media
+        newState.allPosts[postId].Media = []
+        for (let media of mediaData) {
+          newState.allPosts[postId].Media.push({ ...media })
+        }
+      }
+      for (let postId in state.userPosts) {
+        newState.userPosts[postId] = {
+          ...state.userPosts[postId],
+          User: {
+            ...state.userPosts[postId].User
+          }
+        }
+        const mediaData = state.userPosts[postId].Media
+        newState.userPosts[postId].Media = []
+        for (let media of mediaData) {
+          newState.userPosts[postId].Media.push({ ...media })
+        }
+      }
+      if (newState.allPosts[postId]) newState.allPosts[postId].Media.push(media)
+      if (newState.userPosts[postId]) newState.userPosts[postId].Media.push(media)
+      // if the post is in either state, add the media to
+      // that post's Media array
+      // return new state
+      return newState;
+    }
     default:
       return state;
   }
