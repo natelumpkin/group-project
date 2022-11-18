@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import './NotesCard.css';
 import * as commentActions from "../../store/comment";
@@ -11,6 +11,7 @@ const CommentInput = ({ postid }) => {
   const [comment, setComment] = useState('');
   const [valid, setValid] = useState(false)
   const [errors, setErrors] = useState([]);
+  const [quote, setQuote] = useState('')
 
   const tx = document.getElementsByTagName("textarea");
   for (let i = 0; i < tx.length; i++) {
@@ -48,8 +49,14 @@ const CommentInput = ({ postid }) => {
         }
       });
   }
-  let quote = newQuote()
+  // let currentQuote = newQuote()
   let userIMG;
+  // useEffect(()=>{
+
+  //   setQuote(currentQuote)
+  // }, quote)
+
+
   if (sessionUser && sessionUser.profileImageUrl) {
     userIMG = sessionUser.profileImageUrl
   }
@@ -71,11 +78,9 @@ return (
                 maxLength="250"
                 value={comment}
                 onChange={(e)=>handleChangeText(e)}
-                // onChange={(e)=>setComment(e.target.value)}
                 required
                 className="notescard_commentinput_bar"
                 placeholder={quote}
-                // "Unleash Compliments!"
               />
               <button
                 type="submit"

@@ -138,17 +138,17 @@
 
 .notescard_commentinput_container textarea#story {
   /* outline:0px none transparent; */
-  background: none;
+  /* background: none; */
 }
 
 .notescard_commentinput_container textarea:focus, input:focus{
     /* outline: 0; */
-    border: none;
+    /* border: none; */
 }
 
 .notescard_commentinput_container *:focus {
     /* outline: 0; */
-    border: none;
+    /* border: none; */
 }
 
 .notescard_commentinput_form {
@@ -158,10 +158,6 @@
   /* border: 1px solid blue; */
 }
 
-
-.notescard_commentinput_bar::selection{
-  text-decoration: unset;
-}
 
 .notescard_commentinput_submit_button{
   /* border: 1px solid purple; */
@@ -216,10 +212,6 @@
   background-color: #3b3b3b;
   cursor: pointer;
 }
-
-/* .edit-reply-option {
-  padding-top: 5px;
-} */
 
 .delete-reply-option {
   padding-bottom: 5px;
