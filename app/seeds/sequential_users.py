@@ -20,14 +20,14 @@ def seed_users():
         password="ColossalPassword"
     )
 
-    # user_3 = User(
-    #     username="",
-    #     first_name="",
-    #     last_name="",
-    #     email="",
-    #     profile_image_url="",
-    #     password=""
-    # )
+    user_3 = User(
+        username="Mushroom-Mario",
+        first_name="Mario",
+        last_name="Mario",
+        email="mario.mario@aa.io",
+        profile_image_url="https://i.imgur.com/mwR4POb.jpeg",
+        password="mushroomiest"
+    )
 
     # user_4 = User(
     #     username="",
@@ -55,7 +55,7 @@ def seed_users():
 
     db.session.add(user_1)
     db.session.add(user_2)
-    # db.session.add(user_3)
+    db.session.add(user_3)
     # db.session.add(user_4)
     # db.session.add(user_5)
     db.session.commit()

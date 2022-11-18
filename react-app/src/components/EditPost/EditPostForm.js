@@ -1,11 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { updatePost } from '../../store/post';
 import './EditPost.css'
 
-import UploadPicture from '../UploadImage';
-
-const CreatePostForm = ({ setShowModal, post }) => {
+const CreatePostForm = ({ setShowModal, showModal, post }) => {
     const author = useSelector(state => state.session.user)
     const [errors, setErrors] = useState([]);
     const [title, setTitle] = useState(post.title);
@@ -14,6 +12,17 @@ const CreatePostForm = ({ setShowModal, post }) => {
     const [textCharCount, setTextCharCount] = useState(post.text.length);
     const dispatch = useDispatch();
     const postType = post.postType
+
+    useEffect(() => {
+        if (showModal) {
+          //console.log('setting no scroll on body in profile button')
+          document.body.style.overflow = 'hidden';
+        }
+        return () => {
+          //console.log('running clean up of useeffect in profile button')
+          document.body.style.overflow = 'unset';
+        }
+      },[showModal])
 
 
     const onSubmit = async (e) => {
@@ -45,7 +54,7 @@ const CreatePostForm = ({ setShowModal, post }) => {
                         <div id='text-profile-image-container'>
                             <img id='author-profile-image' alt='author profile' src={author.profileImageUrl} />
                         </div>
-                        <div id='text-username'>{author.username}</div>
+                        <div className='post-form-username'>{author.username}</div>
                     </div>
                     <div id='text-form-title-input'>
                         <input

@@ -9,10 +9,12 @@ export default function LoginFormModal() {
 
     return (
         <>
-            <div id="login-button" onClick={() => setShowModal(true)}>Log in</div>
+            <div id="login-button" className='signup-login-button' onClick={() => setShowModal(true)}>
+                <p>Log in</p>
+            </div>
             {showModal && (
                 <Modal onClose={() => setShowModal(false)} >
-                    <LoginForm setShowModal={setShowModal} />
+                    <LoginForm setShowModal={setShowModal} showModal={showModal} />
                 </Modal>
             )}
         </>

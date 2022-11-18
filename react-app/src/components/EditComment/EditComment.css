@@ -1,0 +1,23 @@
+#modal-content:has(.edit_comment_main_container) {
+    background-color: #222222;
+    width: 540px;
+    height: fit-content;
+    overflow: visible;
+    border-radius: 3px;
+}
+
+#comment-edit-input-container {
+    margin: 20px 30px;
+    font-size: 24px;
+}
+
+#comment-edit-input-container>textarea {
+    font-size: 24px;
+    height: fit-content;
+}
+
+.edit_comment_main_container>h4 {
+    font-size: 32px;
+    margin: 20px 0px 0px 20px;
+    color: white;
+}
