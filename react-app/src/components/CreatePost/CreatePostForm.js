@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useHistory, Redirect } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { createPost, addMediaByPostId } from '../../store/post';
 import './CreatePostModal.css'
@@ -67,6 +67,8 @@ const CreatePostForm = ({ setShowModal, showModal, typeSelection = false }) => {
             });
         if (post && !mediaUrl) {
             setShowModal(false)
+            history.push('/feed')
+            window.scrollTo(0,0)
         }
         if (post && mediaUrl) {
             const postMedia = await dispatch(addMediaByPostId(post.id, mediaUrl))
@@ -80,6 +82,8 @@ const CreatePostForm = ({ setShowModal, showModal, typeSelection = false }) => {
                 });
             if (postMedia) {
                 setShowModal(false)
+                history.push('/feed')
+                window.scrollTo(0,0)
             }
         }
     };
