@@ -55,11 +55,11 @@ const AboutPage = () => {
         </div>
         <div className="postCard-content-holder top-padding">
           <div className="postCard-author-username-holder post-padding">
-            <Link to={`/users/${post.User.id}`}>
+
               {post.User && (
                 post.User.username
               )}
-            </Link>
+
             {/* If following is false and there is session.user.id and post.User.id is not currentUser.id, then render the follow button */}
 
           </div>
