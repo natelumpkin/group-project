@@ -91,7 +91,7 @@ const PostCard = ({ post }) => {
   let notesCount;
   if (notes > 1) {
     notesCount = `${notes} notes`
-  } else if (notes = 1) {
+  } else if (notes <= 1) {
     notesCount = `${notes} note`
   }
 
@@ -222,10 +222,10 @@ const PostCard = ({ post }) => {
             )}
           </div>
           <div className="postcard-quote-holder post-padding">
-            <h2>{post.text}</h2>
+            <h2>"{post.text}"</h2>
           </div>
           <div className="postcard-source-holder post-padding">
-            <p>{post.title}</p>
+            <p>- {post.title}</p>
           </div>
           <div className="postcard-edit-delete-holder post-padding">
             {user && user.id === post.User.id && (<>
