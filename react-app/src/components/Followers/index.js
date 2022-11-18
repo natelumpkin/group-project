@@ -6,6 +6,8 @@ import * as followActions from '../../store/follow'
 import FollowCard from "../FollowCard";
 import './Followers.css'
 
+// styling done primarily in following.css
+
 const Followers = () => {
 
   // This is a display of everyone the current use is following
@@ -37,7 +39,7 @@ const Followers = () => {
     <div id='follow-list-container'>
       <div id='follow-list-count'>
         {loaded && (
-          <h4>{followerList.length} Followers</h4>)}
+          <h4 className='followers-following-title'>{followerList.length} Followers</h4>)}
       </div>
       <div id='follow-list'>
         <div id='follow'>

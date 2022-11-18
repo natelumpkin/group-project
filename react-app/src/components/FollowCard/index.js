@@ -43,7 +43,7 @@ const FollowCard = ({ user, followingList }) => {
     <div className="follow-card">
       <div className='follow-card-left-container'>
         <div className="follow-profile-image">
-          <img src={user.profileImageUrl} alt='follow profile' />
+          <img className="profile-img" src={user.profileImageUrl} alt='follow profile' />
         </div>
         <div className="follow-username">
           <p>{user.username}</p>
