@@ -67,6 +67,7 @@
 .delete-post-button,
 .postcard-comment-button {
     margin-right: 8px;
+    cursor: pointer;
 }
 
 .postcard-bottom-container {
