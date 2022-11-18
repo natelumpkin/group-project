@@ -70,15 +70,13 @@ def seed_posts():
             user_id=3,
             post_type="text",
             title="",
-            text="""
-            *Mario is fighting Bowser *
+            text="""*Mario is fighting Bowser*
 
-            Luigi: Just stay calm! You already have everything you need to beat him!
+Luigi: Just stay calm! You already have everything you need to beat him!
 
-            Mario: The power to believe in myself!?
+Mario: The power to believe in myself!?
 
-            Luigi: No, a knife! Stab him!
-            """
+Luigi: No, a knife! Stab him!"""
         ),
         Post(
             user_id=3,
@@ -263,7 +261,7 @@ def seed_posts():
     # ]
 
     user_2 = User.query.get(2)
-    # user_3 = User.query.get(3)
+    user_3 = User.query.get(3)
     # user_4 = User.query.get(4)
     # user_5 = User.query.get(5)
 
@@ -271,9 +269,9 @@ def seed_posts():
         # post.user_likes = [user_3, user_4, user_5]
         db.session.add(post)
 
-    # for post in user_3_posts:
-    #     post.user_likes = [user_2, user_4, user_5]
-    #     db.session.add(post)
+    for post in user_3_posts:
+        # post.user_likes = [user_2, user_4, user_5]
+        db.session.add(post)
 
     # for post in user_4_posts:
     #     post.user_likes = [user_2, user_3, user_5]

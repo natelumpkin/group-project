@@ -217,7 +217,7 @@ def seed_media():
     for media in user_2_media:
         db.session.add(media)
 
-    # for media in user_3_media:
+    for media in user_3_media:
         db.session.add(media)
 
     # for media in user_4_media:
