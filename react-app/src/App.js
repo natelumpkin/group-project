@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux';
 import LoginForm from './components/auth/Login/LoginForm';
 import SignUpForm from './components/auth/SignUp/SignUpForm';
 import Header from './components/Header';
+import Footer from './components/Footer';
 // import ProtectedRoute from './components/auth/ProtectedRoute';
 // import UsersList from './components/Header/UsersList';
 // import User from './components/Header/User';
@@ -14,6 +15,7 @@ import HomeFeed from './components/HomeFeed';
 import UserPosts from './components/UserPosts';
 import Followers from './components/Followers';
 import Following from './components/Following';
+import AboutPage from './components/AboutPage';
 
 
 function App() {
@@ -62,12 +64,17 @@ function App() {
         <Route path='/followers'>
           <Followers />
         </Route>
+        <Route path='/about'>
+          <AboutPage />
+        </Route>
         <Route>
           <div id='page-not-found-container'>
             <h1>404 Page not found {':<'} Sowwyyyyy</h1>
           </div>
         </Route>
       </Switch>
+      <Footer />
+
     </BrowserRouter>
   );
 }

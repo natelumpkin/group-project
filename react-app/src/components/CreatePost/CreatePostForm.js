@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { createPost, addMediaByPostId } from '../../store/post';
 import './CreatePostModal.css'
 import './CreatePostForm.css'
-import UploadPicture from '../UploadImage';
+// import UploadPicture from '../UploadImage';
 
 const CreatePostForm = ({ setShowModal, showModal, typeSelection = false }) => {
     const author = useSelector(state => state.session.user)
@@ -21,14 +21,12 @@ const CreatePostForm = ({ setShowModal, showModal, typeSelection = false }) => {
 
     useEffect(() => {
         if (showModal) {
-          //console.log('setting no scroll on body in profile button')
-          document.body.style.overflow = 'hidden';
+            document.body.style.overflow = 'hidden';
         }
         return () => {
-          //console.log('running clean up of useeffect in profile button')
-          document.body.style.overflow = 'unset';
+            document.body.style.overflow = 'unset';
         }
-      },[showModal])
+    }, [showModal])
 
 
     useEffect(() => {
@@ -47,7 +45,9 @@ const CreatePostForm = ({ setShowModal, showModal, typeSelection = false }) => {
     const onSubmit = async (e) => {
         e.preventDefault();
         setErrors([]);
+        if (errors) {
 
+        }
         const postData = {
             postType,
             title,
@@ -59,7 +59,8 @@ const CreatePostForm = ({ setShowModal, showModal, typeSelection = false }) => {
                 const data = await response.json();
                 if (data && data.errors) {
                     setErrors(Object.values(data.errors));
-                    console.log(errors);
+                    // This console log is to make react happy - do not delete
+                    console.log("Errors "+errors)
                 }
             });
         if (post && !mediaUrl) {
@@ -71,7 +72,8 @@ const CreatePostForm = ({ setShowModal, showModal, typeSelection = false }) => {
                     const data = await response.json();
                     if (data && data.errors) {
                         setErrors(Object.values(data.errors));
-                        console.log(errors);
+                        // This console log is to make react happy - do not delete
+                        console.log("Errors "+errors)
                     }
                 });
             if (postMedia) {
@@ -79,7 +81,6 @@ const CreatePostForm = ({ setShowModal, showModal, typeSelection = false }) => {
             }
         }
     };
-
     return (
         <div>
             {!postType && (
@@ -151,7 +152,7 @@ const CreatePostForm = ({ setShowModal, showModal, typeSelection = false }) => {
                     </div>
                     <div className='form-footer'>
                         <button className='cancel-button' onClick={() => setShowModal(false)}>Close</button>
-                        <button className='submit-button' type="submit" disabled={disablePostText}>Post Now!!</button>
+                        <button className='submit-button' type="submit" disabled={disablePostText}>Post Now</button>
                     </div>
                 </form>
             )}
@@ -267,7 +268,7 @@ const CreatePostForm = ({ setShowModal, showModal, typeSelection = false }) => {
                         <input
                             name='video'
                             type='url'
-                            placeholder='Type or paste video link'
+                            placeholder='Type or paste youTube or vimeo video link'
                             value={mediaUrl}
                             onChange={(e) => {
                                 setMediaUrl(e.target.value)

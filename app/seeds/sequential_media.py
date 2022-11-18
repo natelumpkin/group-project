@@ -108,111 +108,114 @@ def seed_media():
         )
     ]
 
-    # user_4_media = [
-    #     Media(
-    #         post_id=21,
-    #         media_type="",
-    #         media_url=""
-    #     ),
-    #     Media(
-    #         post_id=22,
-    #         media_type="",
-    #         media_url=""
-    #     ),
-    #     Media(
-    #         post_id=23,
-    #         media_type="",
-    #         media_url=""
-    #     ),
-    #     Media(
-    #         post_id=24,
-    #         media_type="",
-    #         media_url=""
-    #     ),
-    #     Media(
-    #         post_id=25,
-    #         media_type="",
-    #         media_url=""
-    #     ),
-    #     Media(
-    #         post_id=26,
-    #         media_type="",
-    #         media_url=""
-    #     ),
-    #     Media(
-    #         post_id=27,
-    #         media_type="",
-    #         media_url=""
-    #     ),
-    #     Media(
-    #         post_id=28,
-    #         media_type="",
-    #         media_url=""
-    #     ),
-    #     Media(
-    #         post_id=29,
-    #         media_type="",
-    #         media_url=""
-    #     ),
-    #     Media(
-    #         post_id=30,
-    #         media_type="",
-    #         media_url=""
-    #     )
-    # ]
+    user_4_media = [
+        Media(
+            post_id=21,
+            media_type="",
+            media_url=""
+        ),
+        Media(
+            post_id=22,
+            media_type="",
+            media_url=""
+        ),
+        Media(
+            post_id=23,
+            media_type="",
+            media_url=""
+        ),
+        Media(
+            post_id=24,
+            media_type="",
+            media_url=""
+        ),
+        Media(
+            post_id=25,
+            media_type="",
+            media_url=""
+        ),
+        Media(
+            post_id=26,
+            media_type="",
+            media_url=""
+        ),
+        Media(
+            post_id=27,
+            media_type="image",
+            media_url="https://64.media.tumblr.com/6a6f2eadac9f36425a01e265396a6f4f/089e1fa6c1226f98-89/s640x960/34a81e294ce44618ab5938ab80a49c93bbacb95d.jpg"
+        ),
+        Media(
+            post_id=28,
+            media_type="image",
+            media_url="https://64.media.tumblr.com/ebf0fc29c7119ef55ef591d5b35ee430/c61649fb822ffdf1-66/s640x960/4434f52898e507e8bffe2c5b83176523b23e29a7.jpg"
+        ),
+        Media(
+            post_id=29,
+            media_type="image",
+            media_url="https://64.media.tumblr.com/71c98f219f75ab924f9bcc6aae6a5446/f717c6922b5877cd-54/s640x960/b713d99af39f1bad133ce4a80232e12766d7ff60.jpg"
+        ),
+        Media(
+            post_id=30,
+            media_type="image",
+            media_url="https://64.media.tumblr.com/bd36f2d77457c4e2e10811ce8b41ed27/6091d07553dcfa25-02/s640x960/e3ab00ba2d0fb655515af93b95dda6b7c8a91686.jpg"
+        )
+    ]
 
-    # user_5_media = [
-    #     Media(
-    #         post_id=31,
-    #         media_type="",
-    #         media_url=""
-    #     ),
-    #     Media(
-    #         post_id=32,
-    #         media_type="",
-    #         media_url=""
-    #     ),
-    #     Media(
-    #         post_id=33,
-    #         media_type="",
-    #         media_url=""
-    #     ),
-    #     Media(
-    #         post_id=34,
-    #         media_type="",
-    #         media_url=""
-    #     ),
-    #     Media(
-    #         post_id=35,
-    #         media_type="",
-    #         media_url=""
-    #     ),
-    #     Media(
-    #         post_id=36,
-    #         media_type="",
-    #         media_url=""
-    #     ),
-    #     Media(
-    #         post_id=37,
-    #         media_type="",
-    #         media_url=""
-    #     ),
-    #     Media(
-    #         post_id=38,
-    #         media_type="",
-    #         media_url=""
-    #     ),
-    #     Media(
-    #         post_id=39,
-    #         media_type="",
-    #         media_url=""
-    #     ),
-    #     Media(
-    #         post_id=40,
-    #         media_type="",
-    #         media_url=""
-    #     )
-    # ]
+    user_5_media = [
+        Media(
+            post_id=31,
+            media_type="image",
+            media_url="https://i.imgur.com/jvKE3Rm.jpg"
+        ),
+        Media(
+            post_id=32,
+            media_type="image",
+            media_url="https://i.imgur.com/rsEVo8f.jpg"
+        ),
+        Media(
+            post_id=33,
+            media_type="",
+            media_url=""
+        ),
+        Media(
+            post_id=34,
+
+            media_type="video",
+            media_url="https://www.youtube.com/watch?v=B2acyeQdRb0"
+        ),
+        Media(
+            post_id=35,
+
+            media_type="image",
+            media_url="https://i.imgur.com/CuTDmSA.jpg"
+
+        ),
+        Media(
+            post_id=36,
+            media_type="video",
+            media_url="https://www.youtube.com/watch?v=9wk4ApHloHM"
+        ),
+        Media(
+            post_id=37,
+            media_type="image",
+            media_url="https://i.imgur.com/D0F0rV3.jpg"
+        ),
+        Media(
+            post_id=38,
+            media_type="",
+            media_url=""
+        ),
+        Media(
+            post_id=39,
+            media_type="",
+            media_url=""
+        ),
+        Media(
+            post_id=40,
+            media_type="",
+            media_url=""
+        )
+    ]
 
     for media in user_2_media:
         db.session.add(media)
@@ -220,11 +223,11 @@ def seed_media():
     for media in user_3_media:
         db.session.add(media)
 
-    # for media in user_4_media:
-    #     db.session.add(media)
+    for media in user_4_media:
+        db.session.add(media)
 
-    # for media in user_5_media:
-    #     db.session.add(media)
+    for media in user_5_media:
+        db.session.add(media)
 
     db.session.commit()
 

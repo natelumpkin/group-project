@@ -29,23 +29,23 @@ def seed_users():
         password="mushroomiest"
     )
 
-    # user_4 = User(
-    #     username="",
-    #     first_name="",
-    #     last_name="",
-    #     email="",
-    #     profile_image_url="",
-    #     password=""
-    # )
+    user_4 = User(
+        username="doom master",
+        first_name="doctordoom",
+        last_name="matterson",
+        email="doom@email.com",
+        profile_image_url="https://64.media.tumblr.com/ca20e0679faaf97c144f917c36b6eeb3/c5f8021d35aa3ed4-b8/s1280x1920/a68f5858bdabae96785b31aefb54e6d88359f575.pnj",
+        password="passworddoom"
+    )
 
-    # user_5 = User(
-    #     username="",
-    #     first_name="",
-    #     last_name="",
-    #     email="",
-    #     profile_image_url="",
-    #     password=""
-    # )
+    user_5 = User(
+        username="CookingPapa",
+        first_name="Bruno",
+        last_name="Segura",
+        email="papabruno1982@gmail.com",
+        profile_image_url="https://i.imgur.com/NZ2KtiP.jpg",
+        password="password"
+    )
 
     # user_1.followers = [user_2, user_3, user_4, user_5]
     # user_2.followers = [user_1]
@@ -56,8 +56,8 @@ def seed_users():
     db.session.add(user_1)
     db.session.add(user_2)
     db.session.add(user_3)
-    # db.session.add(user_4)
-    # db.session.add(user_5)
+    db.session.add(user_4)
+    db.session.add(user_5)
     db.session.commit()
 
 

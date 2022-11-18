@@ -18,10 +18,9 @@ const LoginForm = ({ setShowModal, showModal }) => {
     }
     return () => {
       document.body.style.overflow = 'unset';
-
       setShowModal(false)
     }
-  }, [showModal])
+  }, [showModal, setShowModal])
 
   const onLogin = async (e) => {
     e.preventDefault();

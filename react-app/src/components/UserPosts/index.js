@@ -16,18 +16,19 @@ const UserPosts = () => {
 
   let username;
   if (allPosts) {
-    console.log(Object.values(allPosts)[0])
-    if (Object.values(allPosts)[0]){
+    if (Object.values(allPosts)[0]) {
       username = Object.values(allPosts)[0].User.username
     }
   }
 
   const dispatch = useDispatch()
 
-  useEffect(async () => {
-    dispatch(postActions.getBlog(userId))
+  useEffect(() => {
+   async function getData(){ dispatch(postActions.getBlog(userId))
       .then(() => setLoaded(true))
     if (user && user.id) await dispatch(followActions.getAllFollowing(user.id))
+  };
+  getData();
 
   }, [dispatch, user, userId])
 
@@ -45,9 +46,9 @@ const UserPosts = () => {
     return (
       <div className="outer-container">
         <div className="inner-container">
-            <div>
-              <CreateFormBarModal />
-            </div>
+          <div>
+            <CreateFormBarModal />
+          </div>
           <div className="postsHolder">
             {username && (
               <h1 className="user-page-title post-padding">{username}'s Posts</h1>

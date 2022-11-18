@@ -31,7 +31,7 @@ const HomeFeed = () => {
     allPostsArray.unshift(allPosts[post])
   }
 
-  // console.log('allPosts in userFeed component: ', allPostsArray)
+  console.log(allPostsArray)
 
   return (
     <div className="outer-container">
@@ -40,7 +40,7 @@ const HomeFeed = () => {
           <CreateFormBarModal />
         </div>
         <div className="postsHolder">
-        <h1 className="user-page-title post-padding">Your Feed</h1>
+          <h1 className="user-page-title post-padding">Your Feed</h1>
           {allPostsArray.map(post => (
             <PostCard key={post.id} post={post} />
           ))}

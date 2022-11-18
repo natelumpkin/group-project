@@ -12,30 +12,34 @@ const getAllComments = (comments, postId) => {
     type: GET_ALL_COMMENTS,
     payload: comments,
     postId: postId,
-  }}
+  }
+}
 
 const createComment = (newComment, userData) => {
   return {
-  type: CREATE_COMMENT,
-  payload: newComment,
-  user: userData,
-}}
+    type: CREATE_COMMENT,
+    payload: newComment,
+    user: userData,
+  }
+}
 
 const editComment = (data, commentId, postId, userData) => {
   return {
-  type: EDIT_COMMENT,
-  payload: data,
-  user: userData,
-  postId: postId,
-  commentId: commentId,
-}}
+    type: EDIT_COMMENT,
+    payload: data,
+    user: userData,
+    postId: postId,
+    commentId: commentId,
+  }
+}
 
 const deleteComment = (data, commentId) => {
   return {
-  type: DELETE_COMMENT,
-  payload: data,
-  commentId: commentId,
-}}
+    type: DELETE_COMMENT,
+    payload: data,
+    commentId: commentId,
+  }
+}
 
 
 
@@ -57,7 +61,7 @@ export const grabAllComments = (postId) => async (dispatch) => {
 export const createPostComment = (comment, postId, userData) => async (dispatch) => {
   const response = await fetch(`/api/posts/${postId}/comments`, {
     method: 'POST',
-    headers: {"Content-Type": "application/json"},
+    headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
       "comment": comment
     }),
@@ -75,7 +79,7 @@ export const createPostComment = (comment, postId, userData) => async (dispatch)
 export const editPostComment = (commentId, postId, comment, userData) => async (dispatch) => {
   const response = await fetch(`/api/comments/${commentId}`, {
     method: 'PUT',
-    headers: {"Content-Type": "application/json"},
+    headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
       "comment": comment
     })
@@ -105,7 +109,7 @@ export const deletePostComment = (commentId) => async (dispatch) => {
 // --- REDUCER STUFF --- \\
 
 // --- NORMALIZE DATA SPACE --- \\
-const initialState = {posts: {}}
+const initialState = { posts: {} }
 // const commentNormalizer = (data) => {
 //   return {
 //       comment: data.comment,
@@ -115,13 +119,13 @@ const initialState = {posts: {}}
 
 
 export default function commentReducer(state = initialState, action) {
-  let newState = {...state};
-  switch(action.type) {
+  let newState = { ...state };
+  switch (action.type) {
     case GET_ALL_COMMENTS:
-    let data = normalizeData(action.payload.Comments)
-    newState.posts[action.postId] = data
+      let data = normalizeData(action.payload.Comments)
+      newState.posts[action.postId] = data
 
-    return newState
+      return newState
     case CREATE_COMMENT:
       newState.posts[action.payload.postId][action.payload.id] = {
         comment: action.payload.comment,
@@ -134,13 +138,11 @@ export default function commentReducer(state = initialState, action) {
 
     case EDIT_COMMENT:
       let newdata = normalizeData(action.payload)
-      // console.log("Test", newdata)
-      // console.log("Test", action.payload)
       newdata.User = action.user
-       newState.posts[action.postId][action.commentId] = newdata
-       return newState
-  default:
-    return state;
+      newState.posts[action.postId][action.commentId] = newdata
+      return newState
+    default:
+      return state;
   }
 };
 // --- STATE SHAPE DIAGRAM --- \\

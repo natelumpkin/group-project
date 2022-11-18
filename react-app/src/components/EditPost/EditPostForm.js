@@ -15,14 +15,12 @@ const CreatePostForm = ({ setShowModal, showModal, post }) => {
 
     useEffect(() => {
         if (showModal) {
-          //console.log('setting no scroll on body in profile button')
-          document.body.style.overflow = 'hidden';
+            document.body.style.overflow = 'hidden';
         }
         return () => {
-          //console.log('running clean up of useeffect in profile button')
-          document.body.style.overflow = 'unset';
+            document.body.style.overflow = 'unset';
         }
-      },[showModal])
+    }, [showModal])
 
 
     const onSubmit = async (e) => {
@@ -39,7 +37,8 @@ const CreatePostForm = ({ setShowModal, showModal, post }) => {
                 const data = await response.json();
                 if (data && data.errors) {
                     setErrors(Object.values(data.errors));
-                    console.log(errors);
+                    // This console log is to make react happy - do not delete
+                    console.log("Errors "+errors)
                 }
             });
         if (editedPost) setShowModal(false)
@@ -100,33 +99,33 @@ const CreatePostForm = ({ setShowModal, showModal, post }) => {
             {/* // ---------- POST FORM FOR IMAGE ---------- \\ */}
             {postType === 'image' && (
                 <>
-                <form className='create-post-form' onSubmit={onSubmit}>
-                    <div>
-                        <div id='text-profile-image-container'>
-                            <img id='author-profile-image' alt='author profile' src={author.profileImageUrl} />
+                    <form className='create-post-form' onSubmit={onSubmit}>
+                        <div>
+                            <div id='text-profile-image-container'>
+                                <img id='author-profile-image' alt='author profile' src={author.profileImageUrl} />
+                            </div>
+                            <div className='post-form-username'>{author.username}</div>
                         </div>
-                        <div className='post-form-username'>{author.username}</div>
-                    </div>
-                    <div className='media-text-container'>
-                        <textarea
-                            name='text'
-                            type='text'
-                            placeholder='Go ahead, put anything.'
-                            value={text}
-                            onChange={(e) => {
-                                setText(e.target.value)
-                                setTextCharCount(e.target.value.length)
-                            }}
-                            maxLength={1000}
-                            onFocus={(e) => setTextCharCount(e.target.value.length)}
-                        />
-                        <div>{textCharCount}/1000</div>
-                    </div>
-                    <div className='form-footer'>
-                        <button className='cancel-button' onClick={() => setShowModal(false)}>Close</button>
-                        <button className='save-edit-button' type="submit">Save</button>
-                    </div>
-                </form>
+                        <div className='media-text-container'>
+                            <textarea
+                                name='text'
+                                type='text'
+                                placeholder='Go ahead, put anything.'
+                                value={text}
+                                onChange={(e) => {
+                                    setText(e.target.value)
+                                    setTextCharCount(e.target.value.length)
+                                }}
+                                maxLength={1000}
+                                onFocus={(e) => setTextCharCount(e.target.value.length)}
+                            />
+                            <div>{textCharCount}/1000</div>
+                        </div>
+                        <div className='form-footer'>
+                            <button className='cancel-button' onClick={() => setShowModal(false)}>Close</button>
+                            <button className='save-edit-button' type="submit">Save</button>
+                        </div>
+                    </form>
                 </>
             )}
 
