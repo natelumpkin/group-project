@@ -31,6 +31,8 @@ const HomeFeed = () => {
     allPostsArray.unshift(allPosts[post])
   }
 
+  console.log(allPostsArray)
+
   return (
     <div className="outer-container">
       <div className="inner-container">

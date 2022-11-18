@@ -2,6 +2,28 @@ from app.models import db, Post, User, environment, SCHEMA
 
 
 def seed_posts():
+
+    user_1_posts = [
+        Post(
+            user_id=1,
+            post_type="text",
+            title="Hello World!",
+            text="Hi everyone! This is my very first post!"
+        ),
+        Post(
+            user_id=1,
+            post_type="text",
+            title="I wonder what it's like on land",
+            text="I'd love to go up there and take a look around. Who knows who I'll meet!"
+        ),
+        Post(
+            user_id=1,
+            post_type="text",
+            title="",
+            text="I've already made so many friends! What a nice place!"
+        )
+    ]
+
     user_2_posts = [
         Post(
             user_id=2,
@@ -265,6 +287,8 @@ Luigi: No, a knife! Stab him!"""
     # user_4 = User.query.get(4)
     # user_5 = User.query.get(5)
 
+
+
     for post in user_2_posts:
         # post.user_likes = [user_3, user_4, user_5]
         db.session.add(post)
@@ -279,6 +303,9 @@ Luigi: No, a knife! Stab him!"""
 
     for post in user_5_posts:
         # post.user_likes = [user_2, user_3, user_4]
+        db.session.add(post)
+
+    for post in user_1_posts:
         db.session.add(post)
 
     db.session.commit()
