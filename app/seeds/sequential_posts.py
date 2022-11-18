@@ -255,7 +255,7 @@ Luigi: No, a knife! Stab him!"""
         Post(
             user_id=5,
             post_type="quote",
-            title="",
+            title="Lord Octopus",
             text="One of the greatest war heroes was a head of lettuce. He was really good at getting his troops to romaine calm."
         ),
     ]
@@ -277,9 +277,9 @@ Luigi: No, a knife! Stab him!"""
     #     post.user_likes = [user_2, user_3, user_5]
         db.session.add(post)
 
-    # for post in user_5_posts:
-    #     post.user_likes = [user_2, user_3, user_4]
-    #     db.session.add(post)
+    for post in user_5_posts:
+        # post.user_likes = [user_2, user_3, user_4]
+        db.session.add(post)
 
     db.session.commit()
 
