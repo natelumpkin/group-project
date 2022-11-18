@@ -48,7 +48,12 @@ const UserPosts = () => {
             <CreateFormBarModal />
           </div>
           <div className="postsHolder">
-            <h1 className="user-page-title post-padding">{username}'s Posts</h1>
+            {username && (
+              <h1 className="user-page-title post-padding">{username}'s Posts</h1>
+            )}
+            {!username && (
+              <h1 className="user-page-title post-padding">No Posts Yet</h1>
+            )}
             {allPostsArray.map(post => (
               <PostCard key={post.id} post={post} />
             ))}

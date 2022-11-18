@@ -26,8 +26,6 @@ const PostCard = ({ post }) => {
   const comments = useSelector(state => state.comments)
   const dispatch = useDispatch()
 
-
-
   const [liked, setLiked] = useState(false)
   const [loaded, setLoaded] = useState(false)
 
@@ -56,12 +54,15 @@ const PostCard = ({ post }) => {
 
   const likePost = (postId) => {
     dispatch(likeActions.addPostLike(postId))
-      .then(setLiked(true))
+    let id = `likebutton-${postId}`
+    const likeButton = document.getElementById(id)
+    console.log(likeButton)
+    if (likeButton) likeButton.classList.add('liked')
   }
 
   const unlikePost = (postId) => {
     dispatch(likeActions.removePostLike(postId))
-      .then(setLiked(false))
+
   }
 
   let numComments
@@ -189,7 +190,7 @@ const PostCard = ({ post }) => {
               {user ? (<button className="postcard-comment-button" onClick={(e) => setShowBox(!showBox)}><i className="fa-regular fa-comment interface-text"></i></button>)
                 : (<LoginFormModal setShowModal={setShowModal} showModal={showModal} />)}
 
-              {loaded && user && !liked && (<button className="postcard-like" onClick={() => likePost(post.id)}><i className="fa-regular fa-heart interface-text"></i></button>)}
+              {loaded && user && !liked && (<button id={`likebutton-${post.id}`} className="postcard-like" onClick={() => likePost(post.id)}><i className="fa-regular fa-heart interface-text"></i></button>)}
               {loaded && user && liked && (<button className="postcard-unlike" onClick={() => unlikePost(post.id)}><i className="fa-solid fa-heart interface-text"></i></button>)}
             </div>
           </div>
@@ -246,7 +247,7 @@ const PostCard = ({ post }) => {
             <div className="postcard-comments-likes-holder">
               {user ? (<button className="postcard-comment-button" onClick={(e) => setShowBox(!showBox)}><i className="fa-regular fa-comment interface-text"></i></button>)
                 : (<LoginFormModal setShowModal={setShowModal} showModal={showModal} />)}
-              {loaded && user && !liked && (<button className="postcard-like" onClick={() => likePost(post.id)}><i className="fa-regular fa-heart interface-text"></i></button>)}
+              {loaded && user && !liked && (<button id={`likebutton-${post.id}`} className="postcard-like" onClick={() => likePost(post.id)}><i className="fa-regular fa-heart interface-text"></i></button>)}
               {loaded && user && liked && (<button className="postcard-unlike" onClick={() => unlikePost(post.id)}><i className="fa-solid fa-heart interface-text"></i></button>)}
             </div>
           </div>
@@ -302,7 +303,7 @@ const PostCard = ({ post }) => {
             <div className="postcard-comments-likes-holder">
               {user ? (<button className="postcard-comment-button" onClick={(e) => setShowBox(!showBox)}><i className="fa-regular fa-comment interface-text"></i></button>)
                 : (<LoginFormModal setShowModal={setShowModal} showModal={showModal} />)}
-              {loaded && user && !liked && (<button className="postcard-like" onClick={() => likePost(post.id)}><i className="fa-regular fa-heart interface-text"></i></button>)}
+              {loaded && user && !liked && (<button className="postcard-like" id={`likebutton-${post.id}`} onClick={() => likePost(post.id)}><i className="fa-regular fa-heart interface-text"></i></button>)}
               {loaded && user && liked && (<button className="postcard-unlike" onClick={() => unlikePost(post.id)}><i className="fa-solid fa-heart interface-text"></i></button>)}
             </div>
           </div>
@@ -358,7 +359,7 @@ const PostCard = ({ post }) => {
             <div className="postcard-comments-likes-holder">
               {user ? (<button className="postcard-comment-button" onClick={(e) => setShowBox(!showBox)}><i className="fa-regular fa-comment interface-text"></i></button>)
                 : (<LoginFormModal setShowModal={setShowModal} showModal={showModal} />)}
-              {loaded && user && !liked && (<button className="postcard-like" onClick={() => likePost(post.id)}><i className="fa-regular fa-heart interface-text"></i></button>)}
+              {loaded && user && !liked && (<button className="postcard-like" id={`likebutton-${post.id}`} onClick={() => likePost(post.id)}><i className="fa-regular fa-heart interface-text"></i></button>)}
               {loaded && user && liked && (<button className="postcard-unlike" onClick={() => unlikePost(post.id)}><i className="fa-solid fa-heart interface-text"></i></button>)}
             </div>
           </div>

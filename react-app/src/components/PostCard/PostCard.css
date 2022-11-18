@@ -67,6 +67,7 @@
 .delete-post-button,
 .postcard-comment-button {
     margin-right: 8px;
+    cursor: pointer;
 }
 
 .postcard-bottom-container {
@@ -100,6 +101,10 @@
     color: #b2b2b2;
     background-color: #222222;
     border: none;
+}
+
+.liked {
+    color: #ff492f
 }
 
 .postcard-unlike {
