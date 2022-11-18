@@ -3,7 +3,7 @@
   max-width: 540px;
   height: 500px;
   background-color:#222222;
-  border-top: 1px solid gray;
+  border-top: 1px solid #3f3f3f;
 }
 
 .notescard_navigation_container {
@@ -17,7 +17,7 @@
   margin-right: auto;
   justify-content: space-evenly;
   align-items:center;
-  border-bottom: 1px solid gray;
+  border-bottom: 1px solid #3f3f3f;
 }
 
 .notescard_navigation_container button{
@@ -68,7 +68,7 @@
 .notescard_commentinput_container {
   box-sizing:content-box;
   line-height: inherit;
-  border: 1px solid white;
+  border: 1px solid #595959;
   border-radius: 20px;
   display: flex;
   margin-left: 10px;
@@ -401,4 +401,21 @@
 
 .notescard_likes_followbutton {
 
+}
+
+.empty-comments-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 325px;
+  color: #a9a9a9;
+}
+
+.empty-comments-holder {
+  width: 40%;
+  text-align: center;
+}
+
+.interface-text.empty-comments-bubble {
+  font-size: 55px;
 }
