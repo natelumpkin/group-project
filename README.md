@@ -45,7 +45,34 @@ Scuttlr is fullstack, stateful web-app that draws functionality and style insper
 ---
 
 ## Future Features
+* Ability to re-blog another user's post.
 
+* Personal blog page customizations.
+
+* Rich text support on posts.
+
+* Post tags to help users find content related to their interests.
+
+* Post and user search functionality with filtering by post type, tags, and post content.
+
+* Expanded video and image post capabilities:
+
+    * AWS3 integration to all direct uploading of image and video files.
+
+    * Media previews in the create post and video forms.
+
+    * Support for posts with multiple media types and entries.
+
+
+* Expanded user to user interaction capabilities:
+
+    * Ability to reply to user comments creating a nested interaction.
+
+    * User inbox for notifactions regarding blog interactions.
+
+    * User to user direct messaging.
+
+    * User tags/mentions.
 ---
 
 ## Code Highlights
