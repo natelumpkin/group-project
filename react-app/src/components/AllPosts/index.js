@@ -7,7 +7,7 @@ import CreateFormBarModal from "../CreatePost/CreatePostBar"
 import PostCard from "../PostCard"
 
 const AllPosts = () => {
-  const [feedLength, setFeedLength] = useState(2);
+  const [feedLength, setFeedLength] = useState(3);
   const [postsToRender, setPostsToRender] = useState([]);
   const [postsLoaded, setPostsLoaded] = useState(false);
 
@@ -16,9 +16,9 @@ const AllPosts = () => {
   const allPosts = useSelector(state => state.posts.allPosts)
   const user = useSelector(state => state.session.user)
 
-  useEffect(() => {
-    setFeedLength(2);
-  }, []);
+  // useEffect(() => {
+  //   setFeedLength(3);
+  // }, []);
 
   const dispatch = useDispatch()
 
@@ -42,11 +42,34 @@ const AllPosts = () => {
   }, [feedLength, postsLoaded]);
 
 
-  window.addEventListener('scroll', function () {
-    if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
-      if (feedLength + 2 <= allPostsArray.length) setFeedLength(feedLength + 2);
+  // window.addEventListener('scroll', function () {
+  //   if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
+  //     if (feedLength + 2 <= allPostsArray.length) setFeedLength(feedLength + 2);
+  //   }
+  // });
+
+
+  useEffect(() => {
+
+    const callBackFN = () => {
+      if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
+        if (feedLength + 3 <= allPostsArray.length) {
+          setFeedLength(feedLength + 3);
+        } else if (feedLength + 1 <= allPostsArray.length) {
+          setFeedLength(feedLength + 1);
+          console.log(feedLength, "*********************************************************************************************************************************************************************************************************************************")
+        }
+      }
     }
-  });
+    window.addEventListener('scroll', callBackFN);
+
+    return function cleanup() {
+      window.removeEventListener('scroll', callBackFN);
+    }
+
+  }, [allPostsArray, feedLength])
+
+
 
 
   return (
