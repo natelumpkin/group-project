@@ -58,7 +58,7 @@ const NotesCard = ({ post, numlikes, numcomments }) => {
     )
   }
 
-  console.log('notescard currentuser: ', currentuser)
+  // console.log('notescard currentuser: ', currentuser)
 
   if (currentuser.id) {
     return (
