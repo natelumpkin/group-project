@@ -29,7 +29,7 @@ const EditComment = ({ comment, setShowEditModal }) => {
   return (
     <div className="edit_comment_main_container">
       <h4>Edit Comment</h4>
-      <form onSubmit={handleSubmit}>
+      <form id='edit-comment-form' onSubmit={handleSubmit}>
         <div id="comment-edit-input-container">
           <textarea
             type="textarea"
