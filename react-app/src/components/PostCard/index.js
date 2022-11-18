@@ -91,7 +91,7 @@ const PostCard = ({ post }) => {
   let notesCount;
   if (notes > 1) {
     notesCount = `${notes} notes`
-  } else if (notes = 1) {
+  } else if (notes === 1) {
     notesCount = `${notes} note`
   }
 

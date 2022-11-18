@@ -22,7 +22,7 @@ const UploadPicture = ({ post }) => {
             body: formData,
         });
         if (res.ok) {
-            const data = await res.json();
+            // const data = await res.json();
             setImageLoading(false);
             history.push("/home");
         }
@@ -31,6 +31,8 @@ const UploadPicture = ({ post }) => {
             // a real app would probably use more advanced
             // error handling
             const errors = await res.json()
+            // This console log is to make react happy - do not delete
+            console.log("Errors "+errors)
         }
     }
 
