@@ -45,7 +45,9 @@ const CreatePostForm = ({ setShowModal, showModal, typeSelection = false }) => {
     const onSubmit = async (e) => {
         e.preventDefault();
         setErrors([]);
+        if (errors) {
 
+        }
         const postData = {
             postType,
             title,
@@ -263,7 +265,7 @@ const CreatePostForm = ({ setShowModal, showModal, typeSelection = false }) => {
                         <input
                             name='video'
                             type='url'
-                            placeholder='Type or paste video link'
+                            placeholder='Type or paste youTube or vimeo video link'
                             value={mediaUrl}
                             onChange={(e) => {
                                 setMediaUrl(e.target.value)
