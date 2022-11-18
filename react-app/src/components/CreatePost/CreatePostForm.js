@@ -147,7 +147,7 @@ const CreatePostForm = ({ setShowModal, showModal, typeSelection = false }) => {
                     </div>
                     <div className='form-footer'>
                         <button className='cancel-button' onClick={() => setShowModal(false)}>Close</button>
-                        <button className='submit-button' type="submit" disabled={disablePostText}>Post Now!!</button>
+                        <button className='submit-button' type="submit" disabled={disablePostText}>Post Now</button>
                     </div>
                 </form>
             )}

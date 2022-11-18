@@ -138,7 +138,7 @@ const SignUpForm = ({ setShowModal, showModal }) => {
         </div>}
         <div className='signup-input-container'>
           <input
-            type='text'
+            type='email'
             name='email'
             placeholder='Email'
             onChange={updateEmail}
