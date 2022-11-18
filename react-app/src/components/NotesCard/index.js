@@ -49,11 +49,12 @@ const NotesCard = ({ post, numlikes, numcomments }) => {
       return <LikesCommentCard key={like.id} like={like} post={post} />})
   } else {
     displayLikes = (
-      <>
-        <div> 💬
-          <h3> Be the first to 💖! </h3>
+      <div className="empty-comments-container">
+          <div className="empty-comments-holder">
+            <i className="fa-regular fa-heart interface-text empty-comments-bubble"></i>
+            <h3> Give the first Like! </h3>
+          </div>
         </div>
-      </>
     )
   }
   return (
