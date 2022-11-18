@@ -1,5 +1,5 @@
 .signature-container{
-position: sticky;
+position: fixed;
 bottom:0px;
 display: flex;
 flex-direction: row nowrap;
@@ -9,6 +9,8 @@ background-color: black;
 z-index: 10;
 border-top: 1px solid #3f3f3f;
 margin: 0;
+max-height: 22px;
+width: 100%;
 }
 
 .signature-content{

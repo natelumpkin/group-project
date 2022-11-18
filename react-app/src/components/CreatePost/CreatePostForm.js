@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { createPost, addMediaByPostId } from '../../store/post';
 import './CreatePostModal.css'
 import './CreatePostForm.css'
-import UploadPicture from '../UploadImage';
+// import UploadPicture from '../UploadImage';
 
 const CreatePostForm = ({ setShowModal, showModal, typeSelection = false }) => {
     const author = useSelector(state => state.session.user)
@@ -45,7 +45,9 @@ const CreatePostForm = ({ setShowModal, showModal, typeSelection = false }) => {
     const onSubmit = async (e) => {
         e.preventDefault();
         setErrors([]);
+        if (errors) {
 
+        }
         const postData = {
             postType,
             title,
@@ -57,6 +59,8 @@ const CreatePostForm = ({ setShowModal, showModal, typeSelection = false }) => {
                 const data = await response.json();
                 if (data && data.errors) {
                     setErrors(Object.values(data.errors));
+                    // This console log is to make react happy - do not delete
+                    console.log("Errors "+errors)
                 }
             });
         if (post && !mediaUrl) {
@@ -68,6 +72,8 @@ const CreatePostForm = ({ setShowModal, showModal, typeSelection = false }) => {
                     const data = await response.json();
                     if (data && data.errors) {
                         setErrors(Object.values(data.errors));
+                        // This console log is to make react happy - do not delete
+                        console.log("Errors "+errors)
                     }
                 });
             if (postMedia) {
@@ -75,7 +81,6 @@ const CreatePostForm = ({ setShowModal, showModal, typeSelection = false }) => {
             }
         }
     };
-
     return (
         <div>
             {!postType && (
@@ -263,7 +268,7 @@ const CreatePostForm = ({ setShowModal, showModal, typeSelection = false }) => {
                         <input
                             name='video'
                             type='url'
-                            placeholder='Type or paste video link'
+                            placeholder='Type or paste youTube or vimeo video link'
                             value={mediaUrl}
                             onChange={(e) => {
                                 setMediaUrl(e.target.value)

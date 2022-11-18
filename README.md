@@ -4,6 +4,7 @@
 1. [Project Summary](#project-summary)
 2. [Technologies Used](#technologies-used)
 3. [App Screenshots](#app-screenshots)
+4. [Local Run Instructions](#local-run-instructions)
 
 ---
 ## Project Summary
@@ -35,17 +36,84 @@ Scuttlr is fullstack, stateful web-app that draws functionality and style insper
 
 ---
 ## App Screenshots
-    < Placeholder For App Screenshots >
 
+### Sign Up Form
+![](https://i.imgur.com/W8Jc5He.png)
+
+### Log In Form
+![](https://i.imgur.com/yHvXcnS.png)
+
+### Logged out splash page
+![](https://i.imgur.com/Xi6pPbt.png)
+
+### Logged in splash page
+![](https://i.imgur.com/AKKUfwN.png)
+
+### Create Post Form
+![](https://i.imgur.com/5HibyDj.png)
 ---
 
-## Build/Run Instructions
-
-
+## Local Run Instructions
+1. Clone the repository to a local directory.
+2. In the root directory, copy the contents of the `.env.example` to a `.env` file.
+    - Assign `DATABASE_URL` to `sqlite:///dev.db`
+    - Assign `SECRET_KEY` to anything (but keep it a secret!)
+    - `SCHEMA` is only used for live deployments and can be set to anything
+3. In `./app`, install the backend dependencies:
+```
+pipenv install
+```
+4. Still in `./app`, run the Alembic migration:
+```
+pipenv run flask db upgrade
+```
+5. Then, seed the database:
+```
+pipenv run flask seed all
+```
+6. Start the backend server:
+```
+pipenv run flask run
+```
+7. Navigate to `./react-app` and install the frontend dependencies:
+```
+npm install
+```
+8. Start the frontend server:
+```
+npm start
+```
 ---
 
 ## Future Features
+* Ability to re-blog another user's post.
 
+* Personal blog page customizations.
+
+* Rich text support on posts.
+
+* Post tags to help users find content related to their interests.
+
+* Post and user search functionality with filtering by post type, tags, and post content.
+
+* Expanded video and image post capabilities:
+
+    * AWS3 integration to all direct uploading of image and video files.
+
+    * Media previews in the create post and video forms.
+
+    * Support for posts with multiple media types and entries.
+
+
+* Expanded user to user interaction capabilities:
+
+    * Ability to reply to user comments creating a nested interaction.
+
+    * User inbox for notifactions regarding blog interactions.
+
+    * User to user direct messaging.
+
+    * User tags/mentions.
 ---
 
 ## Code Highlights

@@ -4,6 +4,7 @@
   height: 500px;
   background-color:#222222;
   border-top: 1px solid #3f3f3f;
+  border-radius: 3px;
 }
 
 .notescard_navigation_container {

@@ -9,6 +9,31 @@
     width: 100%;
 }
 
+/* #demo-user-button.signup-login-button.about-page {
+    margin-left: 20px;
+    border: none;
+}
+
+#demo-user-button.signup-login-button.about-page:hover {
+    margin-left: 20px;
+    border: none;
+    text-decoration: underline;
+} */
+
+/* .about-link {
+    font-size: 12px;
+    padding-bottom: 2px;
+} */
+
+.about-link:hover {
+    text-decoration: underline;
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+}
+
 #header-container {
     border-bottom: 1px solid #212121;
     display: flex;

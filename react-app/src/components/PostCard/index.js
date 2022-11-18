@@ -181,6 +181,7 @@ const PostCard = ({ post }) => {
           </div>
           <div className="post-interface-border post-padding"></div>
           <div className="postcard-bottom-container post-padding">
+            <div className="postcard-notes-holder">
 
             {user ? <div className="postcard-notes-holder">
               {showBox ? <CloseNotesButton /> : <NotesButton />}
@@ -188,6 +189,7 @@ const PostCard = ({ post }) => {
               notes > 0 ? (<div className="postcard-notes-holder notes-button"> {notesCount}</div>)  : null
             }
 
+            </div>
             <div className="postcard-comments-likes-holder">
               {user ? (<button className="postcard-comment-button" onClick={(e) => setShowBox(!showBox)}><i className="fa-regular fa-comment interface-text"></i></button>)
                 : (<LoginFormModal setShowModal={setShowModal} showModal={showModal} />)}

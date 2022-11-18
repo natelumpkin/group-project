@@ -15,6 +15,7 @@ import HomeFeed from './components/HomeFeed';
 import UserPosts from './components/UserPosts';
 import Followers from './components/Followers';
 import Following from './components/Following';
+import AboutPage from './components/AboutPage';
 
 
 function App() {
@@ -62,6 +63,9 @@ function App() {
         </Route>
         <Route path='/followers'>
           <Followers />
+        </Route>
+        <Route path='/about'>
+          <AboutPage />
         </Route>
         <Route>
           <div id='page-not-found-container'>

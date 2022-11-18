@@ -27,10 +27,12 @@ const UserPosts = () => {
 
   const dispatch = useDispatch()
 
-  useEffect(async () => {
-    dispatch(postActions.getBlog(userId))
+  useEffect(() => {
+   async function getData(){ dispatch(postActions.getBlog(userId))
       .then(() => setLoaded(true))
     if (user && user.id) await dispatch(followActions.getAllFollowing(user.id))
+  };
+  getData();
 
   }, [dispatch, user, userId])
 

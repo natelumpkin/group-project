@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import './NotesCard.css';
 import * as commentActions from "../../store/comment";
-import newQuote from "./kindness_repo.js"
 
 
 const CommentInput = ({ postid }) => {
@@ -11,7 +10,6 @@ const CommentInput = ({ postid }) => {
   const [comment, setComment] = useState('');
   const [valid, setValid] = useState(false)
   const [errors, setErrors] = useState([]);
-  const [quote, setQuote] = useState('')
 
   const tx = document.getElementsByTagName("textarea");
   for (let i = 0; i < tx.length; i++) {
@@ -44,6 +42,8 @@ const CommentInput = ({ postid }) => {
 
         if (data && data.errors) {
           setErrors(data.errors);
+          // This console log is to make react happy - do not delete
+          console.log("Errors "+errors)
         }
       });
   }

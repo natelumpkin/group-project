@@ -61,6 +61,8 @@ const HomeFeed = () => {
   // Redirect users that are not logged in:
   if (!user) return <Redirect to="/" />;
 
+  console.log(allPostsArray)
+
   return (
     <div className="outer-container">
       <div className="inner-container">
