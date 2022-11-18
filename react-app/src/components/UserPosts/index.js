@@ -25,9 +25,10 @@ const UserPosts = () => {
   const dispatch = useDispatch()
 
   useEffect(async () => {
-    await dispatch(postActions.getBlog(userId))
+    dispatch(postActions.getBlog(userId))
+      .then(() => setLoaded(true))
     if (user && user.id) await dispatch(followActions.getAllFollowing(user.id))
-    setLoaded(true)
+
   }, [dispatch, user, userId])
 
   const allPostsArray = []
