@@ -112,6 +112,7 @@
     color: #b2b2b2;
     background-color: #222222;
     border: none;
+    cursor: pointer;
 }
 
 .postcard-notes-holder {
@@ -138,8 +139,4 @@
     /* display: flex;
     align-items: center;
     justify-content: center; */
-}
-
-.fa-regular.fa-comment.interface-text.empty-comments-bubble {
-    color: #3f3f3f;
 }
