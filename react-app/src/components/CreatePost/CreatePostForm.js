@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { createPost, addMediaByPostId } from '../../store/post';
 import './CreatePostModal.css'
@@ -7,6 +8,7 @@ import './CreatePostForm.css'
 
 const CreatePostForm = ({ setShowModal, showModal, typeSelection = false }) => {
     const author = useSelector(state => state.session.user)
+    const history = useHistory()
     const [errors, setErrors] = useState([]);
     const [postType, setPostType] = useState(typeSelection || false);
     const [title, setTitle] = useState('');
