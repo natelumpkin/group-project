@@ -92,7 +92,8 @@ const PostCard = ({ post }) => {
   if (notes > 1) {
     notesCount = `${notes} notes`
   } else if (notes = 1) {
-    notesCount = `${notes} note`}
+    notesCount = `${notes} note`
+  }
 
   const NotesButton = () => {
     if (notes > 0) {
@@ -114,20 +115,21 @@ const PostCard = ({ post }) => {
     )
   }
 
-  const LoginFormModal = ({showModal, setShowModal}) => {
-    return(
-    <>
-    <i className="fa-solid fa-heart interface-text" onClick={() => setShowModal(true)}></i>
+  const LoginFormModal = ({ showModal, setShowModal }) => {
 
-    {showModal && (
-        <Modal onClose={() => setShowModal(false)} >
+    return (
+      <>
+        <i className="fa-solid fa-heart interface-text" onClick={() => setShowModal(true)}></i>
+
+        {showModal && (
+          <Modal onClose={() => setShowModal(false)} >
             <LoginForm setShowModal={setShowModal} showModal={showModal} />
-        </Modal>
-    )}
-</>)
+          </Modal>
+        )}
+      </>)
   }
 
-  console.log("Show Modal "+ showModal)
+  console.log("Show Modal " + showModal)
 
   const followingList = Object.keys(follows.following)
 
@@ -182,12 +184,12 @@ const PostCard = ({ post }) => {
 
             {user ? <div className="postcard-notes-holder">
               {showBox ? <CloseNotesButton /> : <NotesButton />}
-              </div> :
-               notes > 0 ? (<div className="postcard-notes-holder"> {notesCount}</div>) : null
-               }
+            </div> :
+              notes > 0 ? (<div className="postcard-notes-holder"> {notesCount}</div>) : null
+            }
             <div className="postcard-comments-likes-holder">
-              {user ? (<button className="postcard-comment-button" onClick={(e)=>setShowBox(!showBox)}><i className="fa-regular fa-comment interface-text"></i></button>)
-              : showModal && (<LoginFormModal setShowModal={setShowModal} showModal={showModal} />)}
+              {user ? (<button className="postcard-comment-button" onClick={(e) => setShowBox(!showBox)}><i className="fa-regular fa-comment interface-text"></i></button>)
+                : (<LoginFormModal setShowModal={setShowModal} showModal={showModal} />)}
 
               {loaded && user && !liked && (<button className="postcard-like" onClick={() => likePost(post.id)}><i className="fa-regular fa-heart interface-text"></i></button>)}
               {loaded && user && liked && (<button className="postcard-unlike" onClick={() => unlikePost(post.id)}><i className="fa-solid fa-heart interface-text"></i></button>)}
@@ -236,11 +238,11 @@ const PostCard = ({ post }) => {
           <div className="postcard-bottom-container post-padding">
             <div className="postcard-notes-holder">
 
-            {user ? <div className="postcard-notes-holder">
-              {showBox ? <CloseNotesButton /> : <NotesButton />}
+              {user ? <div className="postcard-notes-holder">
+                {showBox ? <CloseNotesButton /> : <NotesButton />}
               </div> :
-               notes > 0 ? (<div className="postcard-notes-holder"> {notesCount}</div>) : null
-               }
+                notes > 0 ? (<div className="postcard-notes-holder"> {notesCount}</div>) : null
+              }
 
             </div>
             <div className="postcard-comments-likes-holder">
@@ -291,11 +293,11 @@ const PostCard = ({ post }) => {
           <div className="postcard-bottom-container post-padding">
             <div className="postcard-notes-holder">
 
-            {user ? <div className="postcard-notes-holder">
-              {showBox ? <CloseNotesButton /> : <NotesButton />}
+              {user ? <div className="postcard-notes-holder">
+                {showBox ? <CloseNotesButton /> : <NotesButton />}
               </div> :
-               notes > 0 ? (<div className="postcard-notes-holder"> {notesCount}</div>) : null
-               }
+                notes > 0 ? (<div className="postcard-notes-holder"> {notesCount}</div>) : null
+              }
 
             </div>
             <div className="postcard-comments-likes-holder">
@@ -346,11 +348,11 @@ const PostCard = ({ post }) => {
           <div className="postcard-bottom-container post-padding">
             <div className="postcard-notes-holder">
 
-            {user ? <div className="postcard-notes-holder">
-              {showBox ? <CloseNotesButton /> : <NotesButton />}
+              {user ? <div className="postcard-notes-holder">
+                {showBox ? <CloseNotesButton /> : <NotesButton />}
               </div> :
-               notes > 0 ? (<div className="postcard-notes-holder"> {notesCount}</div>) : null
-               }
+                notes > 0 ? (<div className="postcard-notes-holder"> {notesCount}</div>) : null
+              }
 
             </div>
             <div className="postcard-comments-likes-holder">
