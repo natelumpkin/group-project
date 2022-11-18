@@ -56,7 +56,6 @@ const PostCard = ({ post }) => {
     dispatch(likeActions.addPostLike(postId))
     let id = `likebutton-${postId}`
     const likeButton = document.getElementById(id)
-    console.log(likeButton)
     if (likeButton) likeButton.classList.add('liked')
   }
 

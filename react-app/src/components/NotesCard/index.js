@@ -58,8 +58,6 @@ const NotesCard = ({ post, numlikes, numcomments }) => {
     )
   }
 
-  console.log('notescard currentuser: ', currentuser)
-
   if (currentuser.id) {
     return (
       <div className="notescard_overall_container">
