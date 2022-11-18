@@ -110,6 +110,7 @@
 
 #auth-buttons {
     display: flex;
+    height: 36px;
 }
 
 #follow-icon {
