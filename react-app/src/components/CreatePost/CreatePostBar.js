@@ -1,5 +1,5 @@
 import React from 'react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Modal } from '../../context/Modal';
 import CreatePostForm from './CreatePostForm'
 import './CreatePostModal.css'
@@ -8,6 +8,19 @@ import './CreatePostBar.css'
 export default function CreateFormBarModal() {
     const [showModal, setShowModal] = useState(false);
     const [postType, setPostType] = useState(false);
+
+    useEffect(() => {
+
+            if (showModal) {
+              //console.log('setting no scroll on body in profile button')
+              document.body.style.overflow = 'hidden';
+            }
+            return () => {
+              //console.log('running clean up of useeffect in profile button')
+              document.body.style.overflow = 'unset';
+            }
+          },[showModal])
+
 
     return (
         <>

@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import { login } from '../../../store/session';
 
-const LoginForm = ({ setShowModal }) => {
+const LoginForm = ({ setShowModal, showModal }) => {
   const [errors, setErrors] = useState([]);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -11,6 +11,17 @@ const LoginForm = ({ setShowModal }) => {
   const [passwordCharCount, setPasswordCharCount] = useState(0)
   const user = useSelector(state => state.session.user);
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (showModal) {
+      //console.log('setting no scroll on body in profile button')
+      document.body.style.overflow = 'hidden';
+    }
+    return () => {
+      //console.log('running clean up of useeffect in profile button')
+      document.body.style.overflow = 'unset';
+    }
+  },[showModal])
 
   const onLogin = async (e) => {
     e.preventDefault();
