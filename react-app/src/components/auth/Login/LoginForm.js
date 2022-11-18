@@ -20,8 +20,10 @@ const LoginForm = ({ setShowModal, showModal }) => {
     return () => {
       //console.log('running clean up of useeffect in profile button')
       document.body.style.overflow = 'unset';
+
+      setShowModal(false)
     }
-  },[showModal])
+  }, [showModal])
 
   const onLogin = async (e) => {
     e.preventDefault();

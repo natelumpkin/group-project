@@ -139,3 +139,7 @@
     align-items: center;
     justify-content: center; */
 }
+
+.fa-regular.fa-comment.interface-text.empty-comments-bubble {
+    color: #3f3f3f;
+}

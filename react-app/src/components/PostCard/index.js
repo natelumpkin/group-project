@@ -8,14 +8,18 @@ import ReactPlayer from "react-player"
 import NotesCard from "../NotesCard"
 import DeletePostModal from "../DeletePost/DeletePostModal"
 import EditPostModal from '../EditPost/EditPostModal'
+import LoginForm from '../auth/Login/LoginForm'
 import './PostCard.css'
 import * as followActions from "../../store/follow"
 
 import * as likeActions from "../../store/like"
 import * as commentActions from "../../store/comment"
 
+import { Modal } from '../../context/Modal';
+
 const PostCard = ({ post }) => {
   const [showBox, setShowBox] = useState(false)
+  const [showModal, setShowModal] = useState(false)
   const user = useSelector(state => state.session.user)
   const follows = useSelector(state => state.follows)
   const likes = useSelector(state => state.likes)
@@ -80,9 +84,15 @@ const PostCard = ({ post }) => {
   }
   // Brad Code
   // This notesCount will display the results from above but also allow an onClick
+
+  // If user, display normal notes button else
+  // display current notes or nothing if no notes.
+  // Also added singular - may not be wanted - change if so
   let notesCount;
-  if (notes > 0) {
+  if (notes > 1) {
     notesCount = `${notes} notes`
+  } else if (notes = 1) {
+    notesCount = `${notes} note`
   }
 
   const NotesButton = () => {
@@ -105,7 +115,21 @@ const PostCard = ({ post }) => {
     )
   }
 
+  const LoginFormModal = ({ showModal, setShowModal }) => {
 
+    return (
+      <>
+        <i className="fa-regular fa-comment interface-text postcard-comment-button" onClick={() => setShowModal(true)}></i>
+
+        {showModal && (
+          <Modal onClose={() => setShowModal(false)} >
+            <LoginForm setShowModal={setShowModal} showModal={showModal} />
+          </Modal>
+        )}
+      </>)
+  }
+
+  console.log("Show Modal " + showModal)
 
   const followingList = Object.keys(follows.following)
 
@@ -157,17 +181,22 @@ const PostCard = ({ post }) => {
           </div>
           <div className="post-interface-border post-padding"></div>
           <div className="postcard-bottom-container post-padding">
-            <div className="postcard-notes-holder">
-              {showBox ? <CloseNotesButton /> : <NotesButton />}
 
-            </div>
+            {user ? <div className="postcard-notes-holder">
+              {showBox ? <CloseNotesButton /> : <NotesButton />}
+            </div> :
+              notes > 0 ? (<div className="postcard-notes-holder notes-button"> {notesCount}</div>) : null
+            }
             <div className="postcard-comments-likes-holder">
-              <button className="postcard-comment-button" onClick={() => setShowBox(!showBox)}><i className="fa-regular fa-comment interface-text"></i></button>
+              {user ? (<button className="postcard-comment-button" onClick={(e) => setShowBox(!showBox)}><i className="fa-regular fa-comment interface-text"></i></button>)
+                : (<LoginFormModal setShowModal={setShowModal} showModal={showModal} />)}
+
               {loaded && user && !liked && (<button className="postcard-like" onClick={() => likePost(post.id)}><i className="fa-regular fa-heart interface-text"></i></button>)}
               {loaded && user && liked && (<button className="postcard-unlike" onClick={() => unlikePost(post.id)}><i className="fa-solid fa-heart interface-text"></i></button>)}
             </div>
           </div>
           <div>{showBox ? <NotesCard post={post} numlikes={numLikes} numcomments={numComments} /> : null}</div>
+          {/* {showModal && (<LoginFormModal showModal={showModal} setShowModal={setShowModal} />)} */}
         </div>
       </div>
     )
@@ -209,11 +238,16 @@ const PostCard = ({ post }) => {
           <div className="postcard-bottom-container post-padding">
             <div className="postcard-notes-holder">
 
-              {showBox ? <CloseNotesButton /> : <NotesButton />}
+              {user ? <div className="postcard-notes-holder">
+                {showBox ? <CloseNotesButton /> : <NotesButton />}
+              </div> :
+                notes > 0 ? (<div className="postcard-notes-holder notes-button"> {notesCount}</div>) : null
+              }
 
             </div>
             <div className="postcard-comments-likes-holder">
-              <button className="postcard-comment-button" onClick={() => setShowBox(!showBox)}><i className="fa-regular fa-comment interface-text"></i></button>
+              {user ? (<button className="postcard-comment-button" onClick={(e) => setShowBox(!showBox)}><i className="fa-regular fa-comment interface-text"></i></button>)
+                : (<LoginFormModal setShowModal={setShowModal} showModal={showModal} />)}
               {loaded && user && !liked && (<button className="postcard-like" onClick={() => likePost(post.id)}><i className="fa-regular fa-heart interface-text"></i></button>)}
               {loaded && user && liked && (<button className="postcard-unlike" onClick={() => unlikePost(post.id)}><i className="fa-solid fa-heart interface-text"></i></button>)}
             </div>
@@ -259,10 +293,17 @@ const PostCard = ({ post }) => {
           <div className="post-interface-border post-padding"></div>
           <div className="postcard-bottom-container post-padding">
             <div className="postcard-notes-holder">
-              {showBox ? <CloseNotesButton /> : <NotesButton />}
+
+              {user ? <div className="postcard-notes-holder">
+                {showBox ? <CloseNotesButton /> : <NotesButton />}
+              </div> :
+                notes > 0 ? (<div className="postcard-notes-holder notes-button"> {notesCount}</div>) : null
+              }
+
             </div>
             <div className="postcard-comments-likes-holder">
-              <button className="postcard-comment-button" onClick={() => setShowBox(!showBox)}><i className="fa-regular fa-comment interface-text"></i></button>
+              {user ? (<button className="postcard-comment-button" onClick={(e) => setShowBox(!showBox)}><i className="fa-regular fa-comment interface-text"></i></button>)
+                : (<LoginFormModal setShowModal={setShowModal} showModal={showModal} />)}
               {loaded && user && !liked && (<button className="postcard-like" onClick={() => likePost(post.id)}><i className="fa-regular fa-heart interface-text"></i></button>)}
               {loaded && user && liked && (<button className="postcard-unlike" onClick={() => unlikePost(post.id)}><i className="fa-solid fa-heart interface-text"></i></button>)}
             </div>
@@ -308,10 +349,17 @@ const PostCard = ({ post }) => {
           <div className="post-interface-border post-padding"></div>
           <div className="postcard-bottom-container post-padding">
             <div className="postcard-notes-holder">
-              {showBox ? <CloseNotesButton /> : <NotesButton />}
+
+              {user ? <div className="postcard-notes-holder">
+                {showBox ? <CloseNotesButton /> : <NotesButton />}
+              </div> :
+                notes > 0 ? (<div className="postcard-notes-holder notes-button"> {notesCount}</div>) : null
+              }
+
             </div>
             <div className="postcard-comments-likes-holder">
-              <button className="postcard-comment-button" onClick={() => setShowBox(!showBox)}><i className="fa-regular fa-comment interface-text"></i></button>
+              {user ? (<button className="postcard-comment-button" onClick={(e) => setShowBox(!showBox)}><i className="fa-regular fa-comment interface-text"></i></button>)
+                : (<LoginFormModal setShowModal={setShowModal} showModal={showModal} />)}
               {loaded && user && !liked && (<button className="postcard-like" onClick={() => likePost(post.id)}><i className="fa-regular fa-heart interface-text"></i></button>)}
               {loaded && user && liked && (<button className="postcard-unlike" onClick={() => unlikePost(post.id)}><i className="fa-solid fa-heart interface-text"></i></button>)}
             </div>
