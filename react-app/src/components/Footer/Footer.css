@@ -1,0 +1,22 @@
+.signature-container{
+position: sticky;
+bottom:0px;
+display: flex;
+flex-direction: row nowrap;
+justify-content: space-around;
+color: white;
+background-color: black;
+z-index: 10;
+border-top: 1px solid #3f3f3f;
+margin: 0;
+}
+
+.signature-content{
+
+}
+
+.signature-content span{
+  display: flex;
+  width: 150px;
+  justify-content: space-around;
+}
