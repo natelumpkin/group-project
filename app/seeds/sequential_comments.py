@@ -77,17 +77,17 @@ def seed_comments():
             comment="I dunno, I feel like I can get something like this for the right price."
         ),
         Comment(
-            post_id=35,
+            post_id=34,
             user_id=1,
             comment="lol What did I just watch?"
         ),
         Comment(
-            post_id=35,
+            post_id=34,
             user_id=5,
             comment="Is this a relative of yours?!"
         ),
         Comment(
-            post_id=35,
+            post_id=34,
             user_id=3,
             comment="Hahaha the voices were so funny. What even was this? XD!"
         ),
