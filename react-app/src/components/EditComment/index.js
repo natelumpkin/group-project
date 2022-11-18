@@ -17,7 +17,7 @@ const EditComment = ({comment, setShowEditModal}) => {
   }
 
   return (
-    <div>
+    <div className="edit_comment_main_container">
       <h4>Edit Comment</h4>
       <form onSubmit={handleSubmit}>
       <div>

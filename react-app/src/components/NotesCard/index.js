@@ -14,7 +14,7 @@ const NotesCard = ({ post, numlikes, numcomments }) => {
   const commentObj = useSelector(state => state.comments.posts[post.id]) || []
   const comments = Object.values(commentObj)
   const likeObj = useSelector(state => state.likes.posts[post.id]) || []
-  // const currentUser = useSelector(state => state.session) || []
+  const currentuser = useSelector(state => state.session.user) || []
   const likes = Object.values(likeObj)
   // const history = useHistory();
   const [current, setCurrent] = useState(true)
@@ -31,7 +31,7 @@ const NotesCard = ({ post, numlikes, numcomments }) => {
   if (comments.length > 0) {
     displayComments = comments.map(comment => {
     // console.log(comment.id)
-    return <CommentsCard key={comment.id} comment={comment} />})
+    return <CommentsCard key={comment.id} comment={comment} user={currentuser} />})
   } else {
     displayComments = (
       <>

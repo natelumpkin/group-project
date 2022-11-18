@@ -70,7 +70,7 @@ const LoginForm = ({ setShowModal }) => {
         </div>
       </div>
       <div className='auth-footer'>
-        <button className='cancel-button' type='button' onClick={() => setShowModal(false)}>Close</button>
+        <button className='cancel-button' type="button" onClick={() => setShowModal(false)}>Close</button>
         <button className='save-edit-button' type="submit">Log In</button>
       </div>
       {errors.length > 0 && (

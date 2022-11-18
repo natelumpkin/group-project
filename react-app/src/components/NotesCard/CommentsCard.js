@@ -6,7 +6,7 @@ import DeleteCommentModal from '../DeleteComment/DeleteCommentModal';
 import EditCommentModal from '../EditComment/EditCommentModal';
 
 
-const CommentsCard = ({ comment }) => {
+const CommentsCard = ({ comment, user }) => {
   const [showMenu, setShowMenu] = useState(false);
   const [showDeleteModal, setShowDeleteModal] = useState(false)
   const [showEditModal, setShowEditModal] = useState(false)
@@ -44,20 +44,23 @@ const CommentsCard = ({ comment }) => {
         <div className="notescard_comment_content">{comment.comment} </div>
       </div>
       <div className="notescard_comment_options_container">
+      {user && (user.id === comment.User.id) ?
         <span onClick={toggleMenu} className="notescard_comment_options_menu"> ...
-        </span>
+        </span> : null}
         {showMenu && (
           <div >
             <div >
               <div>
+
                 <button onClick={() => setShowEditModal(true)}>
                   Edit
                 </button>
               </div>
               <div>
+              {user && (user.id === comment.User.id) ?
                 <button onClick={() => setShowDeleteModal(true)}>
                   <i className="fa-solid fa-trash-can"></i>
-                </button>
+                </button> : null }
               </div>
             </div>
           </div>

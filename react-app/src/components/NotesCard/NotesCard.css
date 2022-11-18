@@ -207,6 +207,10 @@
   max-width: 500px;
   margin-bottom: 15px;
 }
+/* .notescard_comment_main_container:hover + notescard_comment_options_container{
+        visibility: visible;
+    } */
+
 
 .notescard_comment_user_icon {
   margin-right: 10px;
@@ -270,7 +274,7 @@
 
 .notescard_comment_options_menu {
   justify-self: right;
-
+  /* visibility: hidden; */
 }
 
 .notescard_likes_main_container {
