@@ -1,10 +1,22 @@
 
 import { useDispatch } from "react-redux"
+import { useEffect } from "react"
 import * as commentActions from '../../store/comment'
 
-const DeleteComment = ({comment, setShowDeleteModal}) => {
+const DeleteComment = ({comment, setShowDeleteModal, showDeleteModal}) => {
 
   const dispatch = useDispatch()
+
+  useEffect(() => {
+    if (showDeleteModal) {
+      //console.log('setting no scroll on body in profile button')
+      document.body.style.overflow = 'hidden';
+    }
+    return () => {
+      //console.log('running clean up of useeffect in profile button')
+      document.body.style.overflow = 'unset';
+    }
+  },[showDeleteModal])
 
   const deleteComment = (commentId) => {
     dispatch(commentActions.deletePostComment(commentId))

@@ -1,11 +1,23 @@
 import { useDispatch } from "react-redux"
+import { useEffect } from "react"
 import './DeletePost.css'
 
 import * as postActions from "../../store/post"
 
-const DeletePost = ({ post, setShowModal }) => {
+const DeletePost = ({ post, setShowModal, showModal }) => {
 
   const dispatch = useDispatch()
+
+  useEffect(() => {
+    if (showModal) {
+      //console.log('setting no scroll on body in profile button')
+      document.body.style.overflow = 'hidden';
+    }
+    return () => {
+      //console.log('running clean up of useeffect in profile button')
+      document.body.style.overflow = 'unset';
+    }
+  },[showModal])
 
   const deletePost = (postId) => {
     dispatch(postActions.deletePost(postId))

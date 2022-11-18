@@ -13,7 +13,7 @@ export default function EditPostModal({ post }) {
             <button className='edit-post-button edit-delete-post interface-text' id='edit-post-button' onClick={() => setShowModal(true)}><i className="fa-solid fa-pencil" /></button>
             {showModal && (
                 <Modal id='edit-post-modal' onClose={() => setShowModal(false)} >
-                    <EditPostForm setShowModal={setShowModal} post={post} />
+                    <EditPostForm setShowModal={setShowModal} showModal={showModal} post={post} />
                 </Modal>
             )}
         </>

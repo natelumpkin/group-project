@@ -2,13 +2,23 @@
     background-color: #00cf35;
     font-size: 14px;
     font-weight: bold;
-    padding: 10px 18px 10px 18px;
+    padding: 0px 18px 0px 18px;
     border-radius: 3px;
     margin: 0px 5px 0px 5px;
 }
 
 #login-button:hover {
     cursor: pointer;
+}
+
+.signup-login-button {
+    height: 36px;
+    display: flex;
+    align-items: center;
+}
+
+.signup-login-button p {
+    margin: 0;
 }
 
 #login-form {
@@ -37,8 +47,7 @@
 
 #login-form input::placeholder {
     font-size: 24px;
-    color: #4b3e7f;
-    opacity: 50%;
+    color: #dad2ff;
 }
 
 #input-container {
@@ -51,7 +60,7 @@
 
 #modal-content:has(#login-form) {
     border-radius: 5px;
-    overflow: hidden;
+    object-fit: cover;
 }
 
 #login-errors {
