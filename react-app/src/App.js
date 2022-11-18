@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux';
 import LoginForm from './components/auth/Login/LoginForm';
 import SignUpForm from './components/auth/SignUp/SignUpForm';
 import Header from './components/Header';
+import Footer from './components/Footer';
 // import ProtectedRoute from './components/auth/ProtectedRoute';
 // import UsersList from './components/Header/UsersList';
 // import User from './components/Header/User';
@@ -68,6 +69,8 @@ function App() {
           </div>
         </Route>
       </Switch>
+      <Footer />
+
     </BrowserRouter>
   );
 }
