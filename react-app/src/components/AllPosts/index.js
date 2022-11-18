@@ -16,10 +16,6 @@ const AllPosts = () => {
   const allPosts = useSelector(state => state.posts.allPosts)
   const user = useSelector(state => state.session.user)
 
-  // useEffect(() => {
-  //   setFeedLength(3);
-  // }, []);
-
   const dispatch = useDispatch()
 
   useEffect(() => {
@@ -34,30 +30,20 @@ const AllPosts = () => {
   for (let post in allPosts) {
     allPostsArray.unshift(allPosts[post])
   }
-
+  const allPostsArrayLength = allPostsArray.length;
 
 
   useEffect(() => {
     setPostsToRender(allPostsArray.slice(0, feedLength));
-  }, [feedLength, postsLoaded]);
-
-
-  // window.addEventListener('scroll', function () {
-  //   if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
-  //     if (feedLength + 2 <= allPostsArray.length) setFeedLength(feedLength + 2);
-  //   }
-  // });
-
+  }, [feedLength, postsLoaded, allPosts]);
 
   useEffect(() => {
-
     const callBackFN = () => {
       if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
-        if (feedLength + 3 <= allPostsArray.length) {
+        if (feedLength + 3 <= allPostsArrayLength) {
           setFeedLength(feedLength + 3);
-        } else if (feedLength + 1 <= allPostsArray.length) {
-          setFeedLength(feedLength + 1);
-          console.log(feedLength, "*********************************************************************************************************************************************************************************************************************************")
+        } else if (feedLength < allPostsArrayLength) {
+          setFeedLength(allPostsArrayLength);
         }
       }
     }
@@ -67,7 +53,7 @@ const AllPosts = () => {
       window.removeEventListener('scroll', callBackFN);
     }
 
-  }, [allPostsArray, feedLength])
+  }, [allPostsArrayLength, feedLength])
 
 
 
@@ -86,7 +72,7 @@ const AllPosts = () => {
             <PostCard key={post.id} post={post} />
           ))}
         </div>
-        <button onClick={() => setFeedLength(feedLength + 2)}>Load more</button>
+        {/* <button onClick={() => setFeedLength(feedLength + 2)}>Load more</button> */}
       </div>
     </div>
   )
