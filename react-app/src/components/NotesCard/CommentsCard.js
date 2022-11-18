@@ -48,20 +48,18 @@ const CommentsCard = ({ comment, user }) => {
         <span onClick={toggleMenu} className="notescard_comment_options_menu"> ...
         </span> : null}
         {showMenu && (
-          <div >
-            <div >
-              <div>
-
-                <button onClick={() => setShowEditModal(true)}>
+          <div className='comment-dropdown-container'>
+            <div className='comment-dropdown'>
+              <div className='comment-edit-option edit-reply-option' onClick={() => setShowEditModal(true)}>
+                <button id="edit-reply-button" className='edit-post-button edit-delete-post interface-text'>
                   Edit
                 </button>
               </div>
-              <div>
               {user && (user.id === comment.User.id) ?
-                <button onClick={() => setShowDeleteModal(true)}>
-                  <i className="fa-solid fa-trash-can"></i>
-                </button> : null }
-              </div>
+              <div className='comment-edit-option delete-reply-option' onClick={() => setShowDeleteModal(true)}>
+                <button id="delete-reply-button" className='delete-post-button edit-delete-post interface-text'>
+                  Delete Reply
+                </button></div> : null }
             </div>
           </div>
         )}
