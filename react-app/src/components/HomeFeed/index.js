@@ -9,7 +9,7 @@ import './HomeFeed.css'
 import PostCard from "../PostCard"
 
 const HomeFeed = () => {
-  const [feedLength, setFeedLength] = useState(3);
+  const [feedLength, setFeedLength] = useState(10);
   const [postsToRender, setPostsToRender] = useState([]);
   const [postsLoaded, setPostsLoaded] = useState(false);
 
