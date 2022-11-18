@@ -129,8 +129,6 @@ const PostCard = ({ post }) => {
       </>)
   }
 
-  console.log("Show Modal " + showModal)
-
   const followingList = Object.keys(follows.following)
 
   const following = followingList.includes(post.User.id.toString())

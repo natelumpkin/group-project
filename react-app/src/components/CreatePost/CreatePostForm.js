@@ -21,14 +21,12 @@ const CreatePostForm = ({ setShowModal, showModal, typeSelection = false }) => {
 
     useEffect(() => {
         if (showModal) {
-          //console.log('setting no scroll on body in profile button')
-          document.body.style.overflow = 'hidden';
+            document.body.style.overflow = 'hidden';
         }
         return () => {
-          //console.log('running clean up of useeffect in profile button')
-          document.body.style.overflow = 'unset';
+            document.body.style.overflow = 'unset';
         }
-      },[showModal])
+    }, [showModal])
 
 
     useEffect(() => {
@@ -59,7 +57,6 @@ const CreatePostForm = ({ setShowModal, showModal, typeSelection = false }) => {
                 const data = await response.json();
                 if (data && data.errors) {
                     setErrors(Object.values(data.errors));
-                    console.log(errors);
                 }
             });
         if (post && !mediaUrl) {
@@ -71,7 +68,6 @@ const CreatePostForm = ({ setShowModal, showModal, typeSelection = false }) => {
                     const data = await response.json();
                     if (data && data.errors) {
                         setErrors(Object.values(data.errors));
-                        console.log(errors);
                     }
                 });
             if (postMedia) {

@@ -1,8 +1,8 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 
 
-const UploadPicture = ({post}) => {
+const UploadPicture = ({ post }) => {
     const history = useHistory(); // so that we can redirect after the image upload is successful
     const [image, setImage] = useState(null);
     const [imageLoading, setImageLoading] = useState(false);
@@ -10,7 +10,6 @@ const UploadPicture = ({post}) => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log('HELLO FROM UPLOAD IMAGE')
         const formData = new FormData();
         formData.append("image", image);
 
@@ -24,7 +23,6 @@ const UploadPicture = ({post}) => {
         });
         if (res.ok) {
             const data = await res.json();
-            console.log(data)
             setImageLoading(false);
             history.push("/home");
         }
@@ -33,7 +31,6 @@ const UploadPicture = ({post}) => {
             // a real app would probably use more advanced
             // error handling
             const errors = await res.json()
-            console.log(errors)
         }
     }
 
@@ -45,12 +42,12 @@ const UploadPicture = ({post}) => {
     return (
         <form onSubmit={handleSubmit}>
             <input
-              type="file"
-              accept="image/*"
-              onChange={updateImage}
+                type="file"
+                accept="image/*"
+                onChange={updateImage}
             />
             <button type="submit">Submit</button>
-            {(imageLoading)&& <p>Loading...</p>}
+            {(imageLoading) && <p>Loading...</p>}
         </form>
     )
 }

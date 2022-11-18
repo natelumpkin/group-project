@@ -6,10 +6,8 @@
 const normalizeData = (data) => {
   const res = {}
   for (let key in data) {
-    // console.log(data[key])
     res[data[key].id] = data[key]
   }
-  // console.log(res)
   return res
 }
 

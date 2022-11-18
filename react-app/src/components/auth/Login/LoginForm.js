@@ -14,11 +14,9 @@ const LoginForm = ({ setShowModal, showModal }) => {
 
   useEffect(() => {
     if (showModal) {
-      //console.log('setting no scroll on body in profile button')
       document.body.style.overflow = 'hidden';
     }
     return () => {
-      //console.log('running clean up of useeffect in profile button')
       document.body.style.overflow = 'unset';
 
       setShowModal(false)

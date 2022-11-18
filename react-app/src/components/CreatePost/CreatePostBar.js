@@ -11,15 +11,13 @@ export default function CreateFormBarModal() {
 
     useEffect(() => {
 
-            if (showModal) {
-              //console.log('setting no scroll on body in profile button')
-              document.body.style.overflow = 'hidden';
-            }
-            return () => {
-              //console.log('running clean up of useeffect in profile button')
-              document.body.style.overflow = 'unset';
-            }
-          },[showModal])
+        if (showModal) {
+            document.body.style.overflow = 'hidden';
+        }
+        return () => {
+            document.body.style.overflow = 'unset';
+        }
+    }, [showModal])
 
 
     return (
