@@ -120,7 +120,6 @@ const PostCard = ({ post }) => {
   // only render image and text
   // if postType is video,
   // only render video and text
-
   if (loaded && post.postType === 'text') {
     return (
       <div className="postCard-outer-container">
@@ -288,7 +287,7 @@ const PostCard = ({ post }) => {
             <Link to={`/users/${post.User.id}`}>
               {post.User.username}
             </Link>
-            {!following && user.id && post.User.id !== user.id && (
+            {user && !following && user.id && post.User.id !== user.id && (
               <button className="postcard-follow-button" onClick={() => followUser(post.User)}>Follow</button>
             )}
           </div>

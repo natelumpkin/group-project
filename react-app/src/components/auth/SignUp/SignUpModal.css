@@ -29,7 +29,6 @@
     font-size: 24px;
     padding-left: 20px;
     padding-right: 20px;
-    margin-bottom: 20px;
     box-sizing: border-box;
 }
 
@@ -103,4 +102,22 @@
 #auth-input-fields {
     box-sizing: border-box;
     padding: 20px 20px 0px 20px;
+}
+
+.char-count-container {
+    position: absolute;
+    height: 0px;
+    width: 0px;
+}
+
+.char-count {
+    align-self: flex-end;
+    padding-right: 20px;
+    margin-bottom: 5px;
+    color: #4b3e7f;
+}
+
+.signup-input-container {
+    display: flex;
+    flex-direction: column;
 }

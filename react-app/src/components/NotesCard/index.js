@@ -29,7 +29,9 @@ const NotesCard = ({ post, numlikes, numcomments }) => {
 
   let displayComments;
   if (comments.length > 0) {
-    displayComments = comments.map(comment => <CommentsCard key={comment.id} comment={comment} />)
+    displayComments = comments.map(comment => {
+    // console.log(comment.id)
+    return <CommentsCard key={comment.id} comment={comment} />})
   } else {
     displayComments = (
       <>
@@ -41,7 +43,9 @@ const NotesCard = ({ post, numlikes, numcomments }) => {
   }
   let displayLikes;
   if (likes.length > 0) {
-    displayLikes = likes.map(like => <LikesCommentCard key={like.id} like={like} post={post} />)
+    displayLikes = likes.map(like =>{
+      // console.log("Like"+like.id)
+      return <LikesCommentCard key={like.id} like={like} post={post} />})
   } else {
     displayLikes = (
       <>
@@ -62,12 +66,10 @@ const NotesCard = ({ post, numlikes, numcomments }) => {
         </div>
 
       </div>
-        <div className="test">
           {current ? <CommentInput postid={post.id} /> : null}
           <div className="notescard_comment_like_container">
             {current ? displayComments : displayLikes}
           </div>
-        </div>
 
     </div>
   )
