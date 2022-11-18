@@ -35,6 +35,7 @@ const AllPosts = () => {
           </div>
         )}
         <div className="postsHolder">
+        <h1 className="user-page-title post-padding">Explore!</h1>
           {allPostsArray.map(post => (
             <PostCard key={post.id} post={post} />
           ))}

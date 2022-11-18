@@ -72,9 +72,12 @@ const NavBar = () => {
                     <LogoutButton />
                   </div>
                   <div>
-                    <NavLink to={`/users/${sessionUser.id}`} exact={true} className='dropdown-option'>
-                      <i className="fa-solid fa-user-large" />
-                      <p>Your posts</p>
+                    <NavLink to={`/users/${sessionUser.id}`} exact={true} className='dropdown-option image-option'>
+                      <img id='navbar-profile-img' className='profile-img' alt='profile' src={sessionUser.profileImageUrl} />
+                      <div className='navbar-username-container'>
+                        <p className='navbar-username'>{sessionUser.username}</p>
+                        <p className='navbar-username your-posts'>Your posts</p>
+                      </div>
                     </NavLink>
                     <NavLink to='/following' exact={true} className='dropdown-option dropdown-followlink'>
                       <div className='dropdown-option-child'>

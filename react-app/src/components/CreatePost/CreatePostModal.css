@@ -108,12 +108,13 @@
     background-color: #00b8ff;
     width: 45px;
     height: 32px;
+    color: black;
 }
 
 #create-post-button:hover {
     cursor: pointer;
 }
 
-.fa-pencil {
+/* .fa-pencil {
     color: black;
-}
+} */

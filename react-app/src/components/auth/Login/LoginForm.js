@@ -7,6 +7,8 @@ const LoginForm = ({ setShowModal }) => {
   const [errors, setErrors] = useState([]);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [emailCharCount, setEmailCharCount] = useState(0)
+  const [passwordCharCount, setPasswordCharCount] = useState(0)
   const user = useSelector(state => state.session.user);
   const dispatch = useDispatch();
 
@@ -26,10 +28,12 @@ const LoginForm = ({ setShowModal }) => {
 
   const updateEmail = (e) => {
     setEmail(e.target.value);
+    setEmailCharCount(e.target.value.length)
   };
 
   const updatePassword = (e) => {
     setPassword(e.target.value);
+    setPasswordCharCount(e.target.value.length)
   };
 
   if (user) {
@@ -40,7 +44,7 @@ const LoginForm = ({ setShowModal }) => {
     <form id='login-form' onSubmit={onLogin}>
       <div id='auth-site-name'>scuttlr</div>
       <div id='input-container'>
-        <div id='login-email-input'>
+        <div className='signup-input-container' id='login-email-input'>
           <input
             name='email'
             type='text'
@@ -48,9 +52,11 @@ const LoginForm = ({ setShowModal }) => {
             value={email}
             onChange={updateEmail}
             required
+            maxLength={100}
           />
+          <div className='char-count'>{emailCharCount}/100</div>
         </div>
-        <div id='password-email-input'>
+        <div className='signup-input-container' id='login-password-input'>
           <input
             name='password'
             type='password'
@@ -58,11 +64,13 @@ const LoginForm = ({ setShowModal }) => {
             value={password}
             onChange={updatePassword}
             required
+            maxLength={40}
           />
+          <div className='char-count'>{passwordCharCount}/40</div>
         </div>
       </div>
       <div className='auth-footer'>
-        <button className='cancel-button' onClick={() => setShowModal(false)}>Close</button>
+        <button className='cancel-button' type="button" onClick={() => setShowModal(false)}>Close</button>
         <button className='save-edit-button' type="submit">Log In</button>
       </div>
       {errors.length > 0 && (

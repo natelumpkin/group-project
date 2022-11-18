@@ -1,7 +1,7 @@
 #follow-list {
     width: 540px;
     margin: auto;
-    border-radius: 3px;
+    border-radius: 5px;
     overflow: hidden;
 }
 
@@ -11,4 +11,8 @@
     height: 40px;
     font-size: 18px;
     color: white;
+}
+
+.followers-following-title {
+    padding-left: 10px;
 }

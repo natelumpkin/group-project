@@ -37,7 +37,7 @@ const Following = () => {
     <div id='follow-list-container'>
       <div id='follow-list-count'>
         {loaded && (
-          <h4>{followingList.length} Following</h4>
+          <h4 className='followers-following-title'>{followingList.length} Following</h4>
         )}
       </div>
       <div id='follow-list'>
