@@ -255,7 +255,7 @@ Luigi: No, a knife! Stab him!"""
         Post(
             user_id=5,
             post_type="quote",
-            title="",
+            title="Lord Octopus",
             text="One of the greatest war heroes was a head of lettuce. He was really good at getting his troops to romaine calm."
         ),
     ]

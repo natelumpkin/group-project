@@ -174,28 +174,31 @@ def seed_media():
         ),
         Media(
             post_id=33,
+            media_type="",
+            media_url=""
+        ),
+        Media(
+            post_id=34,
+
             media_type="video",
             media_url="https://www.youtube.com/watch?v=B2acyeQdRb0"
         ),
         Media(
-            post_id=34,
+            post_id=35,
+
             media_type="image",
             media_url="https://i.imgur.com/CuTDmSA.jpg"
+
         ),
         Media(
-            post_id=35,
+            post_id=36,
             media_type="video",
             media_url="https://www.youtube.com/watch?v=9wk4ApHloHM"
         ),
         Media(
-            post_id=36,
+            post_id=37,
             media_type="image",
             media_url="https://i.imgur.com/D0F0rV3.jpg"
-        ),
-        Media(
-            post_id=37,
-            media_type="",
-            media_url=""
         ),
         Media(
             post_id=38,
