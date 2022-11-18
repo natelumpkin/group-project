@@ -46,6 +46,8 @@ const PostCard = ({ post }) => {
     if (user) {
       const likedPost = likedList.includes(user.id.toString())
       setLiked(likedPost)
+    } else {
+      setShowBox(false)
     }
   }, [likedList, user])
 
@@ -91,7 +93,7 @@ const PostCard = ({ post }) => {
   let notesCount;
   if (notes > 1) {
     notesCount = `${notes} notes`
-  } else if (notes <= 1) {
+  } else if (notes === 1) {
     notesCount = `${notes} note`
   }
 
@@ -185,8 +187,9 @@ const PostCard = ({ post }) => {
             {user ? <div className="postcard-notes-holder">
               {showBox ? <CloseNotesButton /> : <NotesButton />}
             </div> :
-              notes > 0 ? (<div className="postcard-notes-holder notes-button"> {notesCount}</div>) : null
+              notes > 0 ? (<div className="postcard-notes-holder notes-button"> {notesCount}</div>)  : null
             }
+
             <div className="postcard-comments-likes-holder">
               {user ? (<button className="postcard-comment-button" onClick={(e) => setShowBox(!showBox)}><i className="fa-regular fa-comment interface-text"></i></button>)
                 : (<LoginFormModal setShowModal={setShowModal} showModal={showModal} />)}
