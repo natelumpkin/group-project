@@ -15,7 +15,10 @@ const UserPosts = () => {
 
   let username;
   if (allPosts) {
-    username = Object.values(allPosts)[0].User.username
+    console.log(Object.values(allPosts)[0])
+    if (Object.values(allPosts)[0]){
+      username = Object.values(allPosts)[0].User.username
+    }
   }
 
   const dispatch = useDispatch()
