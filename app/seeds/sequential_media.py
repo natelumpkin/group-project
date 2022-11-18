@@ -165,12 +165,12 @@ def seed_media():
         Media(
             post_id=31,
             media_type="image",
-            media_url="https://imgur.com/jvKE3Rm"
+            media_url="https://i.imgur.com/jvKE3Rm.jpg"
         ),
         Media(
             post_id=32,
             media_type="image",
-            media_url="https://imgur.com/rsEVo8f"
+            media_url="https://i.imgur.com/rsEVo8f.jpg"
         ),
         Media(
             post_id=33,
@@ -180,7 +180,7 @@ def seed_media():
         Media(
             post_id=34,
             media_type="image",
-            media_url="https://imgur.com/CuTDmSA"
+            media_url="https://i.imgur.com/CuTDmSA.jpg"
         ),
         Media(
             post_id=35,
@@ -190,7 +190,7 @@ def seed_media():
         Media(
             post_id=36,
             media_type="image",
-            media_url="https://imgur.com/D0F0rV3"
+            media_url="https://i.imgur.com/D0F0rV3.jpg"
         ),
         Media(
             post_id=37,

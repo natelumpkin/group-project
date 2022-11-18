@@ -43,7 +43,7 @@ def seed_users():
         first_name="Bruno",
         last_name="Segura",
         email="papabruno1982@gmail.com",
-        profile_image_url="https://imgur.com/NZ2KtiP",
+        profile_image_url="https://i.imgur.com/NZ2KtiP.jpg",
         password="password"
     )
 
