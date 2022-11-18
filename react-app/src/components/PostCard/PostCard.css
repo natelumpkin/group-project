@@ -102,6 +102,10 @@
     border: none;
 }
 
+.liked {
+    color: #ff492f
+}
+
 .postcard-unlike {
     color: #ff492f;
     background-color: #222222;
