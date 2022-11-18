@@ -108,58 +108,58 @@ def seed_media():
         )
     ]
 
-    # user_4_media = [
-    #     Media(
-    #         post_id=21,
-    #         media_type="",
-    #         media_url=""
-    #     ),
-    #     Media(
-    #         post_id=22,
-    #         media_type="",
-    #         media_url=""
-    #     ),
-    #     Media(
-    #         post_id=23,
-    #         media_type="",
-    #         media_url=""
-    #     ),
-    #     Media(
-    #         post_id=24,
-    #         media_type="",
-    #         media_url=""
-    #     ),
-    #     Media(
-    #         post_id=25,
-    #         media_type="",
-    #         media_url=""
-    #     ),
-    #     Media(
-    #         post_id=26,
-    #         media_type="",
-    #         media_url=""
-    #     ),
-    #     Media(
-    #         post_id=27,
-    #         media_type="",
-    #         media_url=""
-    #     ),
-    #     Media(
-    #         post_id=28,
-    #         media_type="",
-    #         media_url=""
-    #     ),
-    #     Media(
-    #         post_id=29,
-    #         media_type="",
-    #         media_url=""
-    #     ),
-    #     Media(
-    #         post_id=30,
-    #         media_type="",
-    #         media_url=""
-    #     )
-    # ]
+    user_4_media = [
+        Media(
+            post_id=21,
+            media_type="",
+            media_url=""
+        ),
+        Media(
+            post_id=22,
+            media_type="",
+            media_url=""
+        ),
+        Media(
+            post_id=23,
+            media_type="",
+            media_url=""
+        ),
+        Media(
+            post_id=24,
+            media_type="",
+            media_url=""
+        ),
+        Media(
+            post_id=25,
+            media_type="",
+            media_url=""
+        ),
+        Media(
+            post_id=26,
+            media_type="",
+            media_url=""
+        ),
+        Media(
+            post_id=27,
+            media_type="image",
+            media_url="https://64.media.tumblr.com/6a6f2eadac9f36425a01e265396a6f4f/089e1fa6c1226f98-89/s640x960/34a81e294ce44618ab5938ab80a49c93bbacb95d.jpg"
+        ),
+        Media(
+            post_id=28,
+            media_type="image",
+            media_url="https://64.media.tumblr.com/ebf0fc29c7119ef55ef591d5b35ee430/c61649fb822ffdf1-66/s640x960/4434f52898e507e8bffe2c5b83176523b23e29a7.jpg"
+        ),
+        Media(
+            post_id=29,
+            media_type="image",
+            media_url="https://64.media.tumblr.com/71c98f219f75ab924f9bcc6aae6a5446/f717c6922b5877cd-54/s640x960/b713d99af39f1bad133ce4a80232e12766d7ff60.jpg"
+        ),
+        Media(
+            post_id=30,
+            media_type="image",
+            media_url="https://64.media.tumblr.com/bd36f2d77457c4e2e10811ce8b41ed27/6091d07553dcfa25-02/s640x960/e3ab00ba2d0fb655515af93b95dda6b7c8a91686.jpg"
+        )
+    ]
 
     # user_5_media = [
     #     Media(
@@ -220,8 +220,8 @@ def seed_media():
     for media in user_3_media:
         db.session.add(media)
 
-    # for media in user_4_media:
-    #     db.session.add(media)
+    for media in user_4_media:
+        db.session.add(media)
 
     # for media in user_5_media:
     #     db.session.add(media)

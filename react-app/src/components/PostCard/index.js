@@ -44,6 +44,8 @@ const PostCard = ({ post }) => {
     if (user) {
       const likedPost = likedList.includes(user.id.toString())
       setLiked(likedPost)
+    } else {
+      setShowBox(false)
     }
   }, [likedList, user])
 
@@ -91,7 +93,7 @@ const PostCard = ({ post }) => {
   let notesCount;
   if (notes > 1) {
     notesCount = `${notes} notes`
-  } else if (notes = 1) {
+  } else if (notes === 1) {
     notesCount = `${notes} note`
   }
 
@@ -183,8 +185,9 @@ const PostCard = ({ post }) => {
             {user ? <div className="postcard-notes-holder">
               {showBox ? <CloseNotesButton /> : <NotesButton />}
             </div> :
-              notes > 0 ? (<div className="postcard-notes-holder notes-button"> {notesCount}</div>) : null
+              notes > 0 ? (<div className="postcard-notes-holder notes-button"> {notesCount}</div>)  : null
             }
+
             <div className="postcard-comments-likes-holder">
               {user ? (<button className="postcard-comment-button" onClick={(e) => setShowBox(!showBox)}><i className="fa-regular fa-comment interface-text"></i></button>)
                 : (<LoginFormModal setShowModal={setShowModal} showModal={showModal} />)}
@@ -220,10 +223,10 @@ const PostCard = ({ post }) => {
             )}
           </div>
           <div className="postcard-quote-holder post-padding">
-            <h2>{post.text}</h2>
+            <h2>"{post.text}"</h2>
           </div>
           <div className="postcard-source-holder post-padding">
-            <p>{post.title}</p>
+            <p>- {post.title}</p>
           </div>
           <div className="postcard-edit-delete-holder post-padding">
             {user && user.id === post.User.id && (<>
