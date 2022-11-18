@@ -63,7 +63,9 @@ function App() {
           <Followers />
         </Route>
         <Route>
-          <h1>404 Page not found {':<'} Sowwyyyyy</h1>
+          <div id='page-not-found-container'>
+            <h1>404 Page not found {':<'} Sowwyyyyy</h1>
+          </div>
         </Route>
       </Switch>
     </BrowserRouter>
