@@ -114,14 +114,20 @@ const PostCard = ({ post }) => {
     )
   }
 
-  const LoginFormModal = (showModal, setShowModal) => {
-    return (
-    <Modal id='create-post-modal' onClose={() => setShowModal(false)} >
-      <LoginForm setShowModal={setShowModal} />
-    </Modal>
-    )
+  const LoginFormModal = ({showModal, setShowModal}) => {
+    return(
+    <>
+    <i className="fa-solid fa-heart interface-text" onClick={() => setShowModal(true)}></i>
+
+    {showModal && (
+        <Modal onClose={() => setShowModal(false)} >
+            <LoginForm setShowModal={setShowModal} showModal={showModal} />
+        </Modal>
+    )}
+</>)
   }
 
+  console.log("Show Modal "+ showModal)
 
   const followingList = Object.keys(follows.following)
 
@@ -181,14 +187,14 @@ const PostCard = ({ post }) => {
                }
             <div className="postcard-comments-likes-holder">
               {user ? (<button className="postcard-comment-button" onClick={(e)=>setShowBox(!showBox)}><i className="fa-regular fa-comment interface-text"></i></button>)
-              : <i className="fa-regular fa-comment interface-text" onClick={()=>setShowModal(true)}> </i>}
+              : showModal && (<LoginFormModal setShowModal={setShowModal} showModal={showModal} />)}
 
               {loaded && user && !liked && (<button className="postcard-like" onClick={() => likePost(post.id)}><i className="fa-regular fa-heart interface-text"></i></button>)}
               {loaded && user && liked && (<button className="postcard-unlike" onClick={() => unlikePost(post.id)}><i className="fa-solid fa-heart interface-text"></i></button>)}
             </div>
           </div>
           <div>{showBox ? <NotesCard post={post} numlikes={numLikes} numcomments={numComments} /> : null}</div>
-          {showModal && <LoginFormModal showModal={showModal} setShowModal={setShowModal} />}
+          {/* {showModal && (<LoginFormModal showModal={showModal} setShowModal={setShowModal} />)} */}
         </div>
       </div>
     )
