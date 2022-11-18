@@ -92,7 +92,6 @@ const CommentInput = ({ postid }) => {
         </div>
       </div>
     </div>
-    </div >
   )
 }
 
