@@ -55,58 +55,58 @@ def seed_media():
         )
     ]
 
-    # user_3_media = [
-    #     Media(
-    #         post_id=11,
-    #         media_type="",
-    #         media_url=""
-    #     ),
-    #     Media(
-    #         post_id=12,
-    #         media_type="",
-    #         media_url=""
-    #     ),
-    #     Media(
-    #         post_id=13,
-    #         media_type="",
-    #         media_url=""
-    #     ),
-    #     Media(
-    #         post_id=14,
-    #         media_type="",
-    #         media_url=""
-    #     ),
-    #     Media(
-    #         post_id=15,
-    #         media_type="",
-    #         media_url=""
-    #     ),
-    #     Media(
-    #         post_id=16,
-    #         media_type="",
-    #         media_url=""
-    #     ),
-    #     Media(
-    #         post_id=17,
-    #         media_type="",
-    #         media_url=""
-    #     ),
-    #     Media(
-    #         post_id=18,
-    #         media_type="",
-    #         media_url=""
-    #     ),
-    #     Media(
-    #         post_id=19,
-    #         media_type="",
-    #         media_url=""
-    #     ),
-    #     Media(
-    #         post_id=20,
-    #         media_type="",
-    #         media_url=""
-    #     )
-    # ]
+    user_3_media = [
+        Media(
+            post_id=11,
+            media_type="",
+            media_url=""
+        ),
+        Media(
+            post_id=12,
+            media_type="image",
+            media_url="https://i.imgur.com/eWvoSdo.jpeg"
+        ),
+        Media(
+            post_id=13,
+            media_type="",
+            media_url=""
+        ),
+        Media(
+            post_id=14,
+            media_type="video",
+            media_url="https://www.youtube.com/watch?v=KydqdKKyGEk"
+        ),
+        Media(
+            post_id=15,
+            media_type="",
+            media_url=""
+        ),
+        Media(
+            post_id=16,
+            media_type="image",
+            media_url="https://i.imgur.com/lI8Wn5U.png"
+        ),
+        Media(
+            post_id=17,
+            media_type="",
+            media_url=""
+        ),
+        Media(
+            post_id=18,
+            media_type="video",
+            media_url="https://www.youtube.com/watch?v=5nW9o6M5zFo"
+        ),
+        Media(
+            post_id=19,
+            media_type="image",
+            media_url="https://i.imgur.com/6m7csnW.jpeg"
+        ),
+        Media(
+            post_id=20,
+            media_type="image",
+            media_url="https://i.imgur.com/hW4P4oX.jpeg"
+        )
+    ]
 
     # user_4_media = [
     #     Media(
@@ -218,7 +218,7 @@ def seed_media():
         db.session.add(media)
 
     # for media in user_3_media:
-    #     db.session.add(media)
+        db.session.add(media)
 
     # for media in user_4_media:
     #     db.session.add(media)

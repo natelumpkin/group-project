@@ -65,68 +65,76 @@ def seed_posts():
         ),
     ]
 
-    # user_3_posts = [
-    #     Post(
-    #         user_id=3,
-    #         post_type="",
-    #         title="",
-    #         text=""
-    #     ),
-    #     Post(
-    #         user_id=3,
-    #         post_type="",
-    #         title="",
-    #         text=""
-    #     ),
-    #     Post(
-    #         user_id=3,
-    #         post_type="",
-    #         title="",
-    #         text=""
-    #     ),
-    #     Post(
-    #         user_id=3,
-    #         post_type="",
-    #         title="",
-    #         text=""
-    #     ),
-    #     Post(
-    #         user_id=3,
-    #         post_type="",
-    #         title="",
-    #         text=""
-    #     ),
-    #     Post(
-    #         user_id=3,
-    #         post_type="",
-    #         title="",
-    #         text=""
-    #     ),
-    #     Post(
-    #         user_id=3,
-    #         post_type="",
-    #         title="",
-    #         text=""
-    #     ),
-    #     Post(
-    #         user_id=3,
-    #         post_type="",
-    #         title="",
-    #         text=""
-    #     ),
-    #     Post(
-    #         user_id=3,
-    #         post_type="",
-    #         title="",
-    #         text=""
-    #     ),
-    #     Post(
-    #         user_id=3,
-    #         post_type="",
-    #         title="",
-    #         text=""
-    #     ),
-    # ]
+    user_3_posts = [
+        Post(
+            user_id=3,
+            post_type="text",
+            title="",
+            text="""
+            *Mario is fighting Bowser *
+
+            Luigi: Just stay calm! You already have everything you need to beat him!
+
+            Mario: The power to believe in myself!?
+
+            Luigi: No, a knife! Stab him!
+            """
+        ),
+        Post(
+            user_id=3,
+            post_type="image",
+            title="",
+            text=""
+        ),
+        Post(
+            user_id=3,
+            post_type="quote",
+            title="Mario",
+            text="It's-a me, Mario!"
+        ),
+        Post(
+            user_id=3,
+            post_type="video",
+            title="",
+            text=""
+        ),
+        Post(
+            user_id=3,
+            post_type="text",
+            title="Super Mario Movie",
+            text="Is anyone else looking forward to the movie or is it just me? Chris Pratt's voice activng wasn't THAT bad."
+        ),
+        Post(
+            user_id=3,
+            post_type="image",
+            title="",
+            text=""
+        ),
+        Post(
+            user_id=3,
+            post_type="quote",
+            title="Mario",
+            text="Mario number one!"
+        ),
+        Post(
+            user_id=3,
+            post_type="video",
+            title="",
+            text=""
+        ),
+        Post(
+            user_id=3,
+            post_type="image",
+            title="",
+            text=""
+        ),
+        Post(
+            user_id=3,
+            post_type="image",
+            title="",
+            text=""
+        ),
+    ]
 
     # user_4_posts = [
     #     Post(
