@@ -1,4 +1,5 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 
 import './Footer.css';
 
@@ -6,6 +7,11 @@ const Footer = () => {
 
   return (
     <div className="signature-container">
+      <NavLink to='/about'>
+        <span className='about-link'>
+          About
+          </span>
+      </NavLink>
       <div className="signature-content">
         <span> Nate Lumpkin
           <a href="https://www.linkedin.com/in/nate-lumpkin-a6180a16/" target="_blank" rel="noopener noreferrer"><i className="fa-brands fa-linkedin"></i></a>
