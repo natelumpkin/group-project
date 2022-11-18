@@ -56,12 +56,12 @@ const PostCard = ({ post }) => {
 
   const likePost = (postId) => {
     dispatch(likeActions.addPostLike(postId))
-    // .then(setLiked(true))
+      .then(setLiked(true))
   }
 
   const unlikePost = (postId) => {
     dispatch(likeActions.removePostLike(postId))
-    // .then(setLiked(false))
+      .then(setLiked(false))
   }
 
   let numComments
