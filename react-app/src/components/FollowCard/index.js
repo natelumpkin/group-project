@@ -1,5 +1,6 @@
 import { useState } from "react"
 import { useDispatch } from "react-redux"
+import { Link } from "react-router-dom"
 
 import * as followActions from "../../store/follow"
 import './FollowCard.css'
@@ -46,12 +47,12 @@ const FollowCard = ({ user, followingList }) => {
           <img className="profile-img" src={user.profileImageUrl} alt='follow profile' />
         </div>
         <div className="follow-username">
-          <p>{user.username}</p>
+          <Link to={`/users/${user.id}`}>{user.username}</Link>
         </div>
       </div>
       <div className="follow-buttons-holder">
-        {!following && (<div onClick={() => followUser(user)}>Follow</div>)}
-        {following && (<div onClick={() => unfollowUser(user.id)}>Unfollow</div>)}
+        {!following && (<div className="follow-link" onClick={() => followUser(user)}>Follow</div>)}
+        {following && (<div className="follow-link" onClick={() => unfollowUser(user.id)}>Unfollow</div>)}
       </div>
     </div>
   )

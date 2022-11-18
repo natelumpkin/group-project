@@ -14,19 +14,20 @@
 
 .follow-buttons-holder {
   display: flex;
-  margin-right: 10px;
+  margin-right: 25px;
 }
 
-.follow-buttons-holder div {
+.follow-link {
   color: #00b8ff;
   font-weight: bold;
   border: none;
   align-self: center;
   font-size: 14px;
+  cursor: pointer;
 }
 
-.follow-buttons-holder div:hover {
-  cursor: pointer;
+.follow-link:hover {
+  text-decoration: underline;
 }
 
 .follow-profile-image {
@@ -47,5 +48,5 @@
 
 .follow-username {
   display: flex;
-  align-items: flex-end;
+  align-items: flex-start;
 }
