@@ -78,7 +78,7 @@ const CommentInput = ({ postid }) => {
               onChange={(e) => handleChangeText(e)}
               required
               className="notescard_commentinput_bar"
-              placeholder={quote}
+              placeholder="Add to the discussion"
             />
             <button
               type="submit"
