@@ -35,8 +35,21 @@ Scuttlr is fullstack, stateful web-app that draws functionality and style insper
 
 ---
 ## App Screenshots
-    < Placeholder For App Screenshots >
 
+### Sign Up Form
+![](https://i.imgur.com/W8Jc5He.png)
+
+### Log In Form
+![](https://i.imgur.com/yHvXcnS.png)
+
+### Logged out splash page
+![](https://i.imgur.com/Xi6pPbt.png)
+
+### Logged in splash page
+![](https://i.imgur.com/AKKUfwN.png)
+
+### Create Post Form
+![](https://i.imgur.com/5HibyDj.png)
 ---
 
 ## Build/Run Instructions
