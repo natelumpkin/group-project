@@ -7,11 +7,6 @@ const Footer = () => {
 
   return (
     <div className="signature-container">
-      <NavLink to='/about'>
-        <span className='about-link'>
-          About
-          </span>
-      </NavLink>
       <div className="signature-content">
         <span> Nate Lumpkin
           <a href="https://www.linkedin.com/in/nate-lumpkin-a6180a16/" target="_blank" rel="noopener noreferrer"><i className="fa-brands fa-linkedin"></i></a>
@@ -24,6 +19,11 @@ const Footer = () => {
           <a href="https://github.com/myaswen" target="_blank" rel="noopener noreferrer"><i className="fa-brands fa-square-github"></i></a>
         </span>
       </div>
+      <NavLink to='/about'>
+        <span className='about-link'>
+          About
+        </span>
+      </NavLink>
       <div className="signature-content">
         <span> David Siwulec
           {/* <a href=""><i className="fa-brands fa-linkedin"></i></a> */}
