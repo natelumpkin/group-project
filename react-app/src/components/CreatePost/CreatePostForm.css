@@ -3,7 +3,7 @@
     background-color: #222222;
     width: 540px;
     height: fit-content;
-    overflow: visible;
+    object-fit: cover;
     border-radius: 3px;
 }
 

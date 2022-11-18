@@ -51,7 +51,7 @@
 
 #modal-content:has(#login-form) {
     border-radius: 5px;
-    overflow: hidden;
+    object-fit: cover;
 }
 
 #login-errors {
