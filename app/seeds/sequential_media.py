@@ -223,8 +223,8 @@ def seed_media():
     for media in user_4_media:
         db.session.add(media)
 
-    # for media in user_5_media:
-    #     db.session.add(media)
+    for media in user_5_media:
+        db.session.add(media)
 
     db.session.commit()
 

@@ -277,9 +277,9 @@ Luigi: No, a knife! Stab him!"""
     #     post.user_likes = [user_2, user_3, user_5]
         db.session.add(post)
 
-    # for post in user_5_posts:
-    #     post.user_likes = [user_2, user_3, user_4]
-    #     db.session.add(post)
+    for post in user_5_posts:
+        # post.user_likes = [user_2, user_3, user_4]
+        db.session.add(post)
 
     db.session.commit()
 
