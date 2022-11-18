@@ -23,7 +23,7 @@ const HomeFeed = () => {
 
   useEffect(() => {
 
-    (async function() {
+    (async function () {
       await dispatch(postActions.getFeed())
       await dispatch(followActions.getAllFollowing(user?.id))
     })()
@@ -60,8 +60,6 @@ const HomeFeed = () => {
 
   // Redirect users that are not logged in:
   if (!user) return <Redirect to="/" />;
-
-  console.log(allPostsArray)
 
   return (
     <div className="outer-container">
