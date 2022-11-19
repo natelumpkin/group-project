@@ -25,15 +25,17 @@ const UserPosts = () => {
     }
   }
 
+  // if you are on your own page, and you make a new post,
+  // we need to dispatch to get userPosts
+
   const dispatch = useDispatch()
 
   useEffect(() => {
-   async function getData(){ dispatch(postActions.getBlog(userId))
-      .then(() => setLoaded(true))
-    if (user && user.id) await dispatch(followActions.getAllFollowing(user.id))
-  };
-  getData();
-
+   (async function() {
+    await dispatch(postActions.getBlog(userId));
+    setLoaded(true);
+   })()
+    if (user && user.id) dispatch(followActions.getAllFollowing(user.id))
   }, [dispatch, user, userId])
 
   const allPostsArray = []
@@ -68,9 +70,6 @@ const UserPosts = () => {
   if (!loaded) {
     return null
   } else {
-
-
-
     return (
       <div className="outer-container">
         <div className="inner-container">
