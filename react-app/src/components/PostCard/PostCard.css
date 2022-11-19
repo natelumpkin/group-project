@@ -47,6 +47,7 @@
 .postCard-userImage>img {
     width: 64px;
     height: 64px;
+    object-fit: cover;
     position: relative;
     left: -84px;
     top: 20px;

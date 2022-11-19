@@ -33,6 +33,7 @@
 .follow-profile-image {
   height: 37px;
   width: 37px;
+  object-fit: cover;
   border-radius: 3px;
   margin: 0px 10px;
 }
@@ -49,4 +50,8 @@
 .follow-username {
   display: flex;
   align-items: flex-start;
+}
+
+.profile-img {
+  object-fit: cover;
 }
