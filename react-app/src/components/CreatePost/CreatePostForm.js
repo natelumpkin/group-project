@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { useHistory, Redirect } from 'react-router-dom';
+import { useHistory, Redirect, useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { createPost, addMediaByPostId } from '../../store/post';
+
+import * as postActions from '../../store/post'
+
 import './CreatePostModal.css'
 import './CreatePostForm.css'
 // import UploadPicture from '../UploadImage';
@@ -20,6 +23,8 @@ const CreatePostForm = ({ setShowModal, showModal, typeSelection = false }) => {
     const [disablePostText, setDisablePostText] = useState(true)
     const [disablePostMedia, setDisablePostMedia] = useState(true)
     const dispatch = useDispatch();
+
+    const location = useLocation()
 
     useEffect(() => {
         if (showModal) {
@@ -66,9 +71,15 @@ const CreatePostForm = ({ setShowModal, showModal, typeSelection = false }) => {
                 }
             });
         if (post && !mediaUrl) {
+            // if you are on your own page, dispatch get blog
             setShowModal(false)
-            history.push('/feed')
-            window.scrollTo(0,0)
+            if (location.pathname === `/users/${author.id}`) {
+                dispatch(postActions.getBlog(author.id))
+            }
+            // how do we know what page we are on?
+            // console.log(userId)
+            // history.push('/feed')
+            // window.scrollTo(0,0)
         }
         if (post && mediaUrl) {
             const postMedia = await dispatch(addMediaByPostId(post.id, mediaUrl))
@@ -82,8 +93,9 @@ const CreatePostForm = ({ setShowModal, showModal, typeSelection = false }) => {
                 });
             if (postMedia) {
                 setShowModal(false)
-                history.push('/feed')
-                window.scrollTo(0,0)
+            if (location.pathname === `/users/${author.id}`) {
+                dispatch(postActions.getBlog(author.id))
+            }
             }
         }
     };
