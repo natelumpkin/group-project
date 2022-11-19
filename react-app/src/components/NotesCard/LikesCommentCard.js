@@ -17,10 +17,12 @@ const LikesCommentCard = ({ like, post }) => {
 
   const idList = []
   for (let user of followingList) {
-    idList.push(user.id)
+    idList.push(user)
   }
 
-  const [following, setFollowing] = useState(idList.includes(like.id))
+  const [following, setFollowing] = useState(idList.includes(like.id.toString()))
+
+
 
   const followUser = (user) => {
     dispatch(followActions.createNewFollow(user))
@@ -41,6 +43,7 @@ const LikesCommentCard = ({ like, post }) => {
   if (currentuser && (currentuser.id === like.id)) {
     displayFollow = false
   }
+
 
   return (
 
