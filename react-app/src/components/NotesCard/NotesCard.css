@@ -307,11 +307,6 @@ input:focus {
   z-index: 1;
 }
 
-.notescard_comment_content {
-  margin-bottom: 12px;
-
-}
-
 .notescard_comment_options_container {
   margin-left: auto;
   display: inline-block;
