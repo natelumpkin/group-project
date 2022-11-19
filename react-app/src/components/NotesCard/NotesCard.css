@@ -2,7 +2,7 @@
   width: 100%;
   max-width: 540px;
   height: 500px;
-  background-color:#222222;
+  background-color: #222222;
   border-top: 1px solid #3f3f3f;
   border-radius: 3px;
 }
@@ -17,11 +17,11 @@
   margin-left: auto;
   margin-right: auto;
   justify-content: space-evenly;
-  align-items:center;
+  align-items: center;
   border-bottom: 1px solid #3f3f3f;
 }
 
-.notescard_navigation_container button{
+.notescard_navigation_container button {
   font-size: 18px;
   width: max-content;
   height: 45px;
@@ -38,11 +38,11 @@
 /* Fancy coloring for the selectors */
 .notescard_nav_bubble_selected {
   color: #00b8ff;
-  border-bottom: 3px solid  #00b8ff;
+  border-bottom: 3px solid #00b8ff;
 }
 
 .notescard_nav_heart_selected {
-  color:#ff4930;
+  color: #ff4930;
   border-bottom: 3px solid #ff4930;
 }
 
@@ -67,7 +67,7 @@
 
 /* Input/Textarea Container */
 .notescard_commentinput_container {
-  box-sizing:content-box;
+  box-sizing: content-box;
   line-height: inherit;
   border: 1px solid #595959;
   border-radius: 20px;
@@ -76,7 +76,7 @@
   padding: 0 10px;
   width: 430px;
   max-width: 430px;
-  font:inherit;
+  font: inherit;
   font-size: 100%;
   margin: 0;
   justify-content: space-between;
@@ -114,7 +114,7 @@
   word-break: break-word;
   color: whitesmoke;
   border: none;
-  text-align:left;
+  text-align: left;
 
   overflow-x: hidden;
   overflow-y: auto;
@@ -123,7 +123,7 @@
 
 }
 
-.notescard_commentinput_input_div textarea{
+.notescard_commentinput_input_div textarea {
   position: sticky;
   /* outline:1px; */
   text-rendering: auto;
@@ -142,14 +142,15 @@
   /* background: none; */
 }
 
-.notescard_commentinput_container textarea:focus, input:focus{
-    /* outline: 0; */
-    /* border: none; */
+.notescard_commentinput_container textarea:focus,
+input:focus {
+  /* outline: 0; */
+  /* border: none; */
 }
 
 .notescard_commentinput_container *:focus {
-    /* outline: 0; */
-    /* border: none; */
+  /* outline: 0; */
+  /* border: none; */
 }
 
 .notescard_commentinput_form {
@@ -160,9 +161,9 @@
 }
 
 
-.notescard_commentinput_submit_button{
+.notescard_commentinput_submit_button {
   /* border: 1px solid purple; */
-  cursor:default;
+  cursor: default;
   text-decoration: none !important;
   padding: 0;
   border: none;
@@ -171,12 +172,12 @@
   margin: 0;
 }
 
-.notescard_commentinput_submit_button span{
-  cursor:default;
+.notescard_commentinput_submit_button span {
+  cursor: default;
 }
 
-.notescard_commentinput_submit_button_valid{
-  cursor:default;
+.notescard_commentinput_submit_button_valid {
+  cursor: default;
   text-decoration: none !important;
   padding: 0;
   border: none;
@@ -237,19 +238,20 @@
 .notescard_comment_like_container {
   box-sizing: border-box;
   overflow: auto;
-  height:fit-content;
+  height: fit-content;
   max-height: 78%;
   /* height: auto; */
   padding: 15px 20px;
 }
 
-.notescard_comment_main_container{
+.notescard_comment_main_container {
   display: flex;
   flex-direction: row;
   width: 100%;
   max-width: 500px;
   margin-bottom: 15px;
 }
+
 /* .notescard_comment_main_container:hover + notescard_comment_options_container{
         visibility: visible;
     } */
@@ -261,24 +263,31 @@
   height: auto;
   width: 32px;
 }
+
 .notescard_comment_user_image {
   width: 32px;
+  height: 32px;
+  object-fit: cover;
   border-radius: 5px;
   object-fit: cover;
 }
+
 .notescard_like_user_image {
   width: 32px;
+  height: 32px;
   border-radius: 5px;
   object-fit: cover;
 }
+
 .notescard_commentinput_user_image {
   width: 32px;
+  height: 32px;
   border-radius: 5px;
   object-fit: cover;
 
 }
 
-.notescard_comment_content_container{
+.notescard_comment_content_container {
   display: flex;
   flex-direction: column;
   border-color: rgba(255, 255, 255, 0.25);
@@ -298,15 +307,11 @@
   z-index: 1;
 }
 
-.notescard_comment_content {
-  margin-bottom: 12px;
-
-}
-
 .notescard_comment_options_container {
   margin-left: auto;
   display: inline-block;
 }
+
 .popup_options_menu {
   position: absolute;
   inset: 0px 0px auto auto;
@@ -338,7 +343,7 @@
 
 }
 
-.notescard_likes_content_container{
+.notescard_likes_content_container {
   display: flex;
   flex-direction: column;
   border-color: rgba(255, 255, 255, 0.25);
@@ -365,7 +370,7 @@
 
 }
 
-.notescard_likes_followbutton_container button{
+.notescard_likes_followbutton_container button {
   font-size: 18px;
   width: max-content;
   height: 45px;
@@ -384,17 +389,15 @@
 /* Fancy coloring for the selectors */
 .notescard_likes_followbutton_follow {
   color: #00b8ff;
-  border-bottom: 3px solid  #00b8ff;
+  border-bottom: 3px solid #00b8ff;
 }
 
 .notescard_likes_followbutton_unfollow {
-  color:#ff4930;
+  color: #ff4930;
   border-bottom: 3px solid #ff4930;
 }
 
-.notescard_likes_followbutton {
-
-}
+.notescard_likes_followbutton {}
 
 .empty-comments-container {
   display: flex;

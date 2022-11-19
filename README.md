@@ -5,6 +5,7 @@
 2. [Technologies Used](#technologies-used)
 3. [App Screenshots](#app-screenshots)
 4. [Local Run Instructions](#local-run-instructions)
+5. [Future Features](#future-features)
 
 ---
 ## Project Summary
@@ -98,7 +99,7 @@ npm start
 
 * Expanded video and image post capabilities:
 
-    * AWS3 integration to all direct uploading of image and video files.
+    * AWS3 integration to allow direct uploading of image and video files.
 
     * Media previews in the create post and video forms.
 
