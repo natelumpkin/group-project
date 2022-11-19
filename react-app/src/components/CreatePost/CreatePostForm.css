@@ -5,6 +5,7 @@
     height: fit-content;
     object-fit: cover;
     border-radius: 3px;
+    overflow: visible;
 }
 
 .create-post-form {
@@ -27,6 +28,8 @@
     border-radius: 3px;
     height: 64px;
     left: -84px;
+    width: 64px;
+    object-fit: cover;
 }
 
 .post-form-username {
