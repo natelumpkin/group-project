@@ -36,4 +36,4 @@ def upload_image_to_post(postId):
   print(new_image)
   db.session.add(new_image)
   db.session.commit()
-  return {"url": url}
+  return new_image.to_dict()

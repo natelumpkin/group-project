@@ -23,6 +23,7 @@ const CreatePostForm = ({ setShowModal, showModal, typeSelection = false }) => {
     const [disablePostText, setDisablePostText] = useState(true)
     const [disablePostMedia, setDisablePostMedia] = useState(true)
     const [image, setImage] = useState(null);
+    const [imageLoading, setImageLoading] = useState(false);
     const dispatch = useDispatch();
 
     const location = useLocation()
@@ -76,6 +77,7 @@ const CreatePostForm = ({ setShowModal, showModal, typeSelection = false }) => {
             });
         if (post && !mediaUrl) {
             // if you are on your own page, dispatch get blog
+            console.log('entering wrong conditional')
             setShowModal(false)
             if (location.pathname === `/users/${author.id}`) {
                 dispatch(postActions.getBlog(author.id))
@@ -89,6 +91,7 @@ const CreatePostForm = ({ setShowModal, showModal, typeSelection = false }) => {
             const formData = new FormData();
             formData.append("image", image)
             setTitle(image.name)
+            setImageLoading(true)
 
             const res = await fetch(`/api/media/${post.id}`, {
                 method: "POST",
@@ -96,7 +99,9 @@ const CreatePostForm = ({ setShowModal, showModal, typeSelection = false }) => {
             })
             if (res.ok) {
                 const data = await res.json();
-                // setImageLoading(false)
+                console.log('data: ', data)
+                dispatch(postActions.addMedia(data))
+                setImageLoading(false)
                 setShowModal(false)
                 if (location.pathname === `/users/${author.id}`) {
                     dispatch(postActions.getBlog(author.id))

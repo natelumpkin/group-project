@@ -40,7 +40,7 @@ const removePost = (postId) => ({
   payload: postId
 })
 
-const addMedia = (media) => ({
+export const addMedia = (media) => ({
   type: ADD_MEDIA,
   payload: media
 })
@@ -386,6 +386,7 @@ const postReducer = (state = initialState, action) => {
     }
     case ADD_MEDIA: {
       // spread all the data from the previous states
+      console.log('adding media', action.payload)
       const media = action.payload;
       const postId = media.postId
       const newState = {
