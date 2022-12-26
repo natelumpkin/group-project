@@ -10,6 +10,8 @@ media_routes = Blueprint("media", __name__)
 @login_required
 def upload_image_to_post(postId):
 
+  print('Hello from media route')
+
   if "image" not in request.files:
     return {"errors": "image required"}, 400
 
