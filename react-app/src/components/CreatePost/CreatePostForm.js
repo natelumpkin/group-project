@@ -17,6 +17,7 @@ const CreatePostForm = ({ setShowModal, showModal, typeSelection = false }) => {
     const [title, setTitle] = useState('');
     const [text, setText] = useState('');
     const [mediaUrl, setMediaUrl] = useState('');
+    const [disableUrlInput, setDisableUrlInput] = useState(false)
     const [titleCharCount, setTitleCharCount] = useState(0);
     const [textCharCount, setTextCharCount] = useState(0);
     const [mediaCharCount, setMediaCharCount] = useState(0)
@@ -28,7 +29,7 @@ const CreatePostForm = ({ setShowModal, showModal, typeSelection = false }) => {
 
     const location = useLocation()
 
-    console.log(image)
+    console.log('image outside update image: ', image)
 
     useEffect(() => {
         if (showModal) {
@@ -52,6 +53,8 @@ const CreatePostForm = ({ setShowModal, showModal, typeSelection = false }) => {
         } else {
             setDisablePostMedia(true)
         }
+        if (image) setDisableUrlInput(true)
+        if (!image) setDisableUrlInput(false)
     }, [title, text, mediaUrl, image])
 
     const onSubmit = async (e) => {
@@ -133,6 +136,8 @@ const CreatePostForm = ({ setShowModal, showModal, typeSelection = false }) => {
     const updateImage = (e) => {
         const file = e.target.files[0];
         setImage(file);
+        setMediaUrl('')
+        console.log('image in update image: ', image)
     }
 
     return (
@@ -222,10 +227,12 @@ const CreatePostForm = ({ setShowModal, showModal, typeSelection = false }) => {
                         </div>
                         <div className='post-form-username'>{author.username}</div>
                     </div>
+                    {!image && (
                     <div className='media-url-container'>
                         <input
                             name='image'
                             type='url'
+                            disabled={disableUrlInput}
                             placeholder='Type or paste image link'
                             value={mediaUrl}
                             onChange={(e) => {
@@ -238,15 +245,21 @@ const CreatePostForm = ({ setShowModal, showModal, typeSelection = false }) => {
                         />
                         <div>{mediaCharCount}/255</div>
                     </div>
-                    <div className='media-url-container'>
+                    )}
+                    <div className='media-url-container' id="upload-image-container">
                         {/* What's my plan here?
                         1. Create 2 inputs, one for URL and one for files
                         2. On URL input, do the normal submit
                         3. When a file is being uploaded, set URL to empty
                         4. And do the file upload submit*/}
+                        {/* <label id="upload-label">Or upload an image!</label> */}
+                        <label id="upload-file-label" for="upload-image-button">Or upload an image!
+                        </label>
+                        <div id="filename">{image ? image.name : 'No file selected'}</div>
                         <input
+                            id="upload-image-button"
                             type="file"
-                            accept="image/*"
+                            accept="image/jpeg, image/png"
                             onChange={updateImage}
                         />
                     </div>
