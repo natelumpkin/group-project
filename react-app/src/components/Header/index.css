@@ -7,6 +7,7 @@
     padding-right: 50px;
     max-width: 1024px;
     width: 100%;
+    background-color: black;
 }
 
 /* #demo-user-button.signup-login-button.about-page {
@@ -40,7 +41,6 @@
     justify-content: center;
     position: sticky;
     top: 0px;
-    background-color: black;
 }
 
 .fa-shuttle-space {

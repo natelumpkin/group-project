@@ -5,7 +5,7 @@
     height: fit-content;
     object-fit: cover;
     border-radius: 3px;
-    overflow: visible;
+    overflow-y: scroll;
 }
 
 .create-post-form {
@@ -161,6 +161,60 @@
 
 .media-text-container>textarea::placeholder {
     color: #787678;
+}
+
+#upload-image-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    height: fit-content;
+    align-items: center;
+    margin-bottom: 40px;
+}
+
+#upload-label {
+    color:#787678;
+    width: fit-content;
+    margin-bottom: 10px;
+    font-size: 20px;
+}
+
+#upload-file-label {
+    background-color: #323232;
+    border: 1px solid #787678;
+    color:#b5b5b5;
+    width: fit-content;
+    padding: 5px;
+    border-radius: 15px;
+    cursor: pointer;
+    height: 35px;
+    padding-left: 20px;
+    padding-right: 20px;
+    display: flex;
+    align-items: center;
+}
+
+#filename {
+    display: flex;
+    align-items: center;
+    padding-left: 20px;
+    margin-bottom: 6px;
+    font-size: 16px;
+}
+
+input[type=file] {
+    display: none;
+}
+
+#upload-image-button {
+    background-color: #323232;
+    border: 1px solid #787678;
+    color:#b5b5b5;
+    border-radius: 3px;
+}
+
+#upload-image-button button {
+    background-color: red;
 }
 
 .media-text-container>textarea:focus {

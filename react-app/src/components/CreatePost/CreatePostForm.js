@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import { useHistory, Redirect } from 'react-router-dom';
+import { useHistory, Redirect, useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { createPost, addMediaByPostId } from '../../store/post';
+
+import * as postActions from '../../store/post'
+
 import './CreatePostModal.css'
 import './CreatePostForm.css'
-// import UploadPicture from '../UploadImage';
+import UploadPicture from '../UploadImage';
 
 const CreatePostForm = ({ setShowModal, showModal, typeSelection = false }) => {
     const author = useSelector(state => state.session.user)
@@ -14,12 +17,19 @@ const CreatePostForm = ({ setShowModal, showModal, typeSelection = false }) => {
     const [title, setTitle] = useState('');
     const [text, setText] = useState('');
     const [mediaUrl, setMediaUrl] = useState('');
+    const [disableUrlInput, setDisableUrlInput] = useState(false)
     const [titleCharCount, setTitleCharCount] = useState(0);
     const [textCharCount, setTextCharCount] = useState(0);
     const [mediaCharCount, setMediaCharCount] = useState(0)
     const [disablePostText, setDisablePostText] = useState(true)
     const [disablePostMedia, setDisablePostMedia] = useState(true)
+    const [image, setImage] = useState(null);
+    const [imageLoading, setImageLoading] = useState(false);
     const dispatch = useDispatch();
+
+    const location = useLocation()
+
+    console.log('image outside update image: ', image)
 
     useEffect(() => {
         if (showModal) {
@@ -37,12 +47,15 @@ const CreatePostForm = ({ setShowModal, showModal, typeSelection = false }) => {
         } else {
             setDisablePostText(true)
         }
-        if (mediaUrl.length > 0) {
+        if (mediaUrl.length > 0 || image) {
+
             setDisablePostMedia(false)
         } else {
             setDisablePostMedia(true)
         }
-    }, [title, text, mediaUrl])
+        if (image) setDisableUrlInput(true)
+        if (!image) setDisableUrlInput(false)
+    }, [title, text, mediaUrl, image])
 
     const onSubmit = async (e) => {
         e.preventDefault();
@@ -66,9 +79,40 @@ const CreatePostForm = ({ setShowModal, showModal, typeSelection = false }) => {
                 }
             });
         if (post && !mediaUrl) {
+            // if you are on your own page, dispatch get blog
+            console.log('entering wrong conditional')
             setShowModal(false)
-            history.push('/feed')
-            window.scrollTo(0,0)
+            if (location.pathname === `/users/${author.id}`) {
+                dispatch(postActions.getBlog(author.id))
+            }
+            // how do we know what page we are on?
+            // console.log(userId)
+            // history.push('/feed')
+            // window.scrollTo(0,0)
+        }
+        if (post && image) {
+            const formData = new FormData();
+            formData.append("image", image)
+            setTitle(image.name)
+            setImageLoading(true)
+
+            const res = await fetch(`/api/media/${post.id}`, {
+                method: "POST",
+                body: formData,
+            })
+            if (res.ok) {
+                const data = await res.json();
+                console.log('data: ', data)
+                dispatch(postActions.addMedia(data))
+                setImageLoading(false)
+                setShowModal(false)
+                if (location.pathname === `/users/${author.id}`) {
+                    dispatch(postActions.getBlog(author.id))
+                }
+            } else {
+                const errors = await res.json()
+                console.log(errors)
+            }
         }
         if (post && mediaUrl) {
             const postMedia = await dispatch(addMediaByPostId(post.id, mediaUrl))
@@ -82,11 +126,20 @@ const CreatePostForm = ({ setShowModal, showModal, typeSelection = false }) => {
                 });
             if (postMedia) {
                 setShowModal(false)
-                history.push('/feed')
-                window.scrollTo(0,0)
+            if (location.pathname === `/users/${author.id}`) {
+                dispatch(postActions.getBlog(author.id))
+            }
             }
         }
     };
+
+    const updateImage = (e) => {
+        const file = e.target.files[0];
+        setImage(file);
+        setMediaUrl('')
+        console.log('image in update image: ', image)
+    }
+
     return (
         <div>
             {!postType && (
@@ -166,6 +219,7 @@ const CreatePostForm = ({ setShowModal, showModal, typeSelection = false }) => {
 
             {/* // ---------- POST FORM FOR IMAGE ---------- \\ */}
             {postType === 'image' && (
+                <>
                 <form className='create-post-form' onSubmit={onSubmit}>
                     <div>
                         <div id='text-profile-image-container'>
@@ -173,10 +227,12 @@ const CreatePostForm = ({ setShowModal, showModal, typeSelection = false }) => {
                         </div>
                         <div className='post-form-username'>{author.username}</div>
                     </div>
+                    {!image && (
                     <div className='media-url-container'>
                         <input
                             name='image'
                             type='url'
+                            disabled={disableUrlInput}
                             placeholder='Type or paste image link'
                             value={mediaUrl}
                             onChange={(e) => {
@@ -188,6 +244,24 @@ const CreatePostForm = ({ setShowModal, showModal, typeSelection = false }) => {
 
                         />
                         <div>{mediaCharCount}/255</div>
+                    </div>
+                    )}
+                    <div className='media-url-container' id="upload-image-container">
+                        {/* What's my plan here?
+                        1. Create 2 inputs, one for URL and one for files
+                        2. On URL input, do the normal submit
+                        3. When a file is being uploaded, set URL to empty
+                        4. And do the file upload submit*/}
+                        {/* <label id="upload-label">Or upload an image!</label> */}
+                        <label id="upload-file-label" for="upload-image-button">Or upload an image!
+                        </label>
+                        <div id="filename">{image ? image.name : 'No file selected'}</div>
+                        <input
+                            id="upload-image-button"
+                            type="file"
+                            accept="image/jpeg, image/png"
+                            onChange={updateImage}
+                        />
                     </div>
                     <div className='media-text-container'>
                         <textarea
@@ -204,11 +278,13 @@ const CreatePostForm = ({ setShowModal, showModal, typeSelection = false }) => {
                         />
                         <div>{textCharCount}/1000</div>
                     </div>
+
                     <div className='form-footer'>
                         <button className='cancel-button' onClick={() => setShowModal(false)}>Close</button>
                         <button className='submit-button' type="submit" disabled={disablePostMedia}>Post Now</button>
                     </div>
                 </form>
+                </>
             )}
 
 
