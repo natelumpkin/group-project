@@ -10,7 +10,7 @@ const UploadPicture = ({ post }) => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log('Hello from handle submit')
+        // console.log('Hello from handle submit')
         const formData = new FormData();
         formData.append("image", image);
 
@@ -40,7 +40,7 @@ const UploadPicture = ({ post }) => {
         setImage(file);
     }
 
-    console.log(image)
+    // console.log(image)
 
     return (
         <form onSubmit={handleSubmit}>
