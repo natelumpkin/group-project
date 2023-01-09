@@ -117,6 +117,10 @@
     font-weight: 500;
 }
 
+.uploading-image {
+    margin-left: 20px;
+}
+
 .cancel-button {
     background-color: #3f3f3f;
     color: #b5b5b5;

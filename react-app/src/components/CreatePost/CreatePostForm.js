@@ -29,7 +29,7 @@ const CreatePostForm = ({ setShowModal, showModal, typeSelection = false }) => {
 
     const location = useLocation()
 
-    console.log('image outside update image: ', image)
+    // console.log('image outside update image: ', image)
 
     useEffect(() => {
         if (showModal) {
@@ -75,13 +75,13 @@ const CreatePostForm = ({ setShowModal, showModal, typeSelection = false }) => {
                 if (data && data.errors) {
                     setErrors(Object.values(data.errors));
                     // This console log is to make react happy - do not delete
-                    console.log("Errors "+errors)
+                    // console.log("Errors "+errors)
                 }
             });
         if (post && !mediaUrl) {
             // if you are on your own page, dispatch get blog
-            console.log('entering wrong conditional')
-            setShowModal(false)
+            // console.log('entering wrong conditional')
+            // setShowModal(false)
             if (location.pathname === `/users/${author.id}`) {
                 dispatch(postActions.getBlog(author.id))
             }
@@ -91,28 +91,31 @@ const CreatePostForm = ({ setShowModal, showModal, typeSelection = false }) => {
             // window.scrollTo(0,0)
         }
         if (post && image) {
+            console.log('uploading image')
             const formData = new FormData();
             formData.append("image", image)
             setTitle(image.name)
+
             setImageLoading(true)
 
             const res = await fetch(`/api/media/${post.id}`, {
                 method: "POST",
                 body: formData,
             })
-            if (res.ok) {
+            // if (res.ok) {
                 const data = await res.json();
-                console.log('data: ', data)
+                // console.log('data: ', data)
                 dispatch(postActions.addMedia(data))
                 setImageLoading(false)
+                // console.log('closing modal')
                 setShowModal(false)
                 if (location.pathname === `/users/${author.id}`) {
                     dispatch(postActions.getBlog(author.id))
                 }
-            } else {
-                const errors = await res.json()
-                console.log(errors)
-            }
+            // } else {
+            //     const errors = await res.json()
+            //     // console.log(errors)
+            // }
         }
         if (post && mediaUrl) {
             const postMedia = await dispatch(addMediaByPostId(post.id, mediaUrl))
@@ -121,7 +124,7 @@ const CreatePostForm = ({ setShowModal, showModal, typeSelection = false }) => {
                     if (data && data.errors) {
                         setErrors(Object.values(data.errors));
                         // This console log is to make react happy - do not delete
-                        console.log("Errors "+errors)
+                        // console.log("Errors "+errors)
                     }
                 });
             if (postMedia) {
@@ -137,7 +140,7 @@ const CreatePostForm = ({ setShowModal, showModal, typeSelection = false }) => {
         const file = e.target.files[0];
         setImage(file);
         setMediaUrl('')
-        console.log('image in update image: ', image)
+        // console.log('image in update image: ', image)
     }
 
     return (
@@ -279,10 +282,17 @@ const CreatePostForm = ({ setShowModal, showModal, typeSelection = false }) => {
                         <div>{textCharCount}/1000</div>
                     </div>
 
-                    <div className='form-footer'>
-                        <button className='cancel-button' onClick={() => setShowModal(false)}>Close</button>
-                        <button className='submit-button' type="submit" disabled={disablePostMedia}>Post Now</button>
-                    </div>
+                    {!imageLoading && (
+                        <div className='form-footer'>
+                            <button className='cancel-button' onClick={() => setShowModal(false)}>Close</button>
+                            <button className='submit-button' type="submit" disabled={disablePostMedia}>Post Now</button>
+                        </div>
+                    )}
+                    {imageLoading && (
+                        <div className='form-footer'>
+                            <h4 className='uploading-image'>Creating your post! Almost done...</h4>
+                        </div>
+                    )}
                 </form>
                 </>
             )}

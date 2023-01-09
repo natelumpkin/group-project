@@ -38,7 +38,7 @@ const CreatePostForm = ({ setShowModal, showModal, post }) => {
                 if (data && data.errors) {
                     setErrors(Object.values(data.errors));
                     // This console log is to make react happy - do not delete
-                    console.log("Errors "+errors)
+                    // console.log("Errors "+errors)
                 }
             });
         if (editedPost) setShowModal(false)

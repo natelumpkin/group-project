@@ -386,7 +386,7 @@ const postReducer = (state = initialState, action) => {
     }
     case ADD_MEDIA: {
       // spread all the data from the previous states
-      console.log('adding media', action.payload)
+      // console.log('adding media', action.payload)
       const media = action.payload;
       const postId = media.postId
       const newState = {
